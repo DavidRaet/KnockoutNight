@@ -1,6 +1,6 @@
 # Knockout Night v0.1 Engineering Roadmap
 
-**Status:** Approved roadmap; F1 implemented with Studio verification; prototype feel review pending.
+**Status:** Approved roadmap; F1 implemented with Studio verification; F2 physics evaluation and feel review complete; temporary server ownership during knockback approved. The concrete Spring Fist implementation outline is next; combat is not implemented.
 
 **Approved:** October 20, 2026.  
 **Source of truth:** [Knockout Night v0.1 PRD](Knockout_Night_v0.1_PRD.md), document version 0.2.  
@@ -162,7 +162,7 @@ Roadmap approval accepts the breakdown and sequence. The proposed treatments bel
 
 | Decision or risk | Needed before | Proposed treatment for review |
 |---|---|---|
-| **Physics ownership and movement validation** | F2 | Evaluate the smallest supported approach against latency, launch consistency, and abuse. Do not make an unverified platform feature a release dependency. Review evidence before committing the architecture. |
+| **Physics ownership and movement validation** | F2 | [Controlled experiment and review gate](F2_Physics_Evaluation.md) implemented for classic client ownership and temporary server ownership. Review measured evidence and hands-on feel before committing the architecture. Server Authority viability remains unverified. |
 | **Failure to spawn safely** | F3 | PRD V03 leaves recovery behavior open. Define bounded recovery and the terminal fallback before implementation; never duplicate score or leave an indefinite respawn. |
 | **Coincident departures, deadline, and decisive elimination** | F4/F5; expanded in L9 | Existing individual rules are settled. Explicitly document precedence for mixed events in one update where the PRD does not fully resolve it. Do not silently choose a winner policy. |
 | **Local allocation/full-capacity behavior** | L3 | Recommend one active local match initially, with additional players waiting in FIFO queues. This is a proposed test allocation, not a change to reserved-server production architecture. |
@@ -183,6 +183,6 @@ Follow the project's asset organization rules. Future Blender source files belon
 
 ## Verification status and next step
 
-F1 implementation and its Studio checks are recorded in [F1 Implementation and Verification](F1_Implementation_and_Verification.md). Two-client rig, spawn, collision, movement, camera, input, and character-replacement checks have been exercised. Product-owner feel review, simulated-latency testing, and reference-hardware performance remain outstanding. No later slice, publishing, or asset export is asserted complete.
+F1 implementation and its Studio checks are recorded in [F1 Implementation and Verification](F1_Implementation_and_Verification.md). Two-client rig, spawn, collision, movement, camera, input, and character-replacement checks have been exercised. The [F2 physics evaluation](F2_Physics_Evaluation.md) subsequently passed baseline and target-latency launch-fixture checks. Product-owner feel/camera review, actual combat latency verification, and reference-hardware performance remain outstanding. F2 combat, publishing, and asset export are not asserted complete.
 
-Script Sync mapping and bidirectional behavior were verified before the product owner authorized F1 implementation. The next step is product-owner hands-on review of the F1 prototype. Announce proposed tuning or F2 work before taking it; F2 still requires evaluation of physics ownership and movement validation.
+Script Sync mapping and bidirectional behavior were verified before the product owner authorized F1 implementation. The next step is product-owner hands-on comparison of the physics candidates, alongside the outstanding F1 review. [F2 Next Steps](F2_Next_Steps.md) records the completed process and remaining work. Announce proposed tuning or combat work before taking it; physics architecture approval remains a prerequisite to combat implementation.

@@ -19,3 +19,7 @@ Only export or regenerate assets when requested. When organizing existing assets
 ## Luau assertions
 
 Always pass a descriptive failure message as the second argument to `assert`. Messages should explain the invariant that failed and help identify the affected system or data.
+
+## Checks Before Studio
+
+Run builds, tests, linter, and formatters before studio sees whatever code you sync

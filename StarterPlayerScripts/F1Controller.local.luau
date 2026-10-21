@@ -13,6 +13,15 @@ assert(configInstance and configInstance:IsA("ModuleScript"), "F1Config is missi
 assert(movementInstance and movementInstance:IsA("ModuleScript"), "F1Movement is missing")
 local Config = require(configInstance)
 local Movement = require(movementInstance)
+local combatInstance = script.Parent:WaitForChild("F2Client", 10)
+assert(combatInstance and combatInstance:IsA("ModuleScript"), "F2Client is missing from the Spring Fist prototype")
+local Combat = require(combatInstance)
+local studyInstance = if RunService:IsStudio() then ReplicatedStorage:WaitForChild("F2PhysicsStudy", 10) else nil
+assert(
+	not RunService:IsStudio() or (studyInstance and studyInstance:IsA("ModuleScript")),
+	"F2PhysicsStudy module is missing from the Studio prototype"
+)
+local PhysicsStudy = if studyInstance then require(studyInstance) else nil
 local playerScripts = player:WaitForChild("PlayerScripts", 10)
 assert(playerScripts, "PlayerScripts is missing")
 local playerModule = playerScripts:WaitForChild("PlayerModule", 10)
@@ -38,6 +47,19 @@ local function connect(signal: RBXScriptSignal, callback)
 	table.insert(connections, signal:Connect(callback))
 end
 
+local studyMotor: Humanoid? = nil
+local studyMotorEnabled = true
+
+local function restoreStudyMotor()
+	if studyMotor then
+		studyMotor.EvaluateStateMachine = studyMotorEnabled
+		if studyMotorEnabled and studyMotor.Health > 0 then
+			studyMotor:ChangeState(Enum.HumanoidStateType.Freefall)
+		end
+		studyMotor = nil
+	end
+end
+
 local function clearInput()
 	table.clear(held)
 	jumpHeld = false
@@ -45,12 +67,17 @@ local function clearInput()
 end
 
 local function controlsEnabled(): boolean
-	return focused and not GuiService.MenuIsOpen and Input:GetFocusedTextBox() == nil
+	return focused
+		and not GuiService.MenuIsOpen
+		and Input:GetFocusedTextBox() == nil
+		and GuiService.SelectedObject == nil
 		and player:GetAttribute("F1ControlsEnabled") ~= false
-		and humanoid ~= nil and humanoid.Health > 0
+		and humanoid ~= nil
+		and humanoid.Health > 0
 end
 
 local function attachCharacter(model: Model)
+	restoreStudyMotor()
 	character = model
 	humanoid = nil
 	root = nil
@@ -75,6 +102,7 @@ end
 connect(player.CharacterAdded, attachCharacter)
 connect(player.CharacterRemoving, function(model: Model)
 	if character == model then
+		restoreStudyMotor()
 		character = nil
 		humanoid = nil
 		root = nil
@@ -95,6 +123,16 @@ end)
 connect(GuiService.MenuOpened, clearInput)
 connect(Input.TextBoxFocused, clearInput)
 connect(player:GetAttributeChangedSignal("F1ControlsEnabled"), clearInput)
+
+Actions:BindActionAtPriority("F2Attack", function(_, state)
+	if state == Enum.UserInputState.Begin and controlsEnabled() and character and root then
+		local now = workspace:GetServerTimeNow()
+		if not root:GetAttribute("F2Displaced") and now >= (root:GetAttribute("F2ReactionUntil") or 0) then
+			Combat.press(character, CFrame.Angles(0, yaw, 0).LookVector)
+		end
+	end
+	return if controlsEnabled() then Enum.ContextActionResult.Sink else Enum.ContextActionResult.Pass
+end, false, Enum.ContextActionPriority.High.Value, Enum.UserInputType.MouseButton1)
 
 Actions:BindActionAtPriority("F1Movement", function(_, state, input)
 	if state == Enum.UserInputState.End then
@@ -121,16 +159,27 @@ end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.Space)
 
 connect(Input.InputChanged, function(input, processed)
 	if not processed and controlsEnabled() and input.UserInputType == Enum.UserInputType.MouseWheel then
-		distance = math.clamp(distance - input.Position.Z * Config.CameraZoomStep, Config.CameraMinDistance, Config.CameraMaxDistance)
+		distance = math.clamp(
+			distance - input.Position.Z * Config.CameraZoomStep,
+			Config.CameraMinDistance,
+			Config.CameraMaxDistance
+		)
 	end
 end)
 
-connect(RunService.PreSimulation, function()
+connect(RunService.PreSimulation, function(dt)
 	local currentHumanoid, currentRoot = humanoid, root
 	if not currentHumanoid or not currentRoot then
+		Combat.update(nil)
 		return
 	end
-	if not controlsEnabled() then
+	local studyMode = if PhysicsStudy then currentRoot:GetAttribute("F2StudyMode") else nil
+	local studyInput = if PhysicsStudy then currentRoot:GetAttribute("F2StudyInput") else nil
+	if studyMode ~= "client" and studyMode ~= "server" then
+		restoreStudyMotor()
+	end
+	if not controlsEnabled() and studyMode == nil and typeof(studyInput) ~= "Vector3" then
+		Combat.update(character, CFrame.Angles(0, yaw, 0).LookVector, Vector3.zero, false)
 		clearInput()
 		currentHumanoid:Move(Vector3.zero, false)
 		currentHumanoid.Jump = false
@@ -139,11 +188,58 @@ connect(RunService.PreSimulation, function()
 	local x = (if held[Enum.KeyCode.D] then 1 else 0) - (if held[Enum.KeyCode.A] then 1 else 0)
 	local z = (if held[Enum.KeyCode.S] then 1 else 0) - (if held[Enum.KeyCode.W] then 1 else 0)
 	local direction = Movement.direction(x, z, yaw)
+	if typeof(studyInput) == "Vector3" then
+		direction = studyInput
+	elseif not controlsEnabled() then
+		direction = Vector3.zero
+	end
+	local intendedAim = CFrame.Angles(0, yaw, 0).LookVector
+	player:SetAttribute("F2IntendedAim", intendedAim)
+	Combat.update(character, intendedAim, direction, controlsEnabled())
+	local now = workspace:GetServerTimeNow()
+	local displaced = currentRoot:GetAttribute("F2Displaced") ~= nil
+	local reaction = now < (currentRoot:GetAttribute("F2ReactionUntil") or 0)
+	if displaced or reaction then
+		currentHumanoid:Move(Vector3.zero, false)
+		currentHumanoid.Jump = false
+		jumpRequested = false
+		return
+	end
+	if PhysicsStudy and (studyMode == "client" or studyMode == "server") then
+		if studyMotor ~= currentHumanoid then
+			local motorEnabled = currentRoot:GetAttribute("F2StudyMotorEnabled")
+			if typeof(motorEnabled) ~= "boolean" then
+				return
+			end
+			restoreStudyMotor()
+			studyMotorEnabled = motorEnabled
+			studyMotor = currentHumanoid
+		end
+		currentHumanoid.EvaluateStateMachine = false
+		currentHumanoid:Move(direction, false)
+		currentHumanoid.Jump = false
+		jumpRequested = false
+		if studyMode == "client" then
+			currentRoot.AssemblyLinearVelocity = PhysicsStudy.steer(currentRoot.AssemblyLinearVelocity, direction, dt)
+		end
+		return
+	end
 	local grounded = currentHumanoid.FloorMaterial ~= Enum.Material.Air
-	currentRoot.CFrame = CFrame.new(currentRoot.Position) * CFrame.Angles(0, yaw, 0)
-	-- shortcut: ordinary Humanoid air control only; add knockback ownership in F2.
+	local moveScale, canJump, committedAim = Combat.permissions(character)
+	local serverAim = currentRoot:GetAttribute("F2ActionAim")
+	if now < (currentRoot:GetAttribute("F2ActionUntil") or 0) and typeof(serverAim) == "Vector3" then
+		moveScale, canJump = 0.7, false
+		committedAim = serverAim
+	end
+	currentHumanoid.WalkSpeed = Config.WalkSpeed * moveScale
+	currentHumanoid.JumpHeight = if canJump then Config.JumpHeight else 0
+	currentRoot.CFrame = if committedAim
+		then CFrame.lookAt(currentRoot.Position, currentRoot.Position + committedAim)
+		else CFrame.new(currentRoot.Position) * CFrame.Angles(0, yaw, 0)
 	currentHumanoid:Move(direction * (if grounded then 1 else Config.AirControl), false)
-	currentHumanoid.Jump = jumpRequested and grounded
+	currentHumanoid.Jump = canJump
+		and (jumpRequested or (PhysicsStudy ~= nil and currentRoot:GetAttribute("F2StudyJump") == true))
+		and grounded
 	jumpRequested = false
 end)
 
@@ -188,11 +284,14 @@ RunService:BindToRenderStep("F1Camera", Enum.RenderPriority.Camera.Value + 1, fu
 end)
 
 script.Destroying:Connect(function()
+	Combat.stop()
+	restoreStudyMotor()
 	for _, connection in connections do
 		connection:Disconnect()
 	end
 	Actions:UnbindAction("F1Movement")
 	Actions:UnbindAction("F1Jump")
+	Actions:UnbindAction("F2Attack")
 	RunService:UnbindFromRenderStep("F1Camera")
 	defaultControls:Enable()
 	Input.MouseBehavior = Enum.MouseBehavior.Default

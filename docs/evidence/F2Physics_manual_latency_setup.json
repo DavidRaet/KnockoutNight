@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-21",
+  "placeId": 2336816683,
+  "contexts": [
+    {
+      "id": "5b185def-644b-4e53-ba96-1eb8b69a7f74",
+      "type": "Client"
+    },
+    {
+      "id": "a6a986da-7556-45a6-b155-29fe99738ed1",
+      "type": "Server"
+    },
+    {
+      "id": "f090ed25-abc2-409b-9b2a-5656a726407a",
+      "type": "Client"
+    }
+  ],
+  "originalClientDelayMs": {
+    "inbound": 0,
+    "outbound": 0
+  },
+  "profile": {
+    "withinTarget": true,
+    "inboundClientDelayMs": 40,
+    "rttMs": {
+      "Player2": {
+        "1": 132.94239999959245,
+        "2": 117.329200000313,
+        "3": 114.84800000107498,
+        "4": 115.53909999929601,
+        "5": 117.26269999962824
+      },
+      "Player1": {
+        "1": 132.96579999951064,
+        "2": 117.35029999908875,
+        "3": 114.87020000095072,
+        "4": 115.56019999989076,
+        "5": 117.28760000005423
+      }
+    },
+    "outboundClientDelayMs": 40
+  },
+  "handsOnAccepted": true,
+  "initialCalibration": {
+    "withinTarget": false,
+    "inboundClientDelayMs": 50,
+    "rttMs": {
+      "Player2": {
+        "1": 148.46699999907287,
+        "2": 133.93440000072587,
+        "3": 133.6303999996744,
+        "4": 134.11069999892788,
+        "5": 133.60009999996691
+      },
+      "Player1": {
+        "1": 165.32759999972768,
+        "2": 133.95259999924747,
+        "3": 149.59910000106902,
+        "4": 134.1281999993953,
+        "5": 133.61970000005385
+      }
+    },
+    "outboundClientDelayMs": 50
+  },
+  "acceptance": {
+    "reportedBy": "product owner",
+    "observation": "Tested both sides with no noticeably worse behavior; current feel accepted.",
+    "scope": "Manual feel only; no numeric tolerance or architecture approval."
+  },
+  "cleanup": {
+    "clientInboundDelayMs": 0,
+    "clientOutboundDelayMs": 0,
+    "clientRestorationVerified": true,
+    "parentFixturesRemoved": true,
+    "parentManualGateCleared": true,
+    "parentNetworkBaselineVerified": true,
+    "endSessionVerified": false
+  }
+}

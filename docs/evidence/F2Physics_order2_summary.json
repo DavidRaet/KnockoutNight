@@ -1,0 +1,3219 @@
+{
+  "recordedAutomatedTrials": 216,
+  "manualLaunches": 4,
+  "architectureApproved": false,
+  "runs": [
+    {
+      "file": "F2Physics_order2_airborne.json",
+      "passed": true,
+      "behaviorChecksPassed": true,
+      "trials": 4,
+      "groups": [
+        {
+          "mode": "client",
+          "probe": "airborne",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 117.01489999995829,
+              "median": 117.55154999991646,
+              "max": 118.08819999987463
+            },
+            "minimumCredit": {
+              "min": 11.341613450666944,
+              "median": 11.672139796509985,
+              "max": 12.002666142353025
+            },
+            "recoveredSeconds": {
+              "min": 0.7151359999998022,
+              "median": 0.7738594999996167,
+              "max": 0.8325829999994312
+            },
+            "serverTravel": {
+              "min": 27.490541778255057,
+              "median": 28.984211231477538,
+              "max": 30.47788068470002
+            },
+            "subjectTravel": {
+              "min": 27.49053670057657,
+              "median": 28.984427128566864,
+              "max": 30.478317556557162
+            },
+            "subjectStepExcess": {
+              "min": 0.18941698456001177,
+              "median": 0.23596123923284318,
+              "max": 0.2825054939056746
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.11477494239807129,
+              "median": 0.11858046054840088,
+              "max": 0.12238597869873047
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.06685614585876465,
+              "median": 0.06835448741912842,
+              "max": 0.06985282897949219
+            },
+            "observerTravel": {
+              "min": 27.490541778255057,
+              "median": 28.984365270980028,
+              "max": 30.478188763704996
+            },
+            "observerStepExcess": {
+              "min": 0.7426172971263441,
+              "median": 0.8305046134410077,
+              "max": 0.9183919297556713
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.3457520008087158,
+              "median": 0.3461589813232422,
+              "max": 0.34656596183776855
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "airborne",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.30440000013186,
+              "median": 113.93610000004628,
+              "max": 117.5677999999607
+            },
+            "minimumCredit": {
+              "min": 11.75871362256477,
+              "median": 11.763573020942772,
+              "max": 11.768432419320773
+            },
+            "recoveredSeconds": {
+              "min": 0.5485899999994217,
+              "median": 0.5690679999997883,
+              "max": 0.5895460000001549
+            },
+            "serverTravel": {
+              "min": 27.70833110809326,
+              "median": 29.33561086654663,
+              "max": 30.962890625
+            },
+            "subjectTravel": {
+              "min": 27.62122917175293,
+              "median": 29.292088508605957,
+              "max": 30.962947845458984
+            },
+            "subjectStepExcess": {
+              "min": 2.9443467622604658,
+              "median": 3.9318402135913857,
+              "max": 4.919333664922306
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.1648817000004783,
+              "median": 0.16528495000056864,
+              "max": 0.16568820000065898
+            },
+            "subjectMotionSeconds": {
+              "min": 0.2870500087738037,
+              "median": 0.28938400745391846,
+              "max": 0.2917180061340332
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.07291197776794434,
+              "median": 0.07495653629302979,
+              "max": 0.07700109481811523
+            },
+            "observerTravel": {
+              "min": 27.7083740234375,
+              "median": 29.335633277893066,
+              "max": 30.962892532348633
+            },
+            "observerStepExcess": {
+              "min": 0.5160172006490029,
+              "median": 0.6390263208234426,
+              "max": 0.7620354409978822
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.027116200000364188,
+              "max": 0.054232400000728376
+            },
+            "observerMotionSeconds": {
+              "min": 0.2901577949523926,
+              "median": 0.3189518451690674,
+              "max": 0.3477458953857422
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "F2Physics_order2_baseline.json",
+      "passed": true,
+      "behaviorChecksPassed": true,
+      "trials": 20,
+      "groups": [
+        {
+          "mode": "client",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 12.72789999984525,
+              "median": 13.279650000640686,
+              "max": 19.613399999798276
+            },
+            "minimumCredit": {
+              "min": 11.22165887549437,
+              "median": 11.754395000437881,
+              "max": 12.211814743094676
+            },
+            "recoveredSeconds": {
+              "min": 0.1373556999997163,
+              "median": 0.21156435000057172,
+              "max": 0.3054562999996051
+            },
+            "serverTravel": {
+              "min": 8.3973388671875,
+              "median": 12.207753036000398,
+              "max": 15.747150625571145
+            },
+            "subjectTravel": {
+              "min": 8.397349119186401,
+              "median": 12.207740354314657,
+              "max": 15.747134683233218
+            },
+            "subjectStepExcess": {
+              "min": 0,
+              "median": 0.15209710036924662,
+              "max": 0.4095061852658546
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.06615996360778809,
+              "median": 0.06984448432922363,
+              "max": 0.07233881950378418
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.013734102249145508,
+              "median": 0.042919039726257324,
+              "max": 0.05004096031188965
+            },
+            "observerTravel": {
+              "min": 8.3973388671875,
+              "median": 12.20775291677257,
+              "max": 15.747150625571145
+            },
+            "observerStepExcess": {
+              "min": 0.07616594922009035,
+              "median": 0.36234477844485546,
+              "max": 0.9005230659677181
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.11940813064575195,
+              "median": 0.1262739896774292,
+              "max": 0.28748512268066406
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 11.747200000172597,
+              "median": 14.149600000109785,
+              "max": 21.486800000275252
+            },
+            "minimumCredit": {
+              "min": 10.953790701124127,
+              "median": 11.76162527773644,
+              "max": 11.976388604290436
+            },
+            "recoveredSeconds": {
+              "min": 0.12400399999933143,
+              "median": 0.12494204999984504,
+              "max": 0.12616160000015952
+            },
+            "serverTravel": {
+              "min": 6.041665554046631,
+              "median": 6.45833158493042,
+              "max": 7.6112060546875
+            },
+            "subjectTravel": {
+              "min": 4.359387397766113,
+              "median": 5.136339902877808,
+              "max": 7.611240386962891
+            },
+            "subjectStepExcess": {
+              "min": 1.1982842036632064,
+              "median": 2.169549256012509,
+              "max": 4.387440878448615
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.11039119999986724,
+              "median": 0.11116235000008601,
+              "max": 0.11259770000015124
+            },
+            "subjectMotionSeconds": {
+              "min": 0.17605900764465332,
+              "median": 0.18171143531799316,
+              "max": 0.184190034866333
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.05202603340148926,
+              "median": 0.056764960289001465,
+              "max": 0.05926394462585449
+            },
+            "observerTravel": {
+              "min": 4.44351863861084,
+              "median": 5.893388271331787,
+              "max": 7.6112060546875
+            },
+            "observerStepExcess": {
+              "min": 4.76837158203125e-07,
+              "median": 1.3225758755288552,
+              "max": 2.7565555572509766
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0.055730600000060804
+            },
+            "observerMotionSeconds": {
+              "min": 0.12332701683044434,
+              "median": 0.12527453899383545,
+              "max": 0.3451569080352783
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "F2Physics_order2_baseline_hold.json",
+      "passed": true,
+      "behaviorChecksPassed": true,
+      "trials": 20,
+      "groups": [
+        {
+          "mode": "client",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 12.03689999965718,
+              "median": 13.510100000075909,
+              "max": 20.63129999987723
+            },
+            "minimumCredit": {
+              "min": 8.991353741399145,
+              "median": 11.4308766137163,
+              "max": 11.977131521824102
+            },
+            "recoveredSeconds": {
+              "min": 0.3183737999997902,
+              "median": 0.3201785500000369,
+              "max": 0.327296500000557
+            },
+            "serverTravel": {
+              "min": 15.330743342933518,
+              "median": 16.129432117644573,
+              "max": 16.42757597608693
+            },
+            "subjectTravel": {
+              "min": 15.330777500522696,
+              "median": 16.129468384538633,
+              "max": 16.42763124489606
+            },
+            "subjectStepExcess": {
+              "min": 0.12425103090754419,
+              "median": 0.20471656527743687,
+              "max": 0.30255500000748725
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.065338134765625,
+              "median": 0.07005107402801514,
+              "max": 0.07271599769592285
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.015161991119384766,
+              "median": 0.02378392219543457,
+              "max": 0.02971792221069336
+            },
+            "observerTravel": {
+              "min": 15.330743342933518,
+              "median": 16.129432117644573,
+              "max": 16.42757597608693
+            },
+            "observerStepExcess": {
+              "min": 0.24653640673750488,
+              "median": 0.4873708367252747,
+              "max": 0.8058707429863716
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.12322497367858887,
+              "median": 0.1538529396057129,
+              "max": 0.2948341369628906
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 12.533400000393158,
+              "median": 14.286550000178977,
+              "max": 21.67580000059388
+            },
+            "minimumCredit": {
+              "min": 11.760930622661355,
+              "median": 11.781975223667805,
+              "max": 11.981081335552219
+            },
+            "recoveredSeconds": {
+              "min": 0.3046535000003132,
+              "median": 0.31194435000043086,
+              "max": 0.3337209999999686
+            },
+            "serverTravel": {
+              "min": 14.597424530566572,
+              "median": 14.854568273310749,
+              "max": 15.58097622575792
+            },
+            "subjectTravel": {
+              "min": 14.597469304047717,
+              "median": 14.854539138837975,
+              "max": 15.58101385566071
+            },
+            "subjectStepExcess": {
+              "min": 3.5611722723364423,
+              "median": 3.9291963997021746,
+              "max": 4.644449528085384
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.16611310000007506,
+              "median": 0.22135479999997187,
+              "max": 0.22354050000012649
+            },
+            "subjectMotionSeconds": {
+              "min": 0.23401713371276855,
+              "median": 0.2923954725265503,
+              "max": 0.29425501823425293
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.013434886932373047,
+              "median": 0.03645944595336914,
+              "max": 0.044734954833984375
+            },
+            "observerTravel": {
+              "min": 14.597424530569002,
+              "median": 14.85477926805421,
+              "max": 15.58097622575792
+            },
+            "observerStepExcess": {
+              "min": 0.032918397802859545,
+              "median": 0.49736155495702405,
+              "max": 1.6551618576049805
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0.05593190000035975
+            },
+            "observerMotionSeconds": {
+              "min": 0.12267494201660156,
+              "median": 0.18172287940979004,
+              "max": 0.29544615745544434
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "F2Physics_order2_baseline_hold_repeat.json",
+      "passed": true,
+      "behaviorChecksPassed": true,
+      "trials": 20,
+      "groups": [
+        {
+          "mode": "client",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 12.20869999997376,
+              "median": 13.7071999993168,
+              "max": 20.09730000008858
+            },
+            "minimumCredit": {
+              "min": 11.291890115512206,
+              "median": 11.435385983800503,
+              "max": 11.709045549954574
+            },
+            "recoveredSeconds": {
+              "min": 0.3187093000005916,
+              "median": 0.3191855499999292,
+              "max": 0.3248581000007107
+            },
+            "serverTravel": {
+              "min": 15.403138013247199,
+              "median": 16.087334782348083,
+              "max": 16.73231212433145
+            },
+            "subjectTravel": {
+              "min": 15.403137153509531,
+              "median": 16.087369714310945,
+              "max": 16.732311093381117
+            },
+            "subjectStepExcess": {
+              "min": 0.10916603086661958,
+              "median": 0.26799302728421615,
+              "max": 0.3642399999989734
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.06575608253479004,
+              "median": 0.06773197650909424,
+              "max": 0.07473492622375488
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.020801067352294922,
+              "median": 0.024211525917053223,
+              "max": 0.027429819107055664
+            },
+            "observerTravel": {
+              "min": 15.403138013247199,
+              "median": 16.087334782348083,
+              "max": 16.732312124281332
+            },
+            "observerStepExcess": {
+              "min": 0.22662699990095647,
+              "median": 0.6623254277455419,
+              "max": 0.931666381235118
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.1220710277557373,
+              "median": 0.1819915771484375,
+              "max": 0.3358290195465088
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 11.521200000061071,
+              "median": 13.443450000067969,
+              "max": 21.703200000047218
+            },
+            "minimumCredit": {
+              "min": 11.758209124944301,
+              "median": 11.769579169664194,
+              "max": 11.798484123030462
+            },
+            "recoveredSeconds": {
+              "min": 0.3048342000001867,
+              "median": 0.31284259999938513,
+              "max": 0.32687650000025315
+            },
+            "serverTravel": {
+              "min": 14.45507847343066,
+              "median": 15.034004258461131,
+              "max": 16.31539807299739
+            },
+            "subjectTravel": {
+              "min": 14.455118766578495,
+              "median": 15.034000162760249,
+              "max": 16.31535648111882
+            },
+            "subjectStepExcess": {
+              "min": 3.438721380618516,
+              "median": 4.149592881467385,
+              "max": 5.810750825694148
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.15866319999986445,
+              "median": 0.21825575000048048,
+              "max": 0.22401990000071237
+            },
+            "subjectMotionSeconds": {
+              "min": 0.22271084785461426,
+              "median": 0.2849525213241577,
+              "max": 0.29343295097351074
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.013784170150756836,
+              "median": 0.035631537437438965,
+              "max": 0.061463117599487305
+            },
+            "observerTravel": {
+              "min": 14.45507847343066,
+              "median": 15.034004139655975,
+              "max": 16.31539807299739
+            },
+            "observerStepExcess": {
+              "min": 0.14473919521878997,
+              "median": 0.8765988928998922,
+              "max": 1.9512319564819336
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0.054845900000145775
+            },
+            "observerMotionSeconds": {
+              "min": 0.12371706962585449,
+              "median": 0.18443608283996582,
+              "max": 0.3401601314544678
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "F2Physics_order2_baseline_repeat.json",
+      "passed": true,
+      "behaviorChecksPassed": true,
+      "trials": 20,
+      "groups": [
+        {
+          "mode": "client",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 12.852400000156194,
+              "median": 13.69250000016109,
+              "max": 20.002499999463907
+            },
+            "minimumCredit": {
+              "min": 11.245094790839564,
+              "median": 11.465006572313232,
+              "max": 12.188336100979795
+            },
+            "recoveredSeconds": {
+              "min": 0.138944199999969,
+              "median": 0.291647500000181,
+              "max": 0.29252330000053917
+            },
+            "serverTravel": {
+              "min": 8.5872802734375,
+              "median": 15.5401945894973,
+              "max": 16.031377097048
+            },
+            "subjectTravel": {
+              "min": 8.58732867240906,
+              "median": 15.540208534078047,
+              "max": 16.031371868057242
+            },
+            "subjectStepExcess": {
+              "min": 0.10249507719891016,
+              "median": 0.2444500600380538,
+              "max": 0.38089118529205734
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.06489920616149902,
+              "median": 0.06876349449157715,
+              "max": 0.075531005859375
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.019751787185668945,
+              "median": 0.05337536334991455,
+              "max": 0.058624982833862305
+            },
+            "observerTravel": {
+              "min": 8.5872802734375,
+              "median": 15.5401945894973,
+              "max": 16.031377097048
+            },
+            "observerStepExcess": {
+              "min": 0.2674662405297781,
+              "median": 0.5084127611727985,
+              "max": 0.8120143783598905
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.12478399276733398,
+              "median": 0.17923760414123535,
+              "max": 0.29523205757141113
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 12.305199999900651,
+              "median": 14.42510000015318,
+              "max": 20.723099999486294
+            },
+            "minimumCredit": {
+              "min": 11.758325876194046,
+              "median": 11.771733762671513,
+              "max": 11.967078309116188
+            },
+            "recoveredSeconds": {
+              "min": 0.12357510000038019,
+              "median": 0.12524719999964873,
+              "max": 0.12618209999982355
+            },
+            "serverTravel": {
+              "min": 6.632568359375,
+              "median": 7.148172378540039,
+              "max": 8.3109130859375
+            },
+            "subjectTravel": {
+              "min": 5.963002681732178,
+              "median": 7.099621534347534,
+              "max": 8.31089997291565
+            },
+            "subjectStepExcess": {
+              "min": 2.7435891269033164,
+              "median": 3.8455425026832017,
+              "max": 5.0207234636236535
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.1053647999997338,
+              "median": 0.11008364999997866,
+              "max": 0.11256390000016836
+            },
+            "subjectMotionSeconds": {
+              "min": 0.17381811141967773,
+              "median": 0.18049585819244385,
+              "max": 0.18329095840454102
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.04861807823181152,
+              "median": 0.05487394332885742,
+              "max": 0.05887198448181152
+            },
+            "observerTravel": {
+              "min": 6.4427490234375,
+              "median": 7.099609375,
+              "max": 8.317572593688965
+            },
+            "observerStepExcess": {
+              "min": 0,
+              "median": 0.07055839630993432,
+              "max": 1.6510086059570312
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.12642192840576172,
+              "median": 0.17690753936767578,
+              "max": 0.18346309661865234
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "F2Physics_order2_latency.json",
+      "passed": true,
+      "behaviorChecksPassed": false,
+      "trials": 20,
+      "groups": [
+        {
+          "mode": "client",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [
+            "12:launched",
+            "14:launched"
+          ],
+          "ranges": {
+            "rttMs": {
+              "min": 109.64160000003176,
+              "median": 118.3225499994478,
+              "max": 143.95590000003722
+            },
+            "minimumCredit": {
+              "min": 11.301084877140275,
+              "median": 11.851933833442288,
+              "max": 13.005436840000039
+            },
+            "recoveredSeconds": {
+              "min": 0.23587399999996705,
+              "median": 0.24322309999979552,
+              "max": 0.39420810000046913
+            },
+            "serverTravel": {
+              "min": 0.0,
+              "median": 14.128605287730025,
+              "max": 17.248540447690548
+            },
+            "subjectTravel": {
+              "min": 13.887195045865699,
+              "median": 14.497462452192469,
+              "max": 21.34867091230327
+            },
+            "subjectStepExcess": {
+              "min": 0.10624698458923376,
+              "median": 0.17984936195080148,
+              "max": 0.6363371610280799
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.11652493476867676,
+              "median": 0.11895203590393066,
+              "max": 0.14234685897827148
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.07599902153015137,
+              "median": 0.10175704956054688,
+              "max": 0.10465192794799805
+            },
+            "observerTravel": {
+              "min": 9.5367431640625e-07,
+              "median": 14.128605406822725,
+              "max": 17.248540447690548
+            },
+            "observerStepExcess": {
+              "min": 0,
+              "median": 0.32250740757445495,
+              "max": 0.6531886370539723
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 1.2390990000003512
+            },
+            "observerMotionSeconds": {
+              "min": 0.2797400951385498,
+              "median": 0.31455564498901367,
+              "max": 0.3567337989807129
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.92189999999391,
+              "median": 117.53424999960771,
+              "max": 118.25090000002092
+            },
+            "minimumCredit": {
+              "min": 11.758387716194688,
+              "median": 11.7633991787655,
+              "max": 11.816684400049864
+            },
+            "recoveredSeconds": {
+              "min": 0.12298350000037317,
+              "median": 0.1252537499999562,
+              "max": 0.12579740000001038
+            },
+            "serverTravel": {
+              "min": 6.249998569488525,
+              "median": 6.45833158493042,
+              "max": 7.083332061767578
+            },
+            "subjectTravel": {
+              "min": 5.192761421203613,
+              "median": 5.97885537147522,
+              "max": 6.587897300720215
+            },
+            "subjectStepExcess": {
+              "min": 2.015202019518256,
+              "median": 2.8995341826703225,
+              "max": 3.4399493343922143
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.1098669000002701,
+              "median": 0.11081455000021379,
+              "max": 0.11233629999969708
+            },
+            "subjectMotionSeconds": {
+              "min": 0.22516512870788574,
+              "median": 0.2287665605545044,
+              "max": 0.23401999473571777
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.10139083862304688,
+              "median": 0.10311317443847656,
+              "max": 0.10877108573913574
+            },
+            "observerTravel": {
+              "min": 6.25,
+              "median": 6.4583740234375,
+              "max": 7.0833740234375
+            },
+            "observerStepExcess": {
+              "min": 0,
+              "median": 0.040724121457969886,
+              "max": 0.49649878935269953
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.4958276500001375,
+              "max": 1.0003383999992366
+            },
+            "observerMotionSeconds": {
+              "min": 0.2814769744873047,
+              "median": 0.2884169816970825,
+              "max": 0.340054988861084
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "F2Physics_order2_latency_hold.json",
+      "passed": true,
+      "behaviorChecksPassed": true,
+      "trials": 20,
+      "groups": [
+        {
+          "mode": "client",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.2270999999746,
+              "median": 116.61164999986795,
+              "max": 118.47339999985707
+            },
+            "minimumCredit": {
+              "min": 11.597219230047292,
+              "median": 11.784912410905976,
+              "max": 11.969107556990298
+            },
+            "recoveredSeconds": {
+              "min": 0.4159288999999262,
+              "median": 0.4231480499997815,
+              "max": 0.4243894999999611
+            },
+            "serverTravel": {
+              "min": 17.09415804525892,
+              "median": 17.632563075781896,
+              "max": 18.324956644863686
+            },
+            "subjectTravel": {
+              "min": 17.094211575508798,
+              "median": 17.632567035277994,
+              "max": 18.32490884998664
+            },
+            "subjectStepExcess": {
+              "min": 0.12540232275180108,
+              "median": 0.20368130792576267,
+              "max": 0.36658690733202137
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.11594510078430176,
+              "median": 0.11710190773010254,
+              "max": 0.12026500701904297
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.0758359432220459,
+              "median": 0.08202147483825684,
+              "max": 0.08968400955200195
+            },
+            "observerTravel": {
+              "min": 17.09415756843313,
+              "median": 17.632563075781896,
+              "max": 18.324956644863686
+            },
+            "observerStepExcess": {
+              "min": 0.39132011351610063,
+              "median": 0.6277112081333007,
+              "max": 0.8830850387839746
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.28333401679992676,
+              "median": 0.33774805068969727,
+              "max": 0.3933858871459961
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 111.13209999984974,
+              "median": 117.53809999981968,
+              "max": 123.94160000076226
+            },
+            "minimumCredit": {
+              "min": 11.329619925947192,
+              "median": 11.768807479042453,
+              "max": 11.811770147526726
+            },
+            "recoveredSeconds": {
+              "min": 0.3041539999994711,
+              "median": 0.30652469999995446,
+              "max": 0.32074549999924784
+            },
+            "serverTravel": {
+              "min": 13.946747842296258,
+              "median": 15.219670407084864,
+              "max": 15.974147870185492
+            },
+            "subjectTravel": {
+              "min": 13.946791343834162,
+              "median": 15.219675951318937,
+              "max": 15.974139488322834
+            },
+            "subjectStepExcess": {
+              "min": 3.4739049295834246,
+              "median": 4.934133770962184,
+              "max": 6.618852695722092
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.16490340000018477,
+              "median": 0.16654490000018995,
+              "max": 0.20872369999960938
+            },
+            "subjectMotionSeconds": {
+              "min": 0.2808218002319336,
+              "median": 0.2850925922393799,
+              "max": 0.3294670581817627
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.06755185127258301,
+              "median": 0.08010244369506836,
+              "max": 0.09329009056091309
+            },
+            "observerTravel": {
+              "min": 13.946747723087759,
+              "median": 15.21998463303493,
+              "max": 15.97414787039729
+            },
+            "observerStepExcess": {
+              "min": 0.2678178207625024,
+              "median": 0.5574504861113405,
+              "max": 1.2664653033443756
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0.05581270000038785
+            },
+            "observerMotionSeconds": {
+              "min": 0.2728250026702881,
+              "median": 0.2871445417404175,
+              "max": 0.34171009063720703
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "F2Physics_order2_latency_stabilized.json",
+      "passed": true,
+      "behaviorChecksPassed": true,
+      "trials": 20,
+      "groups": [
+        {
+          "mode": "client",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.69930000030581,
+              "median": 117.88885000032678,
+              "max": 118.72270000003482
+            },
+            "minimumCredit": {
+              "min": 9.619391736140907,
+              "median": 11.477394581094336,
+              "max": 12.119311093119073
+            },
+            "recoveredSeconds": {
+              "min": 0.41605689999960305,
+              "median": 0.42341634999957023,
+              "max": 0.4440621000003375
+            },
+            "serverTravel": {
+              "min": 17.255321550368656,
+              "median": 17.920692105123685,
+              "max": 18.289659744574827
+            },
+            "subjectTravel": {
+              "min": 17.000578760696307,
+              "median": 17.920386097341222,
+              "max": 18.28969140731511
+            },
+            "subjectStepExcess": {
+              "min": 0.14549603087834884,
+              "median": 0.19318573255356786,
+              "max": 0.333938177880726
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.11281991004943848,
+              "median": 0.11878395080566406,
+              "max": 0.1244511604309082
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.06941485404968262,
+              "median": 0.08454203605651855,
+              "max": 0.0888359546661377
+            },
+            "observerTravel": {
+              "min": 17.05833741276199,
+              "median": 17.92085450768951,
+              "max": 18.289659744574827
+            },
+            "observerStepExcess": {
+              "min": 0.5032596891796857,
+              "median": 1.1237294521367769,
+              "max": 1.3937654495239258
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.22953104972839355,
+              "median": 0.39391255378723145,
+              "max": 0.5073249340057373
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.45119999926101,
+              "median": 117.75160000024698,
+              "max": 119.1276999998081
+            },
+            "minimumCredit": {
+              "min": 11.673410467606118,
+              "median": 11.783177795965635,
+              "max": 11.97104646914083
+            },
+            "recoveredSeconds": {
+              "min": 0.3003464999992502,
+              "median": 0.30881670000007944,
+              "max": 0.31967189999977563
+            },
+            "serverTravel": {
+              "min": 13.633400917970176,
+              "median": 15.029593943141077,
+              "max": 15.673342135016329
+            },
+            "subjectTravel": {
+              "min": 13.526281233477459,
+              "median": 15.029630128247595,
+              "max": 15.673377115552205
+            },
+            "subjectStepExcess": {
+              "min": 3.68649680362984,
+              "median": 4.855338294590933,
+              "max": 6.574546223322516
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.16547309999987192,
+              "median": 0.19409259999974893,
+              "max": 0.2224446000000171
+            },
+            "subjectMotionSeconds": {
+              "min": 0.28170108795166016,
+              "median": 0.31273555755615234,
+              "max": 0.34420299530029297
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.0699770450592041,
+              "median": 0.08573687076568604,
+              "max": 0.09995007514953613
+            },
+            "observerTravel": {
+              "min": 13.526245225149006,
+              "median": 15.031969405771857,
+              "max": 15.673342135016329
+            },
+            "observerStepExcess": {
+              "min": 0.4415649172697158,
+              "median": 0.9916648881429184,
+              "max": 1.7144460678100586
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0.110345199999756
+            },
+            "observerMotionSeconds": {
+              "min": 0.17248916625976562,
+              "median": 0.20040810108184814,
+              "max": 0.3426690101623535
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "F2Physics_order2_physics_motor.json",
+      "passed": true,
+      "behaviorChecksPassed": false,
+      "trials": 20,
+      "groups": [
+        {
+          "mode": "client",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 2,
+          "failedChecks": [
+            "14:launched",
+            "14:noFalseCorrection",
+            "15:launched",
+            "15:noFalseCorrection"
+          ],
+          "ranges": {
+            "rttMs": {
+              "min": 109.79230000066309,
+              "median": 110.82390000001396,
+              "max": 118.68849999973463
+            },
+            "minimumCredit": {
+              "min": -11.548902960732448,
+              "median": 11.921093684292284,
+              "max": 12.199072518450288
+            },
+            "recoveredSeconds": {
+              "min": 0.41590829999950074,
+              "median": 0.42340389999935724,
+              "max": 1.2004661000000851
+            },
+            "serverTravel": {
+              "min": 0.05890166393108012,
+              "median": 18.788437096787675,
+              "max": 20.75898768099413
+            },
+            "subjectTravel": {
+              "min": 18.36737761623646,
+              "median": 18.94347974536356,
+              "max": 26.514059293097677
+            },
+            "subjectStepExcess": {
+              "min": 0.1044269845551784,
+              "median": 0.2142228101029704,
+              "max": 26.366760857059347
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.11512112617492676,
+              "median": 0.1162099838256836,
+              "max": 0.12193012237548828
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.07008910179138184,
+              "median": 0.08138704299926758,
+              "max": 0.08662796020507812
+            },
+            "observerTravel": {
+              "min": 1.7631076843328313,
+              "median": 18.85819179124323,
+              "max": 24.222650964370743
+            },
+            "observerStepExcess": {
+              "min": 0.07585816867971915,
+              "median": 0.5160723785435879,
+              "max": 23.91567912627334
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0.8323508999992555
+            },
+            "observerMotionSeconds": {
+              "min": 0.22656607627868652,
+              "median": 0.34581995010375977,
+              "max": 1.160188913345337
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "idle",
+          "n": 10,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 111.09089999990829,
+              "median": 117.1690999999555,
+              "max": 124.15950000013254
+            },
+            "minimumCredit": {
+              "min": 11.538489837129783,
+              "median": 12.387948315574196,
+              "max": 12.393209985018766
+            },
+            "recoveredSeconds": {
+              "min": 0.30459989999963,
+              "median": 0.3268685499997446,
+              "max": 0.37551780000012513
+            },
+            "serverTravel": {
+              "min": 13.837000124919546,
+              "median": 15.051758410716932,
+              "max": 16.076729237556943
+            },
+            "subjectTravel": {
+              "min": 12.187771215524453,
+              "median": 14.949738694769785,
+              "max": 15.684734140046858
+            },
+            "subjectStepExcess": {
+              "min": 3.9475860410253363,
+              "median": 4.697439578860305,
+              "max": 6.392509369358884
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.16496879999976954,
+              "median": 0.19454169999971782,
+              "max": 0.22235170000021753
+            },
+            "subjectMotionSeconds": {
+              "min": 0.281203031539917,
+              "median": 0.31167709827423096,
+              "max": 0.33974289894104004
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.07287907600402832,
+              "median": 0.08910298347473145,
+              "max": 0.10888504981994629
+            },
+            "observerTravel": {
+              "min": 12.347771630862939,
+              "median": 15.051758529924953,
+              "max": 16.07672680724397
+            },
+            "observerStepExcess": {
+              "min": 0.3376627362560076,
+              "median": 0.54791121602877,
+              "max": 0.6904998447208022
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.055139000000053784,
+              "max": 0.8332748000002539
+            },
+            "observerMotionSeconds": {
+              "min": 0.27423810958862305,
+              "median": 0.2853490114212036,
+              "max": 0.34709811210632324
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "F2Physics_order2_regression.json",
+      "passed": true,
+      "behaviorChecksPassed": true,
+      "trials": 44,
+      "groups": [
+        {
+          "mode": "client",
+          "probe": "idle",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 111.5646000007473,
+              "median": 114.7681500001454,
+              "max": 117.97169999954349
+            },
+            "minimumCredit": {
+              "min": 11.72482186286014,
+              "median": 11.776629072640164,
+              "max": 11.828436282420189
+            },
+            "recoveredSeconds": {
+              "min": 0.2445440999999846,
+              "median": 0.25419384999986505,
+              "max": 0.2638435999997455
+            },
+            "serverTravel": {
+              "min": 14.706367266389405,
+              "median": 14.717760403637989,
+              "max": 14.729153540886575
+            },
+            "subjectTravel": {
+              "min": 14.700323981531591,
+              "median": 14.714503558602864,
+              "max": 14.728683135674139
+            },
+            "subjectStepExcess": {
+              "min": 0.18542301542584028,
+              "median": 0.2697665077075726,
+              "max": 0.3541099999893049
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.11117410659790039,
+              "median": 0.11723208427429199,
+              "max": 0.1232900619506836
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.08230400085449219,
+              "median": 0.08523595333099365,
+              "max": 0.08816790580749512
+            },
+            "observerTravel": {
+              "min": 14.718022593748596,
+              "median": 14.723609167361627,
+              "max": 14.729195740974657
+            },
+            "observerStepExcess": {
+              "min": 1.121474266052246,
+              "median": 1.1480164527893066,
+              "max": 1.1745586395263672
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.34141016006469727,
+              "median": 0.36650753021240234,
+              "max": 0.3916049003601074
+            }
+          }
+        },
+        {
+          "mode": "client",
+          "probe": "walk",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 116.25569999978325,
+              "median": 117.10180000000037,
+              "max": 117.94790000021749
+            },
+            "minimumCredit": {
+              "min": 4.6092032313346865,
+              "median": 4.6610935747623445,
+              "max": 4.712983918190003
+            },
+            "serverTravel": {
+              "min": 14.034649133682251,
+              "median": 14.352954149246216,
+              "max": 14.67125916481018
+            },
+            "subjectTravel": {
+              "min": 19.60041570663452,
+              "median": 19.634884119033813,
+              "max": 19.669352531433105
+            },
+            "subjectStepExcess": {
+              "min": 0.11660389898150947,
+              "median": 0.12271278501020227,
+              "max": 0.12882167103889508
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.12239408493041992,
+              "median": 0.12250709533691406,
+              "max": 0.1226201057434082
+            },
+            "observerTravel": {
+              "min": 17.006403923034668,
+              "median": 17.328737020492554,
+              "max": 17.65107011795044
+            },
+            "observerStepExcess": {
+              "min": 0.2604331970214844,
+              "median": 0.3069319558344432,
+              "max": 0.35343071464740206
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.3941831588745117,
+              "median": 0.4498986005783081,
+              "max": 0.5056140422821045
+            }
+          }
+        },
+        {
+          "mode": "client",
+          "probe": "jump",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.71369999990566,
+              "median": 114.46520000026794,
+              "max": 118.21670000063023
+            },
+            "minimumCredit": {
+              "min": 6.199999046325684,
+              "median": 6.199999046325684,
+              "max": 6.199999046325684
+            },
+            "serverTravel": {
+              "min": 0.0,
+              "median": 4.76837158203125e-07,
+              "max": 9.5367431640625e-07
+            },
+            "subjectTravel": {
+              "min": 1.2931644732816494e-07,
+              "median": 1.4419595117942663e-07,
+              "max": 1.5907545503068832e-07
+            },
+            "subjectStepExcess": {
+              "min": 1.4825836936866082e-08,
+              "median": 1.6459173033085574e-08,
+              "max": 1.8092509129305066e-08
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerTravel": {
+              "min": 9.5367431640625e-07,
+              "median": 9.5367431640625e-07,
+              "max": 9.5367431640625e-07
+            },
+            "observerStepExcess": {
+              "min": 9.5367431640625e-07,
+              "median": 9.5367431640625e-07,
+              "max": 9.5367431640625e-07
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            }
+          }
+        },
+        {
+          "mode": "client",
+          "probe": "reverse",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.82909999913682,
+              "median": 114.99449999928402,
+              "max": 119.15989999943122
+            },
+            "minimumCredit": {
+              "min": 11.4999942396623,
+              "median": 11.539212915968905,
+              "max": 11.57843159227551
+            },
+            "recoveredSeconds": {
+              "min": 0.24976869999954943,
+              "median": 0.30175619999954506,
+              "max": 0.3537436999995407
+            },
+            "serverTravel": {
+              "min": 14.264518131037013,
+              "median": 15.345725242324082,
+              "max": 16.42693235361115
+            },
+            "subjectTravel": {
+              "min": 14.257981488683376,
+              "median": 15.325360758749504,
+              "max": 16.39274002881563
+            },
+            "subjectStepExcess": {
+              "min": 0.1513509869314409,
+              "median": 0.15225366228812665,
+              "max": 0.1531563376448124
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.1142721176147461,
+              "median": 0.11434900760650635,
+              "max": 0.1144258975982666
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.08662199974060059,
+              "median": 0.09007298946380615,
+              "max": 0.09352397918701172
+            },
+            "observerTravel": {
+              "min": 14.161085437759803,
+              "median": 15.297643499103835,
+              "max": 16.434201560447864
+            },
+            "observerStepExcess": {
+              "min": 0.3856125000943966,
+              "median": 0.8364520134444151,
+              "max": 1.2872915267944336
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.4004838466644287,
+              "median": 0.4249159097671509,
+              "max": 0.44934797286987305
+            }
+          }
+        },
+        {
+          "mode": "client",
+          "probe": "airborne",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 117.3055999997814,
+              "median": 118.1840999997803,
+              "max": 119.0625999997792
+            },
+            "minimumCredit": {
+              "min": 11.899881035253474,
+              "median": 11.935823168199658,
+              "max": 11.971765301145844
+            },
+            "recoveredSeconds": {
+              "min": 0.33464790000016365,
+              "median": 0.33755204999988564,
+              "max": 0.34045619999960763
+            },
+            "serverTravel": {
+              "min": 16.411860440395678,
+              "median": 16.603944656288576,
+              "max": 16.79602887218147
+            },
+            "subjectTravel": {
+              "min": 16.41191799890247,
+              "median": 16.604000945147497,
+              "max": 16.79608389139252
+            },
+            "subjectStepExcess": {
+              "min": 0.1768226971116149,
+              "median": 0.24869544165543633,
+              "max": 0.32056818619925775
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.11427187919616699,
+              "median": 0.11735689640045166,
+              "max": 0.12044191360473633
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.05965900421142578,
+              "median": 0.08639752864837646,
+              "max": 0.11313605308532715
+            },
+            "observerTravel": {
+              "min": 16.411860440395678,
+              "median": 16.603944894698373,
+              "max": 16.796029349001063
+            },
+            "observerStepExcess": {
+              "min": 0.4283021070805262,
+              "median": 0.5798784399986476,
+              "max": 0.7314547729167691
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.39229393005371094,
+              "median": 0.39660048484802246,
+              "max": 0.400907039642334
+            }
+          }
+        },
+        {
+          "mode": "client",
+          "probe": "wall",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 111.87320000044565,
+              "median": 118.5202500005289,
+              "max": 125.16730000061216
+            },
+            "minimumCredit": {
+              "min": 11.492393885359975,
+              "median": 11.64646868869188,
+              "max": 11.800543492023785
+            },
+            "recoveredSeconds": {
+              "min": 0.2369392999999036,
+              "median": 0.24999744999968243,
+              "max": 0.26305559999946126
+            },
+            "serverTravel": {
+              "min": 6.244443893433508,
+              "median": 6.274289515979565,
+              "max": 6.304135138525623
+            },
+            "subjectTravel": {
+              "min": 6.041666507720949,
+              "median": 6.073968410533013,
+              "max": 6.1062703133450755
+            },
+            "subjectStepExcess": {
+              "min": 0.16668150772966417,
+              "median": 0.18668924613211924,
+              "max": 0.2066969845345743
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.1141669750213623,
+              "median": 0.11469852924346924,
+              "max": 0.11523008346557617
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.07247781753540039,
+              "median": 0.08694100379943848,
+              "max": 0.10140419006347656
+            },
+            "observerTravel": {
+              "min": 5.869007318123931,
+              "median": 6.10727535134291,
+              "max": 6.345543384561889
+            },
+            "observerStepExcess": {
+              "min": 0.5062160491943359,
+              "median": 1.1099151622247652,
+              "max": 1.7136142752551944
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.33837294578552246,
+              "median": 0.371055006980896,
+              "max": 0.40373706817626953
+            }
+          }
+        },
+        {
+          "mode": "client",
+          "probe": "resist",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.40140000022802,
+              "median": 114.04910000010204,
+              "max": 117.69679999997607
+            },
+            "minimumCredit": {
+              "min": 13.004475939999976,
+              "median": 13.004549890000181,
+              "max": 13.004623840000386
+            },
+            "recoveredSeconds": {
+              "min": 0.2852351000001363,
+              "median": 0.2914632500001062,
+              "max": 0.2976914000000761
+            },
+            "serverTravel": {
+              "min": 1.0416259765625,
+              "median": 1.0416259765625,
+              "max": 1.0416259765625
+            },
+            "subjectTravel": {
+              "min": 1.0416650772094789,
+              "median": 1.0416650772094949,
+              "max": 1.0416650772095106
+            },
+            "subjectStepExcess": {
+              "min": 1.1109932529507205e-08,
+              "median": 1.9189513195333066e-08,
+              "max": 2.7269093861158923e-08
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.11663007736206055,
+              "median": 0.1171109676361084,
+              "max": 0.11759185791015625
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.09093093872070312,
+              "median": 0.09940803050994873,
+              "max": 0.10788512229919434
+            },
+            "observerTravel": {
+              "min": 1.0416259765625,
+              "median": 1.0416264533996582,
+              "max": 1.0416269302368164
+            },
+            "observerStepExcess": {
+              "min": 0.38116931915283203,
+              "median": 0.3938155174255371,
+              "max": 0.4064617156982422
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.3938579559326172,
+              "median": 0.3946249485015869,
+              "max": 0.39539194107055664
+            }
+          }
+        },
+        {
+          "mode": "client",
+          "probe": "teleport",
+          "n": 2,
+          "corrections": 2,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 120.52889999995386,
+              "median": 122.57399999998597,
+              "max": 124.61910000001808
+            },
+            "minimumCredit": {
+              "min": -92.7333313703537,
+              "median": -46.38295438811183,
+              "max": -0.03257740586996061
+            },
+            "serverTravel": {
+              "min": 1.8230876922607422,
+              "median": 3.9817006587982178,
+              "max": 6.140313625335693
+            },
+            "subjectTravel": {
+              "min": 100.0,
+              "median": 100.0,
+              "max": 100.0
+            },
+            "subjectStepExcess": {
+              "min": 99.999999938523,
+              "median": 99.9999999465178,
+              "max": 99.9999999545126
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.33611488342285156,
+              "median": 0.3361889123916626,
+              "max": 0.33626294136047363
+            },
+            "observerTravel": {
+              "min": 6.140313625335693,
+              "median": 30.352776288986206,
+              "max": 54.56523895263672
+            },
+            "observerStepExcess": {
+              "min": 6.140313625335693,
+              "median": 30.352776288986206,
+              "max": 54.56523895263672
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.5258820056915283,
+              "median": 0.665879487991333,
+              "max": 0.8058769702911377
+            }
+          }
+        },
+        {
+          "mode": "client",
+          "probe": "speed",
+          "n": 2,
+          "corrections": 2,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 117.72340000061376,
+              "median": 138.41475000026549,
+              "max": 159.1060999999172
+            },
+            "minimumCredit": {
+              "min": -0.1390723913908003,
+              "median": -0.1061381131410597,
+              "max": -0.0732038348913191
+            },
+            "serverTravel": {
+              "min": 9.921183586120605,
+              "median": 10.257262408733368,
+              "max": 10.59334123134613
+            },
+            "subjectTravel": {
+              "min": 27.421144485473633,
+              "median": 28.042566299438477,
+              "max": 28.66398811340332
+            },
+            "subjectStepExcess": {
+              "min": 14.035112727200612,
+              "median": 14.145312191009813,
+              "max": 14.255511654819014
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.22151420000045619,
+              "median": 0.2241967999998451,
+              "max": 0.226879399999234
+            },
+            "subjectMotionSeconds": {
+              "min": 0.339202880859375,
+              "median": 0.37661051750183105,
+              "max": 0.4140181541442871
+            },
+            "observerTravel": {
+              "min": 9.921183586120605,
+              "median": 15.2068452835083,
+              "max": 20.492506980895996
+            },
+            "observerStepExcess": {
+              "min": 6.262057956791063,
+              "median": 8.068973657185156,
+              "max": 9.875889357579249
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.6720070838928223,
+              "median": 0.6881580352783203,
+              "max": 0.7043089866638184
+            }
+          }
+        },
+        {
+          "mode": "client",
+          "probe": "relaunch",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 118.11430000034306,
+              "median": 124.1798000005474,
+              "max": 130.24530000075174
+            },
+            "minimumCredit": {
+              "min": 10.7076090033618,
+              "median": 11.333143349479517,
+              "max": 11.958677695597233
+            },
+            "recoveredSeconds": {
+              "min": 0.24250920000031329,
+              "median": 0.24612105000005613,
+              "max": 0.24973289999979897
+            },
+            "serverTravel": {
+              "min": 7.932074552289679,
+              "median": 8.04712362151917,
+              "max": 8.16217269074866
+            },
+            "subjectTravel": {
+              "min": 7.931881883248779,
+              "median": 8.04697691841397,
+              "max": 8.162071953579161
+            },
+            "subjectStepExcess": {
+              "min": 0.008679200722326641,
+              "median": 0.15005757720246038,
+              "max": 0.2914359536825941
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.06276297569274902,
+              "median": 0.06493902206420898,
+              "max": 0.06711506843566895
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.09353184700012207,
+              "median": 0.09538590908050537,
+              "max": 0.09723997116088867
+            },
+            "observerTravel": {
+              "min": 7.932362556269496,
+              "median": 8.04719133367132,
+              "max": 8.162020111073144
+            },
+            "observerStepExcess": {
+              "min": 0.47490739433279616,
+              "median": 0.9296523722367562,
+              "max": 1.3843973501407163
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.23108911514282227,
+              "median": 0.3135490417480469,
+              "max": 0.3960089683532715
+            }
+          }
+        },
+        {
+          "mode": "client",
+          "probe": "replacement",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.89029999948252,
+              "median": 155.6953499998599,
+              "max": 200.50040000023728
+            },
+            "minimumCredit": {
+              "min": 13.003156180000225,
+              "median": 13.003659550000158,
+              "max": 13.004162920000091
+            },
+            "serverTravel": {
+              "min": 0.0,
+              "median": 0.0,
+              "max": 0.0
+            },
+            "subjectTravel": {
+              "min": 26.145982710292596,
+              "median": 26.580773447667106,
+              "max": 27.015564185041615
+            },
+            "subjectStepExcess": {
+              "min": 1.3648156091585406,
+              "median": 2.2472325846347303,
+              "max": 3.12964956011092
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.11079549999976734,
+              "median": 0.13551360000019486,
+              "max": 0.16023170000062237
+            },
+            "subjectMotionSeconds": {
+              "min": 0.12113690376281738,
+              "median": 0.12527096271514893,
+              "max": 0.12940502166748047
+            },
+            "observerTravel": {
+              "min": 26.146003056471173,
+              "median": 26.580783620756392,
+              "max": 27.015564185041615
+            },
+            "observerStepExcess": {
+              "min": 1.1058380587874126,
+              "median": 1.129510521092925,
+              "max": 1.1531829833984375
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.39061403274536133,
+              "median": 0.3955639600753784,
+              "max": 0.4005138874053955
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "idle",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 111.74500000015541,
+              "median": 117.92750000040542,
+              "max": 124.11000000065542
+            },
+            "minimumCredit": {
+              "min": 11.764575509013717,
+              "median": 11.781615100398636,
+              "max": 11.798654691783554
+            },
+            "recoveredSeconds": {
+              "min": 0.12472369999977673,
+              "median": 0.1278473499996835,
+              "max": 0.13097099999959028
+            },
+            "serverTravel": {
+              "min": 6.874999046325684,
+              "median": 6.874999046325684,
+              "max": 6.874999046325684
+            },
+            "subjectTravel": {
+              "min": 5.786439418792725,
+              "median": 6.203126430511475,
+              "max": 6.619813442230225
+            },
+            "subjectStepExcess": {
+              "min": 2.6011008639488864,
+              "median": 3.079845454486531,
+              "max": 3.558590045024175
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.10976670000036393,
+              "median": 0.11049709999997503,
+              "max": 0.11122749999958614
+            },
+            "subjectMotionSeconds": {
+              "min": 0.22586297988891602,
+              "median": 0.2273474931716919,
+              "max": 0.22883200645446777
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.09782290458679199,
+              "median": 0.09946143627166748,
+              "max": 0.10109996795654297
+            },
+            "observerTravel": {
+              "min": 6.619894981384277,
+              "median": 6.747447490692139,
+              "max": 6.875
+            },
+            "observerStepExcess": {
+              "min": 0.12522746034119336,
+              "median": 0.2823467070930371,
+              "max": 0.43946595384488085
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.22898101806640625,
+              "median": 0.22920846939086914,
+              "max": 0.22943592071533203
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "walk",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 117.40480000025855,
+              "median": 121.38985000046887,
+              "max": 125.37490000067919
+            },
+            "minimumCredit": {
+              "min": 4.872971241176129,
+              "median": 4.923464161157608,
+              "max": 4.973957081139088
+            },
+            "serverTravel": {
+              "min": 13.944388747215271,
+              "median": 14.008305251598358,
+              "max": 14.072221755981445
+            },
+            "subjectTravel": {
+              "min": 19.19999361038208,
+              "median": 19.26666021347046,
+              "max": 19.333326816558838
+            },
+            "subjectStepExcess": {
+              "min": 0.06129191612126306,
+              "median": 0.08846699690911919,
+              "max": 0.11564207769697532
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.11545705795288086,
+              "median": 0.11882054805755615,
+              "max": 0.12218403816223145
+            },
+            "observerTravel": {
+              "min": 16.386019229888916,
+              "median": 17.126288414001465,
+              "max": 17.866557598114014
+            },
+            "observerStepExcess": {
+              "min": 0.31314563751220703,
+              "median": 0.3731536865234375,
+              "max": 0.43316173553466797
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.4007420539855957,
+              "median": 0.42210710048675537,
+              "max": 0.44347214698791504
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "jump",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 117.34379999961675,
+              "median": 117.50769999980548,
+              "max": 117.67159999999421
+            },
+            "minimumCredit": {
+              "min": 6.199999046325684,
+              "median": 6.199999046325684,
+              "max": 6.199999046325684
+            },
+            "serverTravel": {
+              "min": 0.0,
+              "median": 4.76837158203125e-07,
+              "max": 9.5367431640625e-07
+            },
+            "subjectTravel": {
+              "min": 5.684341886080802e-14,
+              "median": 1.4210854715202004e-13,
+              "max": 2.2737367544323206e-13
+            },
+            "subjectStepExcess": {
+              "min": 5.684341886080802e-14,
+              "median": 8.526512829121202e-14,
+              "max": 1.1368683772161603e-13
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerTravel": {
+              "min": 0.0,
+              "median": 0.0,
+              "max": 0.0
+            },
+            "observerStepExcess": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "reverse",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 117.00220000057016,
+              "median": 117.37059999995836,
+              "max": 117.73899999934656
+            },
+            "minimumCredit": {
+              "min": 11.375715631903951,
+              "median": 11.572191756913847,
+              "max": 11.768667881923744
+            },
+            "recoveredSeconds": {
+              "min": 0.12339350000002014,
+              "median": 0.12427609999986089,
+              "max": 0.12515869999970164
+            },
+            "serverTravel": {
+              "min": 6.849581241607666,
+              "median": 7.078229188919067,
+              "max": 7.306877136230469
+            },
+            "subjectTravel": {
+              "min": 8.807044982910156,
+              "median": 10.122882843017578,
+              "max": 11.438720703125
+            },
+            "subjectStepExcess": {
+              "min": 1.9337524956250567,
+              "median": 3.2757611581854147,
+              "max": 4.617769820745773
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.10989700000027369,
+              "median": 0.11043000000017855,
+              "max": 0.11096300000008341
+            },
+            "subjectMotionSeconds": {
+              "min": 0.22733092308044434,
+              "median": 0.22971093654632568,
+              "max": 0.23209095001220703
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.10213494300842285,
+              "median": 0.10539400577545166,
+              "max": 0.10865306854248047
+            },
+            "observerTravel": {
+              "min": 7.701535224914551,
+              "median": 8.777666568756104,
+              "max": 9.853797912597656
+            },
+            "observerStepExcess": {
+              "min": 0.9651803970336914,
+              "median": 1.3005104064941406,
+              "max": 1.6358404159545898
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.17836785316467285,
+              "median": 0.20403540134429932,
+              "max": 0.22970294952392578
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "airborne",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 116.57430000013846,
+              "median": 118.4198999999353,
+              "max": 120.26549999973213
+            },
+            "minimumCredit": {
+              "min": 11.307766825049113,
+              "median": 11.431056921640813,
+              "max": 11.554347018232512
+            },
+            "recoveredSeconds": {
+              "min": 0.12472510000043258,
+              "median": 0.12534485000060158,
+              "max": 0.1259646000007706
+            },
+            "serverTravel": {
+              "min": 6.249998569488525,
+              "median": 6.354165077209473,
+              "max": 6.45833158493042
+            },
+            "subjectTravel": {
+              "min": 4.277867317199707,
+              "median": 4.73531436920166,
+              "max": 5.192761421203613
+            },
+            "subjectStepExcess": {
+              "min": 1.0657049508536147,
+              "median": 1.7729540006148454,
+              "max": 2.480203050376076
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.1101712999998199,
+              "median": 0.11087205000012545,
+              "max": 0.11157280000043102
+            },
+            "subjectMotionSeconds": {
+              "min": 0.22515392303466797,
+              "median": 0.22622692584991455,
+              "max": 0.22729992866516113
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.09913182258605957,
+              "median": 0.10083341598510742,
+              "max": 0.10253500938415527
+            },
+            "observerTravel": {
+              "min": 4.27783203125,
+              "median": 5.36810302734375,
+              "max": 6.4583740234375
+            },
+            "observerStepExcess": {
+              "min": 0.04332330212391322,
+              "median": 0.4526005835481989,
+              "max": 0.8618778649724845
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.2831859588623047,
+              "median": 0.31422650814056396,
+              "max": 0.34526705741882324
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "wall",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 117.34500000056869,
+              "median": 120.84640000011859,
+              "max": 124.3477999996685
+            },
+            "minimumCredit": {
+              "min": 11.341032457477741,
+              "median": 11.653931663297044,
+              "max": 11.966830869116349
+            },
+            "recoveredSeconds": {
+              "min": 0.12380009999924368,
+              "median": 0.1240756499996678,
+              "max": 0.12435120000009192
+            },
+            "serverTravel": {
+              "min": 6.666665077209473,
+              "median": 6.770832061767578,
+              "max": 6.874999046325684
+            },
+            "subjectTravel": {
+              "min": 4.713003158569336,
+              "median": 5.24972128868103,
+              "max": 5.786439418792725
+            },
+            "subjectStepExcess": {
+              "min": 1.5323686500887561,
+              "median": 2.1175675478607445,
+              "max": 2.702766445632733
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.11077150000073743,
+              "median": 0.11158145000035802,
+              "max": 0.1123913999999786
+            },
+            "subjectMotionSeconds": {
+              "min": 0.2255079746246338,
+              "median": 0.2260979413986206,
+              "max": 0.22668790817260742
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.10166406631469727,
+              "median": 0.10197246074676514,
+              "max": 0.10228085517883301
+            },
+            "observerTravel": {
+              "min": 6.6666259765625,
+              "median": 6.77081298828125,
+              "max": 6.875
+            },
+            "observerStepExcess": {
+              "min": 0.3718400767647836,
+              "median": 1.1574423696201848,
+              "max": 1.943044662475586
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.02738984999996319,
+              "max": 0.05477969999992638
+            },
+            "observerMotionSeconds": {
+              "min": 0.17235088348388672,
+              "median": 0.1997544765472412,
+              "max": 0.2271580696105957
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "resist",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 117.33000000003813,
+              "median": 117.58460000010018,
+              "max": 117.83920000016224
+            },
+            "minimumCredit": {
+              "min": 11.637258682790526,
+              "median": 11.637697027211198,
+              "max": 11.63813537163187
+            },
+            "recoveredSeconds": {
+              "min": 0.12439730000005511,
+              "median": 0.12473700000009558,
+              "max": 0.12507670000013604
+            },
+            "serverTravel": {
+              "min": 6.45833158493042,
+              "median": 6.562498331069946,
+              "max": 6.666665077209473
+            },
+            "subjectTravel": {
+              "min": 4.7916259765625,
+              "median": 4.89581298828125,
+              "max": 5.0
+            },
+            "subjectStepExcess": {
+              "min": 1.5381749456792022,
+              "median": 3.0607539805605484,
+              "max": 4.5833330154418945
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.05525984999985667,
+              "max": 0.11051969999971334
+            },
+            "subjectMotionSeconds": {
+              "min": 0.2267920970916748,
+              "median": 0.2270195484161377,
+              "max": 0.22724699974060059
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.10213017463684082,
+              "median": 0.10224759578704834,
+              "max": 0.10236501693725586
+            },
+            "observerTravel": {
+              "min": 6.4583740234375,
+              "median": 6.5625,
+              "max": 6.6666259765625
+            },
+            "observerStepExcess": {
+              "min": 0.26368371568610316,
+              "median": 0.3476760765879823,
+              "max": 0.4316684374898614
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.17209792137145996,
+              "median": 0.19640445709228516,
+              "max": 0.22071099281311035
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "teleport",
+          "n": 2,
+          "corrections": 2,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 118.29579999994166,
+              "median": 121.34335000018837,
+              "max": 124.39090000043507
+            },
+            "minimumCredit": {
+              "min": -1.056430573761463,
+              "median": -0.9774593889713286,
+              "max": -0.8984882041811941
+            },
+            "serverTravel": {
+              "min": 4.931941986083984,
+              "median": 5.926262855529785,
+              "max": 6.920583724975586
+            },
+            "subjectTravel": {
+              "min": 100.0,
+              "median": 100.0,
+              "max": 100.0
+            },
+            "subjectStepExcess": {
+              "min": 100.0,
+              "median": 100.0,
+              "max": 100.0
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "subjectMotionSeconds": {
+              "min": 0.340487003326416,
+              "median": 0.34228360652923584,
+              "max": 0.34408020973205566
+            },
+            "observerTravel": {
+              "min": 4.931941986083984,
+              "median": 5.926262855529785,
+              "max": 6.920583724975586
+            },
+            "observerStepExcess": {
+              "min": 4.626601219177246,
+              "median": 4.779271602630615,
+              "max": 4.931941986083984
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.5052762031555176,
+              "median": 0.5088051557540894,
+              "max": 0.5123341083526611
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "speed",
+          "n": 2,
+          "corrections": 2,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.49160000038682,
+              "median": 114.19440000008763,
+              "max": 117.89719999978843
+            },
+            "minimumCredit": {
+              "min": -0.33203875571489316,
+              "median": -0.2160105995833872,
+              "max": -0.09998244345188123
+            },
+            "serverTravel": {
+              "min": 10.260120034217834,
+              "median": 10.54281860589981,
+              "max": 10.825517177581787
+            },
+            "subjectTravel": {
+              "min": 27.862537384033203,
+              "median": 28.046459197998047,
+              "max": 28.23038101196289
+            },
+            "subjectStepExcess": {
+              "min": 13.84776288377185,
+              "median": 13.900941306912657,
+              "max": 13.954119730053463
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.16495279999980994,
+              "median": 0.19310765000000174,
+              "max": 0.22126250000019354
+            },
+            "subjectMotionSeconds": {
+              "min": 0.33805394172668457,
+              "median": 0.33944594860076904,
+              "max": 0.3408379554748535
+            },
+            "observerTravel": {
+              "min": 10.2601318359375,
+              "median": 10.5428466796875,
+              "max": 10.8255615234375
+            },
+            "observerStepExcess": {
+              "min": 1.00176599079126,
+              "median": 2.3891972425269774,
+              "max": 3.7766284942626953
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.6097629070281982,
+              "median": 0.6134798526763916,
+              "max": 0.617196798324585
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "relaunch",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 118.33100000058039,
+              "median": 118.38565000016388,
+              "max": 118.44029999974737
+            },
+            "minimumCredit": {
+              "min": 11.735641813576695,
+              "median": 11.759885855431806,
+              "max": 11.784129897286917
+            },
+            "recoveredSeconds": {
+              "min": 0.1241613000001962,
+              "median": 0.12479045000009137,
+              "max": 0.12541959999998653
+            },
+            "serverTravel": {
+              "min": 6.250001907348633,
+              "median": 6.458333730697632,
+              "max": 6.666665554046631
+            },
+            "subjectTravel": {
+              "min": 4.69453239440918,
+              "median": 5.111199140548706,
+              "max": 5.527865886688232
+            },
+            "subjectStepExcess": {
+              "min": 0.2758231827101554,
+              "median": 0.5299272644069788,
+              "max": 0.7840313461038022
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.11039370000071358,
+              "median": 0.110590200000388,
+              "max": 0.11078670000006241
+            },
+            "subjectMotionSeconds": {
+              "min": 0.06997084617614746,
+              "median": 0.07118499279022217,
+              "max": 0.07239913940429688
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.11232304573059082,
+              "median": 0.11514997482299805,
+              "max": 0.11797690391540527
+            },
+            "observerTravel": {
+              "min": 6.317943572998047,
+              "median": 6.515913724899292,
+              "max": 6.713883876800537
+            },
+            "observerStepExcess": {
+              "min": 0.8070392608642578,
+              "median": 1.7604551315307617,
+              "max": 2.7138710021972656
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.06027984619140625,
+              "median": 0.06204640865325928,
+              "max": 0.0638129711151123
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "replacement",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 112.26039999928616,
+              "median": 115.23084999953426,
+              "max": 118.20129999978235
+            },
+            "minimumCredit": {
+              "min": 11.765488669371225,
+              "median": 11.767447716222568,
+              "max": 11.769406763073912
+            },
+            "recoveredSeconds": {
+              "min": 0.12542800000028365,
+              "median": 0.1258071000002019,
+              "max": 0.12618620000012015
+            },
+            "serverTravel": {
+              "min": 5.624998092651367,
+              "median": 5.937498331069946,
+              "max": 6.249998569488525
+            },
+            "subjectTravel": {
+              "min": 20.66882487549671,
+              "median": 20.717845536038027,
+              "max": 20.766866196579343
+            },
+            "subjectStepExcess": {
+              "min": 1.652433469414973,
+              "median": 2.2483209357787928,
+              "max": 2.8442084021426126
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.11400510000021313,
+              "median": 0.1405217999999877,
+              "max": 0.16703849999976228
+            },
+            "subjectMotionSeconds": {
+              "min": 0.2258000373840332,
+              "median": 0.2282019853591919,
+              "max": 0.23060393333435059
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.10030412673950195,
+              "median": 0.10234606266021729,
+              "max": 0.10438799858093262
+            },
+            "observerTravel": {
+              "min": 20.66882487549671,
+              "median": 20.717930367595773,
+              "max": 20.767035859694836
+            },
+            "observerStepExcess": {
+              "min": 0.6281849527058512,
+              "median": 1.0431059193460896,
+              "max": 1.4580268859863281
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.1717391014099121,
+              "median": 0.28377997875213623,
+              "max": 0.39582085609436035
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "F2Physics_order2_targeted_regression.json",
+      "passed": true,
+      "behaviorChecksPassed": true,
+      "trials": 8,
+      "groups": [
+        {
+          "mode": "client",
+          "probe": "speed",
+          "n": 2,
+          "corrections": 2,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 111.36489999989863,
+              "median": 114.19764999982362,
+              "max": 117.03039999974862
+            },
+            "minimumCredit": {
+              "min": -0.18044397532939893,
+              "median": -0.1486934229731558,
+              "max": -0.11694287061691266
+            },
+            "serverTravel": {
+              "min": 10.444903254508972,
+              "median": 10.639746367931366,
+              "max": 10.83458948135376
+            },
+            "subjectTravel": {
+              "min": 28.074037551879883,
+              "median": 29.51774501800537,
+              "max": 30.96145248413086
+            },
+            "subjectStepExcess": {
+              "min": 14.080705497413874,
+              "median": 15.058053248707438,
+              "max": 16.035401000001002
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.16830730000037875,
+              "median": 0.2790104000005158,
+              "max": 0.38971350000065286
+            },
+            "subjectMotionSeconds": {
+              "min": 0.3383040428161621,
+              "median": 0.3387500047683716,
+              "max": 0.33919596672058105
+            },
+            "observerTravel": {
+              "min": 10.713257789611816,
+              "median": 10.773926317691803,
+              "max": 10.83459484577179
+            },
+            "observerStepExcess": {
+              "min": 1.1124658584594727,
+              "median": 1.2139019966125488,
+              "max": 1.315338134765625
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.6205101013183594,
+              "median": 0.621130108833313,
+              "max": 0.6217501163482666
+            }
+          }
+        },
+        {
+          "mode": "client",
+          "probe": "replacement",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.18320000039239,
+              "median": 113.24500000000626,
+              "max": 116.30679999962013
+            },
+            "minimumCredit": {
+              "min": 13.003646439999649,
+              "median": 13.00371843999974,
+              "max": 13.00379043999983
+            },
+            "serverTravel": {
+              "min": 0.0,
+              "median": 0.0,
+              "max": 0.0
+            },
+            "subjectTravel": {
+              "min": 7.916663646697998,
+              "median": 14.460870273095944,
+              "max": 21.00507689949389
+            },
+            "subjectStepExcess": {
+              "min": 0.8406415879607008,
+              "median": 2.9858949848205327,
+              "max": 5.131148381680365
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.16575800000009622,
+              "median": 0.19413260000010268,
+              "max": 0.22250720000010915
+            },
+            "subjectMotionSeconds": {
+              "min": 0.1158599853515625,
+              "median": 0.11737942695617676,
+              "max": 0.11889886856079102
+            },
+            "observerTravel": {
+              "min": 2.174394288757375,
+              "median": 11.590832009839769,
+              "max": 21.00726973092216
+            },
+            "observerStepExcess": {
+              "min": 0.10456260807293039,
+              "median": 0.7298425871480374,
+              "max": 1.3551225662231445
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.3916468620300293,
+              "median": 0.5344189405441284,
+              "max": 0.6771910190582275
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "speed",
+          "n": 2,
+          "corrections": 2,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 111.36210000040592,
+              "median": 114.92620000035458,
+              "max": 118.49030000030325
+            },
+            "minimumCredit": {
+              "min": -0.2558122456073759,
+              "median": -0.15623355954885465,
+              "max": -0.05665487349033338
+            },
+            "serverTravel": {
+              "min": 10.279924511909485,
+              "median": 10.399527370929718,
+              "max": 10.519130229949951
+            },
+            "subjectTravel": {
+              "min": 30.290164947509766,
+              "median": 30.3867244720459,
+              "max": 30.48328399658203
+            },
+            "subjectStepExcess": {
+              "min": 15.988330499676522,
+              "median": 16.242363590776222,
+              "max": 16.496396681875922
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.16620919999968464,
+              "median": 0.16693909999958123,
+              "max": 0.16766899999947782
+            },
+            "subjectMotionSeconds": {
+              "min": 0.33502197265625,
+              "median": 0.337416410446167,
+              "max": 0.339810848236084
+            },
+            "observerTravel": {
+              "min": 10.279924511909485,
+              "median": 11.281686186790466,
+              "max": 12.283447861671448
+            },
+            "observerStepExcess": {
+              "min": 0.9625453948974609,
+              "median": 3.3444569874844294,
+              "max": 5.726368580071398
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.6195018291473389,
+              "median": 0.6436604261398315,
+              "max": 0.6678190231323242
+            }
+          }
+        },
+        {
+          "mode": "server",
+          "probe": "replacement",
+          "n": 2,
+          "corrections": 0,
+          "failedChecks": [],
+          "ranges": {
+            "rttMs": {
+              "min": 110.52010000003065,
+              "median": 114.18179999964195,
+              "max": 117.84349999925325
+            },
+            "minimumCredit": {
+              "min": 11.770757289837187,
+              "median": 11.772292091848243,
+              "max": 11.7738268938593
+            },
+            "recoveredSeconds": {
+              "min": 0.12442360000022745,
+              "median": 0.12443005000022822,
+              "max": 0.12443650000022899
+            },
+            "serverTravel": {
+              "min": 5.624998092651367,
+              "median": 5.7291648387908936,
+              "max": 5.83333158493042
+            },
+            "subjectTravel": {
+              "min": 20.26354499102782,
+              "median": 20.473218492561422,
+              "max": 20.68289199409502
+            },
+            "subjectStepExcess": {
+              "min": 2.422448437941057,
+              "median": 2.785267345062607,
+              "max": 3.1480862521841573
+            },
+            "subjectHighSpeedPauseSeconds": {
+              "min": 0.11141659999975673,
+              "median": 0.13985349999984464,
+              "max": 0.16829039999993256
+            },
+            "subjectMotionSeconds": {
+              "min": 0.2306690216064453,
+              "median": 0.23292648792266846,
+              "max": 0.2351839542388916
+            },
+            "releaseToMotorSeconds": {
+              "min": 0.1062021255493164,
+              "median": 0.10847008228302002,
+              "max": 0.11073803901672363
+            },
+            "observerTravel": {
+              "min": 20.26354711107705,
+              "median": 20.473219552586034,
+              "max": 20.68289199409502
+            },
+            "observerStepExcess": {
+              "min": 0.5470257969864178,
+              "median": 0.6093580910419405,
+              "max": 0.6716903850974631
+            },
+            "observerHighSpeedPauseSeconds": {
+              "min": 0,
+              "median": 0.0,
+              "max": 0
+            },
+            "observerMotionSeconds": {
+              "min": 0.225294828414917,
+              "median": 0.28340840339660645,
+              "max": 0.3415219783782959
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

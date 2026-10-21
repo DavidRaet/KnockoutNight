@@ -68,4 +68,4 @@ Roblox documents the multiplayer launcher and its separate server/client context
 - Scored elimination, lower-plane commitment, safe combat respawns, protection, weapons, abilities, HUD, queues, and teleports are not implemented by F1.
 - Nothing was published and no asset was exported. The existing starter print script remains unchanged.
 
-**Next step:** Product-owner hands-on review of F1. Announce the proposed work before making tuning changes or beginning F2.
+**Next step:** Product-owner hands-on review of F1 continues alongside the [F2 physics evaluation](F2_Physics_Evaluation.md). The controlled experiment was subsequently authorized; combat implementation still follows physics evidence and architecture review. Camera tuning remains unapproved.

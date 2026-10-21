@@ -56,6 +56,12 @@ local passed, result = pcall(function()
 	)
 	a:PivotTo(CFrame.new(0, 45, 0))
 	b:PivotTo(CFrame.new(0, 45, 0))
+	local combatModule = game.ServerScriptService:FindFirstChild("F2Combat")
+	if combatModule then
+		local combat = require(combatModule)
+		combat.resetMovement(players[1])
+		combat.resetMovement(players[2])
+	end
 	task.wait(0.5)
 	local separation = a.HumanoidRootPart.Position - b.HumanoidRootPart.Position
 	assert(Vector3.new(separation.X, 0, separation.Z).Magnitude < 0.5, "Overlapping characters push each other")
