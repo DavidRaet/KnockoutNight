@@ -1,13 +1,14 @@
 # Knockout Night v0.1 Engineering Roadmap
 
-**Status:** Approved roadmap; implementation not started.  
+**Status:** Approved roadmap; F1 implemented with Studio verification; prototype feel review pending.
+
 **Approved:** October 20, 2026.  
 **Source of truth:** [Knockout Night v0.1 PRD](Knockout_Night_v0.1_PRD.md), document version 0.2.  
 **Design authority:** PRD section 2.2 supersedes conflicting earlier proposals. Confirmed behavior stays fixed; section 17 values remain configurable prototype starting settings.
 
 The product owner approved the slice size, dependency order, and breakdown, including moving sudden death into P0 so the first complete combat milestone can finish tied matches. Roadmap approval does not resolve the engineering decisions listed below or authorize implementation, asset generation/export, or publishing.
 
-Before taking each next step, announce the intended action to the product owner. Implementation awaits a subsequent instruction.
+Before taking each next step, announce the intended action to the product owner. F1 was subsequently authorized; further implementation awaits the product owner's instruction.
 
 ## Planning approach
 
@@ -182,6 +183,6 @@ Follow the project's asset organization rules. Future Blender source files belon
 
 ## Verification status and next step
 
-No implementation, asset work, publishing, or completed playtests are asserted by this roadmap. Physics feasibility, tuning, and platform failure recovery remain unverified until their milestones.
+F1 implementation and its Studio checks are recorded in [F1 Implementation and Verification](F1_Implementation_and_Verification.md). Two-client rig, spawn, collision, movement, camera, input, and character-replacement checks have been exercised. Product-owner feel review, simulated-latency testing, and reference-hardware performance remain outstanding. No later slice, publishing, or asset export is asserted complete.
 
-The F1 implementation outline has been reviewed and its prototype choices are recorded above. The next preparatory step is to confirm the Script Sync mapping and identify the exact script and Studio surfaces F1 will touch. Announce that step before taking it; roadmap and prototype-choice approvals do not themselves start implementation.
+Script Sync mapping and bidirectional behavior were verified before the product owner authorized F1 implementation. The next step is product-owner hands-on review of the F1 prototype. Announce proposed tuning or F2 work before taking it; F2 still requires evaluation of physics ownership and movement validation.
