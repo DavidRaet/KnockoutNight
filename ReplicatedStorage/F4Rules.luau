@@ -15,7 +15,17 @@ function Rules.new(id, roster, now, config)
 end
 
 function Rules.allowed(state, now)
-	return state.phase == "regulation" and now < state.deadline
+	return (state.phase == "regulation" and now < state.deadline)
+		or (state.phase == "sudden-death" and (not state.firstLoss or now <= state.firstLoss.closesAt))
+end
+
+-- The runtime calls this only after the map and both fresh lives have reset.
+function Rules.readySuddenDeath(state, now, lives, config)
+	assert(state.phase == "sudden-death-pending", "F5 countdown requires a pending complete round reset")
+	state.lives = table.clone(lives)
+	state.firstLoss, state.mutual = nil, nil
+	state.phase, state.goAt = "sudden-death-countdown", now + config.OpeningCountdown
+	state.deadline = nil
 end
 
 function Rules.commit(state, session, player, life, at, event)
@@ -26,6 +36,21 @@ function Rules.commit(state, session, player, life, at, event)
 	local key = tostring(side) .. ":" .. tostring(life)
 	if not side or state.processed[key] then
 		return false
+	end
+	if state.phase == "sudden-death" then
+		if state.lives[side] ~= life or state.mutual then
+			return false
+		end
+		state.processed[key] = true
+		if state.firstLoss then
+			if side == state.firstLoss.side then
+				return false
+			end
+			state.mutual = true
+		else
+			state.firstLoss = { side = side, at = at, closesAt = at + 0.2, event = event }
+		end
+		return true
 	end
 	state.processed[key] = true
 	table.insert(state.pending, { side = side, event = event })
@@ -76,6 +101,16 @@ function Rules.step(state, now, departures, config)
 		end
 		return events
 	end
+	if state.phase == "sudden-death" then
+		if state.mutual then
+			table.insert(events, { session = state.id, system = "DOUBLE KO — sudden death resets.", at = now })
+			state.phase = "sudden-death-pending"
+		elseif state.firstLoss and now >= state.firstLoss.closesAt then
+			table.insert(events, state.firstLoss.event)
+			Rules.finish(state, "sudden-death", 3 - state.firstLoss.side, now, config)
+		end
+		return events
+	end
 	for _, commit in state.pending do
 		state.scores[3 - commit.side] += 1
 		table.insert(events, commit.event)
@@ -83,6 +118,8 @@ function Rules.step(state, now, departures, config)
 	table.clear(state.pending)
 	if state.phase == "countdown" and now >= state.goAt then
 		state.phase, state.startedAt, state.deadline = "regulation", now, now + config.RegulationDuration
+	elseif state.phase == "sudden-death-countdown" and now >= state.goAt then
+		state.phase, state.startedAt = "sudden-death", now
 	elseif state.phase == "regulation" and now >= state.deadline then
 		if state.scores[1] == state.scores[2] then
 			state.phase = "sudden-death-pending"

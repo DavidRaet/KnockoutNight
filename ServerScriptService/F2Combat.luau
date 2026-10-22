@@ -231,7 +231,7 @@ end
 
 local function launch(contact, now, excluded)
 	local state, action = contact.victim, contact.action
-	if not valid(state) or not own(state, nil) then
+	if not valid(contact.attacker) or not valid(state) or not own(state, nil) then
 		return
 	end
 	local previous = state.displacement

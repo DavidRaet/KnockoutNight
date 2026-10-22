@@ -75,7 +75,7 @@ Functional requirements below are confirmed unless explicitly labeled otherwise.
 | D06 | Left click attacks; Q activates the ability on keyboard. |
 | D07 | Bounce plus Wrecking Hammer enables Aerial Ground Slam. Other combinations use natural synergy. |
 | D08 | The Platform, Sky Bridges, and The Ring support both match modes. |
-| D09 | Every ring-out awards one point to the opposing side, regardless of cause. |
+| D09 | Every regulation ring-out awards one point to the opposing side, regardless of cause. Sudden death awards no points. |
 | D10 | A regulation tie enters untimed sudden death without respawns; the first team to lose a player loses. |
 | D11 | Local physical lobby queues dispatch groups; queues are not permanently linked to arenas. |
 | D12 | Intermission includes map voting and private weapon and ability selection. Equipment locks for combat. |
@@ -560,8 +560,12 @@ If both sides are eliminated effectively simultaneously, restart sudden death in
 
 - Only eliminations committed before the regulation deadline count; freeze combat at expiry.
 - Reset every remaining connected participant, including pending respawns, to fair spawns; clear motion, actions, temporary protection, and effects; restore abilities/hazards and repeat the countdown. Departed players remain absent.
-- Keep tied regulation scores. Continue play for a provisional 0.2 seconds after the first sudden-death elimination; an opposing loss within that window resets the round, otherwise the other side wins.
+- Keep tied regulation scores; sudden death awards no overtime points. The approved F5 window is exactly 0.2 seconds from the first server elimination commitment. An opposing commitment at or before that deadline resets the round, including equality. Later commitments cannot extend the window through delayed scheduling; otherwise the first eliminated player's opponent wins when the window closes.
 - Restarts use the same reset; The Ring restarts ordinary cycles from the safe phase.
+
+**Approved F5 local 1v1 detail (October 22, 2026):** Reset both connected players, including pending regulation respawns, to their regulation mirrored starts with fresh life identities. Clear old motion, actions, buffers, protection, effects, and respawn timers; preserve chosen equipment and make abilities ready. Repeat the three-second opening countdown with both players locked until GO. No sudden-death respawn protection or ordinary respawns. Repeated mutual eliminations have no round cap or overtime timer. Committed eliminated attackers cannot register further hits, including already active attacks; a hit must resolve before its attacker's elimination commitment. Duplicate and stale life/session callbacks must be harmless.
+
+During a sudden-death reset countdown or decision window, a departure awards the connected player a forfeit even if that player is already eliminated and would otherwise lose. Mutual eliminations produce one neutral knockout-feed entry, “DOUBLE KO — sudden death resets,” replacing the two individual entries. A decisive loss uses ordinary feed attribution. Results identify the sudden-death winner and retain the tied regulation score. F5 implements the local 1v1 Platform transition and map-independent reset seam; later map construction, ability/loadout systems, and 2v2 integration remain separate slices.
 
 Anti-stalling behavior may be explored later. No overtime timer, forced draw, shrinking arena, or forced result is required in v0.1.
 

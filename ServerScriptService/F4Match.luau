@@ -60,6 +60,10 @@ function Match.session()
 	return serial
 end
 
+function Match.respawns()
+	return state ~= nil and state.phase == "regulation"
+end
+
 function Match.commit(player, life, session, at, event)
 	return state ~= nil and Match.allowed(at) and Rules.commit(state, session, player, life, at, event)
 end
@@ -192,10 +196,16 @@ function Match.step()
 	for _, event in events do
 		Lives.notify(event)
 	end
+	if state.phase == "sudden-death-pending" then
+		local lives = Lives.resetRound(state.roster)
+		if not state.result then
+			Rules.readySuddenDeath(state, workspace:GetServerTimeNow(), lives, Config)
+		end
+	end
 	if previous ~= state.phase then
-		local active = state.phase == "regulation"
+		local active = state.phase == "regulation" or state.phase == "sudden-death"
 		for _, player in state.roster do
-			Lives.freeze(player, not active, not active)
+			Lives.freeze(player, not active, not active and state.phase ~= "sudden-death-countdown")
 			if active then
 				Combat.resetMovement(player)
 			end

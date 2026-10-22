@@ -18,7 +18,10 @@ local networkRestored = {}
 local checks = {}
 local launchSamples = {}
 local observed = {}
-local sampleConnection = game:GetService("RunService").PreSimulation:Connect(function()
+local combatStep = Combat.step
+-- Sample the actual combat update before physics, independent of signal connection order.
+Combat.step = function(dt)
+	combatStep(dt)
 	if #launchSamples >= 30 then
 		return
 	end
@@ -38,7 +41,7 @@ local sampleConnection = game:GetService("RunService").PreSimulation:Connect(fun
 			})
 		end
 	end
-end)
+end
 local timeout = task.delay(90, function()
 	Test:EndTest({ passed = false, error = "F2 combat timeout" })
 end)
@@ -220,7 +223,7 @@ task.cancel(timeout)
 workspace:SetAttribute("F2CombatDone", true)
 task.wait(1)
 connection:Disconnect()
-sampleConnection:Disconnect()
+Combat.step = combatStep
 fixture:Destroy()
 for _, player in Players:GetPlayers() do
 	player:SetAttribute("F1ControlsEnabled", nil)

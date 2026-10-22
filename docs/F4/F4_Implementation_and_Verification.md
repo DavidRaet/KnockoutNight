@@ -1,6 +1,6 @@
 # F4 — Complete regulation and results
 
-**October 22, 2026:** Implemented, technically verified, and signed off by the product owner. F5 sudden-death gameplay is not implemented.
+**October 22, 2026:** Implemented, technically verified, and signed off by the product owner. F5 subsequently implemented the sudden-death continuation; see [F5 verification](../F5/F5_Implementation_and_Verification.md). The F4 evidence below records the original slice.
 
 ## Implementation
 
@@ -10,7 +10,7 @@
 - `F2Combat` checks server receipt time for every request and gates simulation work on the active session. Client timestamps grant no deadline exception. The existing character generation rejects requests from previous lives/sessions. No combat tuning or ownership strategy changed.
 - Waiting/countdown roots are anchored. GO releases movement and combat and establishes the regulation deadline in the same coordinator transition. Regulation expiry retires actions, buffers, displacement, and protection, then freezes characters. Pending falls/respawns cannot continue scoring or respawning after expiry.
 - One versioned `F4State` StringValue carries the complete roster, scores, phase, deadline, and result as JSON. Clients display that snapshot rather than independently determining winners. The HUD adds countdown/GO, a top-center timer, result reason/final scores, and Return to Lobby. The feed moves below the timer row to avoid overlap.
-- A tie preserves scores and enters `sudden-death-pending`, with combat/respawns frozen and SUDDEN DEATH displayed. F5 will own the full reset, repeat countdown, and untimed round. F4 invents no tie winner or draw.
+- A tie preserves scores and enters `sudden-death-pending`, with combat/respawns frozen and SUDDEN DEATH displayed. F5 now owns the full reset, repeat countdown, and untimed round through this handoff. F4 invents no tie winner or draw.
 - `F4Config` retains the provisional PRD defaults: opening 3 seconds, regulation 180 seconds, results 8 seconds. Existing F1–F3 tuning remains unchanged.
 
 The return destination in this developer-controlled prototype is local staging: no new lobby, queue, teleport, rematch system, or backfill is introduced. Players can return immediately or automatically at the results deadline. Starting another session is an explicit developer operation. The original result remains immutable while participants return separately.
@@ -48,14 +48,14 @@ To reproduce the engine checks, temporarily insert `tests/F4Match.server.luau` a
 2. Produce a ring-out and an avatar reset. Check one opposing point each. Finish with unequal scores; compare winner, final scores, and regulation wording on both clients. Try a fall/attack near expiry and confirm nothing scores afterward.
 3. Use Return to Lobby on one client; let the other wait eight seconds. Both should reach local staging. In the server Command Bar run `require(game.ServerScriptService.F4Match).begin()` to start another session; confirm fresh scores, characters, countdown, and no old effects.
 4. In separate runs, disconnect before GO, disconnect during active play, and close both clients together. Expect cancellation, remaining-player forfeit, and no winner respectively. Check no disconnect point appears.
-5. Let regulation finish tied. Expect SUDDEN DEATH and frozen gameplay with tied scores preserved. Stop/restart Play afterward; the F5 round is intentionally unavailable.
+5. Let regulation finish tied. Expect SUDDEN DEATH, a fresh three-second countdown, and untimed play with tied scores preserved. Continue with the F5 manual checks.
 
 The product owner signed off the current F4 feature on October 22, 2026, including the developer controls and F4 console toggle used to release the mouse during a match. Automated checks remain technical evidence; owner sign-off records gameplay acceptance for this slice.
 
 ## Limits
 
 - F4 is local 1v1 on The Platform. 2v2/team departures, queues/full lobby flow, reserved servers, and ability integration remain in their roadmap slices.
-- Ties cannot finish competitively until F5. The handoff is deliberately frozen; no F5 reset, countdown, or elimination window is included.
+- The original F4 slice stopped at a frozen tie handoff. F5 now resolves it; its evidence and pending owner acceptance are recorded separately.
 - No 100–150 ms RTT run, reference-hardware/FPS evaluation, broad viewport coverage, or full standalone Roblox type analysis is claimed.
 - The automated return checks exercise the server return operation. Clicking the actual button and evaluating its usability remain in the manual steps.
 - No publishing, asset generation/export, new dependency, or unrelated feature work occurred.

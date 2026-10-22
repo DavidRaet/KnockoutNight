@@ -9,6 +9,7 @@ local records, connections = {}, {}
 local spawnCharacter, arena, candidates, fallback, remote
 local stopped = false
 local matchOwner
+local resetSafePhase = function() end
 local lowerY = World.PlatformCenter.Y + World.PlatformThickness / 2 - Config.LowerOffset
 local outerRadius = World.PlatformDiameter / 2 + Config.OuterMargin
 
@@ -115,6 +116,9 @@ function Lives.eliminate(player, life, reason, session)
 		return false
 	end
 	Rules.eliminate(state, life, now, Config.RespawnDelay)
+	if not matchOwner.respawns() then
+		state.respawnAt = nil
+	end
 	Lives.endProtection(player)
 	Combat.retire(player, "eliminated")
 	local character = state.character
@@ -319,16 +323,29 @@ function Lives.stage(player)
 	end
 end
 
-function Lives.reset(player)
+function Lives.reset(player, preserveScore)
 	local state = records[player]
 	assert(state, "F4 fresh match requires an admitted player life record")
 	Lives.endProtection(player)
 	Combat.retire(player, "fresh-match")
-	state.session, state.score, state.previousSpawn = matchOwner.session(), 0, 0
+	state.session, state.score, state.previousSpawn = matchOwner.session(), if preserveScore then state.score else 0, 0
 	stopped = false
 	workspace:SetAttribute("F3SessionError", nil)
 	spawn(player, state, state.initialFrame, false)
 	Lives.freeze(player, true, false)
+end
+
+function Lives.resetRound(roster)
+	-- Arena-owned hook restores safe hazards before any fresh spawn/countdown.
+	resetSafePhase()
+	local lives = {}
+	for side, player in roster do
+		if player.Parent == Players then
+			Lives.reset(player, true)
+			lives[side] = records[player].life
+		end
+	end
+	return lives
 end
 
 function Lives.remove(player)
@@ -367,7 +384,7 @@ function Lives.step()
 			state.shield:Destroy()
 			state.shield = nil
 		end
-		if state.status == "eliminated" then
+		if state.status == "eliminated" and matchOwner.respawns() then
 			state.candidate = choose(player, state)
 			if now >= state.respawnAt then
 				local marker = if state.candidate then candidates[state.candidate] else fallback
@@ -383,9 +400,10 @@ function Lives.step()
 	end
 end
 
-function Lives.start(createCharacter, world, points, emergency)
+function Lives.start(createCharacter, world, points, emergency, resetHazards)
 	assert(not remote, "F3 lives must be started only once per local session")
 	spawnCharacter, arena, candidates, fallback = createCharacter, world, points, emergency
+	resetSafePhase = resetHazards or function() end
 	remote = Instance.new("RemoteEvent")
 	remote.Name, remote.Parent = "F3Knockouts", Storage
 	workspace:SetAttribute("F3SessionError", nil)

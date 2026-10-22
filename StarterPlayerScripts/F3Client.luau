@@ -224,7 +224,8 @@ table.insert(
 )
 
 function Client.matchActive()
-	return match.phase == "regulation" and workspace:GetServerTimeNow() < match.deadline
+	return (match.phase == "regulation" and workspace:GetServerTimeNow() < match.deadline)
+		or match.phase == "sudden-death"
 end
 
 function Client.adminConsoleOpen()
@@ -266,8 +267,9 @@ table.insert(
 			return
 		end
 		local text = label(feed, "Knockout", UDim2.new(1, 0, 0, 38), UDim2.new(), 16)
-		text.Text = if data.attacker
-			then data.attacker .. " → " .. data.weapon .. " → " .. data.victim
+		text.Text = if data.system
+			then data.system
+			elseif data.attacker then data.attacker .. " → " .. data.weapon .. " → " .. data.victim
 			else data.victim .. " fell out"
 		text.LayoutOrder = math.floor(data.at * 1000) % 1000000000
 		table.insert(entries, { label = text, expires = workspace:GetServerTimeNow() + Config.FeedDuration })
@@ -335,8 +337,11 @@ table.insert(
 				.. string.format("%d:%02d", math.floor(seconds / 60), seconds % 60)
 			timer.TextSize = if seconds <= 10 then 32 else 24
 			timer.TextColor3 = if seconds <= 30 then Color3.fromRGB(255, 207, 100) else Color3.new(1, 1, 1)
-		elseif phase == "sudden-death-pending" then
+		elseif phase == "sudden-death-countdown" then
+			timer.Text = "SUDDEN DEATH  " .. tostring(math.max(1, math.ceil(match.goAt - now)))
+		elseif phase == "sudden-death-pending" or phase == "sudden-death" then
 			timer.Text = "SUDDEN DEATH"
+				.. (if phase == "sudden-death" and now - match.startedAt < 0.75 then "  GO" else "")
 		else
 			timer.Text = if phase == "results" then "MATCH ENDED" else "LOCAL STAGING"
 		end

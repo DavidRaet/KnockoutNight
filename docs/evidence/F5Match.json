@@ -1,0 +1,1659 @@
+{
+  "date": "2026-10-22",
+  "cleanup": {
+    "runtimeSourcesCompared": 20,
+    "differences": [],
+    "temporaryFixturesRemaining": [],
+    "studioMode": "Edit",
+    "productionTimingRestored": true
+  },
+  "studio": "Knockout Night (placeId: 2336816683)",
+  "deterministic": {
+    "F2": 28,
+    "F3": 17,
+    "F4": 143,
+    "F5": 254
+  },
+  "timingSeconds": {
+    "production": [
+      3,
+      180,
+      8
+    ],
+    "F5": [
+      3,
+      2,
+      8
+    ],
+    "F4regression": [
+      2,
+      8,
+      2
+    ]
+  },
+  "runs": {
+    "F5rounds": {
+      "scenario": "rounds",
+      "checks": {
+        "1": "start regulation",
+        "2": "pending regulation respawn / 1",
+        "3": "pending regulation respawn / 2",
+        "4": "fresh life identity / 1/1",
+        "5": "mirrored initial spawn frozen / 1/1",
+        "6": "old motion cleared",
+        "7": "old timer/protection cleared",
+        "8": "old action/effects cleared",
+        "9": "old request rejected during countdown",
+        "10": "old life callback rejected",
+        "11": "fresh request also blocked during countdown",
+        "12": "fresh life identity / 1/2",
+        "13": "mirrored initial spawn frozen / 1/2",
+        "14": "old motion cleared",
+        "15": "old timer/protection cleared",
+        "16": "old action/effects cleared",
+        "17": "old request rejected during countdown",
+        "18": "old life callback rejected",
+        "19": "fresh request also blocked during countdown",
+        "20": "tied score preserved",
+        "21": "client agrees without errors / countdown-1 / Player2",
+        "22": "client agrees without errors / countdown-1 / Player1",
+        "23": "each mutual emits exactly one event on each client",
+        "24": "each mutual emits exactly one event on each client",
+        "25": "GO unlocks movement",
+        "26": "fresh combat ready after GO",
+        "27": "GO unlocks movement",
+        "28": "fresh combat ready after GO",
+        "29": "first sudden death commitment",
+        "30": "committed attacker cannot attack",
+        "31": "duplicate commitment rejected",
+        "32": "opposing same-update commitment",
+        "33": "fresh life identity / 2/1",
+        "34": "mirrored initial spawn frozen / 2/1",
+        "35": "old motion cleared",
+        "36": "old timer/protection cleared",
+        "37": "old action/effects cleared",
+        "38": "old request rejected during countdown",
+        "39": "old life callback rejected",
+        "40": "fresh request also blocked during countdown",
+        "41": "fresh life identity / 2/2",
+        "42": "mirrored initial spawn frozen / 2/2",
+        "43": "old motion cleared",
+        "44": "old timer/protection cleared",
+        "45": "old action/effects cleared",
+        "46": "old request rejected during countdown",
+        "47": "old life callback rejected",
+        "48": "fresh request also blocked during countdown",
+        "49": "tied score preserved",
+        "50": "client agrees without errors / countdown-2 / Player2",
+        "51": "client agrees without errors / countdown-2 / Player1",
+        "52": "each mutual emits exactly one event on each client",
+        "53": "mutual feed is a neutral system entry",
+        "54": "each mutual emits exactly one event on each client",
+        "55": "mutual feed is a neutral system entry",
+        "56": "GO unlocks movement",
+        "57": "fresh combat ready after GO",
+        "58": "GO unlocks movement",
+        "59": "fresh combat ready after GO",
+        "60": "first sudden death commitment",
+        "61": "committed attacker cannot attack",
+        "62": "duplicate commitment rejected",
+        "63": "opposing same-update commitment",
+        "64": "fresh life identity / 3/1",
+        "65": "mirrored initial spawn frozen / 3/1",
+        "66": "old motion cleared",
+        "67": "old timer/protection cleared",
+        "68": "old action/effects cleared",
+        "69": "old request rejected during countdown",
+        "70": "old life callback rejected",
+        "71": "fresh request also blocked during countdown",
+        "72": "fresh life identity / 3/2",
+        "73": "mirrored initial spawn frozen / 3/2",
+        "74": "old motion cleared",
+        "75": "old timer/protection cleared",
+        "76": "old action/effects cleared",
+        "77": "old request rejected during countdown",
+        "78": "old life callback rejected",
+        "79": "fresh request also blocked during countdown",
+        "80": "tied score preserved",
+        "81": "client agrees without errors / countdown-3 / Player2",
+        "82": "client agrees without errors / countdown-3 / Player1",
+        "83": "each mutual emits exactly one event on each client",
+        "84": "mutual feed is a neutral system entry",
+        "85": "each mutual emits exactly one event on each client",
+        "86": "mutual feed is a neutral system entry",
+        "87": "GO unlocks movement",
+        "88": "fresh combat ready after GO",
+        "89": "GO unlocks movement",
+        "90": "fresh combat ready after GO",
+        "91": "first sudden death commitment",
+        "92": "committed attacker cannot attack",
+        "93": "duplicate commitment rejected",
+        "94": "decisive result preserves regulation tie",
+        "95": "client agrees without errors / decisive / Player2",
+        "96": "client agrees without errors / decisive / Player1",
+        "97": "one attributed decisive feed; no ordinary respawn promise",
+        "98": "one attributed decisive feed; no ordinary respawn promise"
+      },
+      "version": "F5",
+      "passed": true,
+      "snapshots": {
+        "Player1": {
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"revision\":13,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792698521.025404,\"result\":{\"scores\":[1,1],\"outcome\":\"sudden-death\",\"winner\":2,\"session\":1,\"returnAt\":1792698529.258838},\"phase\":\"results\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792698521.018457}",
+          "resultsVisible": true,
+          "hudOverlap": false,
+          "eliminations": {
+            "1": {
+              "at": 1792698509.960766,
+              "weapon": "Spring Fist",
+              "victim": "Player2",
+              "session": 1,
+              "reason": "fixture"
+            },
+            "2": {
+              "at": 1792698509.961047,
+              "weapon": "Spring Fist",
+              "victim": "Player1",
+              "session": 1,
+              "reason": "fixture"
+            },
+            "3": {
+              "at": 1792698514.975964,
+              "session": 1,
+              "system": "DOUBLE KO - sudden death resets."
+            },
+            "4": {
+              "at": 1792698518.009862,
+              "session": 1,
+              "system": "DOUBLE KO - sudden death resets."
+            },
+            "5": {
+              "at": 1792698521.042808,
+              "weapon": "Spring Fist",
+              "victim": "Player2",
+              "session": 1,
+              "reason": "fixture"
+            }
+          },
+          "tag": "decisive",
+          "viewport": {
+            "1": 1607,
+            "2": 873
+          },
+          "timer": "MATCH ENDED",
+          "feed": {
+            "1": "DOUBLE KO - sudden death resets.",
+            "2": "Player2 fell out"
+          },
+          "results": "Player1 wins\nsudden-death\nPlayer2  1 — 1  Player1"
+        },
+        "Player2": {
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"revision\":13,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792698521.025404,\"result\":{\"scores\":[1,1],\"outcome\":\"sudden-death\",\"winner\":2,\"session\":1,\"returnAt\":1792698529.258838},\"phase\":\"results\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792698521.018457}",
+          "resultsVisible": true,
+          "hudOverlap": false,
+          "eliminations": {
+            "1": {
+              "at": 1792698509.960766,
+              "weapon": "Spring Fist",
+              "victim": "Player2",
+              "session": 1,
+              "reason": "fixture"
+            },
+            "2": {
+              "at": 1792698509.961047,
+              "weapon": "Spring Fist",
+              "victim": "Player1",
+              "session": 1,
+              "reason": "fixture"
+            },
+            "3": {
+              "at": 1792698514.975964,
+              "session": 1,
+              "system": "DOUBLE KO - sudden death resets."
+            },
+            "4": {
+              "at": 1792698518.009862,
+              "session": 1,
+              "system": "DOUBLE KO - sudden death resets."
+            },
+            "5": {
+              "at": 1792698521.042808,
+              "weapon": "Spring Fist",
+              "victim": "Player2",
+              "session": 1,
+              "reason": "fixture"
+            }
+          },
+          "tag": "decisive",
+          "viewport": {
+            "1": 1607,
+            "2": 873
+          },
+          "timer": "MATCH ENDED",
+          "feed": {
+            "1": "DOUBLE KO - sudden death resets.",
+            "2": "Player2 fell out"
+          },
+          "results": "Player1 wins\nsudden-death\nPlayer2  1 — 1  Player1"
+        }
+      }
+    },
+    "F5countdown-departure": {
+      "scenario": "countdown-departure",
+      "checks": {
+        "1": "start regulation",
+        "2": "pending regulation respawn / 1",
+        "3": "pending regulation respawn / 2",
+        "4": "fresh life identity / 1/1",
+        "5": "mirrored initial spawn frozen / 1/1",
+        "6": "old motion cleared",
+        "7": "old timer/protection cleared",
+        "8": "old action/effects cleared",
+        "9": "old request rejected during countdown",
+        "10": "old life callback rejected",
+        "11": "fresh request also blocked during countdown",
+        "12": "fresh life identity / 1/2",
+        "13": "mirrored initial spawn frozen / 1/2",
+        "14": "old motion cleared",
+        "15": "old timer/protection cleared",
+        "16": "old action/effects cleared",
+        "17": "old request rejected during countdown",
+        "18": "old life callback rejected",
+        "19": "fresh request also blocked during countdown",
+        "20": "tied score preserved",
+        "21": "client agrees without errors / countdown-1 / Player2",
+        "22": "client agrees without errors / countdown-1 / Player1",
+        "23": "each mutual emits exactly one event on each client",
+        "24": "each mutual emits exactly one event on each client",
+        "25": "countdown disconnect awards forfeit",
+        "26": "client agrees without errors / forfeit-countdown / Player2"
+      },
+      "version": "F5",
+      "passed": true,
+      "snapshots": {
+        "Player1": {
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792698557.842834,\"revision\":7,\"phase\":\"sudden-death-countdown\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792698562.871989}",
+          "resultsVisible": false,
+          "hudOverlap": false,
+          "eliminations": {
+            "1": {
+              "at": 1792698557.860173,
+              "weapon": "Spring Fist",
+              "victim": "Player2",
+              "session": 1,
+              "reason": "fixture"
+            },
+            "2": {
+              "at": 1792698557.860454,
+              "weapon": "Spring Fist",
+              "victim": "Player1",
+              "session": 1,
+              "reason": "fixture"
+            }
+          },
+          "tag": "countdown-1",
+          "viewport": {
+            "1": 1607,
+            "2": 873
+          },
+          "timer": "SUDDEN DEATH  3",
+          "feed": {
+            "1": "Player2 fell out",
+            "2": "Player1 fell out"
+          },
+          "results": "Label"
+        },
+        "Player2": {
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"revision\":8,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792698557.842834,\"result\":{\"scores\":[1,1],\"outcome\":\"forfeit\",\"winner\":1,\"session\":1,\"returnAt\":1792698569.126058},\"phase\":\"results\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792698562.871989}",
+          "resultsVisible": true,
+          "hudOverlap": false,
+          "eliminations": {
+            "1": {
+              "at": 1792698557.860173,
+              "weapon": "Spring Fist",
+              "victim": "Player2",
+              "session": 1,
+              "reason": "fixture"
+            },
+            "2": {
+              "at": 1792698557.860454,
+              "weapon": "Spring Fist",
+              "victim": "Player1",
+              "session": 1,
+              "reason": "fixture"
+            }
+          },
+          "tag": "forfeit-countdown",
+          "viewport": {
+            "1": 1607,
+            "2": 873
+          },
+          "timer": "MATCH ENDED",
+          "feed": {
+            "1": "Player2 fell out",
+            "2": "Player1 fell out"
+          },
+          "results": "Player2 wins\nforfeit\nPlayer2  1 — 1  Player1"
+        }
+      }
+    },
+    "F5window-departure": {
+      "scenario": "window-departure",
+      "checks": {
+        "1": "start regulation",
+        "2": "pending regulation respawn / 1",
+        "3": "pending regulation respawn / 2",
+        "4": "fresh life identity / 1/1",
+        "5": "mirrored initial spawn frozen / 1/1",
+        "6": "old motion cleared",
+        "7": "old timer/protection cleared",
+        "8": "old action/effects cleared",
+        "9": "old request rejected during countdown",
+        "10": "old life callback rejected",
+        "11": "fresh request also blocked during countdown",
+        "12": "fresh life identity / 1/2",
+        "13": "mirrored initial spawn frozen / 1/2",
+        "14": "old motion cleared",
+        "15": "old timer/protection cleared",
+        "16": "old action/effects cleared",
+        "17": "old request rejected during countdown",
+        "18": "old life callback rejected",
+        "19": "fresh request also blocked during countdown",
+        "20": "tied score preserved",
+        "21": "client agrees without errors / countdown-1 / Player2",
+        "22": "client agrees without errors / countdown-1 / Player1",
+        "23": "each mutual emits exactly one event on each client",
+        "24": "each mutual emits exactly one event on each client",
+        "25": "GO unlocks movement",
+        "26": "fresh combat ready after GO",
+        "27": "GO unlocks movement",
+        "28": "fresh combat ready after GO",
+        "29": "first sudden death commitment",
+        "30": "committed attacker cannot attack",
+        "31": "duplicate commitment rejected",
+        "32": "already eliminated connected player wins by forfeit",
+        "33": "client agrees without errors / forfeit-window / Player2"
+      },
+      "version": "F5",
+      "passed": true,
+      "snapshots": {
+        "Player1": {
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792698676.780213,\"revision\":7,\"phase\":\"sudden-death-countdown\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792698681.790496}",
+          "resultsVisible": false,
+          "hudOverlap": false,
+          "eliminations": {
+            "1": {
+              "at": 1792698676.79753,
+              "weapon": "Spring Fist",
+              "victim": "Player2",
+              "session": 1,
+              "reason": "fixture"
+            },
+            "2": {
+              "at": 1792698676.797737,
+              "weapon": "Spring Fist",
+              "victim": "Player1",
+              "session": 1,
+              "reason": "fixture"
+            }
+          },
+          "tag": "countdown-1",
+          "viewport": {
+            "1": 1607,
+            "2": 873
+          },
+          "timer": "SUDDEN DEATH  3",
+          "feed": {
+            "1": "Player2 fell out",
+            "2": "Player1 fell out"
+          },
+          "results": "Label"
+        },
+        "Player2": {
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"revision\":9,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792698681.797261,\"result\":{\"scores\":[1,1],\"outcome\":\"forfeit\",\"winner\":1,\"session\":1,\"returnAt\":1792698689.814805},\"phase\":\"results\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792698681.790496}",
+          "resultsVisible": true,
+          "hudOverlap": false,
+          "eliminations": {
+            "1": {
+              "at": 1792698676.79753,
+              "weapon": "Spring Fist",
+              "victim": "Player2",
+              "session": 1,
+              "reason": "fixture"
+            },
+            "2": {
+              "at": 1792698676.797737,
+              "weapon": "Spring Fist",
+              "victim": "Player1",
+              "session": 1,
+              "reason": "fixture"
+            }
+          },
+          "tag": "forfeit-window",
+          "viewport": {
+            "1": 1607,
+            "2": 873
+          },
+          "timer": "MATCH ENDED",
+          "feed": [],
+          "results": "Player2 wins\nforfeit\nPlayer2  1 — 1  Player1"
+        }
+      }
+    },
+    "F4regression": {
+      "scenario": "regulation",
+      "checks": {
+        "1": "developer starts from two admitted staged players",
+        "2": "GO releases server movement",
+        "3": "duplicate admission cannot reset an active player",
+        "4": "GO starts full configured regulation timer",
+        "5": "current regulation life commits",
+        "6": "duplicate life callback rejected",
+        "7": "client agrees on complete snapshot without script errors: Player2 / score-1",
+        "8": "client agrees on complete snapshot without script errors: Player1 / score-1",
+        "9": "regulation resolves authoritative winner and score",
+        "10": "expiry freezes both characters",
+        "11": "server rejects request received after deadline",
+        "12": "late elimination cannot change result",
+        "13": "client agrees on complete snapshot without script errors: Player2 / results-1",
+        "14": "client agrees on complete snapshot without script errors: Player1 / results-1",
+        "15": "both clients render the same result",
+        "16": "terminal result hides ordinary respawn promises",
+        "17": "stale return request rejected",
+        "18": "immediate return accepted",
+        "19": "duplicate return is harmless",
+        "20": "results return to local staging",
+        "21": "developer starts a fresh repeated session",
+        "22": "old session callback cannot eliminate fresh character",
+        "23": "old character request rejected in next countdown",
+        "24": "repeated session clears scores",
+        "25": "countdown locks movement and combat",
+        "26": "stale generation stays rejected after GO",
+        "27": "current regulation life commits",
+        "28": "duplicate life callback rejected",
+        "29": "client agrees on complete snapshot without script errors: Player2 / score-2",
+        "30": "client agrees on complete snapshot without script errors: Player1 / score-2",
+        "31": "regulation resolves authoritative winner and score",
+        "32": "expiry freezes both characters",
+        "33": "server rejects request received after deadline",
+        "34": "late elimination cannot change result",
+        "35": "client agrees on complete snapshot without script errors: Player2 / results-2",
+        "36": "client agrees on complete snapshot without script errors: Player1 / results-2",
+        "37": "both clients render the same result",
+        "38": "terminal result hides ordinary respawn promises",
+        "39": "results return to local staging",
+        "40": "developer starts a fresh repeated session",
+        "41": "old session callback cannot eliminate fresh character",
+        "42": "old character request rejected in next countdown",
+        "43": "repeated session clears scores",
+        "44": "countdown locks movement and combat",
+        "45": "stale generation stays rejected after GO",
+        "46": "tie resets for F5 without inventing result",
+        "47": "F5 reset countdown is frozen",
+        "48": "client agrees on complete snapshot without script errors: Player2 / tie",
+        "49": "client agrees on complete snapshot without script errors: Player1 / tie",
+        "50": "client explains sudden-death handoff"
+      },
+      "version": "F4",
+      "passed": true,
+      "snapshots": {
+        "Player1": {
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":0},{\"id\":-1,\"name\":\"Player1\",\"score\":0}],\"startedAt\":1792698734.697174,\"revision\":16,\"phase\":\"sudden-death-countdown\",\"nextConfig\":{\"OpeningCountdown\":2,\"RegulationDuration\":8},\"session\":3,\"goAt\":1792698744.710909}",
+          "resultsVisible": false,
+          "hudOverlap": false,
+          "viewport": {
+            "1": 1607,
+            "2": 873
+          },
+          "results": "Player1 wins\nRegulation\nPlayer2  0 — 1  Player1",
+          "timer": "SUDDEN DEATH  2",
+          "tag": "tie"
+        },
+        "Player2": {
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":0},{\"id\":-1,\"name\":\"Player1\",\"score\":0}],\"startedAt\":1792698734.697174,\"revision\":16,\"phase\":\"sudden-death-countdown\",\"nextConfig\":{\"OpeningCountdown\":2,\"RegulationDuration\":8},\"session\":3,\"goAt\":1792698744.710909}",
+          "resultsVisible": false,
+          "hudOverlap": false,
+          "viewport": {
+            "1": 1607,
+            "2": 873
+          },
+          "results": "Player1 wins\nRegulation\nPlayer2  0 — 1  Player1",
+          "timer": "SUDDEN DEATH  2",
+          "tag": "tie"
+        }
+      }
+    },
+    "F3regression": {
+      "snapshots": {
+        "Player1": {
+          "scores": {
+            "Player1": 1,
+            "Player2": 0
+          },
+          "errors": {
+            "1": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4725619926",
+            "2": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4572599969",
+            "3": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4049942026",
+            "4": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4657420207"
+          },
+          "countdown": "Label",
+          "countdownVisible": false,
+          "feedEntries": 1,
+          "status": "alive",
+          "focus": {
+            "1": -18,
+            "2": 46.999996185302734,
+            "3": 1.1368683772161603e-13
+          },
+          "feedText": {
+            "1": "Player2 fell out"
+          },
+          "tag": "score"
+        },
+        "Player2": {
+          "scores": {
+            "Player1": 7,
+            "Player2": 2
+          },
+          "errors": {
+            "1": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4572599969",
+            "2": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4725619926",
+            "3": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4657420207",
+            "4": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4049942026"
+          },
+          "countdown": "No safe respawn surface is available. Restart the local session.",
+          "countdownVisible": true,
+          "feedEntries": 2,
+          "status": "stopped",
+          "focus": {
+            "1": 0,
+            "2": 46,
+            "3": 0
+          },
+          "feedText": {
+            "1": "Player2 fell out",
+            "2": "Player1 fell out"
+          },
+          "tag": "failure"
+        }
+      },
+      "version": "F3",
+      "passed": true,
+      "checks": {
+        "1": "F3 verification starts the staged two-player match",
+        "2": "horizontal edge remains recoverable above lower plane",
+        "3": "lower plane commits one opponent point",
+        "4": "duplicate callback cannot score twice",
+        "5": "eliminated life cannot attack",
+        "6": "fall view and countdown appear before spectator switch",
+        "7": "camera follows surviving opponent during countdown",
+        "8": "knockout feed and score reach eliminated client",
+        "9": "both clients agree on score",
+        "10": "later death callback cannot duplicate score or extend timer",
+        "11": "respawn never precedes its deadline",
+        "12": "safe respawn chooses farthest point from opponent",
+        "13": "fresh R15 life receives visible protection",
+        "14": "old-life callback cannot eliminate replacement",
+        "15": "old-generation request rejected after respawn",
+        "16": "protected contact neither launches nor extends shield",
+        "17": "accepted client attack ends protection before resolving",
+        "18": "outer bounds commit independently of health",
+        "19": "respawn never precedes its deadline",
+        "20": "unused shield expires naturally",
+        "21": "unexpected death scores exactly once",
+        "22": "respawn never precedes its deadline",
+        "23": "all unavailable candidates use permanent-center fallback",
+        "24": "spawn shield does not prevent falling",
+        "25": "respawn never precedes its deadline",
+        "26": "real client attack launches into a scored fall",
+        "27": "successful displacement receives feed credit independently of score",
+        "28": "respawn never precedes its deadline",
+        "29": "simultaneous falls award one point to each opponent",
+        "30": "no-survivor camera uses fixed arena view",
+        "31": "respawn never precedes its deadline",
+        "32": "respawn never precedes its deadline",
+        "33": "simultaneous respawns do not overlap",
+        "34": "missing fallback stops session without indefinite respawn",
+        "35": "terminal failure remains visible to client"
+      }
+    },
+    "F2regression": {
+      "launchSamples": {
+        "1": {
+          "player": "Player2",
+          "position": {
+            "1": 0.5,
+            "2": 45,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 50,
+            "2": 12,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "2": {
+          "player": "Player2",
+          "position": {
+            "1": 1.1126768589019775,
+            "2": 45.15912628173828,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": 8.729999542236328,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "3": {
+          "player": "Player2",
+          "position": {
+            "1": 1.651801586151123,
+            "2": 45.26375198364258,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": 5.459999084472656,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "4": {
+          "player": "Player2",
+          "position": {
+            "1": 2.1909263134002686,
+            "2": 45.31387710571289,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": 2.1899986267089844,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "5": {
+          "player": "Player2",
+          "position": {
+            "1": 2.730050802230835,
+            "2": 45.30950164794922,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -1.0800015926361084,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "6": {
+          "player": "Player2",
+          "position": {
+            "1": 3.2691752910614014,
+            "2": 45.25062561035156,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -4.350001811981201,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "7": {
+          "player": "Player2",
+          "position": {
+            "1": 3.8082997798919678,
+            "2": 45.13725280761719,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -7.620002269744873,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "8": {
+          "player": "Player2",
+          "position": {
+            "1": 4.347424030303955,
+            "2": 44.96937561035156,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -10.890002250671387,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "9": {
+          "player": "Player2",
+          "position": {
+            "1": 4.8865485191345215,
+            "2": 44.74700164794922,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -14.160002708435059,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "10": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "11": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "12": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "13": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "14": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "15": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "16": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "17": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "18": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "19": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "20": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "21": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "22": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "23": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "24": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "25": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "26": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "27": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "28": {
+          "player": "Player2",
+          "position": {
+            "1": 5.678956985473633,
+            "2": 44.926021575927734,
+            "3": 0
+          },
+          "velocity": {
+            "1": 0.005779566243290901,
+            "2": 2.71067214012146,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "29": {
+          "player": "Player2",
+          "position": {
+            "1": 5.678974628448486,
+            "2": 44.93635559082031,
+            "3": 0
+          },
+          "velocity": {
+            "1": 0.004930124152451754,
+            "2": 2.3336610794067383,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "30": {
+          "player": "Player2",
+          "position": {
+            "1": 5.679008483886719,
+            "2": 44.95616912841797,
+            "3": 0
+          },
+          "velocity": {
+            "1": 0.00330165633931756,
+            "2": 1.6108930110931396,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        }
+      },
+      "networkRestored": [],
+      "rttMs": {
+        "Player1": 33.60709999833489,
+        "Player2": 33.57019999748445
+      },
+      "checks": {
+        "1": "stale generation rejected",
+        "2": "nonfinite aim rejected",
+        "3": "zero aim rejected",
+        "4": "vertical aim rejected",
+        "5": "valid press accepted",
+        "6": "duplicate sequence rejected",
+        "7": "attack movement and jump restrictions",
+        "8": "authoritative body contact launches victim",
+        "9": "server owns victim before launch",
+        "10": "replacement launch follows committed aim before physical collision response",
+        "11": "protection and reaction have independent deadlines",
+        "12": "hit recovery rejects attacks",
+        "13": "launch produces observed horizontal displacement: 5.6790771484375, 45, 0",
+        "14": "natural recovery restores motor",
+        "15": "natural recovery returns player ownership",
+        "16": "holding without a new press does not repeat",
+        "17": "both active requests accepted",
+        "18": "integrated mutual active hits trade",
+        "19": "miss starts an ordinary action",
+        "20": "late recovery buffer accepted",
+        "21": "extra buffered click rejected",
+        "22": "latest buffered aim accepted",
+        "23": "buffer captures current aim at next startup",
+        "24": "client prediction and real attack remote reach server combat",
+        "25": "client presentation exists for Player1",
+        "26": "client presentation exists for Player2",
+        "27": "unequip clears action and displacement",
+        "28": "old equip cannot attack current generation"
+      },
+      "rttSamplesMs": {
+        "Player1": {
+          "1": 34.15899999890826,
+          "2": 33.058799999707844,
+          "3": 34.151700001530116,
+          "4": 33.60709999833489
+        },
+        "Player2": {
+          "1": 34.11960000084946,
+          "2": 33.034500000212574,
+          "3": 34.11910000068019,
+          "4": 33.57019999748445
+        }
+      },
+      "passed": true,
+      "snapshots": {
+        "Player1": {
+          "state": "Running",
+          "impactDelayMs": 42.7095890045166,
+          "acceptanceAgeMs": 30.74193000793457,
+          "visuals": true,
+          "motor": true,
+          "predictionMismatchMs": 1.9772052764892578
+        },
+        "Player2": {
+          "state": "Landed",
+          "visuals": true,
+          "motor": true,
+          "impactDelayMs": 13.117551803588867
+        }
+      }
+    },
+    "F2failed": {
+      "launchSamples": {
+        "1": {
+          "player": "Player2",
+          "position": {
+            "1": 1.1126768589019775,
+            "2": 45.15912628173828,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": 8.729999542236328,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "2": {
+          "player": "Player2",
+          "position": {
+            "1": 1.651801586151123,
+            "2": 45.26375198364258,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": 5.459999084472656,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "3": {
+          "player": "Player2",
+          "position": {
+            "1": 2.1909263134002686,
+            "2": 45.31387710571289,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": 2.1899986267089844,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "4": {
+          "player": "Player2",
+          "position": {
+            "1": 2.730050802230835,
+            "2": 45.30950164794922,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -1.0800015926361084,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "5": {
+          "player": "Player2",
+          "position": {
+            "1": 3.2691752910614014,
+            "2": 45.25062561035156,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -4.350001811981201,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "6": {
+          "player": "Player2",
+          "position": {
+            "1": 3.8082997798919678,
+            "2": 45.13725280761719,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -7.620002269744873,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "7": {
+          "player": "Player2",
+          "position": {
+            "1": 4.347424030303955,
+            "2": 44.96937561035156,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -10.890002250671387,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "8": {
+          "player": "Player2",
+          "position": {
+            "1": 4.8865485191345215,
+            "2": 44.74700164794922,
+            "3": 0
+          },
+          "owner": "server",
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -14.160002708435059,
+            "3": 0
+          },
+          "displaced": 1,
+          "motor": false
+        },
+        "9": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "10": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "11": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "12": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "13": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "14": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "15": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "16": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "17": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "18": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "19": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "20": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "21": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "22": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "23": {
+          "player": "Player2",
+          "position": {
+            "1": 5.425673007965088,
+            "2": 44.47012710571289,
+            "3": 0
+          },
+          "velocity": {
+            "1": 32.34748077392578,
+            "2": -17.430002212524414,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "24": {
+          "player": "Player2",
+          "position": {
+            "1": 5.463844299316406,
+            "2": 44.82473373413086,
+            "3": 0
+          },
+          "velocity": {
+            "1": 12.203048706054688,
+            "2": 1.9591834545135498,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "25": {
+          "player": "Player2",
+          "position": {
+            "1": 5.505287170410156,
+            "2": 44.85408020019531,
+            "3": 0
+          },
+          "velocity": {
+            "1": 9.853374481201172,
+            "2": 1.7538105249404907,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "26": {
+          "player": "Player2",
+          "position": {
+            "1": 5.592177867889404,
+            "2": 44.915626525878906,
+            "3": 0
+          },
+          "velocity": {
+            "1": 4.926937103271484,
+            "2": 1.323216199874878,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "27": {
+          "player": "Player2",
+          "position": {
+            "1": 5.662466049194336,
+            "2": 44.96540832519531,
+            "3": 0
+          },
+          "velocity": {
+            "1": 0.9417895674705505,
+            "2": 0.9748950600624084,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "28": {
+          "player": "Player2",
+          "position": {
+            "1": 5.6790771484375,
+            "2": 44.977630615234375,
+            "3": 0
+          },
+          "velocity": {
+            "1": 0,
+            "2": 0.8747164607048035,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "29": {
+          "player": "Player2",
+          "position": {
+            "1": 5.6790771484375,
+            "2": 44.98081588745117,
+            "3": 0
+          },
+          "velocity": {
+            "1": 0,
+            "2": 0.750404417514801,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        },
+        "30": {
+          "player": "Player2",
+          "position": {
+            "1": 5.6790771484375,
+            "2": 44.9871826171875,
+            "3": 0
+          },
+          "velocity": {
+            "1": 0,
+            "2": 0.5015603303909302,
+            "3": 0
+          },
+          "motor": true,
+          "owner": "Player2"
+        }
+      },
+      "networkRestored": [],
+      "rttMs": {
+        "Player1": 34.69819999736501,
+        "Player2": 34.65679999862914
+      },
+      "checks": {
+        "1": "stale generation rejected",
+        "2": "nonfinite aim rejected",
+        "3": "zero aim rejected",
+        "4": "vertical aim rejected",
+        "5": "valid press accepted",
+        "6": "duplicate sequence rejected",
+        "7": "attack movement and jump restrictions",
+        "8": "authoritative body contact launches victim",
+        "9": "server owns victim before launch"
+      },
+      "passed": false,
+      "rttSamplesMs": {
+        "Player1": {
+          "1": 34.69819999736501
+        },
+        "Player2": {
+          "1": 34.65679999862914
+        }
+      },
+      "error": "ServerScriptService.F2CombatFixture:97: F2 combat: replacement launch follows committed aim before physical collision response",
+      "snapshots": []
+    }
+  },
+  "notes": [
+    "F2failed preserves the pre-fix sampling failure. The final sampler runs immediately after Combat.step; the exact velocity assertion was retained.",
+    "Some preliminary F5 attempts failed due to Roblox ChatScript CoreGuiChatConnections initialization errors; final successful runs have no reported client errors.",
+    "Kick delivery can exceed the 0.2-second decision window; the window-departure fixture uses synchronous server-side Player removal. The countdown-departure fixture uses actual Kick.",
+    "No owner gameplay acceptance, publishing, assets, future abilities/maps, latency target, or reference-hardware acceptance is claimed."
+  ]
+}

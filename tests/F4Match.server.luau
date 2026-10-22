@@ -211,15 +211,15 @@ local passed, failure = pcall(function()
 		)
 	end
 	waitFor(function()
-		return state().phase == "sudden-death-pending"
-	end, 15, "tied regulation handoff")
+		return state().phase == "sudden-death-countdown"
+	end, 15, "tied regulation reset countdown")
 	check(
 		not state().result and state().roster[1].score == 0 and state().roster[2].score == 0,
-		"tie hands off to F5 without inventing result"
+		"tie resets for F5 without inventing result"
 	)
 	check(
 		a.Character.HumanoidRootPart.Anchored and not Match.allowed(workspace:GetServerTimeNow()),
-		"F5 handoff is frozen"
+		"F5 reset countdown is frozen"
 	)
 	agree("tie")
 	check(string.find(snapshots[a].timer, "SUDDEN DEATH", 1, true) ~= nil, "client explains sudden-death handoff")
