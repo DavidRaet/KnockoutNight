@@ -10,6 +10,11 @@ local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui", 10)
 assert(playerGui, "F3 HUD requires PlayerGui")
 local Client = {}
+local snapshot = Storage:WaitForChild("F4State", 10)
+local returnRemote = Storage:WaitForChild("F4Return", 10)
+assert(snapshot and snapshot:IsA("StringValue"), "F4 HUD requires an authoritative match snapshot")
+assert(returnRemote and returnRemote:IsA("RemoteEvent"), "F4 results require the return remote")
+local match = game:GetService("HttpService"):JSONDecode(snapshot.Value)
 local playerListEnabled = StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.PlayerList)
 StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
 local connections, entries, panels = {}, {}, {}
@@ -40,13 +45,46 @@ local score = label(gui, "Score", UDim2.fromOffset(260, 120), UDim2.new(1, -276,
 score.Text, score.TextYAlignment = "Score", Enum.TextYAlignment.Top
 local countdown = label(gui, "Respawn", UDim2.new(0.6, 0, 0, 70), UDim2.fromScale(0.2, 0.72), 20)
 countdown.Visible = false
+local timer = label(gui, "Timer", UDim2.fromOffset(240, 56), UDim2.new(0.5, -120, 0, 12), 24)
+local results = label(gui, "Results", UDim2.new(0.6, 0, 0, 220), UDim2.fromScale(0.2, 0.28), 24)
+results.Visible = false
+results.TextYAlignment = Enum.TextYAlignment.Top
+local returnButton = Instance.new("TextButton")
+returnButton.Name, returnButton.Text = "Return", "Return to Lobby"
+returnButton.Size, returnButton.Position = UDim2.new(0.8, 0, 0, 48), UDim2.fromScale(0.1, 0.72)
+returnButton.TextSize, returnButton.Font = 20, Enum.Font.GothamMedium
+returnButton.Parent = results
+table.insert(
+	connections,
+	returnButton.Activated:Connect(function()
+		returnRemote:FireServer(match.session)
+	end)
+)
 local feed = Instance.new("Frame")
-feed.Name, feed.Size, feed.Position = "Knockouts", UDim2.new(0.42, 0, 0, 132), UDim2.fromOffset(16, 12)
+feed.Name, feed.Size, feed.Position = "Knockouts", UDim2.new(0.42, 0, 0, 132), UDim2.fromOffset(16, 76)
 feed.BackgroundTransparency = 1
 feed.Parent = gui
 local layout = Instance.new("UIListLayout")
 layout.Padding, layout.SortOrder = UDim.new(0, 6), Enum.SortOrder.LayoutOrder
 layout.Parent = feed
+
+table.insert(
+	connections,
+	snapshot.Changed:Connect(function(value)
+		local nextMatch = game:GetService("HttpService"):JSONDecode(value)
+		if nextMatch.session ~= match.session then
+			for _, entry in entries do
+				entry.label:Destroy()
+			end
+			table.clear(entries)
+		end
+		match = nextMatch
+	end)
+)
+
+function Client.matchActive()
+	return match.phase == "regulation" and workspace:GetServerTimeNow() < match.deadline
+end
 
 local function addPanel(other)
 	if panels[other] then
@@ -79,6 +117,9 @@ end
 table.insert(
 	connections,
 	remote.OnClientEvent:Connect(function(data)
+		if data.session ~= match.session then
+			return
+		end
 		local text = label(feed, "Knockout", UDim2.new(1, 0, 0, 38), UDim2.new(), 16)
 		text.Text = if data.attacker
 			then data.attacker .. " → " .. data.weapon .. " → " .. data.victim
@@ -137,6 +178,39 @@ table.insert(
 	connections,
 	RunService.RenderStepped:Connect(function()
 		local now = workspace:GetServerTimeNow()
+		local phase = match.phase
+		if phase == "countdown" then
+			timer.Text = tostring(math.max(1, math.ceil(match.goAt - now)))
+		elseif phase == "regulation" then
+			local seconds = math.ceil(math.max(0, match.deadline - now))
+			timer.Text = (if now - match.startedAt < 0.75 then "GO  " else "◷  ")
+				.. string.format("%d:%02d", math.floor(seconds / 60), seconds % 60)
+			timer.TextSize = if seconds <= 10 then 32 else 24
+			timer.TextColor3 = if seconds <= 30 then Color3.fromRGB(255, 207, 100) else Color3.new(1, 1, 1)
+		elseif phase == "sudden-death-pending" then
+			timer.Text = "SUDDEN DEATH"
+		else
+			timer.Text = if phase == "results" then "MATCH ENDED" else "LOCAL STAGING"
+		end
+		local result = match.result
+		results.Visible = phase == "results" and player:GetAttribute("F3Status") ~= "waiting"
+		if results.Visible and result then
+			local winner = result.winner and match.roster[result.winner]
+			local title = if winner then winner.name .. " wins" else "No result"
+			local outcome = if result.outcome == "normal" then "Regulation" else result.outcome
+			results.Text = title
+				.. "\n"
+				.. outcome
+				.. "\n"
+				.. match.roster[1].name
+				.. "  "
+				.. result.scores[1]
+				.. " — "
+				.. result.scores[2]
+				.. "  "
+				.. match.roster[2].name
+			returnButton.Text = "Return to Lobby (" .. math.ceil(math.max(0, result.returnAt - now)) .. ")"
+		end
 		local roster = {}
 		for _, other in Players:GetPlayers() do
 			if other:GetAttribute("F3Score") ~= nil then
@@ -149,7 +223,13 @@ table.insert(
 		for index, other in roster do
 			addPanel(other)
 			panels[other].Position = UDim2.fromOffset(8 + (index - 1) * 124, 25)
-			panels[other].Text = other.DisplayName .. "\n" .. tostring(other:GetAttribute("F3Score") or 0)
+			local tally = 0
+			for _, member in match.roster do
+				if member.id == other.UserId then
+					tally = member.score
+				end
+			end
+			panels[other].Text = other.DisplayName .. "\n" .. tostring(tally)
 		end
 		for other, panel in panels do
 			if other.Parent ~= Players then
@@ -163,13 +243,13 @@ table.insert(
 		local status = player:GetAttribute("F3Status")
 		local deadline = player:GetAttribute("F3RespawnAt")
 		local message = workspace:GetAttribute("F3SessionError")
-		countdown.Visible = message ~= nil or status == "eliminated" or status == "waiting"
+		countdown.Visible = message ~= nil or (phase == "regulation" and status == "eliminated") or status == "waiting"
 		if message then
 			countdown.Text = message
 		elseif status == "eliminated" and deadline then
 			countdown.Text = "KNOCKED OUT\nRespawn in " .. math.ceil(math.max(0, deadline - now))
 		elseif status == "waiting" then
-			countdown.Text = "Waiting — this local prototype supports two players."
+			countdown.Text = "Local staging — two players required. Developer starts the next session."
 		end
 	end)
 )

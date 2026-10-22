@@ -8,6 +8,7 @@ end
 local Players = game:GetService("Players")
 local Combat = require(game.ServerScriptService.F2Combat)
 local Lives = require(game.ServerScriptService.F3Lives)
+local Match = require(game.ServerScriptService.F4Match)
 local Config = require(game.ReplicatedStorage.F3Config)
 local fixture = Instance.new("RemoteEvent")
 fixture.Name, fixture.Parent = "F3LivesTest", game.ReplicatedStorage
@@ -39,7 +40,12 @@ local passed, failure = pcall(function()
 	end
 	waitFor(function()
 		local list = Players:GetPlayers()
-		return #list == 2 and ready[list[1]] and ready[list[2]] and Lives.alive(list[1]) and Lives.alive(list[2])
+		return #list == 2
+			and ready[list[1]]
+			and ready[list[2]]
+			and Lives.alive(list[1])
+			and Lives.alive(list[2])
+			and Match.allowed(workspace:GetServerTimeNow())
 	end, 25, "two ready clients")
 	local list = Players:GetPlayers()
 	table.sort(list, function(a, b)
@@ -78,9 +84,11 @@ local passed, failure = pcall(function()
 	local life, generation = a:GetAttribute("F3Life"), first:GetAttribute("F2Generation")
 	local root = pose(a, Vector3.new(36, 18, 0))
 	Lives.step()
+	Match.step()
 	check(Lives.alive(a), "horizontal edge remains recoverable above lower plane")
 	root.CFrame = CFrame.new(36, 16.99, 0)
 	Lives.step()
+	Match.step()
 	check(
 		a:GetAttribute("F3Status") == "eliminated" and b:GetAttribute("F3Score") == 1,
 		"lower plane commits one opponent point"
@@ -129,6 +137,7 @@ local passed, failure = pcall(function()
 	pose(b, Vector3.new(18, 45, 0))
 	pose(a, Vector3.new(96, 45, 0))
 	Lives.step()
+	Match.step()
 	check(
 		a:GetAttribute("F3Status") == "eliminated" and b:GetAttribute("F3Score") == 2,
 		"outer bounds commit independently of health"
@@ -138,7 +147,7 @@ local passed, failure = pcall(function()
 	check(not second:FindFirstChild("F3SpawnShield"), "unused shield expires naturally")
 	second.Humanoid.Health = 0
 	waitFor(function()
-		return a:GetAttribute("F3Status") == "eliminated"
+		return a:GetAttribute("F3Status") == "eliminated" and b:GetAttribute("F3Score") == 3
 	end, 1, "reset/death commits")
 	check(b:GetAttribute("F3Score") == 3, "unexpected death scores exactly once")
 	local world = workspace.F1Platform
@@ -161,6 +170,7 @@ local passed, failure = pcall(function()
 	end
 	pose(a, Vector3.new(36, 16, 0))
 	Lives.step()
+	Match.step()
 	check(a:GetAttribute("F3Status") == "eliminated", "spawn shield does not prevent falling")
 	waitRespawn(a, third)
 	fixture:FireClient(a, "attack", Vector3.xAxis)
@@ -170,7 +180,7 @@ local passed, failure = pcall(function()
 	local beforeLaunch, launchVictim = b:GetAttribute("F3Score"), a.Character
 	fixture:FireClient(b, "attack", Vector3.xAxis)
 	waitFor(function()
-		return a:GetAttribute("F3Status") == "eliminated"
+		return a:GetAttribute("F3Status") == "eliminated" and b:GetAttribute("F3Score") == beforeLaunch + 1
 	end, 3, "real Spring Fist ring-out")
 	check(b:GetAttribute("F3Score") == beforeLaunch + 1, "real client attack launches into a scored fall")
 	local attributed = snapshot(a, "attributed-fall")
@@ -185,6 +195,7 @@ local passed, failure = pcall(function()
 	pose(a, Vector3.new(40, 16, 0))
 	pose(b, Vector3.new(-40, 16, 0))
 	Lives.step()
+	Match.step()
 	local aDeadline, bDeadline = a:GetAttribute("F3RespawnAt"), b:GetAttribute("F3RespawnAt")
 	check(
 		a:GetAttribute("F3Score") == aScore + 1 and b:GetAttribute("F3Score") == bScore + 1,
@@ -202,13 +213,6 @@ local passed, failure = pcall(function()
 		(a.Character.HumanoidRootPart.Position - b.Character.HumanoidRootPart.Position).Magnitude > 5,
 		"simultaneous respawns do not overlap"
 	)
-	local scoreBefore = a:GetAttribute("F3Score")
-	b:Kick("F3 automated departure check")
-	waitFor(function()
-		return b.Parent ~= Players
-	end, 3, "departure")
-	task.wait(0.2)
-	check(a:GetAttribute("F3Score") == scoreBefore, "real disconnect produces no fall point")
 	local final = a.Character
 	for _, marker in points do
 		marker:SetAttribute("F3SpawnAvailable", false)

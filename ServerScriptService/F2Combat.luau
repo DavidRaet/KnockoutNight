@@ -9,6 +9,7 @@ local Combat = {}
 local states, connections, playerConnections = {}, {}, {}
 local remote, probe
 local lifeOwner
+local matchOwner
 local generation, actionId = 0, 0
 
 local function emit(kind, state, data)
@@ -135,6 +136,9 @@ end
 function Combat.request(player, kind, gen, sequence, intendedAim)
 	local state = states[player]
 	local now = workspace:GetServerTimeNow()
+	if matchOwner and not matchOwner.allowed(now) then
+		return false
+	end
 	if not equipped(state) or gen ~= state.generation or (lifeOwner and not lifeOwner.alive(player)) then
 		return false
 	end
@@ -371,6 +375,9 @@ end
 
 function Combat.step(dt)
 	local now = workspace:GetServerTimeNow()
+	if matchOwner and not matchOwner.allowed(now) then
+		return
+	end
 	local excluded = { probe }
 	for _, player in Players:GetPlayers() do
 		if player.Character then
@@ -507,6 +514,10 @@ function Combat.step(dt)
 		end
 		permissions(state, now)
 	end
+end
+
+function Combat.bindMatch(owner)
+	matchOwner = owner
 end
 
 function Combat.start(lives)

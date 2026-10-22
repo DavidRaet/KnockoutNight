@@ -1,0 +1,795 @@
+{
+  "date": "2026-10-22",
+  "studio": "Knockout Night (placeId: 2336816683)",
+  "testTimingSeconds": {
+    "opening": 2,
+    "regulation": 8,
+    "results": 2
+  },
+  "restoredTimingSeconds": {
+    "opening": 3,
+    "regulation": 180,
+    "results": 8
+  },
+  "deterministicChecks": {
+    "F2": 28,
+    "F3": 17,
+    "F4": 143
+  },
+  "scenarios": {
+    "f4Regulation": {
+      "version": "F4",
+      "checks": [
+        "GO releases server movement",
+        "duplicate admission cannot reset an active player",
+        "GO starts full configured regulation timer",
+        "current regulation life commits",
+        "duplicate life callback rejected",
+        "client agrees on complete snapshot without script errors: Player2 / score-1",
+        "client agrees on complete snapshot without script errors: Player1 / score-1",
+        "regulation resolves authoritative winner and score",
+        "expiry freezes both characters",
+        "server rejects request received after deadline",
+        "late elimination cannot change result",
+        "client agrees on complete snapshot without script errors: Player2 / results-1",
+        "client agrees on complete snapshot without script errors: Player1 / results-1",
+        "both clients render the same result",
+        "terminal result hides ordinary respawn promises",
+        "stale return request rejected",
+        "immediate return accepted",
+        "duplicate return is harmless",
+        "results return to local staging",
+        "developer starts a fresh repeated session",
+        "old session callback cannot eliminate fresh character",
+        "old character request rejected in next countdown",
+        "repeated session clears scores",
+        "countdown locks movement and combat",
+        "stale generation stays rejected after GO",
+        "current regulation life commits",
+        "duplicate life callback rejected",
+        "client agrees on complete snapshot without script errors: Player2 / score-2",
+        "client agrees on complete snapshot without script errors: Player1 / score-2",
+        "regulation resolves authoritative winner and score",
+        "expiry freezes both characters",
+        "server rejects request received after deadline",
+        "late elimination cannot change result",
+        "client agrees on complete snapshot without script errors: Player2 / results-2",
+        "client agrees on complete snapshot without script errors: Player1 / results-2",
+        "both clients render the same result",
+        "terminal result hides ordinary respawn promises",
+        "results return to local staging",
+        "developer starts a fresh repeated session",
+        "old session callback cannot eliminate fresh character",
+        "old character request rejected in next countdown",
+        "repeated session clears scores",
+        "countdown locks movement and combat",
+        "stale generation stays rejected after GO",
+        "tie hands off to F5 without inventing result",
+        "F5 handoff is frozen",
+        "client agrees on complete snapshot without script errors: Player2 / tie",
+        "client agrees on complete snapshot without script errors: Player1 / tie",
+        "client explains sudden-death handoff"
+      ],
+      "snapshots": {
+        "Player1": {
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"revision\":14,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":0},{\"id\":-1,\"name\":\"Player1\",\"score\":0}],\"startedAt\":1792693005.135124,\"deadline\":1792693013.135124,\"phase\":\"sudden-death-pending\",\"goAt\":1792693005.117667,\"session\":3}",
+          "resultsVisible": false,
+          "hudOverlap": false,
+          "viewport": [
+            1607,
+            873
+          ],
+          "timer": "SUDDEN DEATH\nAwaiting F5",
+          "results": "Player1 wins\nRegulation\nPlayer2  0 — 1  Player1",
+          "tag": "tie"
+        },
+        "Player2": {
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"revision\":14,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":0},{\"id\":-1,\"name\":\"Player1\",\"score\":0}],\"startedAt\":1792693005.135124,\"deadline\":1792693013.135124,\"phase\":\"sudden-death-pending\",\"goAt\":1792693005.117667,\"session\":3}",
+          "resultsVisible": false,
+          "hudOverlap": false,
+          "viewport": [
+            1607,
+            873
+          ],
+          "timer": "SUDDEN DEATH\nAwaiting F5",
+          "results": "Player1 wins\nRegulation\nPlayer2  0 — 1  Player1",
+          "tag": "tie"
+        }
+      },
+      "passed": true,
+      "scenario": "regulation"
+    },
+    "f4_forfeit": {
+      "version": "F4",
+      "checks": [
+        "GO releases server movement",
+        "GO starts full configured regulation timer",
+        "real departure produces expected terminal outcome",
+        "real departure chooses remaining side or no winner",
+        "disconnect does not generate a fall point",
+        "client agrees on complete snapshot without script errors: Player2 / forfeit"
+      ],
+      "snapshots": {
+        "Player2": {
+          "timer": "MATCH ENDED",
+          "results": "Player2 wins\nforfeit\nPlayer2  0 — 0  Player1",
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"revision\":4,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":0},{\"id\":-1,\"name\":\"Player1\",\"score\":0}],\"startedAt\":1792692762.967209,\"deadline\":1792692770.967209,\"phase\":\"results\",\"result\":{\"scores\":[0,0],\"outcome\":\"forfeit\",\"winner\":1,\"session\":1,\"returnAt\":1792692766.019123},\"goAt\":1792692762.962967,\"session\":1}",
+          "resultsVisible": true,
+          "tag": "forfeit"
+        }
+      },
+      "passed": true,
+      "scenario": "forfeit"
+    },
+    "f4_empty": {
+      "version": "F4",
+      "checks": [
+        "GO releases server movement",
+        "GO starts full configured regulation timer",
+        "real departure produces expected terminal outcome",
+        "real departure chooses remaining side or no winner",
+        "disconnect does not generate a fall point"
+      ],
+      "snapshots": [],
+      "passed": true,
+      "scenario": "empty"
+    },
+    "f4_cancel": {
+      "version": "F4",
+      "checks": [
+        "departure fixture begins before GO",
+        "real pre-GO disconnect cancels with no winner",
+        "client agrees on complete snapshot without script errors: Player2 / cancelled"
+      ],
+      "snapshots": {
+        "Player2": {
+          "timer": "MATCH ENDED",
+          "results": "No result\ncancelled\nPlayer2  0 — 0  Player1",
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"revision\":3,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":0},{\"id\":-1,\"name\":\"Player1\",\"score\":0}],\"phase\":\"results\",\"result\":{\"scores\":[0,0],\"outcome\":\"cancelled\",\"session\":1,\"returnAt\":1792692807.000383},\"goAt\":1792692805.809674,\"session\":1}",
+          "resultsVisible": true,
+          "tag": "cancelled"
+        }
+      },
+      "passed": true,
+      "scenario": "cancel"
+    },
+    "f4_F1": {
+      "passed": true,
+      "result": {
+        "symmetricSpawns": true,
+        "noBodyBlocking": true,
+        "players": 2,
+        "matchingBodyParts": 16
+      }
+    },
+    "f4_F2": {
+      "launchSamples": [
+        {
+          "player": "Player2",
+          "position": [
+            0.5,
+            45,
+            1.1368683772161603e-13
+          ],
+          "owner": "server",
+          "velocity": [
+            50,
+            12,
+            0
+          ],
+          "displaced": 1,
+          "motor": false
+        },
+        {
+          "player": "Player2",
+          "position": [
+            1.149452805519104,
+            45.165931701660156,
+            1.1368683772161603e-13
+          ],
+          "owner": "server",
+          "velocity": [
+            32.34747314453125,
+            8.729999542236328,
+            0
+          ],
+          "displaced": 1,
+          "motor": false
+        },
+        {
+          "player": "Player2",
+          "position": [
+            1.823358416557312,
+            45.29671859741211,
+            1.1368683772161603e-13
+          ],
+          "owner": "server",
+          "velocity": [
+            32.34747314453125,
+            4.642498970031738,
+            0
+          ],
+          "displaced": 1,
+          "motor": false
+        },
+        {
+          "player": "Player2",
+          "position": [
+            2.362483024597168,
+            45.340030670166016,
+            1.1368683772161603e-13
+          ],
+          "owner": "server",
+          "velocity": [
+            32.34747314453125,
+            1.3724985122680664,
+            0
+          ],
+          "displaced": 1,
+          "motor": false
+        },
+        {
+          "player": "Player2",
+          "position": [
+            2.9016075134277344,
+            45.32883834838867,
+            1.1368683772161603e-13
+          ],
+          "owner": "server",
+          "velocity": [
+            32.34747314453125,
+            -1.8975017070770264,
+            0
+          ],
+          "displaced": 1,
+          "motor": false
+        },
+        {
+          "player": "Player2",
+          "position": [
+            3.440732002258301,
+            45.263153076171875,
+            1.1368683772161603e-13
+          ],
+          "owner": "server",
+          "velocity": [
+            32.34747314453125,
+            -5.167501926422119,
+            0
+          ],
+          "displaced": 1,
+          "motor": false
+        },
+        {
+          "player": "Player2",
+          "position": [
+            3.979856491088867,
+            45.142967224121094,
+            1.1368683772161603e-13
+          ],
+          "owner": "server",
+          "velocity": [
+            32.34747314453125,
+            -8.437501907348633,
+            0
+          ],
+          "displaced": 1,
+          "motor": false
+        },
+        {
+          "player": "Player2",
+          "position": [
+            4.518981456756592,
+            44.96827697753906,
+            1.1368683772161603e-13
+          ],
+          "owner": "server",
+          "velocity": [
+            32.34747314453125,
+            -11.707502365112305,
+            0
+          ],
+          "displaced": 1,
+          "motor": false
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.058106899261475,
+            44.73908996582031,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -14.977502822875977,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.462450981140137,
+            44.531436920166016,
+            1.1368683772161603e-13
+          ],
+          "velocity": [
+            32.34747314453125,
+            -17.430002212524414,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.778249740600586,
+            44.84001922607422,
+            0
+          ],
+          "velocity": [
+            9.587039947509766,
+            -1.3645312786102295,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.788249492645264,
+            44.88170623779297,
+            0
+          ],
+          "velocity": [
+            6.893672466278076,
+            -0.8523728847503662,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.803775787353516,
+            44.946434020996094,
+            0
+          ],
+          "velocity": [
+            2.7115628719329834,
+            -0.05712220072746277,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        },
+        {
+          "player": "Player2",
+          "position": [
+            5.812761306762695,
+            44.9838981628418,
+            0
+          ],
+          "velocity": [
+            0.29117515683174133,
+            0.4031275510787964,
+            0
+          ],
+          "motor": true,
+          "owner": "Player2"
+        }
+      ],
+      "networkRestored": [],
+      "rttMs": {
+        "Player1": 32.31410000080359,
+        "Player2": 49.02310000034049
+      },
+      "checks": [
+        "stale generation rejected",
+        "nonfinite aim rejected",
+        "zero aim rejected",
+        "vertical aim rejected",
+        "valid press accepted",
+        "duplicate sequence rejected",
+        "attack movement and jump restrictions",
+        "authoritative body contact launches victim",
+        "server owns victim before launch",
+        "replacement launch follows committed aim before physical collision response",
+        "protection and reaction have independent deadlines",
+        "hit recovery rejects attacks",
+        "launch produces observed horizontal displacement: 5.8138427734375, 45, 0",
+        "natural recovery restores motor",
+        "natural recovery returns player ownership",
+        "holding without a new press does not repeat",
+        "both active requests accepted",
+        "integrated mutual active hits trade",
+        "miss starts an ordinary action",
+        "late recovery buffer accepted",
+        "extra buffered click rejected",
+        "latest buffered aim accepted",
+        "buffer captures current aim at next startup",
+        "client prediction and real attack remote reach server combat",
+        "client presentation exists for Player1",
+        "client presentation exists for Player2",
+        "unequip clears action and displacement",
+        "old equip cannot attack current generation"
+      ],
+      "rttSamplesMs": {
+        "Player1": [
+          32.990600000630366,
+          33.92270000040298,
+          32.92510000028415,
+          32.31410000080359
+        ],
+        "Player2": [
+          32.95559999969555,
+          33.89749999769265,
+          32.89959999892744,
+          49.02310000034049
+        ]
+      },
+      "passed": true,
+      "snapshots": {
+        "Player1": {
+          "visuals": true,
+          "impactDelayMs": 39.74199295043945,
+          "acceptanceAgeMs": 27.89306640625,
+          "predictionMismatchMs": 5.045890808105469,
+          "motor": true,
+          "state": "Running"
+        },
+        "Player2": {
+          "visuals": true,
+          "motor": true,
+          "impactDelayMs": 43.79606246948242,
+          "state": "Freefall"
+        }
+      }
+    },
+    "f4_F3": {
+      "version": "F3",
+      "snapshots": {
+        "Player1": {
+          "scores": {
+            "Player1": 1,
+            "Player2": 0
+          },
+          "errors": [
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4725619926",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4572599969",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4049942026",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4657420207"
+          ],
+          "countdown": "Local staging — two players required. Developer starts the next session.",
+          "status": "alive",
+          "countdownVisible": false,
+          "feedText": [
+            "Player2 fell out"
+          ],
+          "feedEntries": 1,
+          "focus": [
+            -18,
+            46.999996185302734,
+            0
+          ],
+          "tag": "score"
+        },
+        "Player2": {
+          "scores": {
+            "Player1": 7,
+            "Player2": 2
+          },
+          "errors": [
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4725619926",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4572599969",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4049942026",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4657420207"
+          ],
+          "countdown": "No safe respawn surface is available. Restart the local session.",
+          "status": "stopped",
+          "countdownVisible": true,
+          "feedText": [
+            "Player2 fell out",
+            "Player1 fell out"
+          ],
+          "feedEntries": 2,
+          "focus": [
+            0,
+            46,
+            0
+          ],
+          "tag": "failure"
+        }
+      },
+      "passed": true,
+      "checks": [
+        "horizontal edge remains recoverable above lower plane",
+        "lower plane commits one opponent point",
+        "duplicate callback cannot score twice",
+        "eliminated life cannot attack",
+        "fall view and countdown appear before spectator switch",
+        "camera follows surviving opponent during countdown",
+        "knockout feed and score reach eliminated client",
+        "both clients agree on score",
+        "later death callback cannot duplicate score or extend timer",
+        "respawn never precedes its deadline",
+        "safe respawn chooses farthest point from opponent",
+        "fresh R15 life receives visible protection",
+        "old-life callback cannot eliminate replacement",
+        "old-generation request rejected after respawn",
+        "protected contact neither launches nor extends shield",
+        "accepted client attack ends protection before resolving",
+        "outer bounds commit independently of health",
+        "respawn never precedes its deadline",
+        "unused shield expires naturally",
+        "unexpected death scores exactly once",
+        "respawn never precedes its deadline",
+        "all unavailable candidates use permanent-center fallback",
+        "spawn shield does not prevent falling",
+        "respawn never precedes its deadline",
+        "real client attack launches into a scored fall",
+        "successful displacement receives feed credit independently of score",
+        "respawn never precedes its deadline",
+        "simultaneous falls award one point to each opponent",
+        "no-survivor camera uses fixed arena view",
+        "respawn never precedes its deadline",
+        "respawn never precedes its deadline",
+        "simultaneous respawns do not overlap",
+        "missing fallback stops session without indefinite respawn",
+        "terminal failure remains visible to client"
+      ]
+    }
+  }
+}

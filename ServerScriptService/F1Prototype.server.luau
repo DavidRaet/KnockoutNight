@@ -8,6 +8,7 @@ local configInstance = ReplicatedStorage:WaitForChild("F1Config", 10)
 assert(configInstance and configInstance:IsA("ModuleScript"), "F1Config is missing")
 local Config = require(configInstance)
 local Lives = require(script.Parent.F3Lives)
+local Match = require(script.Parent.F4Match)
 
 Players.CharacterAutoLoads = false
 StarterPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.Scriptable
@@ -136,7 +137,7 @@ local function addPlayer(player: Player)
 		firstOccupied = firstOccupied or slot == 1
 		occupied += 1
 	end
-	if occupied >= 2 then
+	if occupied >= 2 or not Match.canJoin() then
 		player:SetAttribute("F3Status", "waiting")
 		return
 	end

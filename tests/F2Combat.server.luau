@@ -61,6 +61,7 @@ local passed, failure = pcall(function()
 		local list = Players:GetPlayers()
 		if
 			#list == 2
+			and require(game.ServerScriptService.F4Match).allowed(workspace:GetServerTimeNow())
 			and ready[list[1]]
 			and ready[list[2]]
 			and list[1].Character

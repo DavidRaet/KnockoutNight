@@ -76,6 +76,7 @@ local function controlsEnabled(): boolean
 		and GuiService.SelectedObject == nil
 		and player:GetAttribute("F1ControlsEnabled") ~= false
 		and player:GetAttribute("F3Status") == "alive"
+		and Lives.matchActive()
 		and humanoid ~= nil
 		and humanoid.Health > 0
 end

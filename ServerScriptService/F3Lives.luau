@@ -8,6 +8,7 @@ local Lives = {}
 local records, connections = {}, {}
 local spawnCharacter, arena, candidates, fallback, remote
 local stopped = false
+local matchOwner
 local lowerY = World.PlatformCenter.Y + World.PlatformThickness / 2 - Config.LowerOffset
 local outerRadius = World.PlatformDiameter / 2 + Config.OuterMargin
 
@@ -68,6 +69,9 @@ local function halt(message)
 		return
 	end
 	stopped = true
+	if matchOwner then
+		matchOwner.fail()
+	end
 	workspace:SetAttribute("F3SessionError", message)
 	warn("F3 session stopped: " .. message)
 	for player, state in records do
@@ -85,17 +89,32 @@ local function halt(message)
 	end
 end
 
-function Lives.eliminate(player, life, reason)
+function Lives.eliminate(player, life, reason, session)
 	local state = records[player]
 	local now = workspace:GetServerTimeNow()
 	if
 		stopped
 		or player.Parent ~= Players
 		or not state
-		or not Rules.eliminate(state, life, now, Config.RespawnDelay)
+		or state.life ~= life
+		or state.status ~= "alive"
+		or (session ~= nil and session ~= state.session)
 	then
 		return false
 	end
+	local credit = state.lastHit
+	local event = {
+		session = state.session,
+		victim = player.DisplayName,
+		attacker = if credit and now - credit.at <= Config.AttributionWindow then credit.name else nil,
+		weapon = "Spring Fist",
+		reason = reason,
+		at = now,
+	}
+	if not matchOwner or not matchOwner.commit(player, life, state.session, now, event) then
+		return false
+	end
+	Rules.eliminate(state, life, now, Config.RespawnDelay)
 	Lives.endProtection(player)
 	Combat.retire(player, "eliminated")
 	local character = state.character
@@ -109,23 +128,20 @@ function Lives.eliminate(player, life, reason)
 	if root and root:CanSetNetworkOwnership() then
 		root:SetNetworkOwner(nil)
 	end
-	-- shortcut: F3 is one local 1v1; team scoring and departure outcomes arrive in L1/F4.
-	for opponent, other in records do
-		if opponent ~= player and opponent.Parent == Players then
-			other.score += 1
-			publish(opponent, other)
-		end
-	end
 	publish(player, state)
-	local credit = state.lastHit
-	remote:FireAllClients({
-		victim = player.DisplayName,
-		attacker = if credit and now - credit.at <= Config.AttributionWindow then credit.name else nil,
-		weapon = "Spring Fist",
-		reason = reason,
-		at = now,
-	})
 	return true
+end
+
+function Lives.notify(event)
+	remote:FireAllClients(event)
+end
+
+function Lives.setScore(player, score)
+	local state = records[player]
+	if state and state.score ~= score then
+		state.score = score
+		publish(player, state)
+	end
 end
 
 local function safe(player, marker)
@@ -211,15 +227,15 @@ local function spawn(player, state, frame, protected)
 		state.shield.Name, state.shield.Visible = "F3SpawnShield", true
 		state.shield.Parent = character
 	end
-	local life = state.life
+	local life, session = state.life, state.session
 	state.connections = {
 		character.Humanoid.Died:Connect(function()
 			-- Defer removal/death callbacks so PlayerRemoving can discard a departure first.
-			task.defer(Lives.eliminate, player, life, "death")
+			task.defer(Lives.eliminate, player, life, "death", session)
 		end),
 		player.CharacterRemoving:Connect(function(removed)
 			if removed == character then
-				task.defer(Lives.eliminate, player, life, "character-removed")
+				task.defer(Lives.eliminate, player, life, "character-removed", session)
 			end
 		end),
 	}
@@ -230,7 +246,20 @@ function Lives.add(player, initialFrame)
 	if records[player] or player.Parent ~= Players then
 		return
 	end
-	local state = { life = 0, status = "waiting", score = 0, previousSpawn = 0, protectionUntil = 0, connections = {} }
+	if matchOwner and not matchOwner.canJoin() then
+		player:SetAttribute("F3Status", "waiting")
+		return
+	end
+	local state = {
+		life = 0,
+		session = 0,
+		initialFrame = initialFrame,
+		status = "waiting",
+		score = 0,
+		previousSpawn = 0,
+		protectionUntil = 0,
+		connections = {},
+	}
 	records[player] = state
 	if stopped then
 		state.status = "stopped"
@@ -238,6 +267,68 @@ function Lives.add(player, initialFrame)
 		return
 	end
 	spawn(player, state, initialFrame, false)
+	Lives.stage(player)
+end
+
+function Lives.bindMatch(owner)
+	matchOwner = owner
+end
+
+function Lives.roster()
+	local roster = {}
+	for player in records do
+		if player.Parent == Players then
+			table.insert(roster, player)
+		end
+	end
+	table.sort(roster, function(a, b)
+		return a.UserId < b.UserId
+	end)
+	return roster
+end
+
+function Lives.freeze(player, frozen, retire)
+	local state = records[player]
+	if not state then
+		return
+	end
+	if retire then
+		Lives.endProtection(player)
+		Combat.retire(player, "match-frozen")
+	end
+	local character = state.character
+	local root = character and character:FindFirstChild("HumanoidRootPart")
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	if root then
+		root.Anchored = frozen
+		root.AssemblyLinearVelocity, root.AssemblyAngularVelocity = Vector3.zero, Vector3.zero
+	end
+	if humanoid then
+		humanoid.WalkSpeed = if frozen then 0 else World.WalkSpeed
+		humanoid.JumpHeight = if frozen then 0 else World.JumpHeight
+		humanoid.Jump = false
+	end
+end
+
+function Lives.stage(player)
+	local state = records[player]
+	if state then
+		Lives.freeze(player, true, true)
+		state.status, state.respawnAt = "waiting", nil
+		publish(player, state)
+	end
+end
+
+function Lives.reset(player)
+	local state = records[player]
+	assert(state, "F4 fresh match requires an admitted player life record")
+	Lives.endProtection(player)
+	Combat.retire(player, "fresh-match")
+	state.session, state.score, state.previousSpawn = matchOwner.session(), 0, 0
+	stopped = false
+	workspace:SetAttribute("F3SessionError", nil)
+	spawn(player, state, state.initialFrame, false)
+	Lives.freeze(player, true, false)
 end
 
 function Lives.remove(player)
@@ -252,7 +343,7 @@ function Lives.remove(player)
 end
 
 function Lives.step()
-	if not remote or stopped then
+	if not remote or stopped or not matchOwner or not matchOwner.allowed(workspace:GetServerTimeNow()) then
 		return
 	end
 	local now = workspace:GetServerTimeNow()

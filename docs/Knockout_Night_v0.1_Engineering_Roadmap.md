@@ -1,6 +1,6 @@
 # Knockout Night v0.1 Engineering Roadmap
 
-**Status:** Approved roadmap; F1 implemented with Studio verification; F2 Spring Fist signed off for its current combat flow on October 22, 2026; F3 implemented, technically verified, synced, and signed off by the product owner on October 22, 2026. F4 is the next slice. The complete M1 combat roster and match loop remain unfinished.
+**Status:** Approved roadmap; F1 implemented with Studio verification; F2 Spring Fist signed off for its current combat flow on October 22, 2026; F3 implemented, technically verified, synced, and signed off by the product owner on October 22, 2026. [F4 is implemented and technically verified](F4/F4_Implementation_and_Verification.md), pending owner gameplay acceptance. F5 remains unimplemented. The complete M1 combat roster and match loop remain unfinished.
 
 **Approved:** October 20, 2026.  
 **Source of truth:** [Knockout Night v0.1 PRD](Knockout_Night_v0.1_PRD.md), document version 0.4.
@@ -8,7 +8,7 @@
 
 The product owner approved the slice size, dependency order, and breakdown, including moving sudden death into P0 so the first complete combat milestone can finish tied matches. Roadmap approval does not resolve the engineering decisions listed below or authorize implementation, asset generation/export, or publishing.
 
-Before taking each next step, announce the intended action to the product owner. F1–F4 were subsequently authorized. The product owner signed off F3 on October 22, 2026; F4 is the next slice.
+Before taking each next step, announce the intended action to the product owner. F1–F4 were subsequently authorized. The product owner signed off F3 on October 22, 2026; F4 now awaits owner gameplay review. Do not continue into F5 without its authorization.
 
 ## Planning approach
 

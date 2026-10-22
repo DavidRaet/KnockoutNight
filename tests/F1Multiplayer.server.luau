@@ -16,7 +16,12 @@ local passed, result = pcall(function()
 	local deadline = os.clock() + 20
 	while os.clock() < deadline do
 		local players = Players:GetPlayers()
-		if #players == 2 and players[1].Character and players[2].Character then
+		if
+			#players == 2
+			and players[1].Character
+			and players[2].Character
+			and require(game.ServerScriptService.F4Match).allowed(workspace:GetServerTimeNow())
+		then
 			break
 		end
 		task.wait(0.1)
