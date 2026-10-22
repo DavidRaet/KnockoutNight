@@ -74,6 +74,7 @@ local function controlsEnabled(): boolean
 		and not GuiService.MenuIsOpen
 		and Input:GetFocusedTextBox() == nil
 		and GuiService.SelectedObject == nil
+		and not Lives.adminConsoleOpen()
 		and player:GetAttribute("F1ControlsEnabled") ~= false
 		and player:GetAttribute("F3Status") == "alive"
 		and Lives.matchActive()

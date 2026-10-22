@@ -2,6 +2,7 @@ local Players = game:GetService("Players")
 local Storage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local StarterGui = game:GetService("StarterGui")
+local UserInputService = game:GetService("UserInputService")
 local Config = require(Storage:WaitForChild("F3Config", 10))
 local World = require(Storage:WaitForChild("F1Config", 10))
 local remote = Storage:WaitForChild("F3Knockouts", 10)
@@ -12,8 +13,10 @@ assert(playerGui, "F3 HUD requires PlayerGui")
 local Client = {}
 local snapshot = Storage:WaitForChild("F4State", 10)
 local returnRemote = Storage:WaitForChild("F4Return", 10)
+local adminRemote = Storage:WaitForChild("F4Admin", 10)
 assert(snapshot and snapshot:IsA("StringValue"), "F4 HUD requires an authoritative match snapshot")
 assert(returnRemote and returnRemote:IsA("RemoteEvent"), "F4 results require the return remote")
+assert(adminRemote and adminRemote:IsA("RemoteEvent"), "F4 admin console requires its command remote")
 local match = game:GetService("HttpService"):JSONDecode(snapshot.Value)
 local playerListEnabled = StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.PlayerList)
 StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
@@ -68,6 +71,143 @@ local layout = Instance.new("UIListLayout")
 layout.Padding, layout.SortOrder = UDim.new(0, 6), Enum.SortOrder.LayoutOrder
 layout.Parent = feed
 
+local adminToggle = Instance.new("TextButton")
+adminToggle.Name, adminToggle.Text = "Developer Console", "DEV CONSOLE (F4)"
+adminToggle.Size, adminToggle.Position = UDim2.fromOffset(164, 42), UDim2.fromOffset(16, 12)
+adminToggle.BackgroundColor3, adminToggle.BackgroundTransparency = Color3.fromRGB(21, 25, 34), 0.1
+adminToggle.TextColor3, adminToggle.TextSize = Color3.new(1, 1, 1), 15
+adminToggle.Font, adminToggle.BorderSizePixel = Enum.Font.GothamMedium, 0
+adminToggle.Parent = gui
+local toggleCorner = Instance.new("UICorner")
+toggleCorner.CornerRadius, toggleCorner.Parent = UDim.new(0, 10), adminToggle
+adminToggle.Visible = player:GetAttribute("F4AdminAuthorized") == true
+
+local console = Instance.new("Frame")
+console.Name, console.Size, console.Position = "DeveloperConsole", UDim2.fromOffset(330, 500), UDim2.fromOffset(16, 62)
+console.BackgroundColor3, console.BackgroundTransparency = Color3.fromRGB(21, 25, 34), 0.05
+console.BorderSizePixel, console.Visible, console.Parent = 0, false, gui
+local consoleCorner = Instance.new("UICorner")
+consoleCorner.CornerRadius, consoleCorner.Parent = UDim.new(0, 12), console
+local function consoleLabel(name, text, y, height, size)
+	local item = Instance.new("TextLabel")
+	item.Name, item.Text = name, text
+	item.Size, item.Position = UDim2.new(1, -24, 0, height), UDim2.fromOffset(12, y)
+	item.BackgroundTransparency, item.TextColor3 = 1, Color3.new(1, 1, 1)
+	item.Font, item.TextSize, item.TextXAlignment = Enum.Font.GothamMedium, size, Enum.TextXAlignment.Left
+	item.TextWrapped, item.Parent = true, console
+	return item
+end
+consoleLabel("Title", "Developer Console", 10, 30, 19)
+local close = Instance.new("TextButton")
+close.Name, close.Text, close.Size, close.Position = "Close", "×", UDim2.fromOffset(34, 30), UDim2.new(1, -44, 0, 8)
+close.BackgroundTransparency, close.TextColor3, close.TextSize = 1, Color3.new(1, 1, 1), 24
+close.Parent = console
+local consoleStatus = consoleLabel("Status", "Waiting for match state", 46, 52, 14)
+local feedback = consoleLabel("Feedback", "Settings apply to the next match.", 462, 30, 12)
+local function textBox(name, placeholder, y)
+	local box = Instance.new("TextBox")
+	box.Name, box.PlaceholderText, box.ClearTextOnFocus = name, placeholder, false
+	box.Size, box.Position = UDim2.new(1, -24, 0, 34), UDim2.fromOffset(12, y)
+	box.BackgroundColor3, box.TextColor3 = Color3.fromRGB(42, 48, 62), Color3.new(1, 1, 1)
+	box.PlaceholderColor3, box.Font, box.TextSize = Color3.fromRGB(190, 196, 208), Enum.Font.Gotham, 14
+	box.Parent = console
+	return box
+end
+local openingInput = textBox("OpeningCountdown", "Opening countdown (0–10 seconds)", 106)
+local regulationInput = textBox("RegulationDuration", "Regulation length (1–1800 seconds)", 148)
+local function commandButton(name, text, y, callback)
+	local button = Instance.new("TextButton")
+	button.Name, button.Text = name, text
+	button.Size, button.Position = UDim2.new(1, -24, 0, 36), UDim2.fromOffset(12, y)
+	button.BackgroundColor3, button.TextColor3 = Color3.fromRGB(55, 83, 125), Color3.new(1, 1, 1)
+	button.Font, button.TextSize, button.Parent = Enum.Font.GothamMedium, 14, console
+	button.Activated:Connect(callback)
+	return button
+end
+commandButton("ApplySettings", "Apply Next Match Settings", 190, function()
+	adminRemote:FireServer("configure", tonumber(openingInput.Text), tonumber(regulationInput.Text))
+end)
+local remainingInput = textBox("RemainingSeconds", "Active time remaining (0–1800 seconds)", 236)
+commandButton("SetRemaining", "Set Active Remaining Time", 278, function()
+	adminRemote:FireServer("remaining", tonumber(remainingInput.Text))
+end)
+commandButton("StartMatch", "Start Match (2 staged players)", 324, function()
+	adminRemote:FireServer("start")
+end)
+commandButton("EndRegulation", "End Regulation Now", 370, function()
+	adminRemote:FireServer("end-now")
+end)
+commandButton("CancelMatch", "Cancel Match (no winner)", 416, function()
+	adminRemote:FireServer("cancel")
+end)
+console.Size = UDim2.fromOffset(330, 500)
+table.insert(
+	connections,
+	adminToggle.Activated:Connect(function()
+		console.Visible = not console.Visible
+	end)
+)
+table.insert(
+	connections,
+	UserInputService.InputBegan:Connect(function(input, processed)
+		if not processed and input.KeyCode == Enum.KeyCode.F4 and adminToggle.Visible then
+			console.Visible = not console.Visible
+		end
+	end)
+)
+table.insert(
+	connections,
+	close.Activated:Connect(function()
+		console.Visible = false
+	end)
+)
+table.insert(
+	connections,
+	player:GetAttributeChangedSignal("F4AdminAuthorized"):Connect(function()
+		adminToggle.Visible = player:GetAttribute("F4AdminAuthorized") == true
+		if not adminToggle.Visible then
+			console.Visible = false
+		end
+	end)
+)
+local function updateConsole()
+	if not adminToggle.Visible then
+		return
+	end
+	local roster = match.roster or {}
+	local first, second = roster[1], roster[2]
+	local scoreText = if first and second
+		then first.name .. " " .. first.score .. " — " .. second.score .. " " .. second.name
+		else "Players staged: " .. #roster .. "/2"
+	local remaining = if match.deadline
+		then math.max(0, math.ceil(match.deadline - workspace:GetServerTimeNow()))
+		else nil
+	consoleStatus.Text = "Phase: "
+		.. tostring(match.phase)
+		.. "\n"
+		.. scoreText
+		.. (if remaining then "\nTime remaining: " .. remaining .. "s" else "")
+	local settings = match.nextConfig
+	if settings then
+		local key = tostring(settings.OpeningCountdown) .. ":" .. tostring(settings.RegulationDuration)
+		if key ~= openingInput:GetAttribute("SettingsKey") then
+			openingInput.Text, regulationInput.Text =
+				tostring(settings.OpeningCountdown), tostring(settings.RegulationDuration)
+			openingInput:SetAttribute("SettingsKey", key)
+		end
+	end
+end
+updateConsole()
+table.insert(
+	connections,
+	adminRemote.OnClientEvent:Connect(function(kind, ok, message)
+		if kind == "result" and adminToggle.Visible then
+			feedback.Text = message
+			feedback.TextColor3 = if ok then Color3.fromRGB(145, 235, 165) else Color3.fromRGB(255, 165, 145)
+		end
+	end)
+)
+
 table.insert(
 	connections,
 	snapshot.Changed:Connect(function(value)
@@ -79,11 +219,16 @@ table.insert(
 			table.clear(entries)
 		end
 		match = nextMatch
+		updateConsole()
 	end)
 )
 
 function Client.matchActive()
 	return match.phase == "regulation" and workspace:GetServerTimeNow() < match.deadline
+end
+
+function Client.adminConsoleOpen()
+	return console.Visible
 end
 
 local function addPanel(other)
@@ -178,6 +323,9 @@ table.insert(
 	connections,
 	RunService.RenderStepped:Connect(function()
 		local now = workspace:GetServerTimeNow()
+		if console.Visible then
+			updateConsole()
+		end
 		local phase = match.phase
 		if phase == "countdown" then
 			timer.Text = tostring(math.max(1, math.ceil(match.goAt - now)))

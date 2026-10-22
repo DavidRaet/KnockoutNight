@@ -40,18 +40,25 @@ local passed, failure = pcall(function()
 	end
 	waitFor(function()
 		local list = Players:GetPlayers()
+		local roster = Lives.roster()
 		return #list == 2
+			and #roster == 2
 			and ready[list[1]]
 			and ready[list[2]]
-			and Lives.alive(list[1])
-			and Lives.alive(list[2])
-			and Match.allowed(workspace:GetServerTimeNow())
+			and list[1].Character
+			and list[2].Character
+			and list[1]:GetAttribute("F3Status") == "waiting"
+			and list[2]:GetAttribute("F3Status") == "waiting"
 	end, 25, "two ready clients")
 	local list = Players:GetPlayers()
 	table.sort(list, function(a, b)
 		return a.UserId < b.UserId
 	end)
 	local a, b = list[1], list[2]
+	check(Match.begin(), "F3 verification starts the staged two-player match")
+	waitFor(function()
+		return Match.allowed(workspace:GetServerTimeNow())
+	end, 6, "match GO")
 	task.wait(1.5)
 	for _, player in list do
 		player:SetAttribute("F1ControlsEnabled", false)

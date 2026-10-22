@@ -2,7 +2,7 @@ param([string]$Tools = (Join-Path (Split-Path $PSScriptRoot -Parent) '.tools/Rob
 $ErrorActionPreference = 'Stop'
 $rootPath = Split-Path $PSScriptRoot -Parent
 & "$PSScriptRoot/run_f3_checks.ps1" -Tools $Tools
-$files = @('ReplicatedStorage/F4Config.luau', 'ReplicatedStorage/F4Rules.luau', 'ServerScriptService/F4Match.luau', 'tests/F4Rules.spec.luau', 'tests/F4Match.server.luau', 'tests/F4Match.client.luau')
+$files = @('ReplicatedStorage/F4Config.luau', 'ReplicatedStorage/F4Rules.luau', 'ServerScriptService/F4Admins.luau', 'ServerScriptService/F4Match.luau', 'StarterPlayerScripts/F3Client.luau', 'tests/F4Rules.spec.luau', 'tests/F4Match.server.luau', 'tests/F4Match.client.luau')
 Push-Location $rootPath
 try {
     & "$Tools/stylua/stylua.exe" --check @files

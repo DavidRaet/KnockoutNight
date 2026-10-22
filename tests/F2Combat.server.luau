@@ -61,13 +61,14 @@ local passed, failure = pcall(function()
 		local list = Players:GetPlayers()
 		if
 			#list == 2
-			and require(game.ServerScriptService.F4Match).allowed(workspace:GetServerTimeNow())
 			and ready[list[1]]
 			and ready[list[2]]
 			and list[1].Character
 			and list[2].Character
 			and list[1].Character:GetAttribute("F2Generation")
 			and list[2].Character:GetAttribute("F2Generation")
+			and list[1]:GetAttribute("F3Status") == "waiting"
+			and list[2]:GetAttribute("F3Status") == "waiting"
 		then
 			break
 		end
@@ -75,6 +76,8 @@ local passed, failure = pcall(function()
 	end
 	local list = Players:GetPlayers()
 	assert(#list == 2 and ready[list[1]] and ready[list[2]], "F2 combat requires two ready clients")
+	local Match = require(game.ServerScriptService.F4Match)
+	assert(Match.begin(), "F2 verification starts the staged two-player match")
 	if args.waitNetwork then
 		workspace:SetAttribute("F2CombatWaitingForNetwork", true)
 		local networkDeadline = os.clock() + 55
@@ -83,6 +86,11 @@ local passed, failure = pcall(function()
 		end
 		assert(workspace:GetAttribute("F2CombatNetworkReady") == true, "F2 combat network barrier timed out")
 	end
+	local goDeadline = os.clock() + 6
+	while os.clock() < goDeadline and not Match.allowed(workspace:GetServerTimeNow()) do
+		task.wait(0.1)
+	end
+	assert(Match.allowed(workspace:GetServerTimeNow()), "F2 verification reaches GO")
 	task.wait(1.5)
 	local a, b = list[1], list[2]
 	local function check(value, message)

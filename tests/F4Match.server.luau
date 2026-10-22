@@ -44,10 +44,15 @@ local passed, failure = pcall(function()
 	end
 	waitFor(function()
 		local list = Lives.roster()
-		return #list == 2 and ready[list[1]] and ready[list[2]]
+		return #list == 2
+			and ready[list[1]]
+			and ready[list[2]]
+			and list[1]:GetAttribute("F3Status") == "waiting"
+			and list[2]:GetAttribute("F3Status") == "waiting"
 	end, 25, "two clients ready")
 	local list = Lives.roster()
 	local a, b = list[1], list[2]
+	check(Match.begin(), "developer starts from two admitted staged players")
 	for _, player in list do
 		player:SetAttribute("F1ControlsEnabled", false)
 	end

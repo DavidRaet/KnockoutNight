@@ -5,20 +5,30 @@ local Config = require(Storage.F4Config)
 local Rules = require(Storage.F4Rules)
 local Lives = require(script.Parent.F3Lives)
 local Combat = require(script.Parent.F2Combat)
+local Admins = require(script.Parent.F4Admins)
 local Match = {}
-local state, snapshot, remote
-local connections, departures, returned = {}, {}, {}
+local state, snapshot, remote, adminRemote
+local connections, departures, returned, lastAdminRequest = {}, {}, {}, {}
 local serial, revision = 0, 0
 local lastPayload
 local running = false
+local nextConfig = { OpeningCountdown = Config.OpeningCountdown, RegulationDuration = Config.RegulationDuration }
 
 local function publish()
-	local data = { session = serial, phase = "staging", roster = {} }
-	if state then
+	local data = { session = serial, phase = "staging", roster = {}, nextConfig = table.clone(nextConfig) }
+	if state and state.phase ~= "staging" then
 		data.phase, data.goAt, data.startedAt, data.deadline = state.phase, state.goAt, state.startedAt, state.deadline
 		data.result = state.result
 		for side, player in state.roster do
 			data.roster[side] = { id = player.UserId, name = player.DisplayName, score = state.scores[side] }
+		end
+	else
+		for side, player in Lives.roster() do
+			data.roster[side] = {
+				id = player.UserId,
+				name = player.DisplayName,
+				score = player:GetAttribute("F3Score") or 0,
+			}
 		end
 	end
 	local payload = Http:JSONEncode(data)
@@ -60,13 +70,23 @@ function Match.begin()
 		return false
 	end
 	local roster = Lives.roster()
-	if #roster ~= 2 then
+	if
+		#roster ~= 2
+		or roster[1]:GetAttribute("F3Status") ~= "waiting"
+		or roster[2]:GetAttribute("F3Status") ~= "waiting"
+	then
 		return false
 	end
 	serial += 1
 	table.clear(departures)
 	table.clear(returned)
-	state = Rules.new(serial, roster, workspace:GetServerTimeNow(), Config)
+	local matchConfig = {
+		OpeningCountdown = nextConfig.OpeningCountdown,
+		RegulationDuration = nextConfig.RegulationDuration,
+		ResultsDuration = Config.ResultsDuration,
+	}
+	state = Rules.new(serial, roster, workspace:GetServerTimeNow(), matchConfig)
+	state.config = matchConfig
 	for _, player in roster do
 		Lives.reset(player)
 	end
@@ -89,12 +109,72 @@ function Match.returnToStaging(player, session)
 	return true
 end
 
+local function integerInRange(value, minimum, maximum)
+	return type(value) == "number"
+		and value == value
+		and math.abs(value) ~= math.huge
+		and value % 1 == 0
+		and value >= minimum
+		and value <= maximum
+end
+
+local function respond(player, ok, message)
+	adminRemote:FireClient(player, "result", ok, message)
+	publish()
+end
+
+local function adminRequest(player, command, first, second)
+	if not Admins[player.UserId] then
+		return
+	end
+	local now = workspace:GetServerTimeNow()
+	if now - (lastAdminRequest[player] or -math.huge) < 0.15 then
+		return
+	end
+	lastAdminRequest[player] = now
+	if command == "configure" then
+		if not integerInRange(first, 0, 10) or not integerInRange(second, 1, 1800) then
+			return respond(player, false, "Countdown must be 0–10 seconds; regulation must be 1–1800 seconds.")
+		end
+		nextConfig = { OpeningCountdown = first, RegulationDuration = second }
+		return respond(player, true, "Next match settings saved for this server.")
+	elseif command == "remaining" then
+		if not integerInRange(first, 0, 1800) or not state or state.phase ~= "regulation" then
+			return respond(player, false, "Remaining time can be changed only during regulation (0–1800 seconds).")
+		end
+		state.deadline = now + first
+		return respond(player, true, "Active regulation time updated.")
+	elseif command == "end-now" then
+		if not state or state.phase ~= "regulation" then
+			return respond(player, false, "There is no active regulation to end.")
+		end
+		state.deadline = now
+		return respond(player, true, "Regulation will resolve using the current score.")
+	elseif command == "cancel" then
+		if not state or state.phase == "staging" or state.result then
+			return respond(player, false, "There is no unfinished match to cancel.")
+		end
+		if Rules.finish(state, "cancelled", nil, now, state.config) then
+			for _, participant in state.roster do
+				Lives.freeze(participant, true, true)
+			end
+			return respond(player, true, "Match cancelled with no winner.")
+		end
+	elseif command == "start" then
+		if not Match.begin() then
+			return respond(player, false, "Start requires exactly two admitted players in local staging.")
+		end
+		return respond(player, true, "Match countdown started.")
+	end
+	respond(player, false, "Unknown or invalid developer command.")
+end
+
 function Match.step()
 	if not running or not snapshot then
 		return
 	end
 	if not state then
-		Match.begin()
+		publish()
 		return
 	end
 	local now = workspace:GetServerTimeNow()
@@ -104,7 +184,7 @@ function Match.step()
 		end
 	end
 	local previous = state.phase
-	local events = Rules.step(state, now, departures, Config)
+	local events = Rules.step(state, now, departures, state.config)
 	table.clear(departures)
 	for side, player in state.roster do
 		Lives.setScore(player, state.scores[side])
@@ -139,7 +219,7 @@ function Match.step()
 end
 
 function Match.fail()
-	if state and Rules.finish(state, "cancelled", nil, workspace:GetServerTimeNow(), Config) then
+	if state and Rules.finish(state, "cancelled", nil, workspace:GetServerTimeNow(), state.config) then
 		publish()
 	end
 end
@@ -147,19 +227,32 @@ end
 function Match.start()
 	assert(not snapshot, "F4 match coordinator must start once")
 	running = true
+	for _, player in Players:GetPlayers() do
+		player:SetAttribute("F4AdminAuthorized", Admins[player.UserId] == true)
+	end
 	snapshot = Instance.new("StringValue")
 	snapshot.Name = "F4State"
 	remote = Instance.new("RemoteEvent")
 	remote.Name = "F4Return"
+	adminRemote = Instance.new("RemoteEvent")
+	adminRemote.Name = "F4Admin"
 	Lives.bindMatch(Match)
 	Combat.bindMatch(Match)
 	publish()
-	snapshot.Parent, remote.Parent = Storage, Storage
+	snapshot.Parent, remote.Parent, adminRemote.Parent = Storage, Storage, Storage
 	table.insert(connections, remote.OnServerEvent:Connect(Match.returnToStaging))
+	table.insert(connections, adminRemote.OnServerEvent:Connect(adminRequest))
+	table.insert(
+		connections,
+		Players.PlayerAdded:Connect(function(player)
+			player:SetAttribute("F4AdminAuthorized", Admins[player.UserId] == true)
+		end)
+	)
 	table.insert(
 		connections,
 		Players.PlayerRemoving:Connect(function(player)
 			departures[player] = true
+			lastAdminRequest[player] = nil
 		end)
 	)
 end
@@ -167,7 +260,7 @@ end
 function Match.stop()
 	running = false
 	if state and not state.result then
-		Rules.finish(state, "interrupted", nil, workspace:GetServerTimeNow(), Config)
+		Rules.finish(state, "interrupted", nil, workspace:GetServerTimeNow(), state.config)
 		for _, player in state.roster do
 			Lives.freeze(player, true, true)
 		end
@@ -177,10 +270,12 @@ function Match.stop()
 		connection:Disconnect()
 	end
 	table.clear(connections)
-	if remote then
-		remote:Destroy()
-		remote = nil
+	for _, instance in { remote, adminRemote } do
+		if instance then
+			instance:Destroy()
+		end
 	end
+	remote, adminRemote = nil, nil
 	-- Keep the last snapshot available while shutdown is visible to clients.
 end
 

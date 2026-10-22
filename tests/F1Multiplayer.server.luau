@@ -13,6 +13,7 @@ end)
 
 local passed, result = pcall(function()
 	local Players = game:GetService("Players")
+	local Match = require(game.ServerScriptService.F4Match)
 	local deadline = os.clock() + 20
 	while os.clock() < deadline do
 		local players = Players:GetPlayers()
@@ -20,7 +21,8 @@ local passed, result = pcall(function()
 			#players == 2
 			and players[1].Character
 			and players[2].Character
-			and require(game.ServerScriptService.F4Match).allowed(workspace:GetServerTimeNow())
+			and players[1]:GetAttribute("F3Status") == "waiting"
+			and players[2]:GetAttribute("F3Status") == "waiting"
 		then
 			break
 		end
@@ -28,6 +30,12 @@ local passed, result = pcall(function()
 	end
 	local players = Players:GetPlayers()
 	assert(#players == 2, "Expected two clients")
+	assert(Match.begin(), "F1 verification starts the staged two-player match")
+	local goDeadline = os.clock() + 6
+	while os.clock() < goDeadline and not Match.allowed(workspace:GetServerTimeNow()) do
+		task.wait(0.1)
+	end
+	assert(Match.allowed(workspace:GetServerTimeNow()), "F1 verification reaches GO")
 	task.wait(1)
 	local a, b = players[1].Character, players[2].Character
 	assert(a and b, "Both clients need characters")
