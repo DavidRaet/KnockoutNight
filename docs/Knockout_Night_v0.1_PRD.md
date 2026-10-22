@@ -380,7 +380,7 @@ These are illustrative starting parameters, not approved final balance. Launch t
 | Startup | 0.08 s | 0.48 s | 0.10 s | Provisional |
 | Recovery | 0.32 s | 0.65 s | 0.16 s | Provisional |
 | Reach | 11 studs | 7 studs | 3.5 studs | Provisional; Spring Fist tuned after playtests |
-| Horizontal launch target | 50 | 75 | 25 | Provisional |
+| Horizontal launch target | 50 | 118 | 25 | Provisional; Hammer tuned toward 20 studs of grounded idle travel on October 22, 2026 |
 | Vertical launch target | 12 | 16 | 8 | Provisional |
 | Active duration | 0.10 s | 0.18 s | 0.08 s | Provisional |
 | Hitbox identity | Narrow forward | Broad frontal sweep, about 100 degrees | Compact short strike | Shapes confirmed; angle provisional |
@@ -825,7 +825,7 @@ Approved configurable prototype starting settings, not final balance or claims o
 | Attack buffer | Final 0.12 seconds of recovery; one attack | Responsiveness without queued chains |
 | Respawn protection | 3 seconds | Ends before any attack/ability resolves; falls still eliminate; no stacking extension |
 | Spring Fist | Startup/active/recovery 0.08/0.10/0.32 s; reach 11 studs; launch 50 horizontal / 12 upward studs/s | Narrow balanced strike |
-| Wrecking Hammer | Startup/active/recovery 0.48/0.18/0.65 s; reach 7 studs; about 100-degree sweep; launch 75/16 studs/s | Readable windup and broad coverage |
+| Wrecking Hammer | Startup/active/recovery 0.48/0.18/0.65 s; reach 7 studs; about 100-degree sweep; launch 118/16 studs/s, targeting approximately 20 studs horizontal travel for a grounded idle opponent | Readable windup and broad coverage; owner tuning October 22, 2026; actual travel remains physics-dependent |
 | Paddle Pops | Startup/active/recovery 0.10/0.08/0.16 s; reach 3.5 studs; launch 25/8 studs/s | Protection exceeds one attack cycle; close pressure without stun-lock |
 | Gust | Cooldown 8 s; range 9 studs; 60-degree cone; launch 35/6 studs/s | Multiple targets, positioning rather than attack cancellation |
 | Magnet | Cooldown 12 s; range 10 studs; 60-degree cone; pull at most 0.25 s, stop 3 studs from user | Aim-first targeting; exact pull speed tuned within limits |

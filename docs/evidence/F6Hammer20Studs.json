@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-22",
+  "targetHorizontalStuds": 20,
+  "finalLaunch": [
+    118,
+    16,
+    0
+  ],
+  "baseline": {
+    "samples": [
+      {
+        "launch": [
+          75,
+          16,
+          0
+        ],
+        "distance": 10.673828125
+      },
+      {
+        "launch": [
+          75,
+          16,
+          0
+        ],
+        "distance": 9.718017578125
+      },
+      {
+        "launch": [
+          75,
+          16,
+          0
+        ],
+        "distance": 9.718017578125
+      }
+    ],
+    "passed": true,
+    "errors": []
+  },
+  "calibration140": {
+    "error": "ServerScriptService.F6KnockbackFixture:94: Hammer grounded idle travel must be within target tolerance: 24.7012939453125",
+    "samples": [
+      {
+        "launch": [
+          140,
+          16,
+          0
+        ],
+        "distance": 24.7012939453125
+      }
+    ],
+    "passed": false,
+    "errors": []
+  },
+  "calibration120": {
+    "error": "ServerScriptService.F6KnockbackFixture:94: Hammer grounded idle travel must be within target tolerance: 21.4073486328125",
+    "samples": [
+      {
+        "launch": [
+          120,
+          16,
+          0
+        ],
+        "distance": 21.4073486328125
+      }
+    ],
+    "passed": false,
+    "errors": []
+  },
+  "calibration116": {
+    "error": "ServerScriptService.F6KnockbackFixture:94: Hammer grounded idle travel must be within target tolerance: 18.703857421875",
+    "samples": [
+      {
+        "launch": [
+          116,
+          16,
+          0
+        ],
+        "distance": 18.703857421875
+      }
+    ],
+    "passed": false,
+    "errors": []
+  },
+  "first118Run": {
+    "error": "ServerScriptService.F6KnockbackFixture:94: Hammer grounded idle travel must be within target tolerance: 14.7296142578125",
+    "samples": [
+      {
+        "launch": [
+          118,
+          16,
+          0
+        ],
+        "distance": 20.89306640625
+      },
+      {
+        "launch": [
+          118,
+          16,
+          0
+        ],
+        "distance": 14.7296142578125
+      }
+    ],
+    "passed": false,
+    "errors": []
+  },
+  "finalMeasurement": {
+    "samples": [
+      {
+        "launch": [
+          118,
+          16,
+          0
+        ],
+        "distance": 18.8450927734375
+      },
+      {
+        "launch": [
+          118,
+          16,
+          0
+        ],
+        "distance": 20.193359375
+      },
+      {
+        "launch": [
+          118,
+          16,
+          0
+        ],
+        "distance": 19.183837890625
+      }
+    ],
+    "passed": true,
+    "errors": []
+  },
+  "limitations": "Twenty studs is an approximate grounded idle tuning target, not a fixed-distance motion contract. The first 118-speed run included a 14.73-stud outlier; the final three trials measured 18.85–20.19 studs. Collisions, movement input, airborne height, and physics/ownership timing can change travel. No shared displacement behavior was changed."
+}

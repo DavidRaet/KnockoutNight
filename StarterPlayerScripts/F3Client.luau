@@ -14,6 +14,8 @@ local Client = {}
 local snapshot = Storage:WaitForChild("F4State", 10)
 local returnRemote = Storage:WaitForChild("F4Return", 10)
 local adminRemote = Storage:WaitForChild("F4Admin", 10)
+local weaponRemote = Storage:WaitForChild("F6WeaponChoice", 10)
+assert(weaponRemote and weaponRemote:IsA("RemoteEvent"), "Weapon picker requires the server selection remote")
 assert(snapshot and snapshot:IsA("StringValue"), "F4 HUD requires an authoritative match snapshot")
 assert(returnRemote and returnRemote:IsA("RemoteEvent"), "F4 results require the return remote")
 assert(adminRemote and adminRemote:IsA("RemoteEvent"), "F4 admin console requires its command remote")
@@ -45,6 +47,42 @@ local function label(parent, name, size, position, textSize)
 end
 
 local score = label(gui, "Score", UDim2.fromOffset(260, 120), UDim2.new(1, -276, 0, 12), 18)
+local weaponPicker = label(gui, "WeaponPicker", UDim2.fromOffset(360, 180), UDim2.fromScale(0.5, 0.5), 22)
+weaponPicker.AnchorPoint = Vector2.new(0.5, 0.5)
+weaponPicker.Text, weaponPicker.TextYAlignment = "Choose your weapon", Enum.TextYAlignment.Top
+local pickerPadding = Instance.new("UIPadding")
+pickerPadding.PaddingTop, pickerPadding.Parent = UDim.new(0, 12), weaponPicker
+local weaponButtons = {}
+for index, choice in { { "SpringFist", "Spring Fist" }, { "WreckingHammer", "Wrecking Hammer" } } do
+	local button = Instance.new("TextButton")
+	button.Name, button.Text = choice[1], choice[2]
+	button.Size, button.Position = UDim2.new(1, -32, 0, 46), UDim2.fromOffset(16, 32 + (index - 1) * 56)
+	button.Font, button.TextSize = Enum.Font.GothamMedium, 18
+	button.TextColor3, button.BorderSizePixel = Color3.new(1, 1, 1), 0
+	button.Parent = weaponPicker
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius, corner.Parent = UDim.new(0, 8), button
+	weaponButtons[choice[1]] = { button = button, title = choice[2] }
+	table.insert(
+		connections,
+		button.Activated:Connect(function()
+			weaponRemote:FireServer(choice[1])
+		end)
+	)
+end
+local function updateWeaponPicker()
+	weaponPicker.Visible = match.phase == "staging" and player:GetAttribute("F3Status") == "waiting"
+	local selected = player:GetAttribute("F2Weapon") or "SpringFist"
+	for name, choice in weaponButtons do
+		choice.button.Text = (if name == selected then "Selected: " else "") .. choice.title
+		choice.button.BackgroundColor3 = if name == selected
+			then Color3.fromRGB(45, 125, 95)
+			else Color3.fromRGB(55, 65, 85)
+	end
+end
+table.insert(connections, player:GetAttributeChangedSignal("F2Weapon"):Connect(updateWeaponPicker))
+table.insert(connections, player:GetAttributeChangedSignal("F3Status"):Connect(updateWeaponPicker))
+updateWeaponPicker()
 score.Text, score.TextYAlignment = "Score", Enum.TextYAlignment.Top
 local countdown = label(gui, "Respawn", UDim2.new(0.6, 0, 0, 70), UDim2.fromScale(0.2, 0.72), 20)
 countdown.Visible = false
@@ -219,6 +257,7 @@ table.insert(
 			table.clear(entries)
 		end
 		match = nextMatch
+		updateWeaponPicker()
 		updateConsole()
 	end)
 )

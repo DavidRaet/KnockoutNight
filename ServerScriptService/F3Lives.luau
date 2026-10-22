@@ -58,10 +58,14 @@ function Lives.alive(player)
 		and not Rules.outside(root.Position, World.PlatformCenter, lowerY, outerRadius)
 end
 
-function Lives.hit(victim, attacker, at)
+function Lives.hit(victim, attacker, at, weapon)
 	local state = records[victim]
 	if state and state.status == "alive" then
-		state.lastHit = { name = attacker.DisplayName, at = at }
+		state.lastHit = {
+			name = attacker.DisplayName,
+			at = at,
+			weapon = if weapon == "WreckingHammer" then "Wrecking Hammer" else "Spring Fist",
+		}
 	end
 end
 
@@ -108,7 +112,7 @@ function Lives.eliminate(player, life, reason, session)
 		session = state.session,
 		victim = player.DisplayName,
 		attacker = if credit and now - credit.at <= Config.AttributionWindow then credit.name else nil,
-		weapon = "Spring Fist",
+		weapon = if credit then credit.weapon else nil,
 		reason = reason,
 		at = now,
 	}

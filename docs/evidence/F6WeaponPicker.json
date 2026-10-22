@@ -1,0 +1,216 @@
+{
+  "date": "2026-10-22",
+  "checks": 48,
+  "result": {
+    "events": [
+      "Server-controlled reposition demonstrates dodge/punish timing; player feel remains manual."
+    ],
+    "checks": [
+      "invalid and unavailable weapon choices rejected",
+      "picker is visible and centered for Player1",
+      "picker is visible and centered for Player2",
+      "picker confirms authoritative Hammer choice",
+      "real Platform match begins",
+      "countdown locks weapon changes",
+      "server choice survives match fresh-character reset",
+      "Hammer press accepted",
+      "40 percent movement and no jumping",
+      "readable windup does not launch early",
+      "authoritative replacement launch is exactly 75 horizontal / 16 upward before physics",
+      "defender cannot attack during hit recovery",
+      "Hammer action expires without auto-repeat",
+      "displacement restores motor",
+      "displacement returns client ownership",
+      "Hammer ring-out attribution commits",
+      "mixed attacks start together",
+      "fast Fist interrupts unarmored Hammer windup",
+      "interrupted Hammer never reaches its later active window",
+      "dodge scenario starts windup",
+      "defender leaving front during windup dodges sweep",
+      "defender punishes during Hammer recovery",
+      "missed Hammer is vulnerable to recovery punish",
+      "real client input remote completes Hammer action",
+      "buffer scenario starts",
+      "final 0.12-second buffer accepted",
+      "buffer starts exactly one next Hammer action",
+      "weapon change cancels action and buffer",
+      "weapon change rejects stale input generation",
+      "elimination cleanup begins with live action",
+      "elimination commits through real life owner",
+      "elimination retires Hammer transient state immediately",
+      "regulation respawn preserves server weapon choice",
+      "picker stays hidden during combat for Player2",
+      "no project script errors (Roblox ChatScript errors reported separately): Player2",
+      "knockout feed credits Wrecking Hammer on Player2",
+      "client renders Hammer startup: Player2",
+      "client renders Hammer active: Player2",
+      "client renders Hammer recovery: Player2",
+      "client receives authoritative hit presentation: Player2",
+      "picker stays hidden during combat for Player1",
+      "no project script errors (Roblox ChatScript errors reported separately): Player1",
+      "knockout feed credits Wrecking Hammer on Player1",
+      "client renders Hammer startup: Player1",
+      "client renders Hammer active: Player1",
+      "client renders Hammer recovery: Player1",
+      "client receives authoritative hit presentation: Player1",
+      "no server script errors"
+    ],
+    "snapshots": {
+      "Player1": {
+        "eliminations": [
+          {
+            "at": 1792703036.45244,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "F6-attribution",
+            "attacker": "Player1",
+            "weapon": "Wrecking Hammer"
+          },
+          {
+            "at": 1792703052.386711,
+            "victim": "Player1",
+            "reason": "F6-test",
+            "session": 1,
+            "weapon": "Spring Fist"
+          }
+        ],
+        "errors": [],
+        "phases": {
+          "recovery": {
+            "last": [
+              -1.2559219598770142,
+              45.20000076293945,
+              -1.9080332517623901
+            ],
+            "samples": 32,
+            "first": [
+              1.3340377807617188,
+              45.20000076293945,
+              3.615894317626953
+            ]
+          },
+          "startup": {
+            "last": [
+              -1.1767542362213135,
+              45.344200134277344,
+              -2.1728596687316895
+            ],
+            "samples": 31,
+            "first": [
+              -1.1193712949752808,
+              45.38246154785156,
+              -2.241245985031128
+            ]
+          },
+          "active": {
+            "last": [
+              2.0885915756225586,
+              45.4700813293457,
+              3.1790308952331543
+            ],
+            "samples": 12,
+            "first": [
+              2.4495902061462402,
+              46.32099914550781,
+              -2.510371685028076
+            ]
+          }
+        },
+        "pickerVisible": false,
+        "engineErrors": [
+          "Players.Player1.PlayerScripts.ChatScript:116: Error calling SetCore CoreGuiChatConnections: SetCore: CoreGuiChatConnections has not been registered by the CoreScripts"
+        ],
+        "hits": 3
+      },
+      "Player2": {
+        "eliminations": [
+          {
+            "at": 1792703036.45244,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "F6-attribution",
+            "attacker": "Player1",
+            "weapon": "Wrecking Hammer"
+          },
+          {
+            "at": 1792703052.386711,
+            "victim": "Player1",
+            "reason": "F6-test",
+            "session": 1,
+            "weapon": "Spring Fist"
+          }
+        ],
+        "errors": [],
+        "phases": {
+          "recovery": {
+            "last": [
+              -1.1552586555480957,
+              45.20000076293945,
+              -1.8977432250976562
+            ],
+            "samples": 34,
+            "first": [
+              1.2597107887268066,
+              45.20000076293945,
+              3.805947780609131
+            ]
+          },
+          "startup": {
+            "last": [
+              -0.9225642681121826,
+              45.51367950439453,
+              -2.4757914543151855
+            ],
+            "samples": 30,
+            "first": [
+              -1.1772135496139526,
+              45.343894958496094,
+              -2.1723122596740723
+            ]
+          },
+          "active": {
+            "last": [
+              2.4316816329956055,
+              45.57291793823242,
+              2.548889636993408
+            ],
+            "samples": 12,
+            "first": [
+              2.1035518646240234,
+              46.42585754394531,
+              -3.1549572944641113
+            ]
+          }
+        },
+        "pickerVisible": false,
+        "engineErrors": [],
+        "hits": 3
+      }
+    },
+    "launches": {
+      "-2:10:1": {
+        "y": 16,
+        "player": "Player2",
+        "serverOwned": true,
+        "z": 0,
+        "x": 75
+      },
+      "-1:17:2": {
+        "y": 12,
+        "player": "Player1",
+        "serverOwned": true,
+        "z": 0,
+        "x": 50
+      },
+      "-1:13:1": {
+        "y": 12,
+        "player": "Player1",
+        "serverOwned": true,
+        "z": 0,
+        "x": -50
+      }
+    },
+    "passed": true,
+    "errors": []
+  }
+}

@@ -49,6 +49,11 @@ local passed, failure = pcall(function()
 	for _, player in list do
 		player:SetAttribute("F1ControlsEnabled", false)
 	end
+	if args.weapon == "WreckingHammer" then
+		for _, player in list do
+			player:SetAttribute("F2Weapon", args.weapon)
+		end
+	end
 	check(Match.begin(), "start regulation")
 	local function phase(name)
 		waitFor(function()
@@ -75,7 +80,7 @@ local passed, failure = pcall(function()
 				local data = snapshots[player.Name]
 				check(
 					data.snapshot == expected and #data.errors == 0 and not data.hudOverlap,
-					"client agrees without errors / " .. tag .. " / " .. player.Name
+					"client agrees without project errors / " .. tag .. " / " .. player.Name
 				)
 			end
 		end
@@ -113,6 +118,9 @@ local passed, failure = pcall(function()
 				not root:GetAttribute("F2ActionUntil") and not root:GetAttribute("F2Displaced"),
 				"old action/effects cleared"
 			)
+			if args.weapon then
+				check(char:GetAttribute("F2Weapon") == args.weapon, "sudden death preserves chosen weapon")
+			end
 			check(
 				not Combat.request(player, "press", generations[side], 999, Vector3.xAxis),
 				"old request rejected during countdown"

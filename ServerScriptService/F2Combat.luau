@@ -1,6 +1,7 @@
 local Players = game:GetService("Players")
 local Storage = game:GetService("ReplicatedStorage")
 local Config = require(Storage.F2Config)
+local Weapons = require(Storage.F2Weapons)
 local F1 = require(Storage.F1Config)
 local Fist = require(Storage.F2SpringFist)
 local Physics = require(Storage.F2PhysicsStudy)
@@ -69,11 +70,11 @@ end
 local function permissions(state, now)
 	local restricted = state.displacement ~= nil or now < state.reactionUntil
 	local action = state.action
-	state.humanoid.WalkSpeed = if restricted then 0 else F1.WalkSpeed * (if action then Config.MoveScale else 1)
+	state.humanoid.WalkSpeed = if restricted then 0 else F1.WalkSpeed * (if action then action.config.MoveScale else 1)
 	state.humanoid.JumpHeight = if restricted or action then 0 else F1.JumpHeight
 	state.root:SetAttribute("F2ReactionUntil", state.reactionUntil)
 	state.root:SetAttribute("F2ProtectionUntil", state.protectionUntil)
-	state.root:SetAttribute("F2ActionUntil", if action then action.started + Config.Duration else nil)
+	state.root:SetAttribute("F2ActionUntil", if action then action.started + action.config.Duration else nil)
 	state.root:SetAttribute("F2ActionAim", if action then action.aim else nil)
 	if restricted or action then
 		state.humanoid.Jump = false
@@ -107,6 +108,7 @@ local function remove(player, reason)
 	end
 	state.character:SetAttribute("F2Generation", nil)
 	state.character:SetAttribute("F2Equipped", nil)
+	state.character:SetAttribute("F2Weapon", nil)
 end
 
 function Combat.retire(player, reason)
@@ -119,16 +121,19 @@ local function startAction(state, sequence, now)
 		state.spawnProtectionUntil = 0
 	end
 	actionId += 1
-	state.action = { id = actionId, sequence = sequence, started = now, aim = state.aim, encountered = {} }
+	local config = Weapons[state.weapon]
+	state.action =
+		{ id = actionId, sequence = sequence, started = now, aim = state.aim, encountered = {}, config = config }
 	state.buffer = nil
 	emit("accepted", state, {
 		id = actionId,
 		sequence = sequence,
 		started = now,
 		aim = state.aim,
-		activeAt = now + Config.Startup,
-		recoveryAt = now + Config.Startup + Config.Active,
-		endsAt = now + Config.Duration,
+		weapon = state.weapon,
+		activeAt = now + config.Startup,
+		recoveryAt = now + config.Startup + config.Active,
+		endsAt = now + config.Duration,
 	})
 	permissions(state, now)
 end
@@ -201,13 +206,13 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 		return reject("hit-recovery")
 	end
 	if state.action then
-		if Fist.canBuffer(now - state.action.started, state.buffer ~= nil, restricted, Config) then
+		if Fist.canBuffer(now - state.action.started, state.buffer ~= nil, restricted, state.action.config) then
 			state.buffer = sequence
 			remote:FireClient(player, "buffered", {
 				character = state.character,
 				generation = gen,
 				sequence = sequence,
-				startsAt = state.action.started + Config.Duration,
+				startsAt = state.action.started + state.action.config.Duration,
 			})
 			return true
 		end
@@ -231,6 +236,7 @@ end
 
 local function launch(contact, now, excluded)
 	local state, action = contact.victim, contact.action
+	local config = action.config
 	if not valid(contact.attacker) or not valid(state) or not own(state, nil) then
 		return
 	end
@@ -244,16 +250,16 @@ local function launch(contact, now, excluded)
 		leftGround = not ground(state, excluded),
 		observed = false,
 	}
-	state.credit = Config.LaunchSpeed * Physics.BurstSeconds + Physics.PositionSlack
-	state.residualSpeed = Config.LaunchSpeed
+	state.credit = config.LaunchSpeed * Physics.BurstSeconds + Physics.PositionSlack
+	state.residualSpeed = config.LaunchSpeed
 	state.root:SetAttribute("F2MotorEnabled", state.displacement.motor)
 	state.root:SetAttribute("F2Displaced", state.displacementId)
 	state.humanoid.EvaluateStateMachine = false
-	state.root.AssemblyLinearVelocity = action.aim * Config.LaunchSpeed + Vector3.yAxis * Config.LaunchUp
+	state.root.AssemblyLinearVelocity = action.aim * config.LaunchSpeed + Vector3.yAxis * config.LaunchUp
 	state.reactionUntil, state.protectionUntil = contact.time + Config.Reaction, contact.time + Config.Protection
 	state.buffer = nil
 	if lifeOwner then
-		lifeOwner.hit(state.player, contact.attacker.player, contact.time)
+		lifeOwner.hit(state.player, contact.attacker.player, contact.time, contact.attacker.weapon)
 	end
 	emit("hit", state, {
 		attacker = contact.attacker.character,
@@ -291,6 +297,7 @@ local function addCharacter(player, character)
 		humanoid = humanoid,
 		root = root,
 		generation = generation,
+		weapon = Weapons.forPlayer(player),
 		connections = {},
 		sequence = 0,
 		aim = Vector3.new(0, 0, -1),
@@ -312,6 +319,7 @@ local function addCharacter(player, character)
 		jumpHeight = humanoid.JumpHeight,
 	}
 	states[player] = state
+	character:SetAttribute("F2Weapon", state.weapon)
 	character:SetAttribute("F2Equipped", true)
 	character:SetAttribute("F2Generation", generation)
 	root:SetAttribute("F2Generation", generation)
@@ -337,6 +345,18 @@ local function addCharacter(player, character)
 			character:SetAttribute("F2Generation", generation)
 			root:SetAttribute("F2Generation", generation)
 			permissions(state, workspace:GetServerTimeNow())
+		end)
+	)
+	table.insert(
+		state.connections,
+		player:GetAttributeChangedSignal("F2Weapon"):Connect(function()
+			local weapon = Weapons.forPlayer(player)
+			if states[player] == state and weapon ~= state.weapon then
+				character:SetAttribute("F2Equipped", false)
+				state.weapon = weapon
+				character:SetAttribute("F2Weapon", weapon)
+				character:SetAttribute("F2Equipped", true)
+			end
 		end)
 	)
 end
@@ -456,7 +476,7 @@ function Combat.step(dt)
 		)
 		local action = state.action
 		if action then
-			local first, last = Fist.segment(action.started, state.previousTime, now, Config)
+			local first, last = Fist.segment(action.started, state.previousTime, now, action.config)
 			if first then
 				local duration = now - state.previousTime
 				local function positionAt(t)
@@ -502,7 +522,7 @@ function Combat.step(dt)
 	end
 	for _, state in states do
 		local action = state.action
-		if action and now >= action.started + Config.Duration then
+		if action and now >= action.started + action.config.Duration then
 			state.action = nil
 			local buffered = state.buffer
 			state.buffer = nil

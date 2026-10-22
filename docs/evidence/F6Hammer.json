@@ -1,0 +1,1398 @@
+{
+  "date": "2026-10-22",
+  "offline": {
+    "SpringFist": 28,
+    "F3": 17,
+    "F4": 143,
+    "F5": 254,
+    "Hammer": 29,
+    "format": "passed",
+    "lint": "zero errors/warnings",
+    "compile": "passed"
+  },
+  "geometry": {
+    "Hammer": {
+      "passed": true,
+      "checks": 27
+    },
+    "SpringFist": {
+      "passed": true,
+      "checks": 20
+    },
+    "baselineFistTestDefect": "The pre-F6 contact implementation reproduced the old eleven-stud-boundary failure. Corrected test accounts for the 0.5-stud test-limb half-width; no Fist tuning changed."
+  },
+  "hammer": {
+    "events": [
+      "Server-controlled reposition demonstrates dodge/punish timing; player feel remains manual."
+    ],
+    "checks": [
+      "real Platform match begins",
+      "server choice survives match fresh-character reset",
+      "Hammer press accepted",
+      "40 percent movement and no jumping",
+      "readable windup does not launch early",
+      "authoritative replacement launch is exactly 75 horizontal / 16 upward before physics",
+      "defender cannot attack during hit recovery",
+      "Hammer action expires without auto-repeat",
+      "displacement restores motor",
+      "displacement returns client ownership",
+      "Hammer ring-out attribution commits",
+      "mixed attacks start together",
+      "fast Fist interrupts unarmored Hammer windup",
+      "interrupted Hammer never reaches its later active window",
+      "dodge scenario starts windup",
+      "defender leaving front during windup dodges sweep",
+      "defender punishes during Hammer recovery",
+      "missed Hammer is vulnerable to recovery punish",
+      "real client input remote completes Hammer action",
+      "buffer scenario starts",
+      "final 0.12-second buffer accepted",
+      "buffer starts exactly one next Hammer action",
+      "weapon change cancels action and buffer",
+      "weapon change rejects stale input generation",
+      "elimination cleanup begins with live action",
+      "elimination commits through real life owner",
+      "elimination retires Hammer transient state immediately",
+      "regulation respawn preserves server weapon choice",
+      "no project script errors (Roblox ChatScript errors reported separately): Player2",
+      "knockout feed credits Wrecking Hammer on Player2",
+      "client renders Hammer startup: Player2",
+      "client renders Hammer active: Player2",
+      "client renders Hammer recovery: Player2",
+      "client receives authoritative hit presentation: Player2",
+      "no project script errors (Roblox ChatScript errors reported separately): Player1",
+      "knockout feed credits Wrecking Hammer on Player1",
+      "client renders Hammer startup: Player1",
+      "client renders Hammer active: Player1",
+      "client renders Hammer recovery: Player1",
+      "client receives authoritative hit presentation: Player1",
+      "no server script errors"
+    ],
+    "snapshots": {
+      "Player1": {
+        "eliminations": [
+          {
+            "at": 1792702397.974937,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "F6-attribution",
+            "attacker": "Player1",
+            "weapon": "Wrecking Hammer"
+          },
+          {
+            "at": 1792702413.957075,
+            "victim": "Player1",
+            "reason": "F6-test",
+            "session": 1,
+            "weapon": "Spring Fist"
+          }
+        ],
+        "errors": [],
+        "phases": {
+          "recovery": {
+            "last": [
+              -1.3068432807922363,
+              45.20000076293945,
+              -1.9116023778915405
+            ],
+            "samples": 34,
+            "first": [
+              0.9063429832458496,
+              45.20000076293945,
+              4.513815879821777
+            ]
+          },
+          "startup": {
+            "last": [
+              -1.1540741920471191,
+              45.35932159423828,
+              -2.1998884677886963
+            ],
+            "samples": 31,
+            "first": [
+              -1.0881794691085815,
+              45.403255462646484,
+              -2.278418779373169
+            ]
+          },
+          "active": {
+            "last": [
+              1.9227395057678223,
+              45.42695999145508,
+              3.430253028869629
+            ],
+            "samples": 10,
+            "first": [
+              2.584421157836914,
+              46.271751403808594,
+              -2.1941375732421875
+            ]
+          }
+        },
+        "engineErrors": [],
+        "hits": 3
+      },
+      "Player2": {
+        "eliminations": [
+          {
+            "at": 1792702397.974937,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "F6-attribution",
+            "attacker": "Player1",
+            "weapon": "Wrecking Hammer"
+          },
+          {
+            "at": 1792702413.957075,
+            "victim": "Player1",
+            "reason": "F6-test",
+            "session": 1,
+            "weapon": "Spring Fist"
+          }
+        ],
+        "errors": [],
+        "phases": {
+          "recovery": {
+            "last": [
+              -1.2776271104812622,
+              45.20000076293945,
+              -1.9096896648406982
+            ],
+            "samples": 34,
+            "first": [
+              1.020334243774414,
+              45.20000076293945,
+              4.311416149139404
+            ]
+          },
+          "startup": {
+            "last": [
+              -1.168921947479248,
+              45.349422454833984,
+              -2.1821937561035156
+            ],
+            "samples": 30,
+            "first": [
+              -1.0250403881072998,
+              45.44535446166992,
+              -2.3536651134490967
+            ]
+          },
+          "active": {
+            "last": [
+              1.96290922164917,
+              45.437110900878906,
+              3.371873617172241
+            ],
+            "samples": 10,
+            "first": [
+              2.8266243934631348,
+              46.157108306884766,
+              -1.4319385290145874
+            ]
+          }
+        },
+        "engineErrors": [],
+        "hits": 3
+      }
+    },
+    "launches": {
+      "-2:10:1": {
+        "y": 16,
+        "player": "Player2",
+        "serverOwned": true,
+        "z": 0,
+        "x": 75
+      },
+      "-1:17:2": {
+        "y": 12,
+        "player": "Player1",
+        "serverOwned": true,
+        "z": 0,
+        "x": 50
+      },
+      "-1:13:1": {
+        "y": 12,
+        "player": "Player1",
+        "serverOwned": true,
+        "z": 0,
+        "x": -50
+      }
+    },
+    "passed": true,
+    "errors": []
+  },
+  "suddenDeathWithHammer": {
+    "version": "F5",
+    "checks": [
+      "start regulation",
+      "pending regulation respawn / 1",
+      "pending regulation respawn / 2",
+      "fresh life identity / 1/1",
+      "mirrored initial spawn frozen / 1/1",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "fresh life identity / 1/2",
+      "mirrored initial spawn frozen / 1/2",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "tied score preserved",
+      "client agrees without project errors / countdown-1 / Player2",
+      "client agrees without project errors / countdown-1 / Player1",
+      "each mutual emits exactly one event on each client",
+      "each mutual emits exactly one event on each client",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "first sudden death commitment",
+      "committed attacker cannot attack",
+      "duplicate commitment rejected",
+      "opposing same-update commitment",
+      "fresh life identity / 2/1",
+      "mirrored initial spawn frozen / 2/1",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "fresh life identity / 2/2",
+      "mirrored initial spawn frozen / 2/2",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "tied score preserved",
+      "client agrees without project errors / countdown-2 / Player2",
+      "client agrees without project errors / countdown-2 / Player1",
+      "each mutual emits exactly one event on each client",
+      "mutual feed is a neutral system entry",
+      "each mutual emits exactly one event on each client",
+      "mutual feed is a neutral system entry",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "first sudden death commitment",
+      "committed attacker cannot attack",
+      "duplicate commitment rejected",
+      "opposing same-update commitment",
+      "fresh life identity / 3/1",
+      "mirrored initial spawn frozen / 3/1",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "fresh life identity / 3/2",
+      "mirrored initial spawn frozen / 3/2",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "tied score preserved",
+      "client agrees without project errors / countdown-3 / Player2",
+      "client agrees without project errors / countdown-3 / Player1",
+      "each mutual emits exactly one event on each client",
+      "mutual feed is a neutral system entry",
+      "each mutual emits exactly one event on each client",
+      "mutual feed is a neutral system entry",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "first sudden death commitment",
+      "committed attacker cannot attack",
+      "duplicate commitment rejected",
+      "decisive result preserves regulation tie",
+      "client agrees without project errors / decisive / Player2",
+      "client agrees without project errors / decisive / Player1",
+      "one attributed decisive feed; no ordinary respawn promise",
+      "one attributed decisive feed; no ordinary respawn promise"
+    ],
+    "snapshots": {
+      "Player1": {
+        "errors": [],
+        "respawnVisible": false,
+        "snapshot": "{\"revision\":13,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792702534.054855,\"result\":{\"scores\":[1,1],\"outcome\":\"sudden-death\",\"winner\":2,\"session\":1,\"returnAt\":1792702542.288715},\"phase\":\"results\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792702534.048027}",
+        "resultsVisible": true,
+        "hudOverlap": false,
+        "timer": "MATCH ENDED",
+        "eliminations": [
+          {
+            "at": 1792702522.990456,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "fixture"
+          },
+          {
+            "at": 1792702522.99072,
+            "victim": "Player1",
+            "session": 1,
+            "reason": "fixture"
+          },
+          {
+            "at": 1792702528.006053,
+            "session": 1,
+            "system": "DOUBLE KO — sudden death resets."
+          },
+          {
+            "at": 1792702531.039104,
+            "session": 1,
+            "system": "DOUBLE KO — sudden death resets."
+          },
+          {
+            "at": 1792702534.073299,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "fixture"
+          }
+        ],
+        "tag": "decisive",
+        "viewport": [
+          1607,
+          873
+        ],
+        "feed": [
+          "DOUBLE KO — sudden death resets.",
+          "Player2 fell out"
+        ],
+        "engineErrors": [
+          "Players.Player1.PlayerScripts.ChatScript:116: Error calling SetCore CoreGuiChatConnections: SetCore: CoreGuiChatConnections has not been registered by the CoreScripts"
+        ],
+        "results": "Player1 wins\nsudden-death\nPlayer2  1 — 1  Player1"
+      },
+      "Player2": {
+        "errors": [],
+        "respawnVisible": false,
+        "snapshot": "{\"revision\":13,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792702534.054855,\"result\":{\"scores\":[1,1],\"outcome\":\"sudden-death\",\"winner\":2,\"session\":1,\"returnAt\":1792702542.288715},\"phase\":\"results\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792702534.048027}",
+        "resultsVisible": true,
+        "hudOverlap": false,
+        "timer": "MATCH ENDED",
+        "eliminations": [
+          {
+            "at": 1792702522.990456,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "fixture"
+          },
+          {
+            "at": 1792702522.99072,
+            "victim": "Player1",
+            "session": 1,
+            "reason": "fixture"
+          },
+          {
+            "at": 1792702528.006053,
+            "session": 1,
+            "system": "DOUBLE KO — sudden death resets."
+          },
+          {
+            "at": 1792702531.039104,
+            "session": 1,
+            "system": "DOUBLE KO — sudden death resets."
+          },
+          {
+            "at": 1792702534.073299,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "fixture"
+          }
+        ],
+        "tag": "decisive",
+        "viewport": [
+          1607,
+          873
+        ],
+        "feed": [
+          "DOUBLE KO — sudden death resets.",
+          "Player2 fell out"
+        ],
+        "engineErrors": [],
+        "results": "Player1 wins\nsudden-death\nPlayer2  1 — 1  Player1"
+      }
+    },
+    "passed": true,
+    "scenario": "rounds"
+  },
+  "springFistRegression": {
+    "launchSamples": [
+      {
+        "player": "Player2",
+        "position": [
+          0.5,
+          45,
+          1.1368683772161603e-13
+        ],
+        "owner": "server",
+        "velocity": [
+          50,
+          12,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          1.0146716833114624,
+          45.12955856323242,
+          1.1368683772161603e-13
+        ],
+        "owner": "server",
+        "velocity": [
+          36.76060485839844,
+          9.547499656677246,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          1.7805174589157104,
+          45.277374267578125,
+          1.1368683772161603e-13
+        ],
+        "owner": "server",
+        "velocity": [
+          36.76060485839844,
+          5.459999084472656,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          2.3931941986083984,
+          45.334312438964844,
+          1.1368683772161603e-13
+        ],
+        "owner": "server",
+        "velocity": [
+          36.76060485839844,
+          2.1899986267089844,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          3.005870819091797,
+          45.33674621582031,
+          1.1368683772161603e-13
+        ],
+        "owner": "server",
+        "velocity": [
+          36.76060485839844,
+          -1.0800015926361084,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          3.6185474395751953,
+          45.28468322753906,
+          1.1368683772161603e-13
+        ],
+        "owner": "server",
+        "velocity": [
+          36.76060485839844,
+          -4.350001811981201,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          4.231224060058594,
+          45.178123474121094,
+          1.1368683772161603e-13
+        ],
+        "owner": "server",
+        "velocity": [
+          36.76060485839844,
+          -7.620002269744873,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          4.843900680541992,
+          45.017059326171875,
+          1.1368683772161603e-13
+        ],
+        "owner": "server",
+        "velocity": [
+          36.76060485839844,
+          -10.890002250671387,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.456577301025391,
+          44.80149459838867,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -14.160002708435059,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.069253921508789,
+          44.531436920166016,
+          1.1368683772161603e-13
+        ],
+        "velocity": [
+          36.76060485839844,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.509171009063721,
+          44.8676872253418,
+          0
+        ],
+        "velocity": [
+          0.7692521214485168,
+          3.724820852279663,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.509557247161865,
+          44.892425537109375,
+          0
+        ],
+        "velocity": [
+          0.6157887578010559,
+          3.046509027481079,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.510044574737549,
+          44.92361831665039,
+          0
+        ],
+        "velocity": [
+          0.4223185181617737,
+          2.1913654804229736,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          6.510636329650879,
+          44.96147918701172,
+          0
+        ],
+        "velocity": [
+          0.1874578893184662,
+          1.1532756090164185,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      }
+    ],
+    "networkRestored": [],
+    "rttMs": {
+      "Player1": 31.81369999947492,
+      "Player2": 31.782800000655698
+    },
+    "checks": [
+      "stale generation rejected",
+      "nonfinite aim rejected",
+      "zero aim rejected",
+      "vertical aim rejected",
+      "valid press accepted",
+      "duplicate sequence rejected",
+      "attack movement and jump restrictions",
+      "authoritative body contact launches victim",
+      "server owns victim before launch",
+      "replacement launch follows committed aim before physical collision response",
+      "protection and reaction have independent deadlines",
+      "hit recovery rejects attacks",
+      "launch produces observed horizontal displacement: 6.5111083984375, 45, 0",
+      "natural recovery restores motor",
+      "natural recovery returns player ownership",
+      "holding without a new press does not repeat",
+      "both active requests accepted",
+      "integrated mutual active hits trade",
+      "miss starts an ordinary action",
+      "late recovery buffer accepted",
+      "extra buffered click rejected",
+      "latest buffered aim accepted",
+      "buffer captures current aim at next startup",
+      "client prediction and real attack remote reach server combat",
+      "client presentation exists for Player1",
+      "client presentation exists for Player2",
+      "unequip clears action and displacement",
+      "old equip cannot attack current generation"
+    ],
+    "rttSamplesMs": {
+      "Player1": [
+        33.02270000131102,
+        33.781800000724616,
+        33.38830000211601,
+        31.81369999947492
+      ],
+      "Player2": [
+        32.9864000013913,
+        33.74479999911273,
+        33.36219999982859,
+        31.782800000655698
+      ]
+    },
+    "passed": true,
+    "snapshots": {
+      "Player1": {
+        "visuals": true,
+        "impactDelayMs": 41.59092903137207,
+        "acceptanceAgeMs": 30.37095069885254,
+        "predictionMismatchMs": 2.911090850830078,
+        "motor": true,
+        "state": "Running"
+      },
+      "Player2": {
+        "visuals": true,
+        "motor": true,
+        "impactDelayMs": 16.996383666992188,
+        "state": "Landed"
+      }
+    }
+  },
+  "earlierAttempts": {
+    "hammerInitial": {
+      "events": [
+        "Server-controlled reposition demonstrates dodge/punish timing; player feel remains manual."
+      ],
+      "checks": [
+        "real Platform match begins",
+        "server choice survives match fresh-character reset",
+        "Hammer press accepted",
+        "40 percent movement and no jumping",
+        "readable windup does not launch early",
+        "authoritative replacement launch is exactly 75 horizontal / 16 upward before physics",
+        "defender cannot attack during hit recovery",
+        "Hammer action expires without auto-repeat",
+        "displacement restores motor",
+        "displacement returns client ownership",
+        "mixed attacks start together",
+        "fast Fist interrupts unarmored Hammer windup",
+        "interrupted Hammer never reaches its later active window",
+        "dodge scenario starts windup",
+        "defender leaving front during windup dodges sweep",
+        "defender punishes during Hammer recovery",
+        "missed Hammer is vulnerable to recovery punish",
+        "real client input remote completes Hammer action",
+        "buffer scenario starts",
+        "final 0.12-second buffer accepted",
+        "buffer starts exactly one next Hammer action",
+        "weapon change cancels action and buffer",
+        "weapon change rejects stale input generation",
+        "elimination cleanup begins with live action",
+        "elimination commits through real life owner",
+        "elimination retires Hammer transient state immediately",
+        "regulation respawn preserves server weapon choice"
+      ],
+      "snapshots": {
+        "Player1": {
+          "phases": {
+            "recovery": {
+              "last": [
+                -1.1037609577178955,
+                45.20000076293945,
+                -1.8908294439315796
+              ],
+              "samples": 35,
+              "first": [
+                1.1625494956970215,
+                45.20000076293945,
+                4.027296543121338
+              ]
+            },
+            "startup": {
+              "last": [
+                -1.257426381111145,
+                45.29041290283203,
+                -2.076718330383301
+              ],
+              "samples": 29,
+              "first": [
+                -1.2340903282165527,
+                45.305973052978516,
+                -2.1045291423797607
+              ]
+            },
+            "active": {
+              "last": [
+                2.4634032249450684,
+                45.58375930786133,
+                2.48016619682312
+              ],
+              "samples": 12,
+              "first": [
+                1.5962271690368652,
+                46.550010681152344,
+                -3.8567724227905273
+              ]
+            }
+          },
+          "hits": 3,
+          "errors": [
+            "Players.Player1.PlayerScripts.ChatScript:116: Error calling SetCore CoreGuiChatConnections: SetCore: CoreGuiChatConnections has not been registered by the CoreScripts",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4725619926",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4572599969",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4049942026",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4657420207"
+          ]
+        },
+        "Player2": {
+          "phases": {
+            "recovery": {
+              "last": [
+                -1.0402475595474243,
+                45.20000076293945,
+                -1.880771517753601
+              ],
+              "samples": 34,
+              "first": [
+                1.2042155265808105,
+                45.20000076293945,
+                3.935588836669922
+              ]
+            },
+            "startup": {
+              "last": [
+                -0.9777581691741943,
+                45.47687911987305,
+                -2.4100139141082764
+              ],
+              "samples": 31,
+              "first": [
+                -1.2130171060562134,
+                45.32002258300781,
+                -2.129643201828003
+              ]
+            },
+            "active": {
+              "last": [
+                2.6971912384033203,
+                45.6757926940918,
+                1.8820233345031738
+              ],
+              "samples": 11,
+              "first": [
+                1.8233842849731445,
+                46.497440338134766,
+                -3.568607807159424
+              ]
+            }
+          },
+          "hits": 3,
+          "errors": [
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4725619926",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4572599969",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4049942026",
+            "Unable to load plugin icon: http://www.roblox.com/asset/?id=4657420207"
+          ]
+        }
+      },
+      "launches": {
+        "-2:10:1": {
+          "y": 16,
+          "player": "Player2",
+          "serverOwned": true,
+          "z": 0,
+          "x": 75
+        },
+        "-1:12:1": {
+          "y": 12,
+          "player": "Player1",
+          "serverOwned": true,
+          "z": 0,
+          "x": -50
+        },
+        "-1:16:2": {
+          "y": 12,
+          "player": "Player1",
+          "serverOwned": true,
+          "z": 0,
+          "x": 50
+        }
+      },
+      "passed": false,
+      "error": "ServerScriptService.F6CombatFixture:56: F6 combat: no client script errors: Player2"
+    },
+    "hammerRepeat": {
+      "events": [
+        "Server-controlled reposition demonstrates dodge/punish timing; player feel remains manual."
+      ],
+      "checks": [
+        "real Platform match begins",
+        "server choice survives match fresh-character reset",
+        "Hammer press accepted",
+        "40 percent movement and no jumping",
+        "readable windup does not launch early",
+        "authoritative replacement launch is exactly 75 horizontal / 16 upward before physics",
+        "defender cannot attack during hit recovery",
+        "Hammer action expires without auto-repeat",
+        "displacement restores motor",
+        "displacement returns client ownership",
+        "mixed attacks start together",
+        "fast Fist interrupts unarmored Hammer windup",
+        "interrupted Hammer never reaches its later active window",
+        "dodge scenario starts windup",
+        "defender leaving front during windup dodges sweep",
+        "defender punishes during Hammer recovery",
+        "missed Hammer is vulnerable to recovery punish",
+        "real client input remote completes Hammer action",
+        "buffer scenario starts",
+        "final 0.12-second buffer accepted",
+        "buffer starts exactly one next Hammer action",
+        "weapon change cancels action and buffer",
+        "weapon change rejects stale input generation",
+        "elimination cleanup begins with live action",
+        "elimination commits through real life owner",
+        "elimination retires Hammer transient state immediately",
+        "regulation respawn preserves server weapon choice",
+        "no client script errors: Player2",
+        "client renders Hammer startup: Player2",
+        "client renders Hammer active: Player2",
+        "client renders Hammer recovery: Player2",
+        "client receives authoritative hit presentation: Player2"
+      ],
+      "snapshots": {
+        "Player1": {
+          "phases": {
+            "recovery": {
+              "last": [
+                -1.2157890796661377,
+                45.20000076293945,
+                -1.9044438600540161
+              ],
+              "samples": 32,
+              "first": [
+                1.3252973556518555,
+                45.20000076293945,
+                3.6393816471099854
+              ]
+            },
+            "startup": {
+              "last": [
+                -1.2000166177749634,
+                45.32868957519531,
+                -2.145136594772339
+              ],
+              "samples": 31,
+              "first": [
+                -1.1218464374542236,
+                45.38080978393555,
+                -2.2382960319519043
+              ]
+            },
+            "active": {
+              "last": [
+                2.2105226516723633,
+                45.50413513183594,
+                2.974971294403076
+              ],
+              "samples": 12,
+              "first": [
+                2.4489054679870605,
+                46.32123565673828,
+                -2.5118579864501953
+              ]
+            }
+          },
+          "hits": 3,
+          "errors": [
+            "Players.Player1.PlayerScripts.ChatScript:116: Error calling SetCore CoreGuiChatConnections: SetCore: CoreGuiChatConnections has not been registered by the CoreScripts"
+          ]
+        },
+        "Player2": {
+          "phases": {
+            "recovery": {
+              "last": [
+                -1.2192903757095337,
+                45.20000076293945,
+                -1.9047842025756836
+              ],
+              "samples": 32,
+              "first": [
+                1.3284707069396973,
+                45.20000076293945,
+                3.630892038345337
+              ]
+            },
+            "startup": {
+              "last": [
+                -1.1943632364273071,
+                45.33245849609375,
+                -2.15187406539917
+              ],
+              "samples": 31,
+              "first": [
+                -1.1260089874267578,
+                45.37803649902344,
+                -2.233335494995117
+              ]
+            },
+            "active": {
+              "last": [
+                2.1976962089538574,
+                45.50044250488281,
+                2.9973244667053223
+              ],
+              "samples": 12,
+              "first": [
+                2.3849830627441406,
+                46.34253692626953,
+                -2.646121025085449
+              ]
+            }
+          },
+          "hits": 3,
+          "errors": []
+        }
+      },
+      "launches": {
+        "-2:10:1": {
+          "y": 16,
+          "player": "Player2",
+          "serverOwned": true,
+          "z": 0,
+          "x": 75
+        },
+        "-1:12:1": {
+          "y": 12,
+          "player": "Player1",
+          "serverOwned": true,
+          "z": 0,
+          "x": -50
+        },
+        "-1:16:2": {
+          "y": 12,
+          "player": "Player1",
+          "serverOwned": true,
+          "z": 0,
+          "x": 50
+        }
+      },
+      "passed": false,
+      "error": "ServerScriptService.F6CombatFixture:56: F6 combat: no client script errors: Player1"
+    },
+    "suddenDeathInitial": {
+      "version": "F5",
+      "checks": [
+        "start regulation",
+        "pending regulation respawn / 1",
+        "pending regulation respawn / 2",
+        "fresh life identity / 1/1",
+        "mirrored initial spawn frozen / 1/1",
+        "old motion cleared",
+        "old timer/protection cleared",
+        "old action/effects cleared",
+        "sudden death preserves chosen weapon",
+        "old request rejected during countdown",
+        "old life callback rejected",
+        "fresh request also blocked during countdown",
+        "fresh life identity / 1/2",
+        "mirrored initial spawn frozen / 1/2",
+        "old motion cleared",
+        "old timer/protection cleared",
+        "old action/effects cleared",
+        "sudden death preserves chosen weapon",
+        "old request rejected during countdown",
+        "old life callback rejected",
+        "fresh request also blocked during countdown",
+        "tied score preserved",
+        "client agrees without errors / countdown-1 / Player2"
+      ],
+      "snapshots": {
+        "Player1": {
+          "errors": [
+            "Players.Player1.PlayerScripts.ChatScript:116: Error calling SetCore CoreGuiChatConnections: SetCore: CoreGuiChatConnections has not been registered by the CoreScripts"
+          ],
+          "respawnVisible": false,
+          "snapshot": "{\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792702466.936936,\"revision\":7,\"phase\":\"sudden-death-countdown\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792702471.961729}",
+          "resultsVisible": false,
+          "hudOverlap": false,
+          "eliminations": [
+            {
+              "at": 1792702466.954207,
+              "victim": "Player2",
+              "session": 1,
+              "reason": "fixture"
+            },
+            {
+              "at": 1792702466.954585,
+              "victim": "Player1",
+              "session": 1,
+              "reason": "fixture"
+            }
+          ],
+          "timer": "SUDDEN DEATH  3",
+          "viewport": [
+            1607,
+            873
+          ],
+          "tag": "countdown-1",
+          "feed": [
+            "Player2 fell out",
+            "Player1 fell out"
+          ],
+          "results": "Label"
+        },
+        "Player2": {
+          "errors": [],
+          "respawnVisible": false,
+          "snapshot": "{\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792702466.936936,\"revision\":7,\"phase\":\"sudden-death-countdown\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792702471.961729}",
+          "resultsVisible": false,
+          "hudOverlap": false,
+          "eliminations": [
+            {
+              "at": 1792702466.954207,
+              "victim": "Player2",
+              "session": 1,
+              "reason": "fixture"
+            },
+            {
+              "at": 1792702466.954585,
+              "victim": "Player1",
+              "session": 1,
+              "reason": "fixture"
+            }
+          ],
+          "timer": "SUDDEN DEATH  3",
+          "viewport": [
+            1607,
+            873
+          ],
+          "tag": "countdown-1",
+          "feed": [
+            "Player2 fell out",
+            "Player1 fell out"
+          ],
+          "results": "Label"
+        }
+      },
+      "scenario": "rounds",
+      "passed": false,
+      "error": "ServerScriptService.F5MatchFixture:28: F5 engine: client agrees without errors / countdown-1 / Player1"
+    }
+  },
+  "cleanup": {
+    "removed": {
+      "1": "ServerScriptService.F2CombatFixture",
+      "2": "StarterPlayer.StarterPlayerScripts.F2CombatFixture"
+    },
+    "sync": {
+      "updated": [],
+      "compared": 22
+    },
+    "productionConfig": "-- Provisional PRD section 17 settings; tune through owner playtesting.\nreturn table.freeze({ OpeningCountdown = 3, RegulationDuration = 180, ResultsDuration = 8 })\n"
+  }
+}

@@ -1,14 +1,18 @@
 local Storage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
-local errors = {}
+local errors, engineErrors = {}, {}
 local eliminations = {}
 Storage:WaitForChild("F3Knockouts", 10).OnClientEvent:Connect(function(event)
 	table.insert(eliminations, event)
 end)
 game:GetService("LogService").MessageOut:Connect(function(message, kind)
 	if kind == Enum.MessageType.MessageError and not string.find(message, "Unable to load plugin icon:", 1, true) then
-		table.insert(errors, message)
+		if string.match(message, "^Players%.[^.]+%.PlayerScripts%.ChatScript:") then
+			table.insert(engineErrors, message)
+		else
+			table.insert(errors, message)
+		end
 	end
 end)
 local fixture = Storage:WaitForChild("F5MatchTest", 10)
@@ -50,6 +54,7 @@ fixture.OnClientEvent:Connect(function(tag, expected)
 		viewport = { workspace.CurrentCamera.ViewportSize.X, workspace.CurrentCamera.ViewportSize.Y },
 		eliminations = eliminations,
 		errors = errors,
+		engineErrors = engineErrors,
 	})
 end)
 fixture:FireServer("ready")

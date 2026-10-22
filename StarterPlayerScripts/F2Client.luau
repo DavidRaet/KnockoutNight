@@ -3,6 +3,8 @@ local Storage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local Config = require(Storage:WaitForChild("F2Config", 10))
 local Fist = require(Storage:WaitForChild("F2SpringFist", 10))
+local Weapons = require(Storage:WaitForChild("F2Weapons", 10))
+local Hammer = Weapons.WreckingHammer
 local remote = Storage:WaitForChild("F2Combat", 10)
 assert(remote and remote:IsA("RemoteEvent"), "F2 client requires the combat remote")
 local player = Players.LocalPlayer
@@ -57,6 +59,7 @@ local function recordFor(character)
 	if not record then
 		record = {
 			generation = gen,
+			config = Weapons[character:GetAttribute("F2Weapon")] or Config,
 			parts = {
 				glove = part("SpringFistGlove", Vector3.new(1.6, 1.6, 1.6)),
 				extension = part("SpringFistExtension", Vector3.new(0.35, 0.35, 1)),
@@ -76,10 +79,11 @@ function Client.press(character, aim)
 	sequence += 1
 	remote:FireServer("press", record.generation, sequence, aim)
 	local now = workspace:GetServerTimeNow()
+	local config = record.config
 	if not record.action then
 		record.action = { sequence = sequence, started = now, aim = aim, predicted = true }
-	elseif Fist.canBuffer(now - record.action.started, record.buffer ~= nil, false, Config) then
-		record.buffer = { sequence = sequence, startsAt = record.action.started + Config.Duration }
+	elseif Fist.canBuffer(now - record.action.started, record.buffer ~= nil, false, config) then
+		record.buffer = { sequence = sequence, startsAt = record.action.started + config.Duration }
 	end
 end
 
@@ -87,8 +91,8 @@ function Client.permissions(character)
 	local record = records[character]
 	local action = record and record.action
 	local now = workspace:GetServerTimeNow()
-	if action and now < action.started + Config.Duration then
-		return Config.MoveScale, false, action.aim
+	if action and now < action.started + record.config.Duration then
+		return record.config.MoveScale, false, action.aim
 	end
 	return 1, true, nil
 end
@@ -158,6 +162,7 @@ table.insert(
 			return
 		end
 		if kind == "accepted" then
+			record.config = Weapons[data.weapon] or record.config
 			if character == player.Character and record.action and record.action.sequence == data.sequence then
 				player:SetAttribute("F2PredictionMismatchMs", (data.started - record.action.started) * 1000)
 				player:SetAttribute("F2AcceptanceAgeMs", (workspace:GetServerTimeNow() - data.started) * 1000)
@@ -230,8 +235,9 @@ table.insert(
 				clear(character)
 				continue
 			end
+			local config = record.config
 			local action = record.action
-			if action and now >= action.started + Config.Duration then
+			if action and now >= action.started + config.Duration then
 				record.action = nil
 				action = nil
 			end
@@ -251,7 +257,7 @@ table.insert(
 				end
 			end
 			local age = if action then now - action.started else 0
-			local phase = if action then Fist.phase(age, Config) else nil
+			local phase = if action then Fist.phase(age, config) else nil
 			local reach = 0.6
 			if phase == "active" then
 				reach = Fist.reach(age, Config)
@@ -283,6 +289,36 @@ table.insert(
 			record.parts.extension.Size = Vector3.new(0.35, 0.35, math.max(0.05, reach))
 			record.parts.extension.CFrame = CFrame.lookAt(origin + aim * reach / 2, center + aim)
 			record.parts.box.CFrame = frame
+			if config == Hammer then
+				-- A raised windup, 100-degree active swing, then a low follow-through returning to guard.
+				local poseAge = Hammer.Startup
+				local lift, radius = 0, 6
+				if phase == "startup" then
+					local progress = math.clamp(age / Hammer.Startup, 0, 1)
+					lift, radius = 1.5 * progress, 2.5 + 3.5 * progress
+				elseif phase == "recovery" then
+					poseAge = Hammer.Startup + Hammer.Active
+					local progress = (age - Hammer.Startup - Hammer.Active) / Hammer.Recovery
+					poseAge = Hammer.Startup + Hammer.Active * (1 - progress)
+					radius = 6 - 3.5 * progress
+				elseif phase == "active" then
+					poseAge = age
+					lift = 1.5 * (1 - (age - Hammer.Startup) / Hammer.Active)
+				else
+					radius, lift = 2.5, 0.5
+				end
+				local blade = Hammer.frame(root.Position, aim, poseAge)
+				local swingAim = blade.LookVector
+				local grip = origin + Vector3.yAxis * lift
+				local head = grip + swingAim * radius
+				record.parts.glove.Name = "WreckingHammerHead"
+				record.parts.glove.Size = Vector3.new(2.4, 1.8, 2)
+				record.parts.glove.CFrame = CFrame.lookAt(head, head + swingAim)
+				record.parts.extension.Name = "WreckingHammerHandle"
+				record.parts.extension.Size = Vector3.new(0.35, 0.35, radius)
+				record.parts.extension.CFrame = CFrame.lookAt(grip + swingAim * radius / 2, head)
+				record.parts.box.Size, record.parts.box.CFrame = Hammer.Size, blade
+			end
 			record.parts.box.Transparency = if workspace:GetAttribute("F2DebugVolumes") == true
 					and phase == "active"
 				then 0.75

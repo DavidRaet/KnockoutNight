@@ -7,7 +7,8 @@ local Lives = require(script.Parent.F3Lives)
 local Combat = require(script.Parent.F2Combat)
 local Admins = require(script.Parent.F4Admins)
 local Match = {}
-local state, snapshot, remote, adminRemote
+local state, snapshot, remote, adminRemote, weaponRemote
+local lastWeaponRequest = {}
 local connections, departures, returned, lastAdminRequest = {}, {}, {}, {}
 local serial, revision = 0, 0
 local lastPayload
@@ -42,6 +43,25 @@ end
 
 function Match.canJoin()
 	return state == nil or state.phase == "staging"
+end
+
+function Match.chooseWeapon(player, weapon)
+	if
+		not running
+		or player.Parent ~= Players
+		or not Match.canJoin()
+		or player:GetAttribute("F3Status") ~= "waiting"
+		or (weapon ~= "SpringFist" and weapon ~= "WreckingHammer")
+	then
+		return false
+	end
+	local now = workspace:GetServerTimeNow()
+	if now - (lastWeaponRequest[player] or -math.huge) < 0.15 then
+		return false
+	end
+	lastWeaponRequest[player] = now
+	player:SetAttribute("F2Weapon", weapon)
+	return true
 end
 
 function Match.allowed(now)
@@ -246,12 +266,15 @@ function Match.start()
 	remote.Name = "F4Return"
 	adminRemote = Instance.new("RemoteEvent")
 	adminRemote.Name = "F4Admin"
+	weaponRemote = Instance.new("RemoteEvent")
+	weaponRemote.Name, weaponRemote.Parent = "F6WeaponChoice", Storage
 	Lives.bindMatch(Match)
 	Combat.bindMatch(Match)
 	publish()
 	snapshot.Parent, remote.Parent, adminRemote.Parent = Storage, Storage, Storage
 	table.insert(connections, remote.OnServerEvent:Connect(Match.returnToStaging))
 	table.insert(connections, adminRemote.OnServerEvent:Connect(adminRequest))
+	table.insert(connections, weaponRemote.OnServerEvent:Connect(Match.chooseWeapon))
 	table.insert(
 		connections,
 		Players.PlayerAdded:Connect(function(player)
@@ -263,6 +286,7 @@ function Match.start()
 		Players.PlayerRemoving:Connect(function(player)
 			departures[player] = true
 			lastAdminRequest[player] = nil
+			lastWeaponRequest[player] = nil
 		end)
 	)
 end
@@ -280,12 +304,13 @@ function Match.stop()
 		connection:Disconnect()
 	end
 	table.clear(connections)
-	for _, instance in { remote, adminRemote } do
+	table.clear(lastWeaponRequest)
+	for _, instance in { remote, adminRemote, weaponRemote } do
 		if instance then
 			instance:Destroy()
 		end
 	end
-	remote, adminRemote = nil, nil
+	remote, adminRemote, weaponRemote = nil, nil, nil
 	-- Keep the last snapshot available while shutdown is visible to clients.
 end
 

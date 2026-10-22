@@ -1,6 +1,7 @@
 local Storage = game:GetService("ReplicatedStorage")
 local Config = require(Storage.F2Config)
 local Fist = require(Storage.F2SpringFist)
+local Hammer = require(Storage.F6Hammer)
 local Contact = {}
 
 function Contact.frame(position, aim, reach)
@@ -47,7 +48,7 @@ end
 local function exposed(probe, cf, body, origin, walls)
 	local touching = overlaps(probe, cf, body, false)
 	for _, part in touching do
-		local half = Config.Size / 2
+		local half = probe.Size / 2
 		local function regionPoint(sample)
 			local point = part:GetClosestPointOnSurface(sample)
 			local localPoint = cf:PointToObjectSpace(point)
@@ -96,7 +97,45 @@ local function exposed(probe, cf, body, origin, walls)
 	return nil
 end
 
+-- Sample a rotating radial blade, including the shaft, at sub-body-width intervals.
+local function hammerSweep(probe, action, fromPosition, toPosition, first, last, excluded, victims)
+	probe.Size = Hammer.Size
+	local walls, found, seen = params(excluded, false, true), {}, {}
+	local arc = math.abs(Hammer.angle(last - action.started) - Hammer.angle(first - action.started))
+	local steps =
+		math.max(1, math.ceil(((toPosition - fromPosition).Magnitude + arc * Hammer.EndReach) / Config.ExposureStep))
+	local bodies = {}
+	for _, victim in victims do
+		if not action.encountered[victim] then
+			bodies[victim] = Contact.body(victim.character)
+		end
+	end
+	for step = 0, steps do
+		local alpha = step / steps
+		local time = first + (last - first) * alpha
+		if time >= action.started + Hammer.Startup + Hammer.Active then
+			break
+		end
+		local position = fromPosition:Lerp(toPosition, alpha)
+		local cf = Hammer.frame(position, action.aim, time - action.started)
+		for victim, body in bodies do
+			if not seen[victim] then
+				local point = exposed(probe, cf, body, position + Vector3.yAxis * Hammer.StrikeHeight, walls)
+				if point then
+					seen[victim] = true
+					table.insert(found, { victim = victim, time = time, point = point, frame = cf })
+				end
+			end
+		end
+	end
+	return found
+end
+
 function Contact.sweep(probe, action, fromPosition, toPosition, first, last, excluded, victims)
+	if action.config == Hammer then
+		return hammerSweep(probe, action, fromPosition, toPosition, first, last, excluded, victims)
+	end
+	probe.Size = Config.Size
 	local firstReach = if action.wallStopped then action.stoppedReach else Fist.reach(first - action.started, Config)
 	local lastReach = if action.wallStopped then action.stoppedReach else Fist.reach(last - action.started, Config)
 	local from = Contact.frame(fromPosition, action.aim, firstReach)
