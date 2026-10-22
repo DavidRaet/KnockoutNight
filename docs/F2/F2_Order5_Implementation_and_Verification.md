@@ -2,6 +2,8 @@
 
 October 21, 2026. The temporary Spring Fist slice implements the [approved outline](F2_Order4_Implementation_Outline.md). Order 6 combat acceptance remains open. Nothing was published, modeled, or exported.
 
+**Playtest tuning revisions:** The product owner increased Spring Fist's final center reach from 4 to 7, 12, then 27 studs, and later reduced it to 10 studs. With the 4 × 5 × 2 box dimensions unchanged, its far edge is now 11 studs from the character root. Start reach and attack timing remain unchanged. The Order 5 evidence below predates these revisions; the updated boundary checks have not been run.
+
 ## Implementation
 
 | File | Responsibility |

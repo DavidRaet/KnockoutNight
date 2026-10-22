@@ -65,7 +65,7 @@ The starting values above preserve the tested prototype; they are not final bala
 
 ## Approved behavior to carry into implementation
 
-- Spring Fist starts at **0.08 / 0.10 / 0.32 seconds** for startup, active contact, and recovery; **5-stud reach**; replacement launch of **50 horizontal / 12 upward studs/s**.
+- Spring Fist starts at **0.08 / 0.10 / 0.32 seconds** for startup, active contact, and recovery; **11-stud forward hit-volume extent** after the October 21 playtests; replacement launch of **50 horizontal / 12 upward studs/s**.
 - Commit horizontal facing throughout the action, allow **70% base movement**, disable jumping during the action, and permit ordinary airborne attacks without lift or hover.
 - One click requests one attack. Holding does not repeat. Permit one buffered next attack during the final **0.12 seconds** of recovery.
 - Require suitable vertical overlap and an unobstructed hit path. An activation may hit multiple eligible enemies once each. Weapon hits interrupt startup; already-active attacks retain their hit opportunity so trades remain possible.

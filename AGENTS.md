@@ -23,3 +23,26 @@ Always pass a descriptive failure message as the second argument to `assert`. Me
 ## Checks Before Studio
 
 Run builds, tests, linter, and formatters before studio sees whatever code you sync
+
+Before every Studio change, compare the relevant local scripts with Studio and sync any differences, even when the current change does not touch those scripts.
+
+## Testing and Playtesting Responsibilities
+
+For Knockout Night, separate technical verification from subjective gameplay playtesting.
+
+**Your responsibilities (AI agent):**
+- Implement the requested functionality according to the approved design.
+- Run available automated tests and technical checks.
+- Verify that scripts execute without errors and that core mechanics satisfy their specified requirements.
+- Report any unverified behavior, limitations, or known issues.
+- Provide concise instructions for manually testing the implemented feature in Roblox Studio.
+
+**My responsibilities (developer/designer):**
+- Personally playtest completed gameplay features.
+- Evaluate combat feel, responsiveness, readability, balance, and player experience.
+- Decide whether a feature is acceptable or requires refinement.
+- Provide feedback that guides subsequent implementation.
+
+**Workflow rule:** Do not treat automated testing or simulated gameplay as a substitute for my hands-on playtesting. After implementation and technical verification, hand the feature back to me for gameplay evaluation. Do not mark subjective gameplay acceptance as complete until I approve it.
+
+Do not automatically continue into polishing or unrelated features while awaiting gameplay acceptance. Lengthy playtest reports for every minor change. Save structured playtest reviews for major milestones, particularly when assessing networking, physics, and new combat systems.

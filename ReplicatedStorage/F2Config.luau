@@ -7,7 +7,7 @@ return table.freeze({
 	Size = Vector3.new(4, 5, 2),
 	StrikeHeight = 0.20, -- Standard F1 R15 UpperTorso center, inspected in Studio.
 	StartReach = 1,
-	EndReach = 4,
+	EndReach = 10,
 	MoveScale = 0.7,
 	LaunchSpeed = 50,
 	LaunchUp = 12,
