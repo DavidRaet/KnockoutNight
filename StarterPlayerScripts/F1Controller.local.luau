@@ -16,6 +16,9 @@ local Movement = require(movementInstance)
 local combatInstance = script.Parent:WaitForChild("F2Client", 10)
 assert(combatInstance and combatInstance:IsA("ModuleScript"), "F2Client is missing from the Spring Fist prototype")
 local Combat = require(combatInstance)
+local livesInstance = script.Parent:WaitForChild("F3Client", 10)
+assert(livesInstance and livesInstance:IsA("ModuleScript"), "F3Client is missing from the lives prototype")
+local Lives = require(livesInstance)
 local studyInstance = if RunService:IsStudio() then ReplicatedStorage:WaitForChild("F2PhysicsStudy", 10) else nil
 assert(
 	not RunService:IsStudio() or (studyInstance and studyInstance:IsA("ModuleScript")),
@@ -72,6 +75,7 @@ local function controlsEnabled(): boolean
 		and Input:GetFocusedTextBox() == nil
 		and GuiService.SelectedObject == nil
 		and player:GetAttribute("F1ControlsEnabled") ~= false
+		and player:GetAttribute("F3Status") == "alive"
 		and humanoid ~= nil
 		and humanoid.Health > 0
 end
@@ -256,7 +260,7 @@ RunService:BindToRenderStep("F1Camera", Enum.RenderPriority.Camera.Value + 1, fu
 	wasEnabled = enabled
 	local currentRoot = root
 	local camera = workspace.CurrentCamera
-	if not camera or not currentRoot then
+	if not camera then
 		return
 	end
 	if enabled then
@@ -271,7 +275,7 @@ RunService:BindToRenderStep("F1Camera", Enum.RenderPriority.Camera.Value + 1, fu
 		end
 	end
 	raycastParams.FilterDescendantsInstances = excluded
-	local focus = currentRoot.Position + Vector3.new(0, Config.CameraFocusHeight, 0)
+	local focus = Lives.cameraPosition(currentRoot) + Vector3.new(0, Config.CameraFocusHeight, 0)
 	local rotation = CFrame.fromOrientation(pitch, yaw, 0)
 	local offset = -rotation.LookVector * distance
 	local hit = workspace:Spherecast(focus, Config.CameraRadius, offset, raycastParams)
@@ -285,6 +289,7 @@ end)
 
 script.Destroying:Connect(function()
 	Combat.stop()
+	Lives.stop()
 	restoreStudyMotor()
 	for _, connection in connections do
 		connection:Disconnect()

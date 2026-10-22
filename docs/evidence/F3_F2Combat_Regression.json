@@ -1,0 +1,528 @@
+{
+  "launchSamples": {
+    "1": {
+      "player": "Player2",
+      "position": {
+        "1": 0.5,
+        "2": 45,
+        "3": 1.1368683772161603e-13
+      },
+      "owner": "server",
+      "velocity": {
+        "1": 50,
+        "2": 12,
+        "3": 0
+      },
+      "displaced": 1,
+      "motor": false
+    },
+    "2": {
+      "player": "Player2",
+      "position": {
+        "1": 1.149452805519104,
+        "2": 45.165931701660156,
+        "3": 1.1368683772161603e-13
+      },
+      "owner": "server",
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": 8.729999542236328,
+        "3": 0
+      },
+      "displaced": 1,
+      "motor": false
+    },
+    "3": {
+      "player": "Player2",
+      "position": {
+        "1": 1.6885772943496704,
+        "2": 45.277374267578125,
+        "3": 1.1368683772161603e-13
+      },
+      "owner": "server",
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": 5.459999084472656,
+        "3": 0
+      },
+      "displaced": 1,
+      "motor": false
+    },
+    "4": {
+      "player": "Player2",
+      "position": {
+        "1": 2.2277019023895264,
+        "2": 45.334312438964844,
+        "3": 1.1368683772161603e-13
+      },
+      "owner": "server",
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": 2.1899986267089844,
+        "3": 0
+      },
+      "displaced": 1,
+      "motor": false
+    },
+    "5": {
+      "player": "Player2",
+      "position": {
+        "1": 2.7668263912200928,
+        "2": 45.33674621582031,
+        "3": 1.1368683772161603e-13
+      },
+      "owner": "server",
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -1.0800015926361084,
+        "3": 0
+      },
+      "displaced": 1,
+      "motor": false
+    },
+    "6": {
+      "player": "Player2",
+      "position": {
+        "1": 3.305950880050659,
+        "2": 45.28468322753906,
+        "3": 1.1368683772161603e-13
+      },
+      "owner": "server",
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -4.350001811981201,
+        "3": 0
+      },
+      "displaced": 1,
+      "motor": false
+    },
+    "7": {
+      "player": "Player2",
+      "position": {
+        "1": 3.8450753688812256,
+        "2": 45.178123474121094,
+        "3": 1.1368683772161603e-13
+      },
+      "owner": "server",
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -7.620002269744873,
+        "3": 0
+      },
+      "displaced": 1,
+      "motor": false
+    },
+    "8": {
+      "player": "Player2",
+      "position": {
+        "1": 4.384200096130371,
+        "2": 45.017059326171875,
+        "3": 1.1368683772161603e-13
+      },
+      "owner": "server",
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -10.890002250671387,
+        "3": 0
+      },
+      "displaced": 1,
+      "motor": false
+    },
+    "9": {
+      "player": "Player2",
+      "position": {
+        "1": 4.923325538635254,
+        "2": 44.80149459838867,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -14.160002708435059,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "10": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "11": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "12": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "13": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "14": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "15": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "16": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "17": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "18": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "19": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "20": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "21": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "22": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "23": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "24": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "25": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "26": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "27": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "28": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "29": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    },
+    "30": {
+      "player": "Player2",
+      "position": {
+        "1": 5.462450981140137,
+        "2": 44.531436920166016,
+        "3": 1.1368683772161603e-13
+      },
+      "velocity": {
+        "1": 32.34747314453125,
+        "2": -17.430002212524414,
+        "3": 0
+      },
+      "motor": true,
+      "owner": "Player2"
+    }
+  },
+  "networkRestored": [],
+  "rttMs": {
+    "Player1": 49.557000000277185,
+    "Player2": 32.898800000111805
+  },
+  "checks": {
+    "1": "stale generation rejected",
+    "2": "nonfinite aim rejected",
+    "3": "zero aim rejected",
+    "4": "vertical aim rejected",
+    "5": "valid press accepted",
+    "6": "duplicate sequence rejected",
+    "7": "attack movement and jump restrictions",
+    "8": "authoritative body contact launches victim",
+    "9": "server owns victim before launch",
+    "10": "replacement launch follows committed aim before physical collision response",
+    "11": "protection and reaction have independent deadlines",
+    "12": "hit recovery rejects attacks",
+    "13": "launch produces observed horizontal displacement: 5.462450981140137, 44.531436920166016, 1.1368683772161603e-13",
+    "14": "natural recovery restores motor",
+    "15": "natural recovery returns player ownership",
+    "16": "holding without a new press does not repeat",
+    "17": "both active requests accepted",
+    "18": "integrated mutual active hits trade",
+    "19": "miss starts an ordinary action",
+    "20": "late recovery buffer accepted",
+    "21": "extra buffered click rejected",
+    "22": "latest buffered aim accepted",
+    "23": "buffer captures current aim at next startup",
+    "24": "client prediction and real attack remote reach server combat",
+    "25": "client presentation exists for Player1",
+    "26": "client presentation exists for Player2",
+    "27": "unequip clears action and displacement",
+    "28": "old equip cannot attack current generation"
+  },
+  "rttSamplesMs": {
+    "Player1": {
+      "1": 82.42580000023736,
+      "2": 32.865099999980885,
+      "3": 33.49720000005618,
+      "4": 49.557000000277185
+    },
+    "Player2": {
+      "1": 1448.6592999992354,
+      "2": 32.8282999998919,
+      "3": 33.460000000559376,
+      "4": 32.898800000111805
+    }
+  },
+  "passed": true,
+  "snapshots": {
+    "Player1": {
+      "state": "Running",
+      "impactDelayMs": 45.732736587524414,
+      "acceptanceAgeMs": 19.906997680664062,
+      "visuals": true,
+      "motor": true,
+      "predictionMismatchMs": 13.695001602172852
+    },
+    "Player2": {
+      "state": "Running",
+      "visuals": true,
+      "motor": true,
+      "impactDelayMs": 22.270679473876953
+    }
+  }
+}

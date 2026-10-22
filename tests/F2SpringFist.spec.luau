@@ -70,5 +70,13 @@ return function(Fist, Config)
 	check(#hits == 2, "one action may hit multiple enemies")
 	hits = Fist.resolve({ contact(a, b, 0.12) }, Config)
 	check(#hits == 0, "one action hits each target once")
+	a, b = actor(1), actor(2)
+	b.spawnProtectionUntil = 3
+	hits = Fist.resolve({ contact(a, b, 2.99) }, Config)
+	check(#hits == 0 and a.action.encountered[b], "spawn shield consumes protected contact")
+	check(b.spawnProtectionUntil == 3 and b.protectionUntil == 0, "spawn and displacement protection never stack")
+	a = actor(1)
+	hits = Fist.resolve({ contact(a, b, 3) }, Config)
+	check(#hits == 1, "new action can contact at exact spawn protection deadline")
 	return { passed = true, checks = count }
 end

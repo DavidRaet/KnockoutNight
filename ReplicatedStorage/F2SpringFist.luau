@@ -64,7 +64,10 @@ function Fist.resolve(contacts, config)
 		local action, victim = contact.action, contact.victim
 		if not canceled[action] and not action.encountered[victim] then
 			action.encountered[victim] = true
-			if contact.time >= (protected[victim] or victim.protectionUntil) then
+			if
+				contact.time >= (protected[victim] or victim.protectionUntil)
+				and contact.time >= (victim.spawnProtectionUntil or 0)
+			then
 				protected[victim] = contact.time + config.Protection
 				table.insert(winners, contact)
 				local outgoing = victim.action

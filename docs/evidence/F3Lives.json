@@ -1,0 +1,91 @@
+{
+  "snapshots": {
+    "Player1": {
+      "scores": {
+        "Player1": 1,
+        "Player2": 0
+      },
+      "errors": {
+        "1": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4725619926",
+        "2": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4572599969",
+        "3": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4049942026"
+      },
+      "countdown": "Label",
+      "countdownVisible": false,
+      "feedEntries": 1,
+      "status": "alive",
+      "focus": {
+        "1": -18,
+        "2": 46.999996185302734,
+        "3": 2.8922499950567726e-9
+      },
+      "feedText": {
+        "1": "Player2 fell out"
+      },
+      "tag": "score"
+    },
+    "Player2": {
+      "scores": {
+        "Player2": 1
+      },
+      "errors": {
+        "1": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4725619926",
+        "2": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4572599969",
+        "3": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4049942026",
+        "4": "Unable to load plugin icon: http://www.roblox.com/asset/?id=4657420207"
+      },
+      "countdown": "No safe respawn surface is available. Restart the local session.",
+      "countdownVisible": true,
+      "feedEntries": 1,
+      "status": "stopped",
+      "focus": {
+        "1": 0,
+        "2": 46,
+        "3": 0
+      },
+      "feedText": {
+        "1": "Player2 fell out"
+      },
+      "tag": "failure"
+    }
+  },
+  "version": "F3",
+  "passed": true,
+  "checks": {
+    "1": "horizontal edge remains recoverable above lower plane",
+    "2": "lower plane commits one opponent point",
+    "3": "duplicate callback cannot score twice",
+    "4": "eliminated life cannot attack",
+    "5": "fall view and countdown appear before spectator switch",
+    "6": "camera follows surviving opponent during countdown",
+    "7": "knockout feed and score reach eliminated client",
+    "8": "both clients agree on score",
+    "9": "later death callback cannot duplicate score or extend timer",
+    "10": "respawn never precedes its deadline",
+    "11": "safe respawn chooses farthest point from opponent",
+    "12": "fresh R15 life receives visible protection",
+    "13": "old-life callback cannot eliminate replacement",
+    "14": "old-generation request rejected after respawn",
+    "15": "protected contact neither launches nor extends shield",
+    "16": "accepted client attack ends protection before resolving",
+    "17": "outer bounds commit independently of health",
+    "18": "respawn never precedes its deadline",
+    "19": "unused shield expires naturally",
+    "20": "unexpected death scores exactly once",
+    "21": "respawn never precedes its deadline",
+    "22": "all unavailable candidates use permanent-center fallback",
+    "23": "spawn shield does not prevent falling",
+    "24": "respawn never precedes its deadline",
+    "25": "real client attack launches into a scored fall",
+    "26": "successful displacement receives feed credit independently of score",
+    "27": "respawn never precedes its deadline",
+    "28": "simultaneous falls award one point to each opponent",
+    "29": "no-survivor camera uses fixed arena view",
+    "30": "respawn never precedes its deadline",
+    "31": "respawn never precedes its deadline",
+    "32": "simultaneous respawns do not overlap",
+    "33": "real disconnect produces no fall point",
+    "34": "missing fallback stops session without indefinite respawn",
+    "35": "terminal failure remains visible to client"
+  }
+}

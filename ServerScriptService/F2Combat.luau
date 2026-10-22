@@ -1,6 +1,5 @@
 local Players = game:GetService("Players")
 local Storage = game:GetService("ReplicatedStorage")
-local RunService = game:GetService("RunService")
 local Config = require(Storage.F2Config)
 local F1 = require(Storage.F1Config)
 local Fist = require(Storage.F2SpringFist)
@@ -9,6 +8,7 @@ local Contact = require(script.Parent.F2Contact)
 local Combat = {}
 local states, connections, playerConnections = {}, {}, {}
 local remote, probe
+local lifeOwner
 local generation, actionId = 0, 0
 
 local function emit(kind, state, data)
@@ -23,6 +23,7 @@ local function valid(state)
 		and state.character.Parent
 		and state.humanoid.Health > 0
 		and state.root.Parent
+		and state.character:GetAttribute("F3Alive") ~= false
 end
 
 local function equipped(state)
@@ -107,7 +108,15 @@ local function remove(player, reason)
 	state.character:SetAttribute("F2Equipped", nil)
 end
 
+function Combat.retire(player, reason)
+	remove(player, reason)
+end
+
 local function startAction(state, sequence, now)
+	if lifeOwner then
+		lifeOwner.endProtection(state.player)
+		state.spawnProtectionUntil = 0
+	end
 	actionId += 1
 	state.action = { id = actionId, sequence = sequence, started = now, aim = state.aim, encountered = {} }
 	state.buffer = nil
@@ -126,7 +135,7 @@ end
 function Combat.request(player, kind, gen, sequence, intendedAim)
 	local state = states[player]
 	local now = workspace:GetServerTimeNow()
-	if not equipped(state) or gen ~= state.generation then
+	if not equipped(state) or gen ~= state.generation or (lifeOwner and not lifeOwner.alive(player)) then
 		return false
 	end
 	-- Bound all traffic before expensive work or replies; invalid traffic cannot create deferred actions.
@@ -239,6 +248,9 @@ local function launch(contact, now, excluded)
 	state.root.AssemblyLinearVelocity = action.aim * Config.LaunchSpeed + Vector3.yAxis * Config.LaunchUp
 	state.reactionUntil, state.protectionUntil = contact.time + Config.Reaction, contact.time + Config.Protection
 	state.buffer = nil
+	if lifeOwner then
+		lifeOwner.hit(state.player, contact.attacker.player, contact.time)
+	end
 	emit("hit", state, {
 		attacker = contact.attacker.character,
 		actionId = action.id,
@@ -280,6 +292,7 @@ local function addCharacter(player, character)
 		aim = Vector3.new(0, 0, -1),
 		reactionUntil = 0,
 		protectionUntil = 0,
+		spawnProtectionUntil = 0,
 		lastPress = -math.huge,
 		lastAim = -math.huge,
 		lastSteer = -math.huge,
@@ -371,6 +384,7 @@ function Combat.step(dt)
 			continue
 		end
 		local root, displacement = state.root, state.displacement
+		state.spawnProtectionUntil = if lifeOwner then lifeOwner.protectionUntil(player) else 0
 		local velocity = root.AssemblyLinearVelocity
 		local speed = math.max(state.humanoid.WalkSpeed, state.residualSpeed)
 		local invalid = not Physics.vector(root.Position)
@@ -495,10 +509,11 @@ function Combat.step(dt)
 	end
 end
 
-function Combat.start()
+function Combat.start(lives)
 	if remote then
 		return
 	end
+	lifeOwner = lives
 	remote = Instance.new("RemoteEvent")
 	remote.Name = "F2Combat"
 	remote.Parent = Storage
@@ -520,7 +535,6 @@ function Combat.start()
 			playerConnections[player] = nil
 		end)
 	)
-	table.insert(connections, RunService.PreSimulation:Connect(Combat.step))
 	for _, player in Players:GetPlayers() do
 		addPlayer(player)
 	end

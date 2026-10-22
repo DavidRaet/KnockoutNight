@@ -2,17 +2,18 @@
 
 **Platform:** Roblox  
 **Product:** Competitive multiplayer 3D arena fighter  
-**Document version:** 0.2 (v0.1 release scope)
-**Updated:** October 20, 2026  
+**Document version:** 0.3 (v0.1 release scope)
+**Updated:** October 22, 2026
 **Product owner:** ShorlingWild
 **Release:** Friends-and-family beta  
-**Design authority:** Section 2.2 records the latest approved Grill Me decisions and supersedes earlier proposals. Original confirmed decisions, Roblox Game Ideation, and HUD whiteboard remain supporting sources.
+**Design authority:** Section 2.2 records the approved core Grill Me decisions; section 2.3 records the subsequent F3 agreement. These supersede conflicting earlier proposals. Original confirmed decisions, Roblox Game Ideation, and HUD whiteboard remain supporting sources.
 
 ## Contents
 
 1. [Product brief](#1-product-brief)
 2. [Release scope and fixed decisions](#2-release-scope-and-fixed-decisions)
    - [Dedicated design decisions](#22-dedicated-design-decisions-approved-grill-me-agreement)
+   - [Approved F3 decisions](#23-approved-f3-decisions)
 3. [Player journey](#3-player-journey)
 4. [Intermission and loadouts](#4-intermission-and-loadouts)
 5. [Movement and camera](#5-movement-and-camera)
@@ -189,6 +190,19 @@ All three maps and both modes belong to the complete beta scope. The Platform an
 - Use simple original or clearly licensed placeholder effects/audio until combat is validated, then polish. Existing Hammer is a visual reference; this does not authorize regenerating/exporting it.
 - Validate two-player combat on The Platform first: readable Hammer dodges, Paddle Pops response opportunities, central-position survivability, useful but fallible Bounce recovery. Final art/teleports follow combat validation.
 - Initial targets: 12-player lobby, four-player match server, 60 FPS desktop, tests at 100-150 ms round-trip latency. Select reference hardware before performance signoff. No implementation/test completion is asserted.
+
+### 2.3 Approved F3 decisions
+
+**Approval:** October 22, 2026. The owner approved F3 interview Q1–Q7, confirmed the shared design, and authorized implementation. These choices refine DD05 and V03; they do not establish gameplay acceptance.
+
+- Check predefined safe spawn candidates during the ordinary 3-second respawn countdown. At the deadline, use the designated fallback on a permanently playable surface if no normal candidate is valid. If the fallback is also unavailable, stop the local session with a clear error. Do not add another score, declare a winner, or leave an indefinite respawn.
+- Exclude overlap and unavailable/unsupported surfaces. Among valid points, maximize the minimum horizontal distance from living opponents; rotate exact ties. Revalidate at placement time.
+- Recreate a standardized R15 character per life while retaining compatible appearance. Keep score and future ability cooldown state outside the character lifetime.
+- Show a visible shield during the provisional 3-second spawn protection. Allow movement; an accepted attack/ability ends protection before its action resolves; falling still eliminates.
+- Follow the eliminated character for approximately 0.75 seconds after commitment, then follow a survivor until respawn. Use a fixed arena view when no survivor is available.
+- Include the 1v1 score, knockout notifications, and respawn countdown in F3. The regulation timer/results and sudden death remain F4/F5.
+
+The [F3 implementation and verification](F3/F3_Implementation_and_Verification.md) records the implementation, technical checks, remaining ability integration, and owner playtest handoff. Exact greybox coordinates and provisional timing still require gameplay evaluation.
 
 ## 3. Player journey
 
@@ -839,7 +853,7 @@ Q1-Q76 are resolved in section 2.2. Earlier O01-O21 groups are resolved as behav
 |---|---|---|
 | V01 | Tune exact air-control coefficients, hit-volume widths/heights, Magnet pull speed, Bounce input response, and physics application within approved behavior | Milestone 1 |
 | V02 | Validate animation alignment, active trades, repeated-pressure protection, armored slam redirection, valid surfaces, and ability startup interruption | Milestones 1-2 |
-| V03 | Choose symmetric spawn coordinates and safe-respawn candidates; exercise unavailable surfaces and failure-to-spawn recovery without duplicate scoring | Milestones 1-2 |
+| V03 | F3 spawn/failure policy is approved in section 2.3 and technically exercised on The Platform. Owner gameplay review and safe-spawn/hazard integration for later maps remain | Milestones 1-2 |
 | V04 | Playtest timing, launch, arena dimensions, warnings, all nine loadouts, and both modes; assess compulsory Bounce selection | Milestones 1-4 |
 | V05 | Choose camera distance/zoom bounds, clipping handling, effects/animations, final assets, menu background scene, lobby decoration, and results layout within DD01/DD10 | Milestones 1-2 |
 | V06 | Choose local test-session allocation/capacity and full-capacity handling; production target remains one reserved server per match | Milestone 2 |
@@ -899,3 +913,4 @@ When a provisional value is accepted or an open question is resolved, update its
 |---|---|---|
 | October 20, 2026 | 0.1 | Consolidated confirmed game design into an implementation-oriented PRD; separated provisional tuning, open decisions, engineering recommendations, and deferred scope. |
 | October 20, 2026 | 0.2 | Recorded approved Q1-Q76 in dedicated section 2.2; reconciled requirements, expanded provisional tuning, and replaced resolved open questions with validation/engineering work. Arrival timeout 20 seconds; respawn protection 3 seconds. Documentation only; no implementation or asset changes. |
+| October 22, 2026 | 0.3 | Recorded approved F3 Q1–Q7 and implementation authorization: bounded safe-spawn fallback, distance/tie selection, fresh character lives, visible protection, spectator timing, and F3 HUD scope. Linked technical evidence and preserved owner gameplay acceptance as pending. |
