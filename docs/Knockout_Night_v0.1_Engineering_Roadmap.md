@@ -156,6 +156,14 @@ The product owner approved these choices after reviewing the F1 implementation o
 
 These approvals resolve the listed F1 planning choices. They do not assert implementation or playtest completion.
 
+## P3 - Stretch feature: Dev Special
+
+| ID / vertical slice | Priority | Acceptance check and required playtest | Additional Brain skills |
+|---|---|---|---|
+| **X1 - Add Poop Hammer and Eat Poop** | P3 stretch; outside v0.1 | Keep both weapon and ability developer-only. Eat Poop targets the nearest opponent, applies the poop smear, and makes that opponent slippery and more susceptible to knockback, doubling the knockout potential of the user's Poop Hammer. Verify the effect is limited to this special interaction and does not become part of ordinary loadouts. Tune detailed values and presentation before implementation; hands-on playtest required. | `architecture`, `luau-core`, `luau-patterns`, `networking`, `security`, `physics`, `animation-vfx` |
+
+This stretch slice is independent of the v0.1 milestone gates. Its inclusion in the roadmap records future scope only and does not authorize implementation or alter the beta release criteria.
+
 ## Risks, unresolved details, and approval points
 
 Roadmap approval accepts the breakdown and sequence. Proposed treatments below remain subject to review unless marked resolved by an approved slice decision.

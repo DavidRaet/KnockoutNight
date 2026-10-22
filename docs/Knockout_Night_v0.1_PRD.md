@@ -882,9 +882,16 @@ Acceptance requires exercising approved rules, not merely recording agreement. N
 - Mobile/controller support for the first desktop beta; reconnect/backfill, direct rematches, and individual performance statistics.
 - Double jumps, sprinting, dodge rolls, ledge grabs, and accumulating damage/launch meters.
 
-Detailed assist tracking is not required for initial scoring. A sudden-death anti-stalling system is a later exploration, not a current requirement. Do not create a progression system merely to implement future reward policy language.
+Detailed assist tracking is not required for initial scoring. A sudden-death anti-stalling system is a later exploration, not a current requirement. Do not create a progression system merely to implement future reward policy language. The Dev Special in section 19.2 is the specifically tracked P3 stretch exception; it remains outside v0.1 release scope.
 
-### 19.2 Delivery risks
+### 19.2 P3 stretch feature: Dev Special
+
+- Add a developer-only weapon called **Poop Hammer** and an associated ability called **Eat Poop**. This is a humorous development special, not part of the starter roster or general player loadout.
+- On activation, Eat Poop smears poop on the nearest opponent. The affected opponent becomes slippery and has increased knockback susceptibility, doubling the knockout potential of the user's Poop Hammer.
+- This is an intentionally paired, special weapon-ability interaction. It does not imply a general status-effect or combo system. Detailed values, eligibility, cooldown, and presentation remain to be specified before implementation.
+- Priority: **P3 stretch**; excluded from v0.1 beta requirements and release gates.
+
+### 19.3 Delivery risks
 
 | Risk | Why it matters | Response within the approved scope |
 |---|---|---|
