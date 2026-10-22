@@ -45,4 +45,6 @@ For Knockout Night, separate technical verification from subjective gameplay pla
 
 **Workflow rule:** Do not treat automated testing or simulated gameplay as a substitute for my hands-on playtesting. After implementation and technical verification, hand the feature back to me for gameplay evaluation. Do not mark subjective gameplay acceptance as complete until I approve it.
 
+**Sign-off progress rule:** When I explicitly sign off a feature, update its implementation/verification document and the engineering roadmap with the acceptance status and date. Correct stale status and next-step references, and keep deferred slices and release gates separate; sign-off alone does not authorize publishing or the next slice.
+
 Do not automatically continue into polishing or unrelated features while awaiting gameplay acceptance. Lengthy playtest reports for every minor change. Save structured playtest reviews for major milestones, particularly when assessing networking, physics, and new combat systems.

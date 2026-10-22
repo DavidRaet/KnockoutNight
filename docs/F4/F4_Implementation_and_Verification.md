@@ -1,6 +1,6 @@
 # F4 — Complete regulation and results
 
-**October 22, 2026:** Implemented and technically verified. Owner gameplay acceptance is pending. F5 sudden-death gameplay is not implemented.
+**October 22, 2026:** Implemented, technically verified, and signed off by the product owner. F5 sudden-death gameplay is not implemented.
 
 ## Implementation
 
@@ -50,12 +50,12 @@ To reproduce the engine checks, temporarily insert `tests/F4Match.server.luau` a
 4. In separate runs, disconnect before GO, disconnect during active play, and close both clients together. Expect cancellation, remaining-player forfeit, and no winner respectively. Check no disconnect point appears.
 5. Let regulation finish tied. Expect SUDDEN DEATH and frozen gameplay with tied scores preserved. Stop/restart Play afterward; the F5 round is intentionally unavailable.
 
-Judge countdown clarity, timer/result readability, and transition feel yourself. These automated checks do not establish gameplay acceptance.
+The product owner signed off the current F4 feature on October 22, 2026, including the developer controls and F4 console toggle used to release the mouse during a match. Automated checks remain technical evidence; owner sign-off records gameplay acceptance for this slice.
 
 ## Limits
 
 - F4 is local 1v1 on The Platform. 2v2/team departures, queues/full lobby flow, reserved servers, and ability integration remain in their roadmap slices.
 - Ties cannot finish competitively until F5. The handoff is deliberately frozen; no F5 reset, countdown, or elimination window is included.
-- No 100–150 ms RTT run, reference-hardware/FPS evaluation, broad viewport coverage, full standalone Roblox type analysis, or hands-on gameplay acceptance is claimed.
+- No 100–150 ms RTT run, reference-hardware/FPS evaluation, broad viewport coverage, or full standalone Roblox type analysis is claimed.
 - The automated return checks exercise the server return operation. Clicking the actual button and evaluating its usability remain in the manual steps.
 - No publishing, asset generation/export, new dependency, or unrelated feature work occurred.

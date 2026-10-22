@@ -1,6 +1,6 @@
 # Knockout Night v0.1 Engineering Roadmap
 
-**Status:** Approved roadmap; F1 implemented with Studio verification; F2 Spring Fist signed off for its current combat flow on October 22, 2026; F3 implemented, technically verified, synced, and signed off by the product owner on October 22, 2026. [F4 is implemented and technically verified](F4/F4_Implementation_and_Verification.md), pending owner gameplay acceptance. F5 remains unimplemented. The complete M1 combat roster and match loop remain unfinished.
+**Status:** Approved roadmap; F1 implemented with Studio verification; F2 Spring Fist signed off for its current combat flow on October 22, 2026; F3 implemented, technically verified, synced, and signed off by the product owner on October 22, 2026; [F4 implemented, technically verified, and signed off by the product owner on October 22, 2026](F4/F4_Implementation_and_Verification.md). F5 remains unimplemented. The complete M1 combat roster and match loop remain unfinished.
 
 **Approved:** October 20, 2026.  
 **Source of truth:** [Knockout Night v0.1 PRD](Knockout_Night_v0.1_PRD.md), document version 0.4.
@@ -8,7 +8,7 @@
 
 The product owner approved the slice size, dependency order, and breakdown, including moving sudden death into P0 so the first complete combat milestone can finish tied matches. Roadmap approval does not resolve the engineering decisions listed below or authorize implementation, asset generation/export, or publishing.
 
-Before taking each next step, announce the intended action to the product owner. F1–F4 were subsequently authorized. The product owner signed off F3 on October 22, 2026; F4 now awaits owner gameplay review. Do not continue into F5 without its authorization.
+Before taking each next step, announce the intended action to the product owner. F1–F4 were subsequently authorized. The product owner signed off F3 and F4 on October 22, 2026. Do not continue into F5 without its authorization.
 
 ## Planning approach
 
@@ -158,13 +158,13 @@ These approvals resolve the listed F1 planning choices. They do not assert imple
 
 ## Risks, unresolved details, and approval points
 
-Roadmap approval accepts the breakdown and sequence. The proposed treatments below remain subject to the indicated review or decision; they are not silently finalized by saving this document.
+Roadmap approval accepts the breakdown and sequence. Proposed treatments below remain subject to review unless marked resolved by an approved slice decision.
 
 | Decision or risk | Needed before | Proposed treatment for review |
 |---|---|---|
 | **Physics ownership and movement validation** | F2 | [Controlled experiment and review gate](F2_Physics_Evaluation.md) implemented for classic client ownership and temporary server ownership. Review measured evidence and hands-on feel before committing the architecture. Server Authority viability remains unverified. |
 | **Failure to spawn safely** | F3; later maps | Approved in PRD section 2.3: check candidates during the normal countdown, use the permanent-surface fallback at its deadline, and stop the local session with a clear error if that fallback is unsafe. F3 technically exercises this on The Platform; later maps must integrate surface availability. |
-| **Coincident departures, deadline, and decisive elimination** | F4/F5; expanded in L9 | Existing individual rules are settled. Explicitly document precedence for mixed events in one update where the PRD does not fully resolve it. Do not silently choose a winner policy. |
+| **Coincident departures, deadline, and decisive elimination** | F5; expanded in L9 | F4 ordering is resolved by the approved decisions recorded in the [F4 implementation and verification](F4/F4_Implementation_and_Verification.md). Define F5 sudden-death simultaneity separately before implementing that slice. |
 | **Local allocation/full-capacity behavior** | L3 | Recommend one active local match initially, with additional players waiting in FIFO queues. This is a proposed test allocation, not a change to reserved-server production architecture. |
 | **Exact tuning and presentation choices** | Throughout | Use section 17 starts; validate hit volumes, air control, pull speed, spawns, camera, and warning timing. Escalate any proposed behavioral change rather than presenting it as tuning. |
 | **Transport admission and retry timing** | R1/R2 | Review server-owned handoff design, destination configuration, and retry schedule within DD09's bounded policy. No distributed matchmaking backend is assumed. |
@@ -185,6 +185,6 @@ Follow the project's asset organization rules. Future Blender source files belon
 
 F1 implementation and its Studio checks are recorded in [F1 Implementation and Verification](F1/F1_Implementation_and_Verification.md). Two-client rig, spawn, collision, movement, camera, input, and character-replacement checks have been exercised; product-owner F1 feel/camera review remains outstanding. The [F2 physics evaluation](F2/F2_Physics_Evaluation.md) passed baseline and target-latency launch-fixture checks. The [Spring Fist implementation and verification](F2/F2_Order5_Implementation_and_Verification.md) records combat checks, including delayed multiplayer runs. The product owner signed off the current F2 combat flow on October 22, 2026.
 
-The [F3 implementation and verification](F3/F3_Implementation_and_Verification.md) records 17 deterministic F3 checks, 35 two-client lifecycle checks, the passing 28-check F2 combat regression, the F1 rig/spawn/collision regression, and normal Play/HUD inspection. Runtime scripts match the connected Studio place and temporary fixtures are removed. The product owner signed off F3 gameplay on October 22, 2026. Ability cooldown integration/verification, F3 target-latency coverage, F4–F11, reference-hardware performance, publishing, and asset export remain incomplete.
+The [F3 implementation and verification](F3/F3_Implementation_and_Verification.md) records 17 deterministic F3 checks, 35 two-client lifecycle checks, the passing 28-check F2 combat regression, the F1 rig/spawn/collision regression, and normal Play/HUD inspection. Runtime scripts match the connected Studio place and temporary fixtures are removed. The product owner signed off F3 gameplay on October 22, 2026. [F4 implementation, verification, and owner acceptance](F4/F4_Implementation_and_Verification.md) are recorded separately. Ability cooldown integration/verification, F3 target-latency coverage, F5–F11, reference-hardware performance, publishing, and asset export remain incomplete.
 
-The next roadmap slice is F4. [F2 Next Steps](F2/F2_Next_Steps.md) records the approved temporary server ownership during knockback; Spring Fist retains its separately confirmed 10-stud reach.
+The next roadmap slice is F5; it has not been authorized. [F2 Next Steps](F2/F2_Next_Steps.md) records the approved temporary server ownership during knockback; Spring Fist retains its separately confirmed 10-stud reach.
