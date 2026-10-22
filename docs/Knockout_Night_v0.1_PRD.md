@@ -4,7 +4,7 @@
 **Product:** Competitive multiplayer 3D arena fighter  
 **Document version:** 0.2 (v0.1 release scope)
 **Updated:** October 20, 2026  
-**Product owner:** To be assigned  
+**Product owner:** ShorlingWild
 **Release:** Friends-and-family beta  
 **Design authority:** Section 2.2 records the latest approved Grill Me decisions and supersedes earlier proposals. Original confirmed decisions, Roblox Game Ideation, and HUD whiteboard remain supporting sources.
 

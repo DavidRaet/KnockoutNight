@@ -1,6 +1,6 @@
 # Knockout Night v0.1 Engineering Roadmap
 
-**Status:** Approved roadmap; F1 implemented with Studio verification; F2 physics evaluation and feel review complete; temporary server ownership during knockback approved. The concrete Spring Fist implementation outline is next; combat is not implemented.
+**Status:** Approved roadmap; F1 implemented with Studio verification; F2 Spring Fist implemented, synced, and signed off for its current combat flow by the product owner on October 22, 2026. The complete M1 combat roster and match loop remain unfinished.
 
 **Approved:** October 20, 2026.  
 **Source of truth:** [Knockout Night v0.1 PRD](Knockout_Night_v0.1_PRD.md), document version 0.2.  
@@ -183,6 +183,6 @@ Follow the project's asset organization rules. Future Blender source files belon
 
 ## Verification status and next step
 
-F1 implementation and its Studio checks are recorded in [F1 Implementation and Verification](F1_Implementation_and_Verification.md). Two-client rig, spawn, collision, movement, camera, input, and character-replacement checks have been exercised. The [F2 physics evaluation](F2_Physics_Evaluation.md) subsequently passed baseline and target-latency launch-fixture checks. Product-owner feel/camera review, actual combat latency verification, and reference-hardware performance remain outstanding. F2 combat, publishing, and asset export are not asserted complete.
+F1 implementation and its Studio checks are recorded in [F1 Implementation and Verification](F1_Implementation_and_Verification.md). Two-client rig, spawn, collision, movement, camera, input, and character-replacement checks have been exercised; product-owner F1 feel/camera review remains outstanding. The [F2 physics evaluation](F2_Physics_Evaluation.md) passed baseline and target-latency launch-fixture checks. The [Spring Fist implementation and verification](F2/F2_Order5_Implementation_and_Verification.md) records combat checks, including delayed multiplayer runs. The product owner signed off the current F2 combat flow on October 22, 2026. Reference-hardware performance, F3–F11, publishing, and asset export remain incomplete.
 
-Script Sync mapping and bidirectional behavior were verified before the product owner authorized F1 implementation. The next step is product-owner hands-on comparison of the physics candidates, alongside the outstanding F1 review. [F2 Next Steps](F2_Next_Steps.md) records the completed process and remaining work. Announce proposed tuning or combat work before taking it; physics architecture approval remains a prerequisite to combat implementation.
+The current local scripts match the connected Studio place; the product owner separately confirmed the synced 10-stud Spring Fist reach. The next roadmap slice is F3 — Fall, score, and safely respawn — subject to product-owner direction. [F2 Next Steps](F2_Next_Steps.md) records the physics decision and implementation process. Announce proposed tuning or combat work before taking it; the approved temporary server ownership during knockback remains the current physics approach.
