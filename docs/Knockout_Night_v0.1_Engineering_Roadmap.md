@@ -1,14 +1,14 @@
 # Knockout Night v0.1 Engineering Roadmap
 
-**Status:** Approved roadmap; F1 implemented with Studio verification; F2 Spring Fist signed off for its current combat flow on October 22, 2026. F3 is implemented, technically verified, and synced; owner gameplay acceptance is pending. The complete M1 combat roster and match loop remain unfinished.
+**Status:** Approved roadmap; F1 implemented with Studio verification; F2 Spring Fist signed off for its current combat flow on October 22, 2026; F3 implemented, technically verified, synced, and signed off by the product owner on October 22, 2026. F4 is the next slice. The complete M1 combat roster and match loop remain unfinished.
 
 **Approved:** October 20, 2026.  
-**Source of truth:** [Knockout Night v0.1 PRD](Knockout_Night_v0.1_PRD.md), document version 0.3.
+**Source of truth:** [Knockout Night v0.1 PRD](Knockout_Night_v0.1_PRD.md), document version 0.4.
 **Design authority:** PRD sections 2.2 and 2.3 supersede conflicting earlier proposals. Confirmed behavior stays fixed; section 17 values remain configurable prototype starting settings.
 
 The product owner approved the slice size, dependency order, and breakdown, including moving sudden death into P0 so the first complete combat milestone can finish tied matches. Roadmap approval does not resolve the engineering decisions listed below or authorize implementation, asset generation/export, or publishing.
 
-Before taking each next step, announce the intended action to the product owner. F1–F3 were subsequently authorized. Hand F3 back for owner gameplay evaluation before continuing into F4 or polish.
+Before taking each next step, announce the intended action to the product owner. F1–F4 were subsequently authorized. The product owner signed off F3 on October 22, 2026; F4 is the next slice.
 
 ## Planning approach
 
@@ -185,6 +185,6 @@ Follow the project's asset organization rules. Future Blender source files belon
 
 F1 implementation and its Studio checks are recorded in [F1 Implementation and Verification](F1/F1_Implementation_and_Verification.md). Two-client rig, spawn, collision, movement, camera, input, and character-replacement checks have been exercised; product-owner F1 feel/camera review remains outstanding. The [F2 physics evaluation](F2/F2_Physics_Evaluation.md) passed baseline and target-latency launch-fixture checks. The [Spring Fist implementation and verification](F2/F2_Order5_Implementation_and_Verification.md) records combat checks, including delayed multiplayer runs. The product owner signed off the current F2 combat flow on October 22, 2026.
 
-The [F3 implementation and verification](F3/F3_Implementation_and_Verification.md) records 17 deterministic F3 checks, 35 two-client lifecycle checks, the passing 28-check F2 combat regression, the F1 rig/spawn/collision regression, and normal Play/HUD inspection. Runtime scripts match the connected Studio place and temporary fixtures are removed. F3 owner gameplay acceptance, ability cooldown integration/verification, F3 target-latency coverage, F4–F11, reference-hardware performance, publishing, and asset export remain incomplete.
+The [F3 implementation and verification](F3/F3_Implementation_and_Verification.md) records 17 deterministic F3 checks, 35 two-client lifecycle checks, the passing 28-check F2 combat regression, the F1 rig/spawn/collision regression, and normal Play/HUD inspection. Runtime scripts match the connected Studio place and temporary fixtures are removed. The product owner signed off F3 gameplay on October 22, 2026. Ability cooldown integration/verification, F3 target-latency coverage, F4–F11, reference-hardware performance, publishing, and asset export remain incomplete.
 
-The next action is owner hands-on F3 review using the linked instructions. Continue to F4 only after owner direction. [F2 Next Steps](F2/F2_Next_Steps.md) records the approved temporary server ownership during knockback; Spring Fist retains its separately confirmed 10-stud reach.
+The next roadmap slice is F4. [F2 Next Steps](F2/F2_Next_Steps.md) records the approved temporary server ownership during knockback; Spring Fist retains its separately confirmed 10-stud reach.

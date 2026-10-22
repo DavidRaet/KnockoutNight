@@ -2,7 +2,7 @@
 
 **Platform:** Roblox  
 **Product:** Competitive multiplayer 3D arena fighter  
-**Document version:** 0.3 (v0.1 release scope)
+**Document version:** 0.4 (v0.1 release scope)
 **Updated:** October 22, 2026
 **Product owner:** ShorlingWild
 **Release:** Friends-and-family beta  
@@ -202,7 +202,7 @@ All three maps and both modes belong to the complete beta scope. The Platform an
 - Follow the eliminated character for approximately 0.75 seconds after commitment, then follow a survivor until respawn. Use a fixed arena view when no survivor is available.
 - Include the 1v1 score, knockout notifications, and respawn countdown in F3. The regulation timer/results and sudden death remain F4/F5.
 
-The [F3 implementation and verification](F3/F3_Implementation_and_Verification.md) records the implementation, technical checks, remaining ability integration, and owner playtest handoff. Exact greybox coordinates and provisional timing still require gameplay evaluation.
+The [F3 implementation and verification](F3/F3_Implementation_and_Verification.md) records implementation, technical checks, product-owner gameplay sign-off on October 22, 2026, and remaining limits. F4 is the next roadmap slice. Ability integration and target-latency coverage remain future validation work.
 
 ## 3. Player journey
 
@@ -914,3 +914,4 @@ When a provisional value is accepted or an open question is resolved, update its
 | October 20, 2026 | 0.1 | Consolidated confirmed game design into an implementation-oriented PRD; separated provisional tuning, open decisions, engineering recommendations, and deferred scope. |
 | October 20, 2026 | 0.2 | Recorded approved Q1-Q76 in dedicated section 2.2; reconciled requirements, expanded provisional tuning, and replaced resolved open questions with validation/engineering work. Arrival timeout 20 seconds; respawn protection 3 seconds. Documentation only; no implementation or asset changes. |
 | October 22, 2026 | 0.3 | Recorded approved F3 Q1–Q7 and implementation authorization: bounded safe-spawn fallback, distance/tie selection, fresh character lives, visible protection, spectator timing, and F3 HUD scope. Linked technical evidence and preserved owner gameplay acceptance as pending. |
+| October 22, 2026 | 0.4 | Recorded product-owner F3 gameplay sign-off and updated the next-slice status to F4. |

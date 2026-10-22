@@ -1,6 +1,6 @@
 # F3 — Fall, score, and safely respawn
 
-**Date:** October 22, 2026. **Status:** Implemented and synced to the connected Knockout Night Studio place. Technical checks passed; owner gameplay acceptance is pending.
+**Date:** October 22, 2026. **Status:** Implemented, technically verified, synced to the connected Knockout Night Studio place, and signed off by the product owner on October 22, 2026.
 
 ## Approved decisions
 
@@ -62,12 +62,12 @@ Start a two-client local Studio session:
 3. Move during the shield, take an enemy punch, and then attack. Confirm movement works, the protected punch does not launch you, and your attack removes the shield. Let another shield expire naturally; walk off while protected.
 4. Reset your avatar once and confirm one point and one respawn. Have both players fall together; confirm the temporary fixed arena view and separate respawn positions.
 
-Report confusing feedback, camera discomfort, unsafe-feeling respawns, or protection that is difficult to read. Gameplay acceptance remains open until the owner approves it. Do not proceed automatically into F4 or polish while waiting.
+The product owner reviewed F3 and signed it off on October 22, 2026 (“F3 looks good for now”). The gameplay review checklist above remains available for future feedback; F4 is now the next roadmap slice.
 
 ## Limits
 
 - This remains the developer-controlled local 1v1 slice on The Platform. Extra players get a waiting message; FIFO queues, 2v2, complete matches, departure outcomes, and lobby recovery arrive in their roadmap slices.
 - Abilities are not implemented yet. Death-persistent ability cooldown behavior and ending protection on ability activation must be integrated and exercised in F8–F10. F3 does not add an unused ability/cooldown subsystem.
 - The new F3 fixture ran at ordinary local conditions. The existing F2 delayed evidence remains separate; this run does not establish F3 behavior at 100–150 ms RTT, low graphics, broad viewport/hardware coverage, or 60 FPS.
-- Full standalone Roblox type analysis remains unavailable. Compilation and live execution passed; they do not substitute for that analysis or owner gameplay acceptance.
+- Full standalone Roblox type analysis remains unavailable. Compilation and live execution passed; they do not substitute for that analysis.
 - No publishing, asset generation, or asset export occurred.
