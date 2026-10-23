@@ -1,0 +1,218 @@
+{
+  "date": "2026-10-22",
+  "checks": 48,
+  "result": {
+    "events": [
+      "Server-controlled reposition demonstrates dodge/punish timing; player feel remains manual."
+    ],
+    "checks": [
+      "invalid and unavailable weapon choices rejected",
+      "picker is visible and centered for Player1",
+      "picker is visible and centered for Player2",
+      "picker confirms authoritative Hammer choice",
+      "real Platform match begins",
+      "countdown locks weapon changes",
+      "server choice survives match fresh-character reset",
+      "Hammer press accepted",
+      "40 percent movement and no jumping",
+      "readable windup does not launch early",
+      "authoritative replacement launch is exactly 118 horizontal / 16 upward before physics",
+      "defender cannot attack during hit recovery",
+      "Hammer action expires without auto-repeat",
+      "displacement restores motor",
+      "displacement returns client ownership",
+      "Hammer ring-out attribution commits",
+      "mixed attacks start together",
+      "fast Fist interrupts unarmored Hammer windup",
+      "interrupted Hammer never reaches its later active window",
+      "dodge scenario starts windup",
+      "defender leaving front during windup dodges sweep",
+      "defender punishes during Hammer recovery",
+      "missed Hammer is vulnerable to recovery punish",
+      "real client input remote completes Hammer action",
+      "buffer scenario starts",
+      "final 0.12-second buffer accepted",
+      "buffer starts exactly one next Hammer action",
+      "weapon change cancels action and buffer",
+      "weapon change rejects stale input generation",
+      "elimination cleanup begins with live action",
+      "elimination commits through real life owner",
+      "elimination retires Hammer transient state immediately",
+      "regulation respawn preserves server weapon choice",
+      "picker stays hidden during combat for Player2",
+      "no project script errors (Roblox ChatScript errors reported separately): Player2",
+      "knockout feed credits Wrecking Hammer on Player2",
+      "client renders Hammer startup: Player2",
+      "client renders Hammer active: Player2",
+      "client renders Hammer recovery: Player2",
+      "client receives authoritative hit presentation: Player2",
+      "picker stays hidden during combat for Player1",
+      "no project script errors (Roblox ChatScript errors reported separately): Player1",
+      "knockout feed credits Wrecking Hammer on Player1",
+      "client renders Hammer startup: Player1",
+      "client renders Hammer active: Player1",
+      "client renders Hammer recovery: Player1",
+      "client receives authoritative hit presentation: Player1",
+      "no server script errors"
+    ],
+    "snapshots": {
+      "Player1": {
+        "eliminations": [
+          {
+            "at": 1792709779.016508,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "F6-attribution",
+            "attacker": "Player1",
+            "weapon": "Wrecking Hammer"
+          },
+          {
+            "at": 1792709794.99672,
+            "victim": "Player1",
+            "reason": "F6-test",
+            "session": 1,
+            "weapon": "Spring Fist"
+          }
+        ],
+        "errors": [],
+        "phases": {
+          "recovery": {
+            "last": [
+              -1.0447652339935303,
+              45.20000076293945,
+              -1.8815425634384155
+            ],
+            "samples": 32,
+            "first": [
+              0.9708714485168457,
+              45.20000076293945,
+              4.40162992477417
+            ]
+          },
+          "startup": {
+            "last": [
+              -1.2873677015304565,
+              45.270450592041016,
+              -2.0410356521606445
+            ],
+            "samples": 30,
+            "first": [
+              -1.0582480430603027,
+              45.423213958740234,
+              -2.314089775085449
+            ]
+          },
+          "active": {
+            "last": [
+              2.6482162475585938,
+              45.65424346923828,
+              2.0242652893066406
+            ],
+            "samples": 10,
+            "first": [
+              2.7326507568359375,
+              46.207523345947266,
+              -1.7710762023925781
+            ]
+          }
+        },
+        "pickerVisible": false,
+        "engineErrors": [
+          "Players.Player1.PlayerScripts.ChatScript:116: Error calling SetCore CoreGuiChatConnections: SetCore: CoreGuiChatConnections has not been registered by the CoreScripts"
+        ],
+        "hits": 3
+      },
+      "Player2": {
+        "eliminations": [
+          {
+            "at": 1792709779.016508,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "F6-attribution",
+            "attacker": "Player1",
+            "weapon": "Wrecking Hammer"
+          },
+          {
+            "at": 1792709794.99672,
+            "victim": "Player1",
+            "reason": "F6-test",
+            "session": 1,
+            "weapon": "Spring Fist"
+          }
+        ],
+        "errors": [],
+        "phases": {
+          "recovery": {
+            "last": [
+              -1.2346442937850952,
+              45.20000076293945,
+              -1.9062150716781616
+            ],
+            "samples": 32,
+            "first": [
+              1.1476178169250488,
+              45.20000076293945,
+              4.059116840362549
+            ]
+          },
+          "startup": {
+            "last": [
+              -1.1931732892990112,
+              45.333251953125,
+              -2.153292179107666
+            ],
+            "samples": 30,
+            "first": [
+              -1.258893609046936,
+              45.28943634033203,
+              -2.07496976852417
+            ]
+          },
+          "active": {
+            "last": [
+              2.081840991973877,
+              45.46826171875,
+              3.1898109912872314
+            ],
+            "samples": 11,
+            "first": [
+              1.4571151733398438,
+              46.58037567138672,
+              -4.016730308532715
+            ]
+          }
+        },
+        "pickerVisible": false,
+        "engineErrors": [
+          "Players.Player2.PlayerScripts.ChatScript:116: Error calling SetCore CoreGuiChatConnections: SetCore: CoreGuiChatConnections has not been registered by the CoreScripts"
+        ],
+        "hits": 3
+      }
+    },
+    "launches": {
+      "-2:10:1": {
+        "y": 16,
+        "player": "Player2",
+        "serverOwned": true,
+        "z": 0,
+        "x": 118
+      },
+      "-1:17:2": {
+        "y": 12,
+        "player": "Player1",
+        "serverOwned": true,
+        "z": 0,
+        "x": 50
+      },
+      "-1:13:1": {
+        "y": 12,
+        "player": "Player1",
+        "serverOwned": true,
+        "z": 0,
+        "x": -50
+      }
+    },
+    "passed": true,
+    "errors": []
+  }
+}

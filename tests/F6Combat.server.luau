@@ -75,7 +75,7 @@ local passed, failure = pcall(function()
 	local list = Players:GetPlayers()
 	local a, b = list[1], list[2]
 	check(
-		not Match.chooseWeapon(a, {}) and not Match.chooseWeapon(a, "PaddlePops"),
+		not Match.chooseWeapon(a, {}) and not Match.chooseWeapon(a, "UnknownWeapon"),
 		"invalid and unavailable weapon choices rejected"
 	)
 	fixture:FireClient(a, "choose-weapon", "WreckingHammer")

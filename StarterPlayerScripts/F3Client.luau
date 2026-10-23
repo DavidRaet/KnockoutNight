@@ -47,13 +47,15 @@ local function label(parent, name, size, position, textSize)
 end
 
 local score = label(gui, "Score", UDim2.fromOffset(260, 120), UDim2.new(1, -276, 0, 12), 18)
-local weaponPicker = label(gui, "WeaponPicker", UDim2.fromOffset(360, 180), UDim2.fromScale(0.5, 0.5), 22)
+local weaponPicker = label(gui, "WeaponPicker", UDim2.fromOffset(360, 236), UDim2.fromScale(0.5, 0.5), 22)
 weaponPicker.AnchorPoint = Vector2.new(0.5, 0.5)
 weaponPicker.Text, weaponPicker.TextYAlignment = "Choose your weapon", Enum.TextYAlignment.Top
 local pickerPadding = Instance.new("UIPadding")
 pickerPadding.PaddingTop, pickerPadding.Parent = UDim.new(0, 12), weaponPicker
 local weaponButtons = {}
-for index, choice in { { "SpringFist", "Spring Fist" }, { "WreckingHammer", "Wrecking Hammer" } } do
+for index, choice in
+	{ { "SpringFist", "Spring Fist" }, { "WreckingHammer", "Wrecking Hammer" }, { "PaddlePops", "Paddle Pops" } }
+do
 	local button = Instance.new("TextButton")
 	button.Name, button.Text = choice[1], choice[2]
 	button.Size, button.Position = UDim2.new(1, -32, 0, 46), UDim2.fromOffset(16, 32 + (index - 1) * 56)

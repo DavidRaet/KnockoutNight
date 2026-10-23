@@ -49,7 +49,7 @@ local passed, failure = pcall(function()
 	for _, player in list do
 		player:SetAttribute("F1ControlsEnabled", false)
 	end
-	if args.weapon == "WreckingHammer" then
+	if args.weapon == "WreckingHammer" or args.weapon == "PaddlePops" then
 		for _, player in list do
 			player:SetAttribute("F2Weapon", args.weapon)
 		end
@@ -120,6 +120,9 @@ local passed, failure = pcall(function()
 			)
 			if args.weapon then
 				check(char:GetAttribute("F2Weapon") == args.weapon, "sudden death preserves chosen weapon")
+				if args.weapon == "PaddlePops" then
+					check(char:GetAttribute("F7NextHand") == "Right", "sudden death resets Paddle starting hand")
+				end
 			end
 			check(
 				not Combat.request(player, "press", generations[side], 999, Vector3.xAxis),

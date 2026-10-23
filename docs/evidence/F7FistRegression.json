@@ -1,0 +1,532 @@
+{
+  "date": "2026-10-22",
+  "checks": 28,
+  "result": {
+    "launchSamples": [
+      {
+        "player": "Player2",
+        "position": [
+          0.5,
+          45,
+          0
+        ],
+        "owner": "server",
+        "velocity": [
+          50,
+          12,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          1.1126768589019775,
+          45.15912628173828,
+          0
+        ],
+        "owner": "server",
+        "velocity": [
+          32.34748077392578,
+          8.729999542236328,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          1.651801586151123,
+          45.26375198364258,
+          0
+        ],
+        "owner": "server",
+        "velocity": [
+          32.34748077392578,
+          5.459999084472656,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          2.1909263134002686,
+          45.31387710571289,
+          0
+        ],
+        "owner": "server",
+        "velocity": [
+          32.34748077392578,
+          2.1899986267089844,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          2.730050802230835,
+          45.30950164794922,
+          0
+        ],
+        "owner": "server",
+        "velocity": [
+          32.34748077392578,
+          -1.0800015926361084,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          3.2691752910614014,
+          45.25062561035156,
+          0
+        ],
+        "owner": "server",
+        "velocity": [
+          32.34748077392578,
+          -4.350001811981201,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          3.8082997798919678,
+          45.13725280761719,
+          0
+        ],
+        "owner": "server",
+        "velocity": [
+          32.34748077392578,
+          -7.620002269744873,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          4.347424030303955,
+          44.96937561035156,
+          0
+        ],
+        "owner": "server",
+        "velocity": [
+          32.34748077392578,
+          -10.890002250671387,
+          0
+        ],
+        "displaced": 1,
+        "motor": false
+      },
+      {
+        "player": "Player2",
+        "position": [
+          4.8865485191345215,
+          44.74700164794922,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -14.160002708435059,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.425673007965088,
+          44.47012710571289,
+          0
+        ],
+        "velocity": [
+          32.34748077392578,
+          -17.430002212524414,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.550673961639404,
+          44.79844665527344,
+          0
+        ],
+        "velocity": [
+          14.607536315917969,
+          -0.19249780476093292,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.575604438781738,
+          44.854087829589844,
+          0
+        ],
+        "velocity": [
+          10.5256929397583,
+          -0.11223752796649933,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.603394985198975,
+          44.916107177734375,
+          0
+        ],
+        "velocity": [
+          5.975644111633301,
+          -0.022771034389734268,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.628615856170654,
+          44.97239303588867,
+          0
+        ],
+        "velocity": [
+          1.8462711572647095,
+          0.05842379108071327,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      },
+      {
+        "player": "Player2",
+        "position": [
+          5.6398701667785645,
+          44.99750518798828,
+          0
+        ],
+        "velocity": [
+          0.003666618373245001,
+          0.09465447068214417,
+          0
+        ],
+        "motor": true,
+        "owner": "Player2"
+      }
+    ],
+    "networkRestored": [],
+    "rttMs": {
+      "Player1": 32.53899999981513,
+      "Player2": 32.50139999727253
+    },
+    "checks": [
+      "stale generation rejected",
+      "nonfinite aim rejected",
+      "zero aim rejected",
+      "vertical aim rejected",
+      "valid press accepted",
+      "duplicate sequence rejected",
+      "attack movement and jump restrictions",
+      "authoritative body contact launches victim",
+      "server owns victim before launch",
+      "replacement launch follows committed aim before physical collision response",
+      "protection and reaction have independent deadlines",
+      "hit recovery rejects attacks",
+      "launch produces observed horizontal displacement: 5.639892578125, 45, 0",
+      "natural recovery restores motor",
+      "natural recovery returns player ownership",
+      "holding without a new press does not repeat",
+      "both active requests accepted",
+      "integrated mutual active hits trade",
+      "miss starts an ordinary action",
+      "late recovery buffer accepted",
+      "extra buffered click rejected",
+      "latest buffered aim accepted",
+      "buffer captures current aim at next startup",
+      "client prediction and real attack remote reach server combat",
+      "client presentation exists for Player1",
+      "client presentation exists for Player2",
+      "unequip clears action and displacement",
+      "old equip cannot attack current generation"
+    ],
+    "rttSamplesMs": {
+      "Player1": [
+        31.720799997856375,
+        33.4826999969664,
+        32.19569999782834,
+        32.53899999981513
+      ],
+      "Player2": [
+        31.6640999953961,
+        33.438200000091456,
+        32.15410000120755,
+        32.50139999727253
+      ]
+    },
+    "passed": true,
+    "snapshots": {
+      "Player1": {
+        "visuals": true,
+        "impactDelayMs": 41.135549545288086,
+        "acceptanceAgeMs": 30.805110931396484,
+        "predictionMismatchMs": 1.6868114471435547,
+        "motor": true,
+        "state": "Running"
+      },
+      "Player2": {
+        "visuals": true,
+        "motor": true,
+        "impactDelayMs": 20.745038986206055,
+        "state": "Running"
+      }
+    }
+  }
+}

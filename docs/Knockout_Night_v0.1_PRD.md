@@ -371,6 +371,10 @@ Left click initiates short-range strikes with low individual knockback and fast 
 
 **Acceptance:** Alternating strikes visibly communicate the fast attack identity. The short reach requires approaching an opponent; repeated attacks cannot cause indefinite stun-locking.
 
+**Approved F7 decisions, October 22, 2026:** The owner approved the design and authorized the local 1v1 Platform implementation. Start with right-hand slaps, alternating on accepted activation even on misses, protected contacts, or interrupted startup. Rejected requests and merely queued attacks do not consume a hand. Preserve alternation through pauses; reset to right on fresh match, respawn, sudden-death reset, or weapon change. Both hands share tuning and use mirrored boxes 3 studs wide by 4 tall, extending 0.5–4.5 studs forward from the character root at root height, offset 0.5 studs toward the attacking hand. Keep shared combat rules and use the provisional 0.10/0.08/0.16-second timing, 30/8 studs-per-second launch, 85% attack movement, and one buffer in the final 0.12 seconds. Protected contacts show a shield cue without a successful-hit effect or protection extension. Use two simple procedural foam-paddle proxies and include Paddle Pops in the existing centered staging picker.
+
+**Implementation status:** Implemented and technically verified October 22, 2026; owner gameplay acceptance remains pending. See [F7 implementation and verification](F7/F7_Implementation_and_Verification.md). F7 authorization does not authorize abilities, polishing, assets/export, or publishing.
+
 ### 7.4 Provisional weapon configuration
 
 These are illustrative starting parameters, not approved final balance. Launch targets are intended velocities in studs/second, not literal Roblox force units.
@@ -379,8 +383,8 @@ These are illustrative starting parameters, not approved final balance. Launch t
 |---|---:|---:|---:|---|
 | Startup | 0.08 s | 0.48 s | 0.10 s | Provisional |
 | Recovery | 0.32 s | 0.65 s | 0.16 s | Provisional |
-| Reach | 11 studs | 7 studs | 3.5 studs | Provisional; Spring Fist tuned after playtests |
-| Horizontal launch target | 50 | 118 | 25 | Provisional; Hammer tuned toward 20 studs of grounded idle travel on October 22, 2026 |
+| Reach | 11 studs | 7 studs | 4.5 studs | Provisional; Spring Fist tuned after playtests |
+| Horizontal launch target | 50 | 118 | 30 | Provisional; Hammer tuned toward 20 studs of grounded idle travel on October 22, 2026 |
 | Vertical launch target | 12 | 16 | 8 | Provisional |
 | Active duration | 0.10 s | 0.18 s | 0.08 s | Provisional |
 | Hitbox identity | Narrow forward | Broad frontal sweep, about 100 degrees | Compact short strike | Shapes confirmed; angle provisional |
@@ -826,7 +830,7 @@ Approved configurable prototype starting settings, not final balance or claims o
 | Respawn protection | 3 seconds | Ends before any attack/ability resolves; falls still eliminate; no stacking extension |
 | Spring Fist | Startup/active/recovery 0.08/0.10/0.32 s; reach 11 studs; launch 50 horizontal / 12 upward studs/s | Narrow balanced strike |
 | Wrecking Hammer | Startup/active/recovery 0.48/0.18/0.65 s; reach 7 studs; about 100-degree sweep; launch 118/16 studs/s, targeting approximately 20 studs horizontal travel for a grounded idle opponent | Readable windup and broad coverage; owner tuning October 22, 2026; actual travel remains physics-dependent |
-| Paddle Pops | Startup/active/recovery 0.10/0.08/0.16 s; reach 3.5 studs; launch 25/8 studs/s | Protection exceeds one attack cycle; close pressure without stun-lock |
+| Paddle Pops | Startup/active/recovery 0.10/0.08/0.16 s; reach 4.5 studs; launch 30/8 studs/s | Protection exceeds one attack cycle; close pressure without stun-lock |
 | Gust | Cooldown 8 s; range 9 studs; 60-degree cone; launch 35/6 studs/s | Multiple targets, positioning rather than attack cancellation |
 | Magnet | Cooldown 12 s; range 10 studs; 60-degree cone; pull at most 0.25 s, stop 3 studs from user | Aim-first targeting; exact pull speed tuned within limits |
 | Gust / Magnet action | Startup 0.12 s, then effect, recovery 0.20 s | Interruptible startup; no weapon overlap |

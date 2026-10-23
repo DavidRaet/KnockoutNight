@@ -59,7 +59,7 @@ end
 -- Collect before resolving: an incoming active hit cannot erase a mutual trade.
 function Fist.resolve(contacts, config)
 	table.sort(contacts, Fist.before)
-	local winners, canceled, protected = {}, {}, {}
+	local winners, canceled, protected, blocked = {}, {}, {}, {}
 	for _, contact in contacts do
 		local action, victim = contact.action, contact.victim
 		if not canceled[action] and not action.encountered[victim] then
@@ -74,10 +74,12 @@ function Fist.resolve(contacts, config)
 				if outgoing and contact.time < outgoing.started + (outgoing.config or config).Startup then
 					canceled[outgoing] = true
 				end
+			else
+				table.insert(blocked, contact)
 			end
 		end
 	end
-	return winners, canceled
+	return winners, canceled, blocked
 end
 
 return table.freeze(Fist)

@@ -2,6 +2,7 @@ local Storage = game:GetService("ReplicatedStorage")
 local Config = require(Storage.F2Config)
 local Fist = require(Storage.F2SpringFist)
 local Hammer = require(Storage.F6Hammer)
+local Paddles = require(Storage.F7Paddles)
 local Contact = {}
 
 function Contact.frame(position, aim, reach)
@@ -132,6 +133,36 @@ local function hammerSweep(probe, action, fromPosition, toPosition, first, last,
 end
 
 function Contact.sweep(probe, action, fromPosition, toPosition, first, last, excluded, victims)
+	if action.config == Paddles then
+		probe.Size = Paddles.Size
+		local walls, found, seen = params(excluded, false, true), {}, {}
+		local steps = math.max(1, math.ceil((toPosition - fromPosition).Magnitude / Config.ExposureStep))
+		local bodies = {}
+		for _, victim in victims do
+			if not action.encountered[victim] then
+				bodies[victim] = Contact.body(victim.character)
+			end
+		end
+		for step = 0, steps do
+			local alpha = step / steps
+			local time = first + (last - first) * alpha
+			if time >= action.started + Paddles.Startup + Paddles.Active then
+				break
+			end
+			local position = fromPosition:Lerp(toPosition, alpha)
+			local cf = Paddles.frame(position, action.aim, action.hand)
+			for victim, body in bodies do
+				if not seen[victim] then
+					local point = exposed(probe, cf, body, position, walls)
+					if point then
+						seen[victim] = true
+						table.insert(found, { victim = victim, time = time, point = point, frame = cf })
+					end
+				end
+			end
+		end
+		return found
+	end
 	if action.config == Hammer then
 		return hammerSweep(probe, action, fromPosition, toPosition, first, last, excluded, victims)
 	end

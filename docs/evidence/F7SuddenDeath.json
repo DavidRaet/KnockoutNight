@@ -1,0 +1,225 @@
+{
+  "date": "2026-10-22",
+  "checks": 110,
+  "result": {
+    "version": "F5",
+    "checks": [
+      "start regulation",
+      "pending regulation respawn / 1",
+      "pending regulation respawn / 2",
+      "fresh life identity / 1/1",
+      "mirrored initial spawn frozen / 1/1",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "sudden death resets Paddle starting hand",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "fresh life identity / 1/2",
+      "mirrored initial spawn frozen / 1/2",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "sudden death resets Paddle starting hand",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "tied score preserved",
+      "client agrees without project errors / countdown-1 / Player2",
+      "client agrees without project errors / countdown-1 / Player1",
+      "each mutual emits exactly one event on each client",
+      "each mutual emits exactly one event on each client",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "first sudden death commitment",
+      "committed attacker cannot attack",
+      "duplicate commitment rejected",
+      "opposing same-update commitment",
+      "fresh life identity / 2/1",
+      "mirrored initial spawn frozen / 2/1",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "sudden death resets Paddle starting hand",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "fresh life identity / 2/2",
+      "mirrored initial spawn frozen / 2/2",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "sudden death resets Paddle starting hand",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "tied score preserved",
+      "client agrees without project errors / countdown-2 / Player2",
+      "client agrees without project errors / countdown-2 / Player1",
+      "each mutual emits exactly one event on each client",
+      "mutual feed is a neutral system entry",
+      "each mutual emits exactly one event on each client",
+      "mutual feed is a neutral system entry",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "first sudden death commitment",
+      "committed attacker cannot attack",
+      "duplicate commitment rejected",
+      "opposing same-update commitment",
+      "fresh life identity / 3/1",
+      "mirrored initial spawn frozen / 3/1",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "sudden death resets Paddle starting hand",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "fresh life identity / 3/2",
+      "mirrored initial spawn frozen / 3/2",
+      "old motion cleared",
+      "old timer/protection cleared",
+      "old action/effects cleared",
+      "sudden death preserves chosen weapon",
+      "sudden death resets Paddle starting hand",
+      "old request rejected during countdown",
+      "old life callback rejected",
+      "fresh request also blocked during countdown",
+      "tied score preserved",
+      "client agrees without project errors / countdown-3 / Player2",
+      "client agrees without project errors / countdown-3 / Player1",
+      "each mutual emits exactly one event on each client",
+      "mutual feed is a neutral system entry",
+      "each mutual emits exactly one event on each client",
+      "mutual feed is a neutral system entry",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "GO unlocks movement",
+      "fresh combat ready after GO",
+      "first sudden death commitment",
+      "committed attacker cannot attack",
+      "duplicate commitment rejected",
+      "decisive result preserves regulation tie",
+      "client agrees without project errors / decisive / Player2",
+      "client agrees without project errors / decisive / Player1",
+      "one attributed decisive feed; no ordinary respawn promise",
+      "one attributed decisive feed; no ordinary respawn promise"
+    ],
+    "snapshots": {
+      "Player1": {
+        "errors": [],
+        "respawnVisible": false,
+        "snapshot": "{\"revision\":13,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792709740.69956,\"result\":{\"scores\":[1,1],\"outcome\":\"sudden-death\",\"winner\":2,\"session\":1,\"returnAt\":1792709748.918473},\"phase\":\"results\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792709740.687566}",
+        "resultsVisible": true,
+        "hudOverlap": false,
+        "timer": "MATCH ENDED",
+        "eliminations": [
+          {
+            "at": 1792709729.585677,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "fixture"
+          },
+          {
+            "at": 1792709729.586144,
+            "victim": "Player1",
+            "session": 1,
+            "reason": "fixture"
+          },
+          {
+            "at": 1792709734.618651,
+            "session": 1,
+            "system": "DOUBLE KO — sudden death resets."
+          },
+          {
+            "at": 1792709737.669851,
+            "session": 1,
+            "system": "DOUBLE KO — sudden death resets."
+          },
+          {
+            "at": 1792709740.716816,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "fixture"
+          }
+        ],
+        "tag": "decisive",
+        "viewport": [
+          1607,
+          873
+        ],
+        "feed": [
+          "DOUBLE KO — sudden death resets.",
+          "Player2 fell out"
+        ],
+        "engineErrors": [
+          "Players.Player1.PlayerScripts.ChatScript:116: Error calling SetCore CoreGuiChatConnections: SetCore: CoreGuiChatConnections has not been registered by the CoreScripts"
+        ],
+        "results": "Player1 wins\nsudden-death\nPlayer2  1 — 1  Player1"
+      },
+      "Player2": {
+        "errors": [],
+        "respawnVisible": false,
+        "snapshot": "{\"revision\":13,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792709740.69956,\"result\":{\"scores\":[1,1],\"outcome\":\"sudden-death\",\"winner\":2,\"session\":1,\"returnAt\":1792709748.918473},\"phase\":\"results\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":2},\"session\":1,\"goAt\":1792709740.687566}",
+        "resultsVisible": true,
+        "hudOverlap": false,
+        "timer": "MATCH ENDED",
+        "eliminations": [
+          {
+            "at": 1792709729.585677,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "fixture"
+          },
+          {
+            "at": 1792709729.586144,
+            "victim": "Player1",
+            "session": 1,
+            "reason": "fixture"
+          },
+          {
+            "at": 1792709734.618651,
+            "session": 1,
+            "system": "DOUBLE KO — sudden death resets."
+          },
+          {
+            "at": 1792709737.669851,
+            "session": 1,
+            "system": "DOUBLE KO — sudden death resets."
+          },
+          {
+            "at": 1792709740.716816,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "fixture"
+          }
+        ],
+        "tag": "decisive",
+        "viewport": [
+          1607,
+          873
+        ],
+        "feed": [
+          "DOUBLE KO — sudden death resets.",
+          "Player2 fell out"
+        ],
+        "engineErrors": [
+          "Players.Player2.PlayerScripts.ChatScript:116: Error calling SetCore CoreGuiChatConnections: SetCore: CoreGuiChatConnections has not been registered by the CoreScripts"
+        ],
+        "results": "Player1 wins\nsudden-death\nPlayer2  1 — 1  Player1"
+      }
+    },
+    "passed": true,
+    "scenario": "rounds"
+  }
+}

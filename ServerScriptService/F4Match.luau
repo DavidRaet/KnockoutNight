@@ -51,7 +51,7 @@ function Match.chooseWeapon(player, weapon)
 		or player.Parent ~= Players
 		or not Match.canJoin()
 		or player:GetAttribute("F3Status") ~= "waiting"
-		or (weapon ~= "SpringFist" and weapon ~= "WreckingHammer")
+		or (weapon ~= "SpringFist" and weapon ~= "WreckingHammer" and weapon ~= "PaddlePops")
 	then
 		return false
 	end

@@ -64,7 +64,10 @@ function Lives.hit(victim, attacker, at, weapon)
 		state.lastHit = {
 			name = attacker.DisplayName,
 			at = at,
-			weapon = if weapon == "WreckingHammer" then "Wrecking Hammer" else "Spring Fist",
+			weapon = if weapon == "WreckingHammer"
+				then "Wrecking Hammer"
+				elseif weapon == "PaddlePops" then "Paddle Pops"
+				else "Spring Fist",
 		}
 	end
 end

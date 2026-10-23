@@ -109,6 +109,7 @@ local function remove(player, reason)
 	state.character:SetAttribute("F2Generation", nil)
 	state.character:SetAttribute("F2Equipped", nil)
 	state.character:SetAttribute("F2Weapon", nil)
+	state.character:SetAttribute("F7NextHand", nil)
 end
 
 function Combat.retire(player, reason)
@@ -124,6 +125,11 @@ local function startAction(state, sequence, now)
 	local config = Weapons[state.weapon]
 	state.action =
 		{ id = actionId, sequence = sequence, started = now, aim = state.aim, encountered = {}, config = config }
+	if config == Weapons.PaddlePops then
+		state.action.hand = state.nextHand
+		state.nextHand = Weapons.PaddlePops.other(state.nextHand)
+		state.character:SetAttribute("F7NextHand", state.nextHand)
+	end
 	state.buffer = nil
 	emit("accepted", state, {
 		id = actionId,
@@ -131,6 +137,7 @@ local function startAction(state, sequence, now)
 		started = now,
 		aim = state.aim,
 		weapon = state.weapon,
+		hand = state.action.hand,
 		activeAt = now + config.Startup,
 		recoveryAt = now + config.Startup + config.Active,
 		endsAt = now + config.Duration,
@@ -298,6 +305,7 @@ local function addCharacter(player, character)
 		root = root,
 		generation = generation,
 		weapon = Weapons.forPlayer(player),
+		nextHand = "Right",
 		connections = {},
 		sequence = 0,
 		aim = Vector3.new(0, 0, -1),
@@ -320,6 +328,7 @@ local function addCharacter(player, character)
 	}
 	states[player] = state
 	character:SetAttribute("F2Weapon", state.weapon)
+	character:SetAttribute("F7NextHand", state.nextHand)
 	character:SetAttribute("F2Equipped", true)
 	character:SetAttribute("F2Generation", generation)
 	root:SetAttribute("F2Generation", generation)
@@ -342,6 +351,8 @@ local function addCharacter(player, character)
 			generation += 1
 			state.generation = generation
 			state.sequence = 0
+			state.nextHand = "Right"
+			character:SetAttribute("F7NextHand", state.nextHand)
 			character:SetAttribute("F2Generation", generation)
 			root:SetAttribute("F2Generation", generation)
 			permissions(state, workspace:GetServerTimeNow())
@@ -511,7 +522,12 @@ function Combat.step(dt)
 		state.previousPosition, state.previousTime = root.Position, now
 		state.previousVerticalSpeed = math.abs(root.AssemblyLinearVelocity.Y)
 	end
-	local winners, canceled = Fist.resolve(contacts, Config)
+	local winners, canceled, blocked = Fist.resolve(contacts, Config)
+	for _, contact in blocked do
+		if contact.action.config == Weapons.PaddlePops then
+			emit("shield", contact.victim, { actionId = contact.action.id, point = contact.point })
+		end
+	end
 	for _, contact in winners do
 		local victim = contact.victim
 		victim.buffer = nil

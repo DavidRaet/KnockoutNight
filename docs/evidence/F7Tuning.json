@@ -1,0 +1,160 @@
+{
+  "date": "2026-10-22",
+  "forwardReach": 4.5,
+  "launchSpeed": 30,
+  "launchUp": 8,
+  "integrationAssertions": 55,
+  "geometry": {
+    "PaddlePops": 32,
+    "WreckingHammer": 27,
+    "SpringFist": 20
+  },
+  "result": {
+    "checks": [
+      "F7ContactSpec: 32 geometry checks passed",
+      "F6ContactSpec: 27 geometry checks passed",
+      "F2ContactSpec: 20 geometry checks passed",
+      "invalid choices rejected",
+      "opponent selects Hammer",
+      "three-choice picker visible: Player2",
+      "three-choice picker visible: Player1",
+      "picker confirms authoritative choice",
+      "Platform match starts",
+      "countdown locks weapon selection",
+      "fresh match preserves weapon and starts right",
+      "Paddles retain ordinary base speed",
+      "first Paddle activation accepted",
+      "accepted right slap advances hand",
+      "85 percent attack movement and no jump",
+      "rejected input does not advance hand",
+      "miss completes once and preserves next hand",
+      "second activation uses left",
+      "third activation begins",
+      "buffer queues without consuming hand",
+      "buffer produces exactly one extra slap",
+      "weapon cleanup scenario starts",
+      "weapon change clears Paddle action",
+      "stale generation rejected",
+      "weapon re-equip resets right",
+      "Paddles versus Hammer startup begins",
+      "server-owned replacement launch is exactly 30/8",
+      "Paddle hit interrupts unarmored Hammer startup",
+      "victim cannot attack during hit reaction",
+      "defender can start a response while displacement protection is still active",
+      "low launch restores motor and ends displacement",
+      "low launch returns network ownership",
+      "defender can respond after launch recovery",
+      "Paddle ring-out credit commits",
+      "fresh victim has spawn shield",
+      "Paddle contact against shield begins",
+      "protected contact causes no displacement or protection extension",
+      "protected slap still consumes right hand",
+      "mixed fast startup begins",
+      "Paddles have no startup armor",
+      "interrupted startup still consumes hand",
+      "elimination cleanup starts with Paddle action",
+      "Paddle owner elimination commits",
+      "elimination retires Paddle transient state",
+      "respawn preserves weapon and resets right",
+      "no project client errors: Player1",
+      "picker hides during match: Player1",
+      "client observes both authoritative hands: Player1",
+      "client renders both foam paddles: Player1",
+      "protected contact cue reaches and renders on client: Player1",
+      "feed credits Paddle Pops: Player1",
+      "no project client errors: Player2",
+      "picker hides during match: Player2",
+      "client observes both authoritative hands: Player2",
+      "client renders both foam paddles: Player2",
+      "protected contact cue reaches and renders on client: Player2",
+      "feed credits Paddle Pops: Player2",
+      "no server script errors"
+    ],
+    "snapshots": {
+      "Player1": {
+        "shields": 1,
+        "errors": [],
+        "hasPaddles": true,
+        "visualHands": {
+          "Left": true,
+          "Right": true
+        },
+        "eliminations": [
+          {
+            "at": 1792711224.221246,
+            "victim": "Player1",
+            "session": 1,
+            "reason": "F7-attribution",
+            "attacker": "Player2",
+            "weapon": "Paddle Pops"
+          },
+          {
+            "at": 1792711231.004146,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "F7-cleanup",
+            "attacker": "Player1",
+            "weapon": "Spring Fist"
+          }
+        ],
+        "shieldVisual": true,
+        "hands": {
+          "Left": true,
+          "Right": true
+        },
+        "pickerVisible": false,
+        "engineErrors": [
+          "Players.Player1.PlayerScripts.ChatScript:116: Error calling SetCore CoreGuiChatConnections: SetCore: CoreGuiChatConnections has not been registered by the CoreScripts"
+        ],
+        "selected": "Paddle Pops"
+      },
+      "Player2": {
+        "shields": 1,
+        "errors": [],
+        "hasPaddles": true,
+        "visualHands": {
+          "Left": true,
+          "Right": true
+        },
+        "eliminations": [
+          {
+            "at": 1792711224.221246,
+            "victim": "Player1",
+            "session": 1,
+            "reason": "F7-attribution",
+            "attacker": "Player2",
+            "weapon": "Paddle Pops"
+          },
+          {
+            "at": 1792711231.004146,
+            "victim": "Player2",
+            "session": 1,
+            "reason": "F7-cleanup",
+            "attacker": "Player1",
+            "weapon": "Spring Fist"
+          }
+        ],
+        "shieldVisual": true,
+        "hands": {
+          "Left": true,
+          "Right": true
+        },
+        "pickerVisible": false,
+        "engineErrors": [
+          "Players.Player2.PlayerScripts.ChatScript:116: Error calling SetCore CoreGuiChatConnections: SetCore: CoreGuiChatConnections has not been registered by the CoreScripts"
+        ],
+        "selected": "Selected: Paddle Pops"
+      }
+    },
+    "launches": [
+      {
+        "y": 8,
+        "x": 30,
+        "z": 0,
+        "serverOwned": true
+      }
+    ],
+    "passed": true,
+    "errors": []
+  }
+}
