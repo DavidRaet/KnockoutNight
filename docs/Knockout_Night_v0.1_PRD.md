@@ -127,7 +127,7 @@ All three maps and both modes belong to the complete beta scope. The Platform an
 - No ability cancels the user's weapon action. After an enemy hit interrupts that action, Bounce may activate during ordinary knockback. Gust/Magnet cannot activate during the brief hit reaction.
 - Gust/Magnet work grounded or airborne without lift/hover, have startup and recovery, cannot overlap weapon attacks, and initially have no input buffer. Bounce launches immediately when valid, with a short primary-attack delay.
 - Start cooldown on accepted activation, even on a miss. Rejected requests spend nothing. Weapon hits interrupt Gust/Magnet startup: spent cooldown remains spent, and an interrupted startup produces no effect. Already applied effects are not undone.
-- Gust pushes multiple eligible enemies in a frontal cone without canceling their attacks. Respect solid geometry and displacement protection.
+- Gust pushes multiple eligible enemies in a frontal cone and applies a 0.25-second stun that blocks new actions and interrupts startup. Attacks already active retain the shared trade rules. Respect solid geometry and displacement protection. Owner tuning revision, October 22, 2026; replaces the initial no-attack-cancellation rule.
 - Magnet selects one eligible enemy in a frontal cone, prioritizing aim alignment, then distance. Require a clear path; exclude protected targets. No eligible target means a miss that spends cooldown. Pull briefly, stopping short of the user; the target can attack.
 - Magnet grants displacement protection at pull start until the later of pull completion or the ordinary protection deadline. Weapon follow-ups must wait for protection to expire; no guaranteed immediate launch combo.
 - Bounce alone provides upward recovery. Keep Gust/Magnet viable through offensive positioning value; frequent compulsory Bounce selection is a balance failure to investigate.
@@ -405,9 +405,9 @@ Attack cycles include startup, active duration, and recovery; DD02 defines input
 
 Use it to disrupt approaches, create distance, or move opponents toward an edge. It must not automatically cancel every opposing attack.
 
-**Resolved:** Gust displaces without canceling attacks, respects geometry/protection, and can hit multiple enemies. DD03 defines action rules; section 17 supplies starting values.
+**Resolved:** Gust displaces and briefly stuns eligible enemies, interrupts startup, respects geometry/protection, and can hit multiple enemies. Active attacks retain shared trade rules. DD03 defines action rules; section 17 supplies current prototype values.
 
-**Acceptance:** Visual wind origin and frontal gameplay hitbox communicate the same direction. Enemies inside the approved cone receive the intended push; allies do not. Gust does not become a universal attack cancel.
+**Acceptance:** Visual wind origin and frontal gameplay hitbox communicate the same direction. Enemies inside the approved cone receive the intended push; allies do not. Gust interrupts startup and blocks immediate new actions for 0.25 seconds; attacks already active remain valid under shared trade rules.
 
 ### 8.2 Magnet
 
@@ -831,7 +831,7 @@ Approved configurable prototype starting settings, not final balance or claims o
 | Spring Fist | Startup/active/recovery 0.08/0.10/0.32 s; reach 11 studs; launch 50 horizontal / 12 upward studs/s | Narrow balanced strike |
 | Wrecking Hammer | Startup/active/recovery 0.48/0.18/0.65 s; reach 7 studs; about 100-degree sweep; launch 118/16 studs/s, targeting approximately 20 studs horizontal travel for a grounded idle opponent | Readable windup and broad coverage; owner tuning October 22, 2026; actual travel remains physics-dependent |
 | Paddle Pops | Startup/active/recovery 0.10/0.08/0.16 s; reach 4.5 studs; launch 30/8 studs/s | Protection exceeds one attack cycle; close pressure without stun-lock |
-| Gust | Cooldown 8 s; range 9 studs; 60-degree cone; launch 35/6 studs/s | Multiple targets, positioning rather than attack cancellation |
+| Gust | Cooldown 15 s; range 12 studs; 60-degree cone; launch 35/6 studs/s; stun 0.25 s | Multiple targets; stun blocks new actions and interrupts startup, active attacks retain trade rules; owner tuning October 22, 2026 |
 | Magnet | Cooldown 12 s; range 10 studs; 60-degree cone; pull at most 0.25 s, stop 3 studs from user | Aim-first targeting; exact pull speed tuned within limits |
 | Gust / Magnet action | Startup 0.12 s, then effect, recovery 0.20 s | Interruptible startup; no weapon overlap |
 | Bounce | Cooldown 10 s; replacement launch 32 horizontal / 60 upward studs/s; no horizontal input means no horizontal launch | Predictable but fallible recovery; input magnitude response tuned in prototype |

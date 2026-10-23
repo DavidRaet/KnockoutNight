@@ -140,6 +140,13 @@ Actions:BindActionAtPriority("F2Attack", function(_, state)
 	return if controlsEnabled() then Enum.ContextActionResult.Sink else Enum.ContextActionResult.Pass
 end, false, Enum.ContextActionPriority.High.Value, Enum.UserInputType.MouseButton1)
 
+Actions:BindActionAtPriority("F8Gust", function(_, state)
+	if state == Enum.UserInputState.Begin and controlsEnabled() and character then
+		Combat.gust(character, CFrame.Angles(0, yaw, 0).LookVector)
+	end
+	return if controlsEnabled() then Enum.ContextActionResult.Sink else Enum.ContextActionResult.Pass
+end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.Q)
+
 Actions:BindActionAtPriority("F1Movement", function(_, state, input)
 	if state == Enum.UserInputState.End then
 		held[input.KeyCode] = nil
@@ -234,7 +241,8 @@ connect(RunService.PreSimulation, function(dt)
 	local moveScale, canJump, committedAim = Combat.permissions(character)
 	local serverAim = currentRoot:GetAttribute("F2ActionAim")
 	if now < (currentRoot:GetAttribute("F2ActionUntil") or 0) and typeof(serverAim) == "Vector3" then
-		moveScale, canJump = 0.7, false
+		moveScale, canJump = Combat.permissions(character)
+		canJump = false
 		committedAim = serverAim
 	end
 	currentHumanoid.WalkSpeed = Config.WalkSpeed * moveScale
@@ -299,6 +307,7 @@ script.Destroying:Connect(function()
 	Actions:UnbindAction("F1Movement")
 	Actions:UnbindAction("F1Jump")
 	Actions:UnbindAction("F2Attack")
+	Actions:UnbindAction("F8Gust")
 	RunService:UnbindFromRenderStep("F1Camera")
 	defaultControls:Enable()
 	Input.MouseBehavior = Enum.MouseBehavior.Default

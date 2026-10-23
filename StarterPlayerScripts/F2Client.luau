@@ -4,6 +4,8 @@ local RunService = game:GetService("RunService")
 local Config = require(Storage:WaitForChild("F2Config", 10))
 local Fist = require(Storage:WaitForChild("F2SpringFist", 10))
 local Weapons = require(Storage:WaitForChild("F2Weapons", 10))
+local Gust = require(Storage:WaitForChild("F8Gust", 10))
+local Debris = game:GetService("Debris")
 local Hammer = Weapons.WreckingHammer
 local Paddles = Weapons.PaddlePops
 local remote = Storage:WaitForChild("F2Combat", 10)
@@ -80,6 +82,47 @@ local function recordFor(character)
 	return record
 end
 
+local hud = Instance.new("ScreenGui")
+hud.Name, hud.ResetOnSpawn, hud.Parent = "F8HUD", false, player:WaitForChild("PlayerGui")
+local status = Instance.new("TextLabel")
+status.Name, status.Size, status.Position = "GustStatus", UDim2.fromOffset(260, 32), UDim2.new(0.5, -130, 1, -60)
+status.BackgroundTransparency, status.TextSize, status.TextColor3 = 0.35, 18, Color3.new(1, 1, 1)
+status.Parent = hud
+local rejectionUntil, rejection = 0, ""
+
+local function gustCue(record, origin, aim, burst)
+	local base = CFrame.lookAt(origin, origin + aim)
+	for i = -2, 2 do
+		local p = part(if burst then "GustBurst" else "GustAccepted", Vector3.new(0.10, 0.10, if burst then 2 else 0.5))
+		p.Color, p.Transparency = Color3.fromRGB(170, 240, 255), 0.3
+		local direction = (base * CFrame.Angles(0, math.rad(i * Gust.Cone / 4), 0)).LookVector
+		local start = origin - aim * (if burst then 1 else 0.5)
+		p.CFrame = CFrame.lookAt(start, start + direction)
+		record.parts["gust" .. i] = p
+		game:GetService("TweenService")
+			:Create(p, TweenInfo.new(0.18), {
+				CFrame = CFrame.lookAt(origin + direction * Gust.Range, origin + direction * (Gust.Range + 1)),
+				Transparency = 1,
+			})
+			:Play()
+		Debris:AddItem(p, 0.22)
+	end
+	if burst then
+		local sound = Instance.new("Sound")
+		sound.SoundId, sound.Volume, sound.PlaybackSpeed = "rbxasset://sounds/action_falling.ogg", 0.3, 1.3
+		sound.Parent = record.parts.gust0
+		sound:Play()
+	end
+end
+
+function Client.gust(character, aim)
+	local record = recordFor(character)
+	if record then
+		sequence += 1
+		remote:FireServer("gust", record.generation, sequence, aim)
+	end
+end
+
 function Client.press(character, aim)
 	local record = recordFor(character)
 	if not record then
@@ -91,7 +134,10 @@ function Client.press(character, aim)
 	local config = record.config
 	if not record.action then
 		record.action = { sequence = sequence, started = now, aim = aim, predicted = true, hand = record.nextHand }
-	elseif Fist.canBuffer(now - record.action.started, record.buffer ~= nil, false, config) then
+	elseif
+		record.action.config ~= Gust
+		and Fist.canBuffer(now - record.action.started, record.buffer ~= nil, false, config)
+	then
 		record.buffer = { sequence = sequence, startsAt = record.action.started + config.Duration }
 	end
 end
@@ -100,8 +146,8 @@ function Client.permissions(character)
 	local record = records[character]
 	local action = record and record.action
 	local now = workspace:GetServerTimeNow()
-	if action and now < action.started + record.config.Duration then
-		return record.config.MoveScale, false, action.aim
+	if action and now < action.started + (action.config or record.config).Duration then
+		return (action.config or record.config).MoveScale, false, action.aim
 	end
 	return 1, true, nil
 end
@@ -176,8 +222,17 @@ table.insert(
 				player:SetAttribute("F2PredictionMismatchMs", (data.started - record.action.started) * 1000)
 				player:SetAttribute("F2AcceptanceAgeMs", (workspace:GetServerTimeNow() - data.started) * 1000)
 			end
-			record.action =
-				{ id = data.id, sequence = data.sequence, started = data.started, aim = data.aim, hand = data.hand }
+			record.action = {
+				id = data.id,
+				sequence = data.sequence,
+				started = data.started,
+				aim = data.aim,
+				hand = data.hand,
+				config = if data.ability == "Gust" then Gust else record.config,
+			}
+			if data.ability == "Gust" then
+				gustCue(record, character.HumanoidRootPart.Position, data.aim, false)
+			end
 			if data.hand then
 				record.nextHand = Paddles.other(data.hand)
 			end
@@ -186,7 +241,12 @@ table.insert(
 			end
 		elseif kind == "buffered" then
 			record.buffer = { sequence = data.sequence, startsAt = data.startsAt }
+		elseif kind == "gust-burst" then
+			gustCue(record, data.origin, data.aim, true)
 		elseif kind == "rejected" then
+			if data.ability == "Gust" then
+				rejection, rejectionUntil = "Gust: " .. data.reason, workspace:GetServerTimeNow() + 0.8
+			end
 			if record.action and record.action.sequence == data.sequence then
 				record.action = nil
 			end
@@ -237,6 +297,12 @@ table.insert(
 	connections,
 	RunService.RenderStepped:Connect(function()
 		local now = workspace:GetServerTimeNow()
+		local remaining = math.max(0, (player:GetAttribute("F8ReadyAt") or 0) - now)
+		status.Text = if now < rejectionUntil
+			then rejection
+			elseif remaining > 0 then string.format("Q Gust: %.1fs", remaining)
+			else "Q Gust: Ready"
+		hud.Enabled = player:GetAttribute("F3Status") == "alive"
 		for _, other in Players:GetPlayers() do
 			if other.Character then
 				recordFor(other.Character)
@@ -258,7 +324,7 @@ table.insert(
 			end
 			local config = record.config
 			local action = record.action
-			if action and now >= action.started + config.Duration then
+			if action and now >= action.started + (action.config or config).Duration then
 				record.action = nil
 				action = nil
 			end
@@ -284,7 +350,7 @@ table.insert(
 				end
 			end
 			local age = if action then now - action.started else 0
-			local phase = if action then Fist.phase(age, config) else nil
+			local phase = if action and action.config ~= Gust then Fist.phase(age, config) else nil
 			local reach = 0.6
 			if phase == "active" then
 				reach = Fist.reach(age, Config)
@@ -308,7 +374,11 @@ table.insert(
 			elseif (root:GetAttribute("F2ProtectionUntil") or 0) > now then
 				color = Color3.fromRGB(80, 230, 255)
 			end
-			for _, p in record.parts do
+			for key, p in record.parts do
+				if not p.Parent then
+					record.parts[key] = nil
+					continue
+				end
 				p.Color = color
 			end
 			if record.parts.shield then
@@ -394,6 +464,7 @@ function Client.stop()
 		clear(character)
 	end
 	folder:Destroy()
+	hud:Destroy()
 	player:SetAttribute("F2IntendedAim", nil)
 	for _, name in { "F2PredictionMismatchMs", "F2AcceptanceAgeMs", "F2ImpactDelayMs" } do
 		player:SetAttribute(name, nil)

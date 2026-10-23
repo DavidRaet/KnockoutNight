@@ -3,6 +3,7 @@ local Config = require(Storage.F2Config)
 local Fist = require(Storage.F2SpringFist)
 local Hammer = require(Storage.F6Hammer)
 local Paddles = require(Storage.F7Paddles)
+local Gust = require(Storage.F8Gust)
 local Contact = {}
 
 function Contact.frame(position, aim, reach)
@@ -222,6 +223,37 @@ function Contact.sweep(probe, action, fromPosition, toPosition, first, last, exc
 	end
 	action.stoppedReach = firstReach + (lastReach - firstReach) * stop
 	return found
+end
+
+-- Horizontal root cone with actual R15 body overlap in the five-stud-high burst.
+function Contact.gust(origin, aim, victim, excluded)
+	local delta = victim.root.Position - origin
+	if not Gust.contains(delta.X, delta.Z, aim.X, aim.Z) then
+		return nil
+	end
+	local walls = params(excluded, false, true)
+	for _, body in Contact.body(victim.character) do
+		local cf, half = body.CFrame, body.Size / 2
+		local extent = math.abs(cf.RightVector.Y) * half.X
+			+ math.abs(cf.UpVector.Y) * half.Y
+			+ math.abs(cf.LookVector.Y) * half.Z
+		if
+			body.Position.Y + extent >= origin.Y - Gust.Height / 2
+			and body.Position.Y - extent <= origin.Y + Gust.Height / 2
+		then
+			local point = body:GetClosestPointOnSurface(
+				Vector3.new(
+					origin.X,
+					math.clamp(body.Position.Y, origin.Y - Gust.Height / 2, origin.Y + Gust.Height / 2),
+					origin.Z
+				)
+			)
+			if not workspace:Raycast(origin, point - origin, walls) then
+				return point
+			end
+		end
+	end
+	return nil
 end
 
 return Contact

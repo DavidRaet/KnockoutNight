@@ -1,6 +1,8 @@
 local Players = game:GetService("Players")
 local Storage = game:GetService("ReplicatedStorage")
 local Config = require(Storage.F2Config)
+local Gust = require(Storage.F8Gust)
+local cooldowns = {}
 local Weapons = require(Storage.F2Weapons)
 local F1 = require(Storage.F1Config)
 local Fist = require(Storage.F2SpringFist)
@@ -113,16 +115,24 @@ local function remove(player, reason)
 end
 
 function Combat.retire(player, reason)
+	if reason == "fresh-match" then
+		cooldowns[player] = nil
+		player:SetAttribute("F8ReadyAt", nil)
+	end
 	remove(player, reason)
 end
 
-local function startAction(state, sequence, now)
+local function startAction(state, sequence, now, ability)
 	if lifeOwner then
 		lifeOwner.endProtection(state.player)
 		state.spawnProtectionUntil = 0
 	end
 	actionId += 1
-	local config = Weapons[state.weapon]
+	local config = if ability then Gust else Weapons[state.weapon]
+	if ability then
+		cooldowns[state.player] = now + Gust.Cooldown
+		state.player:SetAttribute("F8ReadyAt", cooldowns[state.player])
+	end
 	state.action =
 		{ id = actionId, sequence = sequence, started = now, aim = state.aim, encountered = {}, config = config }
 	if config == Weapons.PaddlePops then
@@ -137,6 +147,7 @@ local function startAction(state, sequence, now)
 		started = now,
 		aim = state.aim,
 		weapon = state.weapon,
+		ability = if ability then "Gust" else nil,
 		hand = state.action.hand,
 		activeAt = now + config.Startup,
 		recoveryAt = now + config.Startup + config.Active,
@@ -185,7 +196,7 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 		return true
 	end
 	if
-		kind ~= "press"
+		(kind ~= "press" and kind ~= "gust")
 		or type(sequence) ~= "number"
 		or not Physics.finite(sequence)
 		or sequence % 1 ~= 0
@@ -196,11 +207,13 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 	end
 	state.sequence = sequence
 	local function reject(reason)
-		remote:FireClient(
-			player,
-			"rejected",
-			{ character = state.character, generation = gen, sequence = sequence, reason = reason }
-		)
+		remote:FireClient(player, "rejected", {
+			character = state.character,
+			generation = gen,
+			sequence = sequence,
+			reason = reason,
+			ability = if kind == "gust" then "Gust" else nil,
+		})
 		return false
 	end
 	if now - state.lastPress < Config.InputInterval then
@@ -208,12 +221,25 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 	end
 	state.lastPress = now
 	state.aim = aim
-	local restricted = state.displacement ~= nil or now < state.reactionUntil
+	local restricted = now < state.reactionUntil or (state.displacement ~= nil and kind ~= "gust")
 	if restricted then
 		return reject("hit-recovery")
 	end
+	if kind == "gust" then
+		if state.action then
+			return reject("busy")
+		end
+		if now < (cooldowns[player] or 0) then
+			return reject("cooldown")
+		end
+		startAction(state, sequence, now, true)
+		return true
+	end
 	if state.action then
-		if Fist.canBuffer(now - state.action.started, state.buffer ~= nil, restricted, state.action.config) then
+		if
+			state.action.config ~= Gust
+			and Fist.canBuffer(now - state.action.started, state.buffer ~= nil, restricted, state.action.config)
+		then
 			state.buffer = sequence
 			remote:FireClient(player, "buffered", {
 				character = state.character,
@@ -263,10 +289,16 @@ local function launch(contact, now, excluded)
 	state.root:SetAttribute("F2Displaced", state.displacementId)
 	state.humanoid.EvaluateStateMachine = false
 	state.root.AssemblyLinearVelocity = action.aim * config.LaunchSpeed + Vector3.yAxis * config.LaunchUp
-	state.reactionUntil, state.protectionUntil = contact.time + Config.Reaction, contact.time + Config.Protection
+	state.reactionUntil, state.protectionUntil =
+		contact.time + (config.Reaction or Config.Reaction), contact.time + Config.Protection
 	state.buffer = nil
 	if lifeOwner then
-		lifeOwner.hit(state.player, contact.attacker.player, contact.time, contact.attacker.weapon)
+		lifeOwner.hit(
+			state.player,
+			contact.attacker.player,
+			contact.time,
+			if config == Gust then "Gust" else contact.attacker.weapon
+		)
 	end
 	emit("hit", state, {
 		attacker = contact.attacker.character,
@@ -488,6 +520,31 @@ function Combat.step(dt)
 		local action = state.action
 		if action then
 			local first, last = Fist.segment(action.started, state.previousTime, now, action.config)
+			if action.config == Gust then
+				first, last = nil, nil
+				if not action.applied and now >= action.started + Gust.Startup then
+					action.applied = true
+					action.burstOrigin = root.Position
+					for _, other in states do
+						if
+							other ~= state
+							and valid(other)
+							and (player.Neutral or other.player.Neutral or player.Team ~= other.player.Team)
+						then
+							local point = Contact.gust(root.Position, action.aim, other, excluded)
+							if point then
+								table.insert(contacts, {
+									attacker = state,
+									action = action,
+									victim = other,
+									point = point,
+									time = action.started + Gust.Startup,
+								})
+							end
+						end
+					end
+				end
+			end
 			if first then
 				local duration = now - state.previousTime
 				local function positionAt(t)
@@ -538,6 +595,10 @@ function Combat.step(dt)
 	end
 	for _, state in states do
 		local action = state.action
+		if action and action.burstOrigin then
+			emit("gust-burst", state, { id = action.id, aim = action.aim, origin = action.burstOrigin })
+			action.burstOrigin = nil
+		end
 		if action and now >= action.started + action.config.Duration then
 			state.action = nil
 			local buffered = state.buffer
@@ -576,6 +637,8 @@ function Combat.start(lives)
 		connections,
 		Players.PlayerRemoving:Connect(function(player)
 			remove(player, "departure")
+			cooldowns[player] = nil
+			player:SetAttribute("F8ReadyAt", nil)
 			for _, connection in playerConnections[player] or {} do
 				connection:Disconnect()
 			end
@@ -588,6 +651,10 @@ function Combat.start(lives)
 end
 
 function Combat.stop()
+	for player in cooldowns do
+		player:SetAttribute("F8ReadyAt", nil)
+	end
+	table.clear(cooldowns)
 	for player in states do
 		remove(player, "shutdown")
 	end

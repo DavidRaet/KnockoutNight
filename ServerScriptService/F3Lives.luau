@@ -66,6 +66,7 @@ function Lives.hit(victim, attacker, at, weapon)
 			at = at,
 			weapon = if weapon == "WreckingHammer"
 				then "Wrecking Hammer"
+				elseif weapon == "Gust" then "Gust"
 				elseif weapon == "PaddlePops" then "Paddle Pops"
 				else "Spring Fist",
 		}
