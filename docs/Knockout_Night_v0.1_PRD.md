@@ -124,7 +124,7 @@ All three maps and both modes belong to the complete beta scope. The Platform an
 
 #### DD03 Shared abilities, Gust, and Magnet (Q8, Q17-Q22, Q60, Q64-Q65, Q67, Q72-Q73)
 
-- No ability cancels the user's weapon action. After an enemy hit interrupts that action, Bounce may activate during ordinary knockback. Gust/Magnet cannot activate during the brief hit reaction.
+- No ability cancels the user's weapon action. After an enemy hit interrupts that action, Bounce may activate during ordinary knockback, including its weapon-hit reaction. Gust's 0.25-second stun blocks Bounce. Gust/Magnet cannot activate during the brief hit reaction.
 - Gust/Magnet work grounded or airborne without lift/hover, have startup and recovery, cannot overlap weapon attacks, and initially have no input buffer. Bounce launches immediately when valid, with a short primary-attack delay.
 - Start cooldown on accepted activation, even on a miss. Rejected requests spend nothing. Weapon hits interrupt Gust/Magnet startup: spent cooldown remains spent, and an interrupted startup produces no effect. Already applied effects are not undone.
 - Gust pushes multiple eligible enemies in a frontal cone and applies a 0.25-second stun that blocks new actions and interrupts startup. Attacks already active retain the shared trade rules. Respect solid geometry and displacement protection. Owner tuning revision, October 22, 2026; replaces the initial no-attack-cancellation rule.
@@ -134,7 +134,7 @@ All three maps and both modes belong to the complete beta scope. The Platform an
 
 #### DD04 Bounce and Aerial Ground Slam (Q18-Q19, Q23-Q27, Q35, Q59, Q67, Q74)
 
-- Bounce replaces current velocity. Camera-relative movement input determines horizontal direction; no input means straight up. After launch use ordinary airborne steering. One activation per cooldown, no unlimited flight.
+- Bounce replaces current velocity. Camera-relative movement input determines horizontal direction; no input means straight up. After launch use ordinary airborne steering. Bounce can end an incoming Magnet pull, grants no new protection or armor, retains existing enemy-hit protection, and does not clear enemy knockout attribution. One activation per cooldown, no unlimited flight.
 - Hammer plus Bounce unlocks one slam opportunity until landing, a weapon hit, or elimination. The first primary attack during eligible flight becomes Ground Slam; ordinary jumping does not unlock it.
 - Raise the Hammer in a brief telegraph, then accelerate downward with very limited horizontal steering and retained horizontal momentum. No hovering or added upward boost.
 - Once activated, the slam resists interruption through descent, but weapons, Gust, and Magnet can displace it. After an incoming weapon launch's brief reaction, resume descent on the redirected trajectory without replaying windup or granting another Bounce.
@@ -417,7 +417,7 @@ Use it to punish misses, close distance, or set up a weapon attack.
 
 **Resolved:** DD03 defines aim-first single targeting, obstruction, stop distance, response permissions, and pull protection. Approved F9 settings: 12-second cooldown; 20-stud horizontal root range; 60-degree full cone; actual body overlap with a five-stud-high band centered on the user root; 0.12-second startup and 0.20-second recovery with normal user movement/jumping. Weapon hits interrupt startup without refund; already-started pulls continue after the user is hit. Targets receive displacement protection from pull start until the later of completion or 0.35 seconds. Section 17 supplies values.
 
-**Prototype status, October 22, 2026:** F9 is implemented on The Platform in local 1v1. Q now defaults to Magnet, superseding the F8 temporary Gust binding; ability selection remains deferred. [Implementation and technical verification](F9/F9_Implementation_and_Verification.md). David signed off the current F9 prototype on October 22, 2026. Live multiplayer/target-latency verification and later milestone/release gates remain open; F10 requires separate authorization.
+**Prototype status, October 22, 2026:** F9 is implemented on The Platform in local 1v1. F9 originally defaulted Q to Magnet. F10 now routes Q through the temporary staging ability selector; the later private intermission selection remains deferred. [Implementation and technical verification](F9/F9_Implementation_and_Verification.md). David signed off the current F9 prototype on October 22, 2026. Live multiplayer/target-latency verification and later milestone/release gates remain open. F10 was subsequently authorized and implemented; its gameplay acceptance remains pending.
 
 **Acceptance:** The pull moves an eligible enemy toward the user without inherently disabling all responses. DD03 target selection must be reproducible in 2v2; the server cannot accept an arbitrary client-nominated victim.
 
@@ -428,6 +428,8 @@ Use it to punish misses, close distance, or set up a weapon attack.
 Bounce must not create unlimited flight or multiple air dashes. Offensive use consumes the same opportunity that could otherwise save the player from a later ring-out.
 
 **Resolved:** Bounce uses camera-relative movement direction, otherwise straight up, replaces velocity, and then permits ordinary air steering. Cooldowns persist through death and reset for fresh matches/sudden-death rounds (DD03-DD06; section 17).
+
+**F10 implementation, October 22, 2026:** Local 1v1 Platform prototype uses a 10-second cooldown, 96/180 studs-per-second replacement launch, and a 0.15-second primary delay without buffering. Movement input is sampled on Q press with normalized diagonals; camera pitch is ignored. Bounce recovers during ordinary weapon-hit reaction and escapes Magnet, but cannot cancel an ongoing self-action or bypass Gust stun or elimination. The owner-authorized temporary ability selector sits beside the weapon selector, defaults to Bounce, locks at countdown, and is enforced on the server. Cooldowns persist through death and reset for fresh matches/sudden-death rounds. [Implementation and verification](F10/F10_Implementation_and_Verification.md): 579 deterministic checks pass at the revised 96/180 tuning; the earlier 74 isolated engine, 50 Magnet regression, and 17 single-client checks describe the original 32/60 tuning. Owner gameplay acceptance and two-live-client/target-latency verification remain pending. Ground Slam stays in F11.
 
 **Acceptance:** One valid activation is possible per cooldown. A player can attempt recovery during ordinary knockback, but cannot reactivate repeatedly while unavailable. Using Bounce offensively leaves it unavailable for recovery until the cooldown permits it.
 
@@ -836,7 +838,7 @@ Approved configurable prototype starting settings, not final balance or claims o
 | Gust | Cooldown 15 s; range 12 studs; 60-degree cone; launch 35/6 studs/s; stun 0.25 s | Multiple targets; stun blocks new actions and interrupts startup, active attacks retain trade rules; owner tuning October 22, 2026 |
 | Magnet | Cooldown 12 s; range 20 studs; 60-degree cone; pull 28 horizontal studs/s for at most 0.55 s, stop 3 horizontal studs from user | Five-stud-high body band; aim, distance, stable Player ID ordering; target can attack/use valid abilities but cannot steer/jump during pull; user keeps movement/jump |
 | Gust / Magnet action | Startup 0.12 s, then effect, recovery 0.20 s | Interruptible startup; no weapon overlap |
-| Bounce | Cooldown 10 s; replacement launch 32 horizontal / 60 upward studs/s; no horizontal input means no horizontal launch | Predictable but fallible recovery; input magnitude response tuned in prototype |
+| Bounce | Cooldown 10 s; replacement launch 96 horizontal / 180 upward studs/s; no horizontal input means no horizontal launch | Predictable but fallible recovery; input magnitude response tuned in prototype |
 | Bounce primary-attack delay | 0.15 s | Immediate launch, then attack; slam has its own telegraph |
 | Ground Slam | Windup 0.25 s; downward speed at least 90 studs/s afterward; radius 8 studs; launch 50/12 studs/s; landing recovery 0.65 s | No hover; weaker than direct Hammer; displacement counterplay |
 | The Platform | Circular, diameter 70 studs | Neutral two-player testing, then 2v2 |

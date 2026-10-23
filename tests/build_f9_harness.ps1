@@ -6,6 +6,7 @@ $source = $source.Replace('local Players = game:GetService("Players")', 'local P
 $source = $source.Replace('local function own(state, owner)', 'local function own(state, _owner)')
 $source = $source.Replace('state.root:SetNetworkOwner(owner)', 'state.root:SetNetworkOwner(nil)')
 $source = $source.Replace('probe.Parent = workspace', 'probe.Parent = game.Workspace')
+$source = $source.Replace('require(script.Parent.F2Contact)', 'require(game.ServerScriptService.F2Contact)')
 $source = 'return function(testPlayers, Instance, workspace)' + "`n" + $source + "`nend`n"
 $path = Join-Path $rootPath '.tools/F9HarnessCombat.luau'
 [IO.File]::WriteAllText($path, $source)

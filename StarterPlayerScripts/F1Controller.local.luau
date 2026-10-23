@@ -143,9 +143,11 @@ Actions:BindActionAtPriority("F2Attack", function(_, state)
 	return if controlsEnabled() then Enum.ContextActionResult.Sink else Enum.ContextActionResult.Pass
 end, false, Enum.ContextActionPriority.High.Value, Enum.UserInputType.MouseButton1)
 
-Actions:BindActionAtPriority("F9Magnet", function(_, state)
+Actions:BindActionAtPriority("F10Ability", function(_, state)
 	if state == Enum.UserInputState.Begin and controlsEnabled() and character then
-		Combat.magnet(character, CFrame.Angles(0, yaw, 0).LookVector)
+		local x = (if held[Enum.KeyCode.D] then 1 else 0) - (if held[Enum.KeyCode.A] then 1 else 0)
+		local z = (if held[Enum.KeyCode.S] then 1 else 0) - (if held[Enum.KeyCode.W] then 1 else 0)
+		Combat.ability(character, CFrame.Angles(0, yaw, 0).LookVector, Movement.direction(x, z, yaw))
 	end
 	return if controlsEnabled() then Enum.ContextActionResult.Sink else Enum.ContextActionResult.Pass
 end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.Q)
@@ -310,7 +312,7 @@ script.Destroying:Connect(function()
 	Actions:UnbindAction("F1Movement")
 	Actions:UnbindAction("F1Jump")
 	Actions:UnbindAction("F2Attack")
-	Actions:UnbindAction("F9Magnet")
+	Actions:UnbindAction("F10Ability")
 	RunService:UnbindFromRenderStep("F1Camera")
 	defaultControls:Enable()
 	Input.MouseBehavior = Enum.MouseBehavior.Default

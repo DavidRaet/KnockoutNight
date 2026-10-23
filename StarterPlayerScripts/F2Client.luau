@@ -89,11 +89,8 @@ local status = Instance.new("TextLabel")
 status.Name, status.Size, status.Position = "GustStatus", UDim2.fromOffset(260, 32), UDim2.new(0.5, -130, 1, -60)
 status.BackgroundTransparency, status.TextSize, status.TextColor3 = 0.35, 18, Color3.new(1, 1, 1)
 status.Parent = hud
-local magnetStatus = status:Clone()
-magnetStatus.Name, magnetStatus.Position, magnetStatus.Parent = "MagnetStatus", status.Position, hud
-status.Position = UDim2.new(0.5, -130, 1, -96)
+status.Name = "AbilityStatus"
 local rejectionUntil, rejection = 0, ""
-local magnetRejectionUntil, magnetRejection = 0, ""
 
 local function gustCue(record, origin, aim, burst)
 	local base = CFrame.lookAt(origin, origin + aim)
@@ -141,6 +138,39 @@ local function magnetCue(record, origin, aim, burst)
 	sound:Play()
 end
 
+local function bounceCue(record, origin)
+	local ring = part("BounceLaunch", Vector3.new(3, 0.15, 3))
+	ring.CFrame = CFrame.new(origin - Vector3.yAxis * 2)
+	ring.Color = Color3.fromRGB(150, 255, 150)
+	record.parts.bounce = ring
+	game:GetService("TweenService")
+		:Create(ring, TweenInfo.new(0.3), {
+			Size = Vector3.new(5, 0.1, 5),
+			Transparency = 1,
+		})
+		:Play()
+	local sound = Instance.new("Sound")
+	sound.SoundId, sound.Volume, sound.PlaybackSpeed = "rbxasset://sounds/electronicpingshort.wav", 0.25, 1.5
+	sound.Parent = ring
+	sound:Play()
+	Debris:AddItem(ring, 0.35)
+end
+
+function Client.ability(character, aim, direction)
+	local record = recordFor(character)
+	if not record then
+		return
+	end
+	local ability = player:GetAttribute("F10Ability") or "Bounce"
+	sequence += 1
+	remote:FireServer(
+		string.lower(ability),
+		record.generation,
+		sequence,
+		if ability == "Bounce" then direction else aim
+	)
+end
+
 function Client.magnet(character, aim)
 	local record = recordFor(character)
 	if record then
@@ -159,7 +189,11 @@ end
 
 function Client.press(character, aim)
 	local record = recordFor(character)
-	if not record then
+	if
+		not record
+		or workspace:GetServerTimeNow()
+			< (character.HumanoidRootPart:GetAttribute("F10PrimaryAt") or record.primaryAt or 0)
+	then
 		return
 	end
 	sequence += 1
@@ -281,6 +315,10 @@ table.insert(
 			end
 		elseif kind == "buffered" then
 			record.buffer = { sequence = data.sequence, startsAt = data.startsAt }
+		elseif kind == "bounce" then
+			record.displacement, record.primaryAt = data.displacement, data.primaryAt
+			record.buffer = nil
+			bounceCue(record, character.HumanoidRootPart.Position)
 		elseif kind == "pull" then
 			record.displacement = data.displacement
 		elseif kind == "magnet-pull" then
@@ -300,10 +338,8 @@ table.insert(
 		elseif kind == "gust-burst" then
 			gustCue(record, data.origin, data.aim, true)
 		elseif kind == "rejected" then
-			if data.ability == "Magnet" then
-				magnetRejection, magnetRejectionUntil = "Magnet: " .. data.reason, workspace:GetServerTimeNow() + 0.8
-			elseif data.ability == "Gust" then
-				rejection, rejectionUntil = "Gust: " .. data.reason, workspace:GetServerTimeNow() + 0.8
+			if data.ability then
+				rejection, rejectionUntil = data.ability .. ": " .. data.reason, workspace:GetServerTimeNow() + 0.8
 			end
 			if record.action and record.action.sequence == data.sequence then
 				record.action = nil
@@ -355,17 +391,16 @@ table.insert(
 	connections,
 	RunService.RenderStepped:Connect(function()
 		local now = workspace:GetServerTimeNow()
-		local remaining = math.max(0, (player:GetAttribute("F8ReadyAt") or 0) - now)
+		local ability = player:GetAttribute("F10Ability") or "Bounce"
+		local attribute = if ability == "Gust"
+			then "F8ReadyAt"
+			elseif ability == "Magnet" then "F9ReadyAt"
+			else "F10ReadyAt"
+		local remaining = math.max(0, (player:GetAttribute(attribute) or 0) - now)
 		status.Text = if now < rejectionUntil
 			then rejection
-			elseif remaining > 0 then string.format("Gust (regression): %.1fs", remaining)
-			else "Gust (regression): Ready"
-		local magnetRemaining = math.max(0, (player:GetAttribute("F9ReadyAt") or 0) - now)
-		magnetStatus.Text = if now < magnetRejectionUntil
-			then magnetRejection
-			elseif magnetRemaining > 0 then string.format("Q Magnet: %.1fs", magnetRemaining)
-			else "Q Magnet: Ready"
-		status.Visible = remaining > 0 or now < rejectionUntil
+			elseif remaining > 0 then string.format("Q %s: %.1fs", ability, remaining)
+			else "Q " .. ability .. ": Ready"
 		hud.Enabled = player:GetAttribute("F3Status") == "alive"
 		for _, other in Players:GetPlayers() do
 			if other.Character then
@@ -447,7 +482,7 @@ table.insert(
 					record.parts[key] = nil
 					continue
 				end
-				if string.sub(key, 1, 6) ~= "magnet" then
+				if string.sub(key, 1, 6) ~= "magnet" and key ~= "bounce" then
 					p.Color = color
 				end
 			end

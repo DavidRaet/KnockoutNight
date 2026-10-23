@@ -3,7 +3,8 @@ local Storage = game:GetService("ReplicatedStorage")
 local Config = require(Storage.F2Config)
 local Gust = require(Storage.F8Gust)
 local Magnet = require(Storage.F9Magnet)
-local cooldowns, magnetCooldowns = {}, {}
+local Bounce = require(Storage.F10Bounce)
+local cooldowns, magnetCooldowns, bounceCooldowns = {}, {}, {}
 local Weapons = require(Storage.F2Weapons)
 local F1 = require(Storage.F1Config)
 local Fist = require(Storage.F2SpringFist)
@@ -120,6 +121,7 @@ local function remove(player, reason)
 		{
 			"F2ActionCanJump",
 			"F9Pulling",
+			"F10PrimaryAt",
 			"F2Generation",
 			"F2ActionUntil",
 			"F2ActionAim",
@@ -138,11 +140,52 @@ end
 
 function Combat.retire(player, reason)
 	if reason == "fresh-match" then
-		cooldowns[player], magnetCooldowns[player] = nil, nil
+		cooldowns[player], magnetCooldowns[player], bounceCooldowns[player] = nil, nil, nil
 		player:SetAttribute("F8ReadyAt", nil)
 		player:SetAttribute("F9ReadyAt", nil)
+		player:SetAttribute("F10ReadyAt", nil)
 	end
 	remove(player, reason)
+end
+
+local function bounce(state, sequence, now, direction)
+	if not own(state, nil) then
+		return false
+	end
+	-- Finish a pull/knockback before replacing velocity; keep its attribution and remaining protection.
+	release(state, "bounce")
+	own(state, nil)
+	if lifeOwner then
+		lifeOwner.endProtection(state.player)
+		state.spawnProtectionUntil = 0
+	end
+	state.reactionUntil = 0
+	state.primaryAt = now + Bounce.PrimaryDelay
+	state.buffer = nil
+	bounceCooldowns[state.player] = now + Bounce.Cooldown
+	state.player:SetAttribute("F10ReadyAt", bounceCooldowns[state.player])
+	state.root:SetAttribute("F10PrimaryAt", state.primaryAt)
+	state.displacementId += 1
+	state.displacement = {
+		id = state.displacementId,
+		motor = state.humanoid.EvaluateStateMachine,
+		started = now,
+		bounce = true,
+	}
+	state.humanoid.EvaluateStateMachine = false
+	state.root:SetAttribute("F2MotorEnabled", state.displacement.motor)
+	state.root:SetAttribute("F2Displaced", state.displacementId)
+	state.root.AssemblyLinearVelocity = Vector3.new(Bounce.components(direction.X, direction.Z))
+	state.previousVerticalSpeed = Bounce.LaunchUp
+	state.residualSpeed = Bounce.LaunchSpeed
+	state.credit = Bounce.LaunchSpeed * Physics.BurstSeconds + Physics.PositionSlack
+	emit("bounce", state, {
+		sequence = sequence,
+		displacement = state.displacementId,
+		primaryAt = state.primaryAt,
+	})
+	permissions(state, now)
+	return true
 end
 
 local function startAction(state, sequence, now, ability)
@@ -208,7 +251,15 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 		state.steer, state.lastSteer = intendedAim, now
 		return true
 	end
-	local aim = Fist.aim(intendedAim)
+	local aim
+	if kind == "bounce" then
+		if not Physics.vector(intendedAim) or intendedAim.Y ~= 0 or intendedAim.Magnitude > 1.001 then
+			return false
+		end
+		aim = state.aim
+	else
+		aim = Fist.aim(intendedAim)
+	end
 	if not aim then
 		return false
 	end
@@ -220,7 +271,7 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 		return true
 	end
 	if
-		(kind ~= "press" and kind ~= "gust" and kind ~= "magnet")
+		(kind ~= "press" and kind ~= "gust" and kind ~= "magnet" and kind ~= "bounce")
 		or type(sequence) ~= "number"
 		or not Physics.finite(sequence)
 		or sequence % 1 ~= 0
@@ -236,7 +287,11 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 			generation = gen,
 			sequence = sequence,
 			reason = reason,
-			ability = if kind == "magnet" then "Magnet" elseif kind == "gust" then "Gust" else nil,
+			ability = if kind == "bounce"
+				then "Bounce"
+				elseif kind == "magnet" then "Magnet"
+				elseif kind == "gust" then "Gust"
+				else nil,
 		})
 		return false
 	end
@@ -246,9 +301,29 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 	state.lastPress = now
 	state.aim = aim
 	local pulling = state.displacement and state.displacement.pull
-	local restricted = now < state.reactionUntil or (state.displacement ~= nil and not pulling and kind == "press")
+	local selected = player:GetAttribute("F10Ability") or "Bounce"
+	if kind ~= "press" and string.lower(selected) ~= kind then
+		return reject("unequipped")
+	end
+	local restricted = (now < state.reactionUntil and (kind ~= "bounce" or now < state.stunUntil))
+		or (state.displacement ~= nil and not pulling and kind == "press")
 	if restricted then
 		return reject("hit-recovery")
+	end
+	if kind == "bounce" then
+		if state.action then
+			return reject("busy")
+		end
+		if now < (bounceCooldowns[player] or 0) then
+			return reject("cooldown")
+		end
+		if not bounce(state, sequence, now, intendedAim) then
+			return reject("ownership")
+		end
+		return true
+	end
+	if kind == "press" and now < state.primaryAt then
+		return reject("bounce-delay")
 	end
 	if kind == "gust" or kind == "magnet" then
 		if state.action then
@@ -381,6 +456,7 @@ local function launch(contact, now, excluded)
 	state.root.AssemblyLinearVelocity = action.aim * config.LaunchSpeed + Vector3.yAxis * config.LaunchUp
 	state.reactionUntil, state.protectionUntil =
 		contact.time + (config.Reaction or Config.Reaction), contact.time + Config.Protection
+	state.stunUntil = if config == Gust then contact.time + Gust.Reaction else 0
 	state.buffer = nil
 	if lifeOwner then
 		lifeOwner.hit(
@@ -432,6 +508,8 @@ local function addCharacter(player, character)
 		sequence = 0,
 		aim = Vector3.new(0, 0, -1),
 		reactionUntil = 0,
+		stunUntil = 0,
+		primaryAt = 0,
 		protectionUntil = 0,
 		spawnProtectionUntil = 0,
 		lastPress = -math.huge,
@@ -582,7 +660,12 @@ function Combat.step(dt)
 				own(state, player)
 			end
 		end
-		if displacement and displacement.pull then
+		if displacement and displacement.bounce then
+			-- Keep the launch server-owned for one physics interval, then use ordinary airborne controls.
+			if now > displacement.started then
+				release(state, "bounce-flight")
+			end
+		elseif displacement and displacement.pull then
 			updatePull(state, displacement, now, dt, excluded)
 		elseif displacement then
 			local elapsed = now - displacement.started
@@ -783,9 +866,10 @@ function Combat.start(lives)
 		connections,
 		Players.PlayerRemoving:Connect(function(player)
 			remove(player, "departure")
-			cooldowns[player], magnetCooldowns[player] = nil, nil
+			cooldowns[player], magnetCooldowns[player], bounceCooldowns[player] = nil, nil, nil
 			player:SetAttribute("F8ReadyAt", nil)
 			player:SetAttribute("F9ReadyAt", nil)
+			player:SetAttribute("F10ReadyAt", nil)
 			for _, connection in playerConnections[player] or {} do
 				connection:Disconnect()
 			end
@@ -806,6 +890,10 @@ function Combat.stop()
 		player:SetAttribute("F9ReadyAt", nil)
 	end
 	table.clear(magnetCooldowns)
+	for player in bounceCooldowns do
+		player:SetAttribute("F10ReadyAt", nil)
+	end
+	table.clear(bounceCooldowns)
 	for player in states do
 		remove(player, "shutdown")
 	end

@@ -15,6 +15,8 @@ local snapshot = Storage:WaitForChild("F4State", 10)
 local returnRemote = Storage:WaitForChild("F4Return", 10)
 local adminRemote = Storage:WaitForChild("F4Admin", 10)
 local weaponRemote = Storage:WaitForChild("F6WeaponChoice", 10)
+local abilityRemote = Storage:WaitForChild("F10AbilityChoice", 10)
+assert(abilityRemote and abilityRemote:IsA("RemoteEvent"), "Ability picker requires the server selection remote")
 assert(weaponRemote and weaponRemote:IsA("RemoteEvent"), "Weapon picker requires the server selection remote")
 assert(snapshot and snapshot:IsA("StringValue"), "F4 HUD requires an authoritative match snapshot")
 assert(returnRemote and returnRemote:IsA("RemoteEvent"), "F4 results require the return remote")
@@ -47,7 +49,7 @@ local function label(parent, name, size, position, textSize)
 end
 
 local score = label(gui, "Score", UDim2.fromOffset(260, 120), UDim2.new(1, -276, 0, 12), 18)
-local weaponPicker = label(gui, "WeaponPicker", UDim2.fromOffset(360, 236), UDim2.fromScale(0.5, 0.5), 22)
+local weaponPicker = label(gui, "WeaponPicker", UDim2.new(0.42, 0, 0, 236), UDim2.fromScale(0.28, 0.5), 22)
 weaponPicker.AnchorPoint = Vector2.new(0.5, 0.5)
 weaponPicker.Text, weaponPicker.TextYAlignment = "Choose your weapon", Enum.TextYAlignment.Top
 local pickerPadding = Instance.new("UIPadding")
@@ -72,8 +74,35 @@ do
 		end)
 	)
 end
+local abilityPicker = label(gui, "AbilityPicker", UDim2.new(0.42, 0, 0, 236), UDim2.fromScale(0.72, 0.5), 22)
+abilityPicker.AnchorPoint = Vector2.new(0.5, 0.5)
+abilityPicker.Text, abilityPicker.TextYAlignment = "Choose your ability", Enum.TextYAlignment.Top
+local abilityPadding = pickerPadding:Clone()
+abilityPadding.Parent = abilityPicker
+local abilityButtons = {}
+for index, ability in { "Gust", "Magnet", "Bounce" } do
+	local button = weaponButtons.SpringFist.button:Clone()
+	button.Name, button.Text = ability, ability
+	button.Position = UDim2.fromOffset(16, 32 + (index - 1) * 56)
+	button.Parent = abilityPicker
+	abilityButtons[ability] = button
+	table.insert(
+		connections,
+		button.Activated:Connect(function()
+			abilityRemote:FireServer(ability)
+		end)
+	)
+end
 local function updateWeaponPicker()
 	weaponPicker.Visible = match.phase == "staging" and player:GetAttribute("F3Status") == "waiting"
+	abilityPicker.Visible = weaponPicker.Visible
+	local selectedAbility = player:GetAttribute("F10Ability") or "Bounce"
+	for name, button in abilityButtons do
+		button.Text = (if name == selectedAbility then "Selected: " else "") .. name
+		button.BackgroundColor3 = if name == selectedAbility
+			then Color3.fromRGB(45, 125, 95)
+			else Color3.fromRGB(55, 65, 85)
+	end
 	local selected = player:GetAttribute("F2Weapon") or "SpringFist"
 	for name, choice in weaponButtons do
 		choice.button.Text = (if name == selected then "Selected: " else "") .. choice.title
@@ -83,6 +112,7 @@ local function updateWeaponPicker()
 	end
 end
 table.insert(connections, player:GetAttributeChangedSignal("F2Weapon"):Connect(updateWeaponPicker))
+table.insert(connections, player:GetAttributeChangedSignal("F10Ability"):Connect(updateWeaponPicker))
 table.insert(connections, player:GetAttributeChangedSignal("F3Status"):Connect(updateWeaponPicker))
 updateWeaponPicker()
 score.Text, score.TextYAlignment = "Score", Enum.TextYAlignment.Top

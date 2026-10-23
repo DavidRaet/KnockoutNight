@@ -7,8 +7,8 @@ local Lives = require(script.Parent.F3Lives)
 local Combat = require(script.Parent.F2Combat)
 local Admins = require(script.Parent.F4Admins)
 local Match = {}
-local state, snapshot, remote, adminRemote, weaponRemote
-local lastWeaponRequest = {}
+local state, snapshot, remote, adminRemote, weaponRemote, abilityRemote
+local lastWeaponRequest, lastAbilityRequest = {}, {}
 local connections, departures, returned, lastAdminRequest = {}, {}, {}, {}
 local serial, revision = 0, 0
 local lastPayload
@@ -61,6 +61,25 @@ function Match.chooseWeapon(player, weapon)
 	end
 	lastWeaponRequest[player] = now
 	player:SetAttribute("F2Weapon", weapon)
+	return true
+end
+
+function Match.chooseAbility(player, ability)
+	if
+		not running
+		or player.Parent ~= Players
+		or not Match.canJoin()
+		or player:GetAttribute("F3Status") ~= "waiting"
+		or (ability ~= "Gust" and ability ~= "Magnet" and ability ~= "Bounce")
+	then
+		return false
+	end
+	local now = workspace:GetServerTimeNow()
+	if now - (lastAbilityRequest[player] or -math.huge) < 0.15 then
+		return false
+	end
+	lastAbilityRequest[player] = now
+	player:SetAttribute("F10Ability", ability)
 	return true
 end
 
@@ -268,6 +287,8 @@ function Match.start()
 	adminRemote.Name = "F4Admin"
 	weaponRemote = Instance.new("RemoteEvent")
 	weaponRemote.Name, weaponRemote.Parent = "F6WeaponChoice", Storage
+	abilityRemote = Instance.new("RemoteEvent")
+	abilityRemote.Name, abilityRemote.Parent = "F10AbilityChoice", Storage
 	Lives.bindMatch(Match)
 	Combat.bindMatch(Match)
 	publish()
@@ -275,6 +296,7 @@ function Match.start()
 	table.insert(connections, remote.OnServerEvent:Connect(Match.returnToStaging))
 	table.insert(connections, adminRemote.OnServerEvent:Connect(adminRequest))
 	table.insert(connections, weaponRemote.OnServerEvent:Connect(Match.chooseWeapon))
+	table.insert(connections, abilityRemote.OnServerEvent:Connect(Match.chooseAbility))
 	table.insert(
 		connections,
 		Players.PlayerAdded:Connect(function(player)
@@ -287,6 +309,7 @@ function Match.start()
 			departures[player] = true
 			lastAdminRequest[player] = nil
 			lastWeaponRequest[player] = nil
+			lastAbilityRequest[player] = nil
 		end)
 	)
 end
@@ -305,12 +328,13 @@ function Match.stop()
 	end
 	table.clear(connections)
 	table.clear(lastWeaponRequest)
-	for _, instance in { remote, adminRemote, weaponRemote } do
+	table.clear(lastAbilityRequest)
+	for _, instance in { remote, adminRemote, weaponRemote, abilityRemote } do
 		if instance then
 			instance:Destroy()
 		end
 	end
-	remote, adminRemote, weaponRemote = nil, nil, nil
+	remote, adminRemote, weaponRemote, abilityRemote = nil, nil, nil, nil
 	-- Keep the last snapshot available while shutdown is visible to clients.
 end
 

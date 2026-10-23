@@ -4,7 +4,7 @@ Implemented October 22, 2026. **Owner gameplay acceptance: signed off by David o
 
 ## Behavior
 
-Q now activates Magnet for both players. This supersedes the F8 prototype's temporary default-Q binding; no ability picker was added. Gust's server/client implementation and separate cooldown remain available for technical regression fixtures.
+At F9 sign-off, Q activated Magnet for both players, superseding F8's temporary default-Q binding. F10 subsequently added an ability picker; Q now activates the selected ability. Gust's server/client implementation and separate cooldown remain available for technical regression fixtures.
 
 | Setting | Value |
 | --- | --- |
@@ -57,7 +57,7 @@ Two-live-client input/replication and network-ownership handoff, target-latency 
 5. Hit Magnet's user during startup, then after the pull starts. The first cancels without refund; the second can hit the user while the pull continues. Try close follow-ups against the target's brief protection.
 6. Use Magnet airborne, die/respawn during cooldown, and start a fresh match or sudden-death round. Check gravity, cleanup, persisted cooldown after respawn, and reset for a new round.
 
-Owner gameplay review is complete for F9. F10 (Bounce) is the next planned slice and requires separate authorization; polishing, other maps, 2v2, loadout selection, exports, and publishing remain separately gated.
+Owner gameplay review is complete for F9. F10 (Bounce and the temporary ability selector) was subsequently authorized and implemented, with its gameplay acceptance pending. F11, polishing, other maps, 2v2, private intermission selection, exports, and publishing remain separately gated.
 
 ## Earlier range-only tuning (superseded by the pull revision below)
 
@@ -75,4 +75,8 @@ Hands-on check: choose Paddle Pops, face a stationary opponent from 18–20 stud
 
 ## Owner sign-off — October 22, 2026
 
-David explicitly signed off F9. Acceptance covers the current local 1v1 Platform prototype: Q activation, 20-stud/60-degree targeting, 12-second cooldown, 28-stud/s pull for up to 0.55 seconds, three-stud minimum stop, preserved target responses, and the demonstrated six-stud Paddle follow-up. This records gameplay acceptance; it does not claim completion of two-live-client networking, target-latency verification, later balance/art work, or milestone/release gates. F10 remains the next planned slice, awaiting separate authorization. Nothing is published by this sign-off.
+David explicitly signed off F9. Acceptance covers the current local 1v1 Platform prototype: Q activation, 20-stud/60-degree targeting, 12-second cooldown, 28-stud/s pull for up to 0.55 seconds, three-stud minimum stop, preserved target responses, and the demonstrated six-stud Paddle follow-up. This records gameplay acceptance; it does not claim completion of two-live-client networking, target-latency verification, later balance/art work, or milestone/release gates. F10 was subsequently authorized and implemented, including Bounce and the adjacent ability selector; its owner gameplay acceptance is pending. See [F10](../F10/F10_Implementation_and_Verification.md). F11 remains separately gated. Nothing is published by this sign-off.
+
+## Subsequent F10 integration
+
+F10 now routes Q through the temporary Gust/Magnet/Bounce selector beside the weapon selector, defaulting to Bounce. This supersedes the fixed-Q Magnet binding described above. The F9 runtime regression passed all 50 checks with explicit ability equipment after this integration. F9 sign-off remains intact; F10 awaits its own gameplay acceptance.

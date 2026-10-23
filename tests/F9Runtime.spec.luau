@@ -191,6 +191,8 @@ return function(makeCombat)
 			Combat.retire(p, "fresh-match")
 			shields[p] = 0
 		end
+		a:SetAttribute("F10Ability", "Magnet")
+		b:SetAttribute("F10Ability", "Gust")
 		a:SetAttribute("F2Weapon", "SpringFist")
 		b:SetAttribute("F2Weapon", weapon or "SpringFist")
 		local ar = equip(a, Vector3.new(0, 104, 0))
