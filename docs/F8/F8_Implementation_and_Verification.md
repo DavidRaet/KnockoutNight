@@ -1,6 +1,6 @@
 # F8 - Use Gust for positioning
 
-**Implemented and technically verified: October 22, 2026. Owner gameplay acceptance: pending.** Local 1v1 on The Platform only. Nothing was published.
+**Implemented and technically verified: October 22, 2026. Owner gameplay acceptance: signed off by David on October 22, 2026.** Local 1v1 on The Platform only. Nothing was published.
 
 ## Implementation
 
@@ -30,7 +30,7 @@ Cooldown storage belongs to the player rather than the character: death, respawn
 
 David said the initial Gust looked good and requested more range plus a brief stun to prevent immediate counters. Range increased from 9 to 12 studs (+33%). Gust's action lock increased from the inherited 0.15 seconds to a dedicated 0.25 seconds and now interrupts startup. Active attacks still trade. Cone, launch, and user startup/recovery remain 60 degrees, 35/6 studs/s, and 0.12/0.20 seconds. The initial cooldown was eight seconds; the subsequent owner request increases it to fifteen seconds.
 
-The user finishes recovery 0.20 seconds after the effect; the target's stun ends 0.25 seconds after it, giving a nominal 0.05-second initiative window. Protection still lasts 0.35 seconds, so an immediate follow-up does not guarantee another launch. Balancing this revision still requires David's playtest; the favorable initial feedback is not acceptance of the revised tuning.
+The user finishes recovery 0.20 seconds after the effect; the target's stun ends 0.25 seconds after it, giving a nominal 0.05-second initiative window. Protection still lasts 0.35 seconds, so an immediate follow-up does not guarantee another launch. David accepted the current prototype tuning on October 22, 2026, after the range/stun revision and the increase to a fifteen-second cooldown. Later balance work remains separate.
 
 **Cooldown follow-up, October 22, 2026:** Increased Gust cooldown from 8 to 15 seconds at David's request. Updated deterministic expectation and multiplayer fixture deadlines. All 525 deterministic checks, formatting, lint, and compilation pass again. Earlier two-client evidence above retains the eight-second run; this scalar cooldown follow-up is verified in the Edit module rather than claimed as another multiplayer run.
 
@@ -60,12 +60,18 @@ The [initial Gust evidence](../evidence/F8Gust.json) preserves the previous nine
 
 To reproduce after running local checks and comparing/syncing runtime sources, temporarily install the F8Combat server/client fixtures as `F8CombatTestServer` under ServerScriptService and `F8CombatTestClient` under StarterPlayerScripts. Run `StudioTestService:ExecuteMultiplayerTestAsync(2, {test="F8Combat"})` from Edit. The fixture invokes the existing round-reset hook to verify cooldown reset; it does not claim a new full sudden-death match-flow run. For the weapon regression, install the existing F7 fixture pair and F2/F6/F7 contact specs as in the F7 verification document. Remove fixtures and compare all runtime sources afterward. No production match timings were changed.
 
-## Remaining limits and owner playtest
+## Owner acceptance
 
-Studio plugin-icon download errors occurred on both F8 clients and are preserved separately as `engineErrors` in the evidence. No project errors were recorded. The weapon regression recorded no engine errors. No new 100-150 ms target-latency run, full Roblox type analysis, hardware performance sign-off, or four-player/multi-opponent network run is claimed. Cone targeting uses root position horizontally and current server poses without rewind. Obstruction samples one closest surface per eligible body part; very small exposed slivers may be excluded. Temporary visual streaks do not clip to walls. Sound presence uses an installed bundled asset; subjective audibility and all gameplay readability/feel remain unaccepted.
+**October 22, 2026:** David confirmed that Gust is good for now and explicitly signed off F8. Acceptance covers the current local 1v1 Platform prototype: 15-second cooldown, 12-stud range, 60-degree cone, 35/6 studs-per-second replacement launch, 0.25-second stun with startup interruption, and 0.12/0.20-second startup/recovery. Gameplay acceptance is complete for this slice.
+
+This sign-off does not close the technical limits below, milestone/release gates, or authorize polishing, F9, other abilities/maps, asset export, or publishing.
+
+## Remaining limits and future regression checks
+
+Studio plugin-icon download errors occurred on both F8 clients and are preserved separately as `engineErrors` in the evidence. No project errors were recorded. The weapon regression recorded no engine errors. No new 100-150 ms target-latency run, full Roblox type analysis, hardware performance sign-off, or four-player/multi-opponent network run is claimed. Cone targeting uses root position horizontally and current server poses without rewind. Obstruction samples one closest surface per eligible body part; very small exposed slivers may be excluded. Temporary visual streaks do not clip to walls. Sound presence uses an installed bundled asset. Owner gameplay acceptance covers the current temporary presentation; final audio/art, later tuning, and broader device/latency verification remain separate.
 
 1. Start **Server & Clients with two clients**, choose any implemented weapons, and begin a match through the existing developer console. Press **Q** within about twelve studs while facing the opponent; check the burst, push, and fifteen-second cooldown. Try a miss and immediate repeat.
 2. Turn the camera during Gust startup/recovery, jump before activation, and test height differences and a temporary solid wall. Check committed direction, no self-lift, and readable feedback without hiding players.
 3. Try Gust against Hammer startup, then have a weapon hit interrupt Gust startup. Check that Hammer windup is canceled and an immediate counter is blocked for 0.25 seconds in the first case, interrupted Gust produces no burst in the second, and cooldown remains spent. Try protected contacts and a death/respawn; cooldown should persist through death and reset in a fresh match/sudden-death round.
 
-**Await David's hands-on F8 evaluation.** Do not mark gameplay acceptance complete or continue into polishing/F9 without separate authorization.
+**F8 is accepted for the current prototype.** F9 (Magnet), polishing, publishing, and remaining technical/milestone gates require separate work and authorization.
