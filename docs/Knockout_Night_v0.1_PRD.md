@@ -491,6 +491,8 @@ DD05 defines safe spawns, protection, and elimination commitment; DD07 defines t
 
 **Acceptance:** All three bridge connections are traversable. Falling from islands or bridges invokes the same ring-out system. Both modes have safe spawn arrangements. Routes remain legible from the approved camera.
 
+**L1 design approved October 23, 2026:** Use a level triangle symmetric between the side islands, with flush, fully walkable bridges and open edges. Players start on opposite side islands facing the center and normally respawn on their home island; retain the existing safe central emergency fallback. The center is the primary fighting space; sides offer escape and alternate approaches. Decorative ruins/clouds cannot block combat, movement, or camera queries. Retain the approved camera. Slam may cross continuous island/bridge floor seams within its normal limits, while gaps reject hits. Build simple thematic geometry first; dimensions remain provisional for owner playtesting. L1 implements and verifies 1v1; 2v2 remains deferred. See [L1 implementation and verification](P1/L1/L1_Implementation_and_Verification.md). David signed off the current L1 gameplay on October 23, 2026; outstanding technical verification and later milestone/release gates remain separate.
+
 **Balance hypotheses:** Hammer may benefit from bridge knockback; Spring Fist may remain versatile; Paddle Pops may face approach risk while punishing slower attacks. These are hypotheses to test, not requirements to preserve an advantage. Watch for excessively frequent 2v2 ring-outs.
 
 ### 9.3 The Ring

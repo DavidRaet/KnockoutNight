@@ -379,8 +379,7 @@ return function(makeCombat)
 			Contact.slamTarget(
 				origin,
 				{ root = b.Character.HumanoidRootPart, humanoid = b.Character.Humanoid },
-				excluded,
-				floor
+				excluded
 			),
 			"same-surface enemy in radius"
 		)
@@ -389,8 +388,7 @@ return function(makeCombat)
 			Contact.slamTarget(
 				origin,
 				{ root = b.Character.HumanoidRootPart, humanoid = b.Character.Humanoid },
-				excluded,
-				floor
+				excluded
 			),
 			"expanded radius includes enemy at 8.5 studs"
 		)
@@ -400,8 +398,7 @@ return function(makeCombat)
 				not Contact.slamTarget(
 					origin,
 					{ root = b.Character.HumanoidRootPart, humanoid = b.Character.Humanoid },
-					excluded,
-					floor
+					excluded
 				),
 				"range/elevation/void rejects target"
 			)
@@ -414,8 +411,7 @@ return function(makeCombat)
 			not Contact.slamTarget(
 				origin,
 				{ root = b.Character.HumanoidRootPart, humanoid = b.Character.Humanoid },
-				excluded,
-				floor
+				excluded
 			),
 			"wall occludes target"
 		)
@@ -427,8 +423,7 @@ return function(makeCombat)
 			not Contact.slamTarget(
 				origin,
 				{ root = b.Character.HumanoidRootPart, humanoid = b.Character.Humanoid },
-				excluded,
-				floor
+				excluded
 			),
 			"upper playable floor cannot be hit through floor"
 		)
@@ -459,11 +454,31 @@ return function(makeCombat)
 			not Contact.slamTarget(
 				origin,
 				{ root = b.Character.HumanoidRootPart, humanoid = b.Character.Humanoid },
-				excluded,
-				floor
+				excluded
 			),
 			"separate island gap blocks shockwave"
 		)
+		local bridge = floor:Clone()
+		bridge.Name, bridge.Size, bridge.Position, bridge.Parent =
+			"ConnectingBridge", Vector3.new(3, 1, 10), Vector3.new(2.5, 100, 0), folder
+		check(
+			Contact.slamTarget(
+				origin,
+				{ root = b.Character.HumanoidRootPart, humanoid = b.Character.Humanoid },
+				excluded
+			),
+			"continuous island bridge seams transmit shockwave"
+		)
+		bridge.CanCollide = false
+		check(
+			not Contact.slamTarget(
+				origin,
+				{ root = b.Character.HumanoidRootPart, humanoid = b.Character.Humanoid },
+				excluded
+			),
+			"missing bridge collision rejects shockwave"
+		)
+		bridge:Destroy()
 		island:Destroy()
 		floor.Size, floor.Position = Vector3.new(80, 1, 80), Vector3.new(0, 100, 0)
 		for _, friendly in { true, false } do

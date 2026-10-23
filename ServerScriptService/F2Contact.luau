@@ -278,7 +278,7 @@ function Contact.slamLanding(state, previous, excluded)
 	return if playable(hit) then hit else nil
 end
 
-function Contact.slamTarget(origin, victim, excluded, surface)
+function Contact.slamTarget(origin, victim, excluded)
 	local delta = victim.root.Position - origin
 	if Vector3.new(delta.X, 0, delta.Z).Magnitude > Slam.Radius then
 		return nil
@@ -286,18 +286,14 @@ function Contact.slamTarget(origin, victim, excluded, surface)
 	local ray = params(excluded, false, true)
 	local feet = victim.humanoid.HipHeight + victim.root.Size.Y / 2
 	local target = workspace:Raycast(victim.root.Position, -Vector3.yAxis * (feet + Slam.Elevation), ray)
-	if
-		not playable(target)
-		or target.Instance ~= surface
-		or math.abs(target.Position.Y - origin.Y) > Slam.Elevation
-	then
+	if not playable(target) or math.abs(target.Position.Y - origin.Y) > Slam.Elevation then
 		return nil
 	end
 	local path = target.Position - origin
 	if workspace:Raycast(origin + Vector3.yAxis * 0.5, path, ray) then
 		return nil
 	end
-	-- Sample continuous support so a clear air ray cannot bridge separate islands.
+	-- shortcut: quarter-stud sampling can miss thinner gaps; use exact coverage if maps introduce those gaps.
 	local steps = math.max(1, math.ceil(path.Magnitude / 0.25))
 	for i = 0, steps do
 		local point = origin:Lerp(target.Position, i / steps)

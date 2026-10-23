@@ -2,6 +2,7 @@
 
 -- Prototype settings: PRD DD01 / section 17; camera and steering need playtesting.
 return table.freeze({
+	Arena = "SkyBridges",
 	WalkSpeed = 16,
 	JumpHeight = 7,
 	AirControl = 0.6,

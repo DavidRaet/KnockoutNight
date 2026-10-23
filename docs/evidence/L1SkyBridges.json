@@ -1,0 +1,1235 @@
+{
+  "date": "2026-10-23",
+  "localChecks": {
+    "passed": true,
+    "deterministicChecks": 590,
+    "formatting": "passed",
+    "lint": "zero errors/warnings",
+    "compilation": "passed"
+  },
+  "geometry": {
+    "passed": true,
+    "checks": [
+      "Island1 is an anchored part",
+      "Island1 supports physics and combat queries",
+      "Rock1 is an anchored part",
+      "Rock1 cannot block or catch players",
+      "Island2 is an anchored part",
+      "Island2 supports physics and combat queries",
+      "Rock2 is an anchored part",
+      "Rock2 cannot block or catch players",
+      "Island3 is an anchored part",
+      "Island3 supports physics and combat queries",
+      "Rock3 is an anchored part",
+      "Rock3 cannot block or catch players",
+      "Bridge1 is an anchored part",
+      "Bridge1 supports physics and combat queries",
+      "Bridge2 is an anchored part",
+      "Bridge2 supports physics and combat queries",
+      "Bridge3 is an anchored part",
+      "Bridge3 supports physics and combat queries",
+      "Spawn1 is an anchored part",
+      "Spawn1 cannot block or catch players",
+      "Respawn1_1 is an anchored part",
+      "Respawn1_1 cannot block or catch players",
+      "Respawn1_2 is an anchored part",
+      "Respawn1_2 cannot block or catch players",
+      "Respawn1_3 is an anchored part",
+      "Respawn1_3 cannot block or catch players",
+      "Respawn1_4 is an anchored part",
+      "Respawn1_4 cannot block or catch players",
+      "Spawn2 is an anchored part",
+      "Spawn2 cannot block or catch players",
+      "Respawn2_1 is an anchored part",
+      "Respawn2_1 cannot block or catch players",
+      "Respawn2_2 is an anchored part",
+      "Respawn2_2 cannot block or catch players",
+      "Respawn2_3 is an anchored part",
+      "Respawn2_3 cannot block or catch players",
+      "Respawn2_4 is an anchored part",
+      "Respawn2_4 cannot block or catch players",
+      "EmergencySpawn is an anchored part",
+      "EmergencySpawn cannot block or catch players",
+      "Ruin1 is an anchored part",
+      "Ruin1 cannot block or catch players",
+      "RuinCap1 is an anchored part",
+      "RuinCap1 cannot block or catch players",
+      "Cloud1_-1 is an anchored part",
+      "Cloud1_-1 cannot block or catch players",
+      "Cloud1_0 is an anchored part",
+      "Cloud1_0 cannot block or catch players",
+      "Cloud1_1 is an anchored part",
+      "Cloud1_1 cannot block or catch players",
+      "Ruin2 is an anchored part",
+      "Ruin2 cannot block or catch players",
+      "RuinCap2 is an anchored part",
+      "RuinCap2 cannot block or catch players",
+      "Cloud2_-1 is an anchored part",
+      "Cloud2_-1 cannot block or catch players",
+      "Cloud2_0 is an anchored part",
+      "Cloud2_0 cannot block or catch players",
+      "Cloud2_1 is an anchored part",
+      "Cloud2_1 cannot block or catch players",
+      "Ruin3 is an anchored part",
+      "Ruin3 cannot block or catch players",
+      "RuinCap3 is an anchored part",
+      "RuinCap3 cannot block or catch players",
+      "Cloud3_-1 is an anchored part",
+      "Cloud3_-1 cannot block or catch players",
+      "Cloud3_0 is an anchored part",
+      "Cloud3_0 cannot block or catch players",
+      "Cloud3_1 is an anchored part",
+      "Cloud3_1 cannot block or catch players",
+      "exactly three islands and three bridges are playable",
+      "approved island diameters",
+      "opening spawns mirror each other",
+      "five respawn candidates per home island",
+      "Spawn1 has a home island",
+      "Spawn1 has full home-island support",
+      "Spawn1 has full home-island support",
+      "Spawn1 has full home-island support",
+      "Spawn1 has full home-island support",
+      "Spawn1 has full home-island support",
+      "Respawn1_1 has a home island",
+      "Respawn1_1 has full home-island support",
+      "Respawn1_1 has full home-island support",
+      "Respawn1_1 has full home-island support",
+      "Respawn1_1 has full home-island support",
+      "Respawn1_1 has full home-island support",
+      "Respawn1_2 has a home island",
+      "Respawn1_2 has full home-island support",
+      "Respawn1_2 has full home-island support",
+      "Respawn1_2 has full home-island support",
+      "Respawn1_2 has full home-island support",
+      "Respawn1_2 has full home-island support",
+      "Respawn1_3 has a home island",
+      "Respawn1_3 has full home-island support",
+      "Respawn1_3 has full home-island support",
+      "Respawn1_3 has full home-island support",
+      "Respawn1_3 has full home-island support",
+      "Respawn1_3 has full home-island support",
+      "Respawn1_4 has a home island",
+      "Respawn1_4 has full home-island support",
+      "Respawn1_4 has full home-island support",
+      "Respawn1_4 has full home-island support",
+      "Respawn1_4 has full home-island support",
+      "Respawn1_4 has full home-island support",
+      "Spawn2 has a home island",
+      "Spawn2 has full home-island support",
+      "Spawn2 has full home-island support",
+      "Spawn2 has full home-island support",
+      "Spawn2 has full home-island support",
+      "Spawn2 has full home-island support",
+      "Respawn2_1 has a home island",
+      "Respawn2_1 has full home-island support",
+      "Respawn2_1 has full home-island support",
+      "Respawn2_1 has full home-island support",
+      "Respawn2_1 has full home-island support",
+      "Respawn2_1 has full home-island support",
+      "Respawn2_2 has a home island",
+      "Respawn2_2 has full home-island support",
+      "Respawn2_2 has full home-island support",
+      "Respawn2_2 has full home-island support",
+      "Respawn2_2 has full home-island support",
+      "Respawn2_2 has full home-island support",
+      "Respawn2_3 has a home island",
+      "Respawn2_3 has full home-island support",
+      "Respawn2_3 has full home-island support",
+      "Respawn2_3 has full home-island support",
+      "Respawn2_3 has full home-island support",
+      "Respawn2_3 has full home-island support",
+      "Respawn2_4 has a home island",
+      "Respawn2_4 has full home-island support",
+      "Respawn2_4 has full home-island support",
+      "Respawn2_4 has full home-island support",
+      "Respawn2_4 has full home-island support",
+      "Respawn2_4 has full home-island support",
+      "emergency fallback has permanent central support",
+      "route 1 is level and supported across its full width",
+      "slam crosses route 1 island/bridge seam",
+      "gap probe endpoints both have floor support",
+      "slam cannot cut across route 1 concave shoreline void",
+      "route 2 is level and supported across its full width",
+      "slam crosses route 2 island/bridge seam",
+      "gap probe endpoints both have floor support",
+      "slam cannot cut across route 2 concave shoreline void",
+      "route 3 is level and supported across its full width",
+      "slam crosses route 3 island/bridge seam",
+      "Spawn1 lies inside elimination bounds",
+      "Respawn1_1 lies inside elimination bounds",
+      "Respawn1_2 lies inside elimination bounds",
+      "Respawn1_3 lies inside elimination bounds",
+      "Respawn1_4 lies inside elimination bounds",
+      "Spawn2 lies inside elimination bounds",
+      "Respawn2_1 lies inside elimination bounds",
+      "Respawn2_2 lies inside elimination bounds",
+      "Respawn2_3 lies inside elimination bounds",
+      "Respawn2_4 lies inside elimination bounds",
+      "triangle interior remains open void",
+      "falling through an interior gap crosses lower elimination plane",
+      "outer boundary remains finite"
+    ]
+  },
+  "lives": {
+    "passed": true,
+    "checks": [
+      "home 1 starts alive beyond old Platform bounds",
+      "home 2 starts alive beyond old Platform bounds",
+      "elimination commits once",
+      "duplicate elimination is rejected",
+      "home 1 respawns",
+      "respawn remains on home 1",
+      "respawn retains protection",
+      "elimination commits once",
+      "duplicate elimination is rejected",
+      "home 2 respawns",
+      "respawn remains on home 2",
+      "respawn retains protection",
+      "elimination commits once",
+      "duplicate elimination is rejected",
+      "unavailable home pool uses existing fallback",
+      "fallback uses center rather than opponent home",
+      "interior void eliminates through arena lower plane",
+      "round reset restores opening home 1",
+      "round reset restores opening home 2",
+      "failure-path elimination accepted",
+      "unsafe home and fallback stop session visibly"
+    ]
+  },
+  "slam": {
+    "observations": [
+      "WreckingHammer",
+      "WreckingHammer",
+      "WreckingHammer",
+      "WreckingHammer",
+      "Gust",
+      "Magnet",
+      "PaddlePops"
+    ],
+    "passed": true,
+    "checks": [
+      "ordinary falling primary accepted",
+      "jump/ledge without Bounce does not unlock slam",
+      "ground-level replication setup launches Bounce",
+      "ascending Bounce primary accepted before replicated height arrives",
+      "ascending supported sample is not mistaken for landing",
+      "early-click launch",
+      "primary delay rejects early click",
+      "early click does not buffer",
+      "fresh click after delay starts slam",
+      "consumed slam cannot repeat",
+      "slam does not refresh/spend Bounce",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "no accelerated descent before 0.25",
+      "descent begins after telegraph",
+      "descent retains horizontal momentum",
+      "descent accepts steering",
+      "steering limited to eight studs/s squared",
+      "descent remains server owned with motor disabled",
+      "valid landing produces one shockwave",
+      "enemy affected once",
+      "shockwave applies 55/13 replacement launch",
+      "landing restores motor/displacement",
+      "landing settles feet and clears downward velocity before handoff",
+      "landing recovery is 0.65 seconds",
+      "recovery rejects attacks",
+      "no repeated impact or direct Hammer stacking",
+      "attack restored after recovery",
+      "opportunity consumed after landing",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "bounded Bounce replication burst survives slam ownership handoff",
+      "handoff allowance still rejects excessive vertical teleport",
+      "Q Bounce starts opportunity",
+      "incoming Hammer begins",
+      "incoming weapon redirects attacker",
+      "incoming Hammer replacement trajectory",
+      "post-hit primary restored",
+      "incoming weapon expires unused opportunity",
+      "Q Bounce starts opportunity",
+      "armored setup",
+      "incoming Hammer begins",
+      "incoming weapon redirects attacker",
+      "incoming Hammer replacement trajectory",
+      "armor prevents startup cancellation",
+      "brief reaction precedes resumed descent",
+      "descent resumes redirected trajectory without windup",
+      "redirect does not restart slam",
+      "Q Bounce starts opportunity",
+      "landed primary restored",
+      "landing expires unused opportunity",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "untagged surface cannot impact",
+      "disappearing surface continues falling",
+      "playable top is valid",
+      "same-surface enemy in radius",
+      "expanded radius includes enemy at 8.5 studs",
+      "range/elevation/void rejects target",
+      "range/elevation/void rejects target",
+      "range/elevation/void rejects target",
+      "wall occludes target",
+      "upper playable floor cannot be hit through floor",
+      "character top cannot create impact",
+      "underside cannot land",
+      "side/void cannot land",
+      "separate island gap blocks shockwave",
+      "continuous island bridge seams transmit shockwave",
+      "missing bridge collision rejects shockwave",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "friendly fire exclusion / exact center contact",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "friendly fire exclusion / exact center contact",
+      "exact center launches along committed facing",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "Gust targets slam",
+      "Gust cannot cancel armor",
+      "Gust displaces armored slam",
+      "Gust releases into resumed descent",
+      "Gust does not replay telegraph",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "Magnet targets slam",
+      "Magnet cannot cancel armor",
+      "Magnet redirects slam toward source",
+      "Magnet releases into resumed descent",
+      "Magnet does not replay telegraph",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "shockwave respects spawn protection",
+      "protected target receives no launch",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "Paddle attacks slam telegraph",
+      "armor resists actual hit during 0.25 telegraph",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "fresh-match clears slam and drive",
+      "fresh-match prevents stale impact",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "sudden-death-round clears slam and drive",
+      "sudden-death-round prevents stale impact",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "departure clears slam and drive",
+      "departure prevents stale impact",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "elimination cleans armored descent",
+      "elimination cannot impact",
+      "eliminated primary rejected"
+    ]
+  },
+  "bounce": {
+    "observations": [
+      "SpringFist",
+      "Gust",
+      "Magnet"
+    ],
+    "passed": true,
+    "checks": [
+      "staging rejects Bounce",
+      "staging spends nothing",
+      "invalid movement vector rejected",
+      "invalid movement vector rejected",
+      "invalid movement vector rejected",
+      "invalid movement vector rejected",
+      "stale generation rejected",
+      "unequipped Magnet rejected",
+      "unequipped rejection spends nothing",
+      "grounded straight-up Bounce accepted",
+      "launch replaces falling and horizontal velocity",
+      "ten-second cooldown starts at acceptance",
+      "Bounce ends spawn protection",
+      "Bounce grants no protection",
+      "self launch creates no knockout attribution",
+      "launch is initially server-owned",
+      "launch restores ordinary airborne motor",
+      "attack during primary delay rejected",
+      "rejected early primary never buffers",
+      "ordinary airborne attack after primary delay accepted",
+      "repeat during cooldown rejected",
+      "rejection preserves deadline",
+      "cooldown expiry permits another activation",
+      "death and replacement preserve cooldown",
+      "respawn cannot bypass cooldown",
+      "fresh match and sudden death reset cooldown",
+      "diagonal Bounce accepted",
+      "diagonal horizontal speed is exactly 48",
+      "diagonal retains upward speed",
+      "SpringFist starts",
+      "SpringFist cannot self-cancel startup",
+      "busy rejection spends nothing",
+      "SpringFist accepts Bounce",
+      "SpringFist aerial primary accepted (Hammer becomes F11 slam)",
+      "WreckingHammer starts",
+      "WreckingHammer cannot self-cancel startup",
+      "busy rejection spends nothing",
+      "WreckingHammer accepts Bounce",
+      "WreckingHammer aerial primary accepted (Hammer becomes F11 slam)",
+      "PaddlePops starts",
+      "PaddlePops cannot self-cancel startup",
+      "busy rejection spends nothing",
+      "PaddlePops accepts Bounce",
+      "PaddlePops aerial primary accepted (Hammer becomes F11 slam)",
+      "victim begins interruptible attack",
+      "opponent weapon begins",
+      "victim starts later attack",
+      "weapon hit reaction active",
+      "Bounce escapes ordinary hit reaction after interruption",
+      "Bounce reverses knockback",
+      "existing hit protection retained",
+      "Bounce preserves enemy attribution without adding credit",
+      "Gust stun fixture begins",
+      "Gust stun active",
+      "Gust stun blocks Bounce",
+      "stun rejection spends nothing",
+      "Bounce allowed after Gust stun",
+      "Magnet pull begins",
+      "victim is being pulled",
+      "Bounce escapes Magnet",
+      "pull ends and full launch replaces it",
+      "old Magnet cannot resume pull",
+      "elimination cutoff rejects Bounce",
+      "eliminated rejection spends nothing",
+      "airborne falling activation accepted",
+      "falling velocity fully replaced",
+      "gravity continues without hover",
+      "Bounce under ceiling accepted",
+      "platform underside blocks launch",
+      "Bounce toward wall accepted",
+      "wall blocks physical launch",
+      "cleanup launch accepted",
+      "death clears launch state",
+      "death keeps cooldown ledger"
+    ]
+  },
+  "magnet": {
+    "observations": [
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792767693.717229,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767693.733248,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767693.750254,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767693.766342,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767693.78442,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767693.799987,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767693.816746,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767693.833233,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767693.850253,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767693.86738,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767693.889826,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767693.900376,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767693.916404,
+        "owned": true
+      },
+      {
+        "speed": 20.08774185180664,
+        "at": 1792767693.932972,
+        "owned": true
+      },
+      "WreckingHammer",
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792767694.466565,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767694.483045,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.500052,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.517538,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.533133,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.550136,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.567779,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.5843,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.600332,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.61738,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.634146,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.649979,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767694.6668,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.683375,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.700353,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.716687,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.733179,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.750261,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.766738,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.784325,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.800364,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.816796,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.833381,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.850582,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.866511,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.883534,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.900007,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.917582,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.933142,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.950187,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.967773,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767694.983246,
+        "owned": true
+      },
+      {
+        "speed": 27.18214225769043,
+        "at": 1792767695.000308,
+        "owned": true
+      },
+      "PaddlePops",
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792767695.584338,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.600239,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.617721,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.63329,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.650354,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767695.666386,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.684511,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.700258,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.717802,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.733419,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.750366,
+        "owned": true
+      },
+      "SpringFist",
+      {
+        "speed": 17.852153778076172,
+        "at": 1792767695.766411,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.783396,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.80086,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.818145,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.834046,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.8503,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.866643,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.884107,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.900842,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.91629,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.934446,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.950393,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767695.966454,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767695.984062,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767696.00059,
+        "owned": true
+      },
+      {
+        "speed": 12.291010856628418,
+        "at": 1792767696.017046,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792767696.500527,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767696.516959,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767696.533025,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767696.550304,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767696.567941,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767696.583918,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767696.600955,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767696.616416,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767696.63456,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767696.650143,
+        "owned": true
+      },
+      "Gust",
+      {
+        "speed": 28,
+        "at": 1792767696.666843,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767696.683272,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767696.700286,
+        "owned": true
+      },
+      {
+        "speed": 26.7562255859375,
+        "at": 1792767696.716786,
+        "owned": true
+      },
+      {
+        "speed": 21.01464080810547,
+        "at": 1792767696.733314,
+        "owned": true
+      },
+      {
+        "speed": 21.014612197875977,
+        "at": 1792767696.750272,
+        "owned": true
+      },
+      {
+        "speed": 21.01464080810547,
+        "at": 1792767696.766771,
+        "owned": true
+      },
+      {
+        "speed": 21.01464080810547,
+        "at": 1792767696.782863,
+        "owned": true
+      },
+      {
+        "speed": 21.01465606689453,
+        "at": 1792767696.79987,
+        "owned": true
+      },
+      {
+        "speed": 21.014625549316406,
+        "at": 1792767696.817386,
+        "owned": true
+      },
+      {
+        "speed": 24.57777214050293,
+        "at": 1792767696.833547,
+        "owned": true
+      },
+      {
+        "speed": 21.015756607055664,
+        "at": 1792767696.850444,
+        "owned": true
+      },
+      {
+        "speed": 7.039575099945068,
+        "at": 1792767696.866985,
+        "owned": true
+      },
+      {
+        "speed": 7.038144588470459,
+        "at": 1792767696.883999,
+        "owned": true
+      },
+      {
+        "speed": 7.038173198699951,
+        "at": 1792767696.900112,
+        "owned": true
+      },
+      {
+        "speed": 7.038173198699951,
+        "at": 1792767696.91718,
+        "owned": true
+      },
+      {
+        "speed": 10.092772483825684,
+        "at": 1792767696.934293,
+        "owned": true
+      },
+      "SpringFist",
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792767709.750484,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.766668,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.784146,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.800276,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767709.817867,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.834305,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.850401,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.866397,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.884008,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.899472,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.918068,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.933127,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.950388,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767709.966358,
+        "owned": true
+      },
+      {
+        "speed": 13.690766334533691,
+        "at": 1792767709.983604,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792767710.850258,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767710.867238,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767710.883178,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792767711.317376,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767711.332927,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792767711.350395,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792767711.850429,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792767711.866824,
+        "owned": true
+      }
+    ],
+    "passed": true,
+    "checks": [
+      "staging rejected",
+      "staging spends nothing",
+      "bad aim rejected",
+      "stale generation rejected",
+      "miss accepted",
+      "twelve-second cooldown",
+      "user keeps movement and jump",
+      "weapon overlap rejected",
+      "miss cleans action without pull",
+      "cooldown rejection cannot extend deadline",
+      "miss still emits burst",
+      "target starts Hammer",
+      "pull accepted",
+      "pull is server owned",
+      "pull adds no stun and preserves target startup",
+      "target movement and jumping locked",
+      "protection begins at pull start",
+      "pull motor and attributes restore",
+      "pull stops near three studs: 2.9999821186065674",
+      "early completion retains minimum protection without full-duration extension",
+      "exact 28 studs per second observed",
+      "near-maximum-range Magnet accepted",
+      "distant target finishes inside Paddle reach: 4.914870263424291",
+      "long-pull protection expires at completion",
+      "Paddle follow-up accepted after pull",
+      "six-stud Paddle follow-up hits distant pulled target",
+      "response fixture accepted",
+      "target can start weapon during pull",
+      "responding weapon can hit unprotected user",
+      "ability response fixture accepted",
+      "target can use valid ability during pull",
+      "interrupting weapon begins",
+      "interruptible startup accepted",
+      "weapon cancels startup without pull",
+      "interruption spends cooldown",
+      "hit reaction rejects activation",
+      "ordinary knockback after reaction permits Magnet",
+      "protected target activation accepted",
+      "spawn-protected target excluded",
+      "cleanup fixture starts",
+      "source removal releases target immediately",
+      "death retains deadline",
+      "respawn retains deadline",
+      "fresh match and sudden-death shared reset clears deadline",
+      "obstacle fixture starts",
+      "new obstacle stops pull early",
+      "target does not cross solid wall",
+      "airborne activation accepted",
+      "airborne pull preserves gravity rather than hovering",
+      "target death cleans pull"
+    ]
+  },
+  "traversal": {
+    "samples": [
+      {
+        "maxY": 45.000003814697266,
+        "route": 1,
+        "jumped": false,
+        "minY": 44.999996185302734,
+        "gap": 1.7443790435791016
+      },
+      {
+        "maxY": 45.000003814697266,
+        "route": 2,
+        "jumped": false,
+        "minY": 44.999996185302734,
+        "gap": 1.8668766021728516
+      },
+      {
+        "maxY": 45.000003814697266,
+        "route": 3,
+        "jumped": false,
+        "minY": 44.999996185302734,
+        "gap": 1.8566291332244873
+      }
+    ],
+    "passed": true,
+    "checks": [
+      "route 1 reaches destination using walking",
+      "route 1 crosses both seams without falling or jumping",
+      "route 1 stays alive without Bounce",
+      "route 2 reaches destination using walking",
+      "route 2 crosses both seams without falling or jumping",
+      "route 2 stays alive without Bounce",
+      "route 3 reaches destination using walking",
+      "route 3 crosses both seams without falling or jumping",
+      "route 3 stays alive without Bounce"
+    ]
+  },
+  "twoClients": {
+    "passed": true,
+    "clients": {
+      "Player1": {
+        "state": "{\"revision\":7,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792768166.945777,\"deadline\":1792768346.945777,\"phase\":\"regulation\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":180},\"session\":1,\"goAt\":1792768166.945655}",
+        "errors": [],
+        "viewport": "1607, 873",
+        "arena": true,
+        "position": "-33.5, 45.90803146362305, 58.896095275878906",
+        "cameraDistance": 16
+      },
+      "Player2": {
+        "state": "{\"revision\":7,\"roster\":[{\"id\":-2,\"name\":\"Player2\",\"score\":1},{\"id\":-1,\"name\":\"Player1\",\"score\":1}],\"startedAt\":1792768166.945777,\"deadline\":1792768346.945777,\"phase\":\"regulation\",\"nextConfig\":{\"OpeningCountdown\":3,\"RegulationDuration\":180},\"session\":1,\"goAt\":1792768166.945655}",
+        "errors": [],
+        "viewport": "1607, 873",
+        "arena": true,
+        "position": "33.5, 44.999996185302734, 58.8961181640625",
+        "cameraDistance": 15.99999713897705
+      }
+    },
+    "checks": [
+      "Player2 starts at a side-island center",
+      "Player1 starts at a side-island center",
+      "players occupy opposing home islands",
+      "first loadout selected",
+      "second loadout selected",
+      "normal two-player match begins",
+      "Player2 unlocks alive at GO",
+      "Player1 unlocks alive at GO",
+      "void fall 1 awards exactly one opposing point",
+      "void fall 1 cannot score twice",
+      "player 1 returns to its own home island",
+      "player 1 receives respawn protection",
+      "void fall 2 awards exactly one opposing point",
+      "void fall 2 cannot score twice",
+      "player 2 returns to its own home island",
+      "player 2 receives respawn protection",
+      "Player2 receives matching authoritative match state",
+      "Player2 reports no script errors",
+      "Player2 receives arena and retains default camera distance",
+      "Player1 receives matching authoritative match state",
+      "Player1 reports no script errors",
+      "Player1 receives arena and retains default camera distance"
+    ]
+  },
+  "camera": {
+    "character": "-27.5, 46, 58.896095275878906",
+    "cameraType": "Scriptable",
+    "position": "-6.275814533233643, 51.99370574951172, 13.442085266113281",
+    "viewport": "1607, 873",
+    "distance": 16,
+    "focus": "0, 46, 0"
+  },
+  "cleanPlayConsole": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Knockout Night development environment ready!\nContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type\nContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type\nContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type"
+      }
+    ],
+    "isError": false
+  },
+  "finalSync": {
+    "runtimeSources": 28,
+    "studioSources": 28,
+    "mismatches": [],
+    "extras": [],
+    "studioMode": "Edit",
+    "temporaryProbesRemoved": true
+  },
+  "limitations": [
+    "Screen capture returned blank frames; visual readability and low-graphics review remain unverified.",
+    "Full match completion and latency matrix were not repeated for L1.",
+    "Slam retains quarter-stud support sampling; sub-quarter-stud gaps are not guaranteed rejected."
+  ],
+  "ownerAcceptance": {
+    "status": "accepted",
+    "date": "2026-10-23",
+    "owner": "David",
+    "scope": "Current L1 Sky Bridges gameplay",
+    "remainingTechnicalChecksUnchanged": true,
+    "authorizesNextSliceOrPublishing": false
+  }
+}

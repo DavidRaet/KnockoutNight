@@ -781,7 +781,7 @@ function Combat.step(dt)
 								and valid(other)
 								and (player.Neutral or other.player.Neutral or player.Team ~= other.player.Team)
 							then
-								local point = Contact.slamTarget(hit.Position, other, excluded, hit.Instance)
+								local point = Contact.slamTarget(hit.Position, other, excluded)
 								if point then
 									local delta = other.root.Position - hit.Position
 									local x, z = Slam.direction(delta.X, delta.Z, action.aim.X, action.aim.Z)

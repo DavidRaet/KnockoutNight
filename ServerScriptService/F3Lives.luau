@@ -10,6 +10,7 @@ local spawnCharacter, arena, candidates, fallback, remote
 local stopped = false
 local matchOwner
 local resetSafePhase = function() end
+local boundsCenter = World.PlatformCenter
 local lowerY = World.PlatformCenter.Y + World.PlatformThickness / 2 - Config.LowerOffset
 local outerRadius = World.PlatformDiameter / 2 + Config.OuterMargin
 
@@ -55,7 +56,7 @@ function Lives.alive(player)
 		and humanoid ~= nil
 		and humanoid.Health > 0
 		and root ~= nil
-		and not Rules.outside(root.Position, World.PlatformCenter, lowerY, outerRadius)
+		and not Rules.outside(root.Position, boundsCenter, lowerY, outerRadius)
 end
 
 function Lives.hit(victim, attacker, at, weapon)
@@ -204,7 +205,7 @@ local function choose(player, state)
 	local distances = {}
 	for index, marker in candidates do
 		local nearest = -math.huge
-		if safe(player, marker) then
+		if (not state.home or marker:GetAttribute("F3Home") == state.home) and safe(player, marker) then
 			nearest = math.huge
 			for opponent, other in records do
 				if opponent ~= player and Lives.alive(opponent) then
@@ -255,7 +256,7 @@ local function spawn(player, state, frame, protected)
 	publish(player, state)
 end
 
-function Lives.add(player, initialFrame)
+function Lives.add(player, initialFrame, home)
 	if records[player] or player.Parent ~= Players then
 		return
 	end
@@ -267,6 +268,7 @@ function Lives.add(player, initialFrame)
 		life = 0,
 		session = 0,
 		initialFrame = initialFrame,
+		home = home,
 		status = "waiting",
 		score = 0,
 		previousSpawn = 0,
@@ -413,6 +415,10 @@ function Lives.start(createCharacter, world, points, emergency, resetHazards)
 	assert(not remote, "F3 lives must be started only once per local session")
 	spawnCharacter, arena, candidates, fallback = createCharacter, world, points, emergency
 	resetSafePhase = resetHazards or function() end
+	boundsCenter = world:GetAttribute("F3BoundsCenter") or World.PlatformCenter
+	lowerY = world:GetAttribute("F3LowerY")
+		or (World.PlatformCenter.Y + World.PlatformThickness / 2 - Config.LowerOffset)
+	outerRadius = world:GetAttribute("F3OuterRadius") or (World.PlatformDiameter / 2 + Config.OuterMargin)
 	remote = Instance.new("RemoteEvent")
 	remote.Name, remote.Parent = "F3Knockouts", Storage
 	workspace:SetAttribute("F3SessionError", nil)

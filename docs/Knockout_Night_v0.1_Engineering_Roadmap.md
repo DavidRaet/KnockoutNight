@@ -96,7 +96,7 @@ Build the two additional arenas before wiring the complete player journey. M2 ke
 
 | ID / vertical slice | Blocked by | Acceptance check and required playtest | Additional Brain skills |
 |---|---|---|---|
-| **L1 — Build Sky Bridges** | F3 | Center and side islands have all three connections. Essential routes work without Bounce. Verify safe spawns, camera legibility, ordinary traversal, ring-outs, and slam rejection across island gaps in 1v1. | `building`, `physics`, `camera` |
+| **L1 — Build Sky Bridges** | F3 | **Gameplay accepted by David October 23, 2026.** Center and side islands have all three connections. Essential routes work without Bounce. Verify safe spawns, camera legibility, ordinary traversal, ring-outs, and slam rejection across island gaps in 1v1. | `building`, `physics`, `camera` |
 | **L2 — Build The Ring** | F5, F11 | Permanent center remains safe. Select two nonadjacent sections excluding previous-cycle selections. Warnings use pattern/animation and sound. Verify escape, safe restoration, unavailable spawn surfaces, surface disappearance under slam, and sudden-death reset to safe phase in 1v1. | `building`, `physics`, `audio`, `animation-vfx` |
 | **L3 — Enter the menu, lobby, and 1v1 queue** | F1, L1, L2 | After the three-map set is built, title/blurred 3D background and Play lead to the shared lobby. The physical 1v1 zone shows FIFO waiting order and next roster. Repeated contacts/input never create duplicate membership. Incomplete queues wait. | `building`, `camera`, `input`, `gui` |
 | **L4 — Dispatch a local 1v1 group** | L3, F4 | A full group receives a countdown and one local session assignment to the intermission area in the same server. Pre-dispatch departures preserve queue order; extra entrants wait. | `gui` |
@@ -107,6 +107,8 @@ Build the two additional arenas before wiring the complete player journey. M2 ke
 | **L9 — Read combat and control presentation** | L2, L7 | Weapon/ability feedback remains distinguishable in 1v1. Settings provide sensitivity, optional subtle shake, and separate music/effects volume. Essential information remains readable without color alone and at low graphics settings. | `gui`, `camera`, `audio`, `animation-vfx` |
 
 ### M2 acceptance and playtest gate
+
+**L1 — October 23, 2026:** [Sky Bridges is implemented and technically checked](P1/L1/L1_Implementation_and_Verification.md), including three walkable connections, home-island respawns, arena bounds, seam-aware slam, live traversal, and a two-client spawn/scoring/respawn check. **David signed off L1 gameplay on October 23, 2026; gameplay acceptance is complete for this slice.** Agent visual camera/readability review remains unverified because Studio captures returned blank frames. Current launch selects Sky Bridges; The Platform remains selectable in `F1Config.Arena`. Do not advance automatically into L2 or publishing. Full-match, latency, and milestone acceptance gates remain separate.
 
 - Pass the 1v1 local-flow acceptance criteria, including AC01 and the applicable AC04–AC18 and AC21–AC26 scenarios.
 - Complete the **three maps × 1v1** matrix with varied loadouts.
