@@ -99,11 +99,12 @@ templateDescription:Destroy()
 local slots: { [Player]: number } = {}
 local templates: { [Player]: Model } = {}
 
-local function spawnCharacter(player: Player, frame: CFrame)
+local function spawnCharacter(player: Player, frame: CFrame, lobbyCharacter: boolean?)
 	if player.Parent ~= Players then
 		return
 	end
 	local character = (templates[player] or template):Clone()
+	character:SetAttribute("L3LobbyCharacter", lobbyCharacter == true)
 	character.Name = player.Name
 	local humanoid = character:FindFirstChildOfClass("Humanoid")
 	assert(humanoid and humanoid.RigType == Enum.HumanoidRigType.R15, "F1 requires R15")
@@ -139,6 +140,9 @@ local function spawnCharacter(player: Player, frame: CFrame)
 end
 
 local function addPlayer(player: Player)
+	if not Config.DeveloperArenaMode then
+		return
+	end
 	if slots[player] then
 		return
 	end
@@ -153,7 +157,7 @@ local function addPlayer(player: Player)
 		player:SetAttribute("F3Status", "waiting")
 		return
 	end
-	-- shortcut: the local F3 launch supports two players; queues/2v2 arrive in later slices.
+	-- Developer arena staging deliberately bypasses the player-facing lobby and queue.
 	slots[player] = if firstOccupied then 2 else 1
 	if player.UserId > 0 then
 		local ok, description = pcall(function()
@@ -210,6 +214,12 @@ local function addPlayer(player: Player)
 end
 
 Lives.start(spawnCharacter, arena, spawnPoints, fallback)
+local lobby = if not Config.DeveloperArenaMode then require(script.Parent.L3Lobby) else nil
+if lobby then
+	lobby.start(spawnCharacter)
+	script.Destroying:Connect(lobby.stop)
+	game:BindToClose(lobby.stop)
+end
 Players.PlayerAdded:Connect(addPlayer)
 Players.PlayerRemoving:Connect(function(player)
 	slots[player] = nil

@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-23",
+  "slice": "L3",
+  "ownerAcceptance": {
+    "status": "accepted",
+    "owner": "David",
+    "date": "2026-10-23",
+    "scope": "Current L3 gameplay; outstanding technical checks and later slices remain separate"
+  },
+  "offline": {
+    "command": "tests/run_l3_checks.ps1",
+    "formatting": "passed",
+    "selene": "passed",
+    "compilation": "passed",
+    "existingDeterministicAssertions": 590,
+    "queueAssertions": 120
+  },
+  "studio": {
+    "runtimeSourcesMatched": 33,
+    "temporaryFixturesRemoved": true,
+    "finalMode": "Edit",
+    "finalDeveloperArenaMode": false,
+    "singleClientInput": [
+      "Play click enters lobby",
+      "20 repeated Play requests retain one character",
+      "W movement enters physical queue",
+      "jump retains queue membership",
+      "death clears queue and respawns outside pad without reopening menu"
+    ],
+    "combatIsolation": "Actual combat remote requests leave the lobby character unequipped and grounded; no arena life/score attributes are published",
+    "syntheticLifecycleAssertions": 23,
+    "overflowPresentation": {
+      "syntheticRows": 12,
+      "canvasPixels": 504,
+      "windowPixels": 278,
+      "pinnedPairAndPersonalPosition": "passed",
+      "snapshotRestored": true
+    },
+    "developerPath": "Waiting arena life 1, score 0, frozen Dungeon spawn and prototype loadout UI verified in a separate test session",
+    "captureLimitation": "Later captures showed a dark 3D view; David confirmed Studio renders correctly and approved the blurred-background appearance",
+    "observedAssetWarning": "rbxassetid://203785492: asset type does not match requested type",
+    "expectedFixtureWarning": "One intentional character creation failure tests Retry Play"
+  },
+  "pending": [
+    "Actual multi-client input and replication",
+    "Reset button interaction",
+    "World board readability and mouse-wheel scrolling with a long queue",
+    "Low graphics, target latency and reference-hardware performance"
+  ],
+  "dispatchImplemented": false,
+  "published": false
+}

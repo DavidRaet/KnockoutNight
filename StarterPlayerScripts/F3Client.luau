@@ -31,6 +31,7 @@ local gui = Instance.new("ScreenGui")
 gui.Name, gui.ResetOnSpawn = "F3HUD", false
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 gui.Parent = playerGui
+gui.Enabled = World.DeveloperArenaMode
 
 local function label(parent, name, size, position, textSize)
 	local text = Instance.new("TextLabel")
@@ -150,7 +151,7 @@ adminToggle.Font, adminToggle.BorderSizePixel = Enum.Font.GothamMedium, 0
 adminToggle.Parent = gui
 local toggleCorner = Instance.new("UICorner")
 toggleCorner.CornerRadius, toggleCorner.Parent = UDim.new(0, 10), adminToggle
-adminToggle.Visible = player:GetAttribute("F4AdminAuthorized") == true
+adminToggle.Visible = World.DeveloperArenaMode and player:GetAttribute("F4AdminAuthorized") == true
 
 local console = Instance.new("Frame")
 console.Name, console.Size, console.Position = "DeveloperConsole", UDim2.fromOffset(330, 500), UDim2.fromOffset(16, 62)
@@ -234,7 +235,7 @@ table.insert(
 table.insert(
 	connections,
 	player:GetAttributeChangedSignal("F4AdminAuthorized"):Connect(function()
-		adminToggle.Visible = player:GetAttribute("F4AdminAuthorized") == true
+		adminToggle.Visible = World.DeveloperArenaMode and player:GetAttribute("F4AdminAuthorized") == true
 		if not adminToggle.Visible then
 			console.Visible = false
 		end

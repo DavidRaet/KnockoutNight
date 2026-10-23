@@ -525,7 +525,7 @@ local function launch(contact, now, excluded)
 end
 
 local function addCharacter(player, character)
-	if player.Character ~= character then
+	if player.Character ~= character or character:GetAttribute("L3LobbyCharacter") == true then
 		return
 	end
 	remove(player, "character-replaced")

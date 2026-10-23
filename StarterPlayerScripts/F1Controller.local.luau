@@ -19,6 +19,9 @@ local Combat = require(combatInstance)
 local livesInstance = script.Parent:WaitForChild("F3Client", 10)
 assert(livesInstance and livesInstance:IsA("ModuleScript"), "F3Client is missing from the lives prototype")
 local Lives = require(livesInstance)
+local lobbyInstance = if not Config.DeveloperArenaMode then script.Parent:WaitForChild("L3Client", 10) else nil
+assert(Config.DeveloperArenaMode or lobbyInstance, "L3 lobby requires its client presentation module")
+local Lobby = if lobbyInstance then require(lobbyInstance) else nil
 local studyInstance = if RunService:IsStudio() then ReplicatedStorage:WaitForChild("F2PhysicsStudy", 10) else nil
 assert(
 	not RunService:IsStudio() or (studyInstance and studyInstance:IsA("ModuleScript")),
@@ -76,8 +79,7 @@ local function controlsEnabled(): boolean
 		and GuiService.SelectedObject == nil
 		and not Lives.adminConsoleOpen()
 		and player:GetAttribute("F1ControlsEnabled") ~= false
-		and player:GetAttribute("F3Status") == "alive"
-		and Lives.matchActive()
+		and (player:GetAttribute("L3State") == "lobby" or (player:GetAttribute("F3Status") == "alive" and Lives.matchActive()))
 		and humanoid ~= nil
 		and humanoid.Health > 0
 end
@@ -131,7 +133,14 @@ connect(Input.TextBoxFocused, clearInput)
 connect(player:GetAttributeChangedSignal("F1ControlsEnabled"), clearInput)
 
 Actions:BindActionAtPriority("F2Attack", function(_, state)
-	if state == Enum.UserInputState.Begin and controlsEnabled() and character and root then
+	if
+		state == Enum.UserInputState.Begin
+		and controlsEnabled()
+		and Lives.matchActive()
+		and player:GetAttribute("F3Status") == "alive"
+		and character
+		and root
+	then
 		local now = workspace:GetServerTimeNow()
 		if
 			(not root:GetAttribute("F2Displaced") or root:GetAttribute("F9Pulling"))
@@ -144,7 +153,13 @@ Actions:BindActionAtPriority("F2Attack", function(_, state)
 end, false, Enum.ContextActionPriority.High.Value, Enum.UserInputType.MouseButton1)
 
 Actions:BindActionAtPriority("F10Ability", function(_, state)
-	if state == Enum.UserInputState.Begin and controlsEnabled() and character then
+	if
+		state == Enum.UserInputState.Begin
+		and controlsEnabled()
+		and Lives.matchActive()
+		and player:GetAttribute("F3Status") == "alive"
+		and character
+	then
 		local x = (if held[Enum.KeyCode.D] then 1 else 0) - (if held[Enum.KeyCode.A] then 1 else 0)
 		local z = (if held[Enum.KeyCode.S] then 1 else 0) - (if held[Enum.KeyCode.W] then 1 else 0)
 		Combat.ability(character, CFrame.Angles(0, yaw, 0).LookVector, Movement.direction(x, z, yaw))
@@ -213,7 +228,7 @@ connect(RunService.PreSimulation, function(dt)
 	end
 	local intendedAim = CFrame.Angles(0, yaw, 0).LookVector
 	player:SetAttribute("F2IntendedAim", intendedAim)
-	Combat.update(character, intendedAim, direction, controlsEnabled())
+	Combat.update(character, intendedAim, direction, controlsEnabled() and player:GetAttribute("F3Status") == "alive")
 	local now = workspace:GetServerTimeNow()
 	local displaced = currentRoot:GetAttribute("F2Displaced") ~= nil
 	local reaction = now < (currentRoot:GetAttribute("F2ReactionUntil") or 0)
@@ -267,8 +282,9 @@ raycastParams.IgnoreWater = true
 raycastParams.RespectCanCollide = true
 RunService:BindToRenderStep("F1Camera", Enum.RenderPriority.Camera.Value + 1, function()
 	local enabled = controlsEnabled()
-	Input.MouseBehavior = if enabled then Enum.MouseBehavior.LockCenter else Enum.MouseBehavior.Default
-	Input.MouseIconEnabled = not enabled
+	local looking = enabled and (not Lobby or Input:IsMouseButtonPressed(Enum.UserInputType.MouseButton2))
+	Input.MouseBehavior = if looking then Enum.MouseBehavior.LockCenter else Enum.MouseBehavior.Default
+	Input.MouseIconEnabled = not looking
 	if not enabled or not wasEnabled then
 		clearInput()
 	end
@@ -278,7 +294,12 @@ RunService:BindToRenderStep("F1Camera", Enum.RenderPriority.Camera.Value + 1, fu
 	if not camera then
 		return
 	end
-	if enabled then
+	local menuCamera = Lobby and Lobby.menuCamera()
+	if menuCamera then
+		camera.CameraType, camera.CFrame, camera.Focus = Enum.CameraType.Scriptable, menuCamera, menuCamera
+		return
+	end
+	if looking then
 		local delta = Input:GetMouseDelta()
 		yaw = (yaw - delta.X * Config.CameraSensitivity) % (math.pi * 2)
 		pitch = math.clamp(pitch - delta.Y * Config.CameraSensitivity, Config.CameraMinPitch, Config.CameraMaxPitch)
@@ -290,7 +311,8 @@ RunService:BindToRenderStep("F1Camera", Enum.RenderPriority.Camera.Value + 1, fu
 		end
 	end
 	raycastParams.FilterDescendantsInstances = excluded
-	local focus = Lives.cameraPosition(currentRoot) + Vector3.new(0, Config.CameraFocusHeight, 0)
+	local focus = (if Lobby and currentRoot then currentRoot.Position else Lives.cameraPosition(currentRoot))
+		+ Vector3.new(0, Config.CameraFocusHeight, 0)
 	local rotation = CFrame.fromOrientation(pitch, yaw, 0)
 	local offset = -rotation.LookVector * distance
 	local hit = workspace:Spherecast(focus, Config.CameraRadius, offset, raycastParams)
@@ -305,6 +327,9 @@ end)
 script.Destroying:Connect(function()
 	Combat.stop()
 	Lives.stop()
+	if Lobby then
+		Lobby.stop()
+	end
 	restoreStudyMotor()
 	for _, connection in connections do
 		connection:Disconnect()

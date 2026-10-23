@@ -2,6 +2,8 @@
 
 -- Prototype settings: PRD DD01 / section 17; camera and steering need playtesting.
 return table.freeze({
+	-- Enable only in a separate developer test session to use the original arena staging path.
+	DeveloperArenaMode = false,
 	Arena = "Dungeon",
 	WalkSpeed = 16,
 	JumpHeight = 7,
