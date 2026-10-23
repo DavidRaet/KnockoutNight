@@ -1,6 +1,6 @@
 # F11 — Perform Aerial Ground Slam
 
-Implemented and technically verified within the limits below on **October 23, 2026**, for the current local 1v1 prototype on The Platform. **Owner gameplay acceptance is pending.** No other slice, map, 2v2, polish, asset generation/export, or publishing is included.
+Implemented and technically verified within the limits below on **October 23, 2026**, for the current local 1v1 prototype on The Platform. **David signed off F11 gameplay on October 23, 2026, at the current nine-stud radius and 55 horizontal / 13 upward studs/s launch tuning.** No other slice, map, 2v2, polish, asset generation/export, or publishing is included.
 
 ## Behavior and integration
 
@@ -44,20 +44,20 @@ Engine checks cover eligibility, opportunity consumption/expiry, early-click rej
 
 The first successful live probe exposed a `vertical-reset` correction at Bounce-to-slam ownership transfer. The expiring consumable handoff allowance fixes that case; the final live rerun logged no movement corrections or project runtime errors. Landing handoff also now clears downward velocity. Engine tests intentionally exercise the excessive-teleport correction and the existing displacement failsafe, so their warning messages are expected. The unrelated `rbxassetid://203785492` asset-type mismatch remains visible in Studio Output.
 
-Two-live-client replication, 100–150 ms RTT, adversarial ownership timing under latency, and complete regulation/countdown/sudden-death matches with F11 were not run. Existing match gates/reset operations and their offline regressions pass; isolated retirement checks are not full-match verification. A full Roblox type analyzer is not installed; standalone compilation and lint passed. Reference-hardware performance, final art, subjective feel, and gameplay acceptance are not claimed.
+Two-live-client replication, 100–150 ms RTT, adversarial ownership timing under latency, and complete regulation/countdown/sudden-death matches with F11 were not run. Existing match gates/reset operations and their offline regressions pass; isolated retirement checks are not full-match verification. A full Roblox type analyzer is not installed; standalone compilation and lint passed. Reference-hardware performance and final art remain unverified. David's gameplay acceptance is recorded separately below; it does not close the remaining technical verification items.
 
 To repeat Studio checks, first run the local suite and compare/sync all runtime sources. Install the generated `.tools/F9HarnessCombat.luau` as `ServerStorage.F11Harness`, and the runtime specs as `ServerStorage.F11Runtime`, `F10Runtime`, and `F9Runtime`. In Play's Server VM, call `require(game.ServerStorage.F11Runtime)(require(game.ServerStorage.F11Harness))`, and similarly for the regressions. For the one-client input probe, temporarily install the paired `F11Live` server/client scripts and set the server script's `F11Verification` attribute before Play; press Q then click after the primary delay. Read their `Result` attributes. Remove all probes and compare sources again afterward.
 
-## Owner gameplay handoff
+## Owner gameplay checklist (retained for regression testing)
 
 1. Start Server & Clients with two clients. Select **Wrecking Hammer + Bounce**, start the local match, and wait for GO. Press Q, wait at least 0.15 seconds, then click while airborne. Judge telegraph readability, retained momentum, steering, impact radius, and recovery.
 2. Try an early click without clicking again, an ordinary jump attack, and landing before clicking. These must not produce a slam. After a successful slam, try attacking/Bouncing during recovery and confirm Bounce's original cooldown continues.
 3. Use the opponent's weapon, Gust, and Magnet to redirect the slam. Judge the reaction and resumed descent; test edge redirection/ring-out. Avoid the landing area, then punish recovery.
 4. Check nearby versus distant/elevated/covered opponents, death/respawn, and a tied round reset. Report gameplay acceptance or requested F11 corrections.
 
-**Next step: David's hands-on evaluation and explicit F11 sign-off.** Acceptance remains pending. No automatic polishing, later slice, or publishing is authorized.
+**Owner acceptance — October 23, 2026:** David confirmed that F11 looks good for now and explicitly signed off the current local 1v1 Platform prototype, including the nine-stud radius and 55/13 launch tuning. Gameplay acceptance is complete for this slice. Remaining technical checks and milestone/release gates stay open. No automatic polishing, later slice, or publishing is authorized.
 
 
 ## Owner tuning follow-up — October 23, 2026
 
-David requested a slight increase in blast radius and knockback. Radius increases from 8 to **9 studs**; replacement launch increases from 50/12 to **55 horizontal / 13 upward studs/s**. Timing, steering, armor, and Bounce cooldown behavior are unchanged. All 590 offline checks, formatting, lint, compilation, and the harness build pass. The updated engine suite passes 126 assertions, including an enemy at 8.5 studs and the revised launch. [Tuning evidence](../evidence/F11SlamTuning.json). All 27 runtime sources match Studio; temporary probes are removed and Studio is in Edit. The earlier live-client probe and original evidence above describe 8 studs and 50/12; that live probe was not repeated for this tuning. Owner gameplay acceptance remains pending.
+David requested a slight increase in blast radius and knockback. Radius increases from 8 to **9 studs**; replacement launch increases from 50/12 to **55 horizontal / 13 upward studs/s**. Timing, steering, armor, and Bounce cooldown behavior are unchanged. All 590 offline checks, formatting, lint, compilation, and the harness build pass. The updated engine suite passes 126 assertions, including an enemy at 8.5 studs and the revised launch. [Tuning evidence](../evidence/F11SlamTuning.json). All 27 runtime sources match Studio; temporary probes are removed and Studio is in Edit. The earlier live-client probe and original evidence above describe 8 studs and 50/12; that live probe was not repeated for this tuning. David signed off this tuning and F11 gameplay on October 23, 2026. Remaining technical verification and release gates are separate.
