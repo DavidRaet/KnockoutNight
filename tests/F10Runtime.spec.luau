@@ -210,7 +210,7 @@ return function(makeCombat)
 		ar.AssemblyLinearVelocity = Vector3.new(99, -40, 10)
 		Combat.resetMovement(a)
 		check(request(a, "bounce", Vector3.zero), "grounded straight-up Bounce accepted")
-		check(ar.AssemblyLinearVelocity == Vector3.new(0, 180, 0), "launch replaces falling and horizontal velocity")
+		check(ar.AssemblyLinearVelocity == Vector3.new(0, 90, 0), "launch replaces falling and horizontal velocity")
 		local deadline = a:GetAttribute("F10ReadyAt")
 		check(math.abs(deadline - world:GetServerTimeNow() - 10) < 0.05, "ten-second cooldown starts at acceptance")
 		check(shields[a] == 0, "Bounce ends spawn protection")
@@ -246,10 +246,10 @@ return function(makeCombat)
 		check(request(a, "bounce", Vector3.new(1, 0, 1).Unit), "diagonal Bounce accepted")
 		ar = a.Character.HumanoidRootPart
 		check(
-			math.abs(Vector3.new(ar.AssemblyLinearVelocity.X, 0, ar.AssemblyLinearVelocity.Z).Magnitude - 96) < 0.001,
-			"diagonal horizontal speed is exactly 96"
+			math.abs(Vector3.new(ar.AssemblyLinearVelocity.X, 0, ar.AssemblyLinearVelocity.Z).Magnitude - 48) < 0.001,
+			"diagonal horizontal speed is exactly 48"
 		)
-		check(ar.AssemblyLinearVelocity.Y == 180, "diagonal retains upward speed")
+		check(ar.AssemblyLinearVelocity.Y == 90, "diagonal retains upward speed")
 		task.wait(0.2)
 		for _, weapon in { "SpringFist", "WreckingHammer", "PaddlePops" } do
 			ar = reset(25, weapon)
@@ -262,7 +262,7 @@ return function(makeCombat)
 			ar = reset(25, weapon)
 			check(request(a, "bounce", Vector3.zero), weapon .. " accepts Bounce")
 			task.wait(0.18)
-			check(request(a, "press"), weapon .. " ordinary aerial attack works")
+			check(request(a, "press"), weapon .. " aerial primary accepted (Hammer becomes F11 slam)")
 		end
 		ar = reset(3)
 		check(request(a, "press"), "victim begins interruptible attack")
@@ -278,7 +278,7 @@ return function(makeCombat)
 		local protection = ar:GetAttribute("F2ProtectionUntil")
 		local credit = #observations
 		check(request(a, "bounce", -Vector3.xAxis), "Bounce escapes ordinary hit reaction after interruption")
-		check(ar.AssemblyLinearVelocity == Vector3.new(-96, 180, 0), "Bounce reverses knockback")
+		check(ar.AssemblyLinearVelocity == Vector3.new(-48, 90, 0), "Bounce reverses knockback")
 		check(ar:GetAttribute("F2ProtectionUntil") == protection, "existing hit protection retained")
 		check(#observations == credit, "Bounce preserves enemy attribution without adding credit")
 		ar = reset(6)
@@ -296,7 +296,7 @@ return function(makeCombat)
 		check(ar:GetAttribute("F9Pulling"), "victim is being pulled")
 		check(request(a, "bounce", -Vector3.xAxis), "Bounce escapes Magnet")
 		check(
-			not ar:GetAttribute("F9Pulling") and ar.AssemblyLinearVelocity == Vector3.new(-96, 180, 0),
+			not ar:GetAttribute("F9Pulling") and ar.AssemblyLinearVelocity == Vector3.new(-48, 90, 0),
 			"pull ends and full launch replaces it"
 		)
 		task.wait(0.12)
@@ -310,9 +310,9 @@ return function(makeCombat)
 		ar.AssemblyLinearVelocity = Vector3.new(20, -50, 0)
 		Combat.resetMovement(a)
 		check(request(a, "bounce", -Vector3.xAxis), "airborne falling activation accepted")
-		check(ar.AssemblyLinearVelocity == Vector3.new(-96, 180, 0), "falling velocity fully replaced")
+		check(ar.AssemblyLinearVelocity == Vector3.new(-48, 90, 0), "falling velocity fully replaced")
 		task.wait(0.15)
-		check(ar.AssemblyLinearVelocity.Y < 180, "gravity continues without hover")
+		check(ar.AssemblyLinearVelocity.Y < 90, "gravity continues without hover")
 		ar = reset(25)
 		local ceiling = Instance.new("Part")
 		ceiling.Anchored, ceiling.Size, ceiling.Position, ceiling.Parent =

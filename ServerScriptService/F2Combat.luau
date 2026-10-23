@@ -4,6 +4,7 @@ local Config = require(Storage.F2Config)
 local Gust = require(Storage.F8Gust)
 local Magnet = require(Storage.F9Magnet)
 local Bounce = require(Storage.F10Bounce)
+local Slam = require(Storage.F11Slam)
 local cooldowns, magnetCooldowns, bounceCooldowns = {}, {}, {}
 local Weapons = require(Storage.F2Weapons)
 local F1 = require(Storage.F1Config)
@@ -16,6 +17,7 @@ local remote, probe
 local lifeOwner
 local matchOwner
 local generation, actionId = 0, 0
+local ground
 
 local function emit(kind, state, data)
 	data = data or {}
@@ -84,7 +86,10 @@ local function permissions(state, now)
 	state.humanoid.JumpHeight = if restricted or (action and not action.config.CanJump) then 0 else F1.JumpHeight
 	state.root:SetAttribute("F2ReactionUntil", state.reactionUntil)
 	state.root:SetAttribute("F2ProtectionUntil", state.protectionUntil)
-	state.root:SetAttribute("F2ActionUntil", if action then action.started + action.config.Duration else nil)
+	state.root:SetAttribute(
+		"F2ActionUntil",
+		if action then action.endsAt or action.started + action.config.Duration else nil
+	)
 	state.root:SetAttribute("F2ActionAim", if action then action.aim else nil)
 	state.root:SetAttribute("F2ActionCanJump", if action then action.config.CanJump == true else nil)
 	if restricted or (action and not action.config.CanJump) then
@@ -93,6 +98,7 @@ local function permissions(state, now)
 end
 
 local function clearAction(state, reason)
+	state.slamOpportunity = nil
 	if state.action then
 		emit("cancel", state, { id = state.action.id, reason = reason })
 	end
@@ -161,6 +167,7 @@ local function bounce(state, sequence, now, direction)
 	end
 	state.reactionUntil = 0
 	state.primaryAt = now + Bounce.PrimaryDelay
+	state.slamOpportunity = { airborne = false }
 	state.buffer = nil
 	bounceCooldowns[state.player] = now + Bounce.Cooldown
 	state.player:SetAttribute("F10ReadyAt", bounceCooldowns[state.player])
@@ -188,14 +195,37 @@ local function bounce(state, sequence, now, direction)
 	return true
 end
 
+local function slamDrive(state, now)
+	if not state.displacement then
+		-- Ownership transfer can deliver a burst of the already-authorized Bounce trajectory.
+		state.slamHandoffUntil = now + Physics.BurstSeconds
+		state.slamVerticalCredit = Bounce.LaunchUp * Physics.BurstSeconds
+	end
+	local motor = if state.displacement then state.displacement.motor else state.humanoid.EvaluateStateMachine
+	release(state, "slam-descent")
+	own(state, nil)
+	state.displacementId += 1
+	state.displacement = { id = state.displacementId, motor = motor, started = now, slam = true }
+	state.humanoid.EvaluateStateMachine = false
+	state.root:SetAttribute("F2MotorEnabled", motor)
+	state.root:SetAttribute("F2Displaced", state.displacementId)
+end
+
 local function startAction(state, sequence, now, ability)
 	if lifeOwner then
 		lifeOwner.endProtection(state.player)
 		state.spawnProtectionUntil = 0
 	end
 	actionId += 1
-	local config = if ability == "Magnet" then Magnet elseif ability then Gust else Weapons[state.weapon]
-	if ability then
+	local config = if ability == "GroundSlam"
+		then Slam
+		elseif ability == "Magnet" then Magnet
+		elseif ability then Gust
+		else Weapons[state.weapon]
+	if config == Slam then
+		state.slamOpportunity = nil
+		slamDrive(state, now)
+	elseif ability then
 		local ledger = if config == Magnet then magnetCooldowns else cooldowns
 		ledger[state.player] = now + config.Cooldown
 		state.player:SetAttribute(if config == Magnet then "F9ReadyAt" else "F8ReadyAt", ledger[state.player])
@@ -325,6 +355,13 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 	if kind == "press" and now < state.primaryAt then
 		return reject("bounce-delay")
 	end
+	if
+		state.slamOpportunity
+		and state.root.AssemblyLinearVelocity.Y <= 0
+		and ground(state, { state.character, probe })
+	then
+		state.slamOpportunity = nil
+	end
 	if kind == "gust" or kind == "magnet" then
 		if state.action then
 			return reject("busy")
@@ -339,6 +376,7 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 	if state.action then
 		if
 			state.action.config ~= Gust
+			and state.action.config ~= Slam
 			and state.action.config ~= Magnet
 			and Fist.canBuffer(now - state.action.started, state.buffer ~= nil, restricted, state.action.config)
 		then
@@ -353,11 +391,16 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 		end
 		return reject("busy")
 	end
-	startAction(state, sequence, now)
+	startAction(
+		state,
+		sequence,
+		now,
+		if state.slamOpportunity and state.weapon == "WreckingHammer" then "GroundSlam" else nil
+	)
 	return true
 end
 
-local function ground(state, excluded)
+ground = function(state, excluded)
 	local ray = RaycastParams.new()
 	ray.FilterDescendantsInstances = excluded
 	ray.RespectCanCollide = true
@@ -435,6 +478,9 @@ end
 local function launch(contact, now, excluded)
 	local state, action = contact.victim, contact.action
 	local config = action.config
+	if config ~= Gust then
+		state.slamOpportunity = nil
+	end
 	if not valid(contact.attacker) or not valid(state) or not own(state, nil) then
 		return
 	end
@@ -453,7 +499,8 @@ local function launch(contact, now, excluded)
 	state.root:SetAttribute("F2MotorEnabled", state.displacement.motor)
 	state.root:SetAttribute("F2Displaced", state.displacementId)
 	state.humanoid.EvaluateStateMachine = false
-	state.root.AssemblyLinearVelocity = action.aim * config.LaunchSpeed + Vector3.yAxis * config.LaunchUp
+	state.root.AssemblyLinearVelocity = (contact.aim or action.aim) * config.LaunchSpeed
+		+ Vector3.yAxis * config.LaunchUp
 	state.reactionUntil, state.protectionUntil =
 		contact.time + (config.Reaction or Config.Reaction), contact.time + Config.Protection
 	state.stunUntil = if config == Gust then contact.time + Gust.Reaction else 0
@@ -622,6 +669,14 @@ function Combat.step(dt)
 			continue
 		end
 		local root, displacement = state.root, state.displacement
+		if state.slamOpportunity then
+			local supported = ground(state, excluded)
+			if not supported then
+				state.slamOpportunity.airborne = true
+			elseif state.slamOpportunity.airborne and root.AssemblyLinearVelocity.Y <= 0 then
+				state.slamOpportunity = nil
+			end
+		end
 		state.spawnProtectionUntil = if lifeOwner then lifeOwner.protectionUntil(player) else 0
 		local velocity = root.AssemblyLinearVelocity
 		local speed = math.max(state.humanoid.WalkSpeed, state.residualSpeed)
@@ -633,9 +688,17 @@ function Combat.step(dt)
 			else Physics.horizontal(root.Position - state.previousPosition).Magnitude
 		local exceeded
 		state.credit, exceeded = Physics.budget(state.credit, distance, dt, speed)
-		local verticalReset = not invalid
-			and math.abs(root.Position.Y - state.previousPosition.Y)
-				> math.max(math.abs(velocity.Y), state.previousVerticalSpeed or 0) * dt + Physics.PositionSlack
+		local verticalExcess = if invalid
+			then math.huge
+			else math.max(
+				0,
+				math.abs(root.Position.Y - state.previousPosition.Y)
+					- math.max(math.abs(velocity.Y), state.previousVerticalSpeed or 0) * dt
+					- Physics.PositionSlack
+			)
+		local handoffCredit = if now <= (state.slamHandoffUntil or 0) then state.slamVerticalCredit or 0 else 0
+		local verticalReset = not invalid and verticalExcess > handoffCredit
+		state.slamVerticalCredit = math.max(0, handoffCredit - verticalExcess)
 		local corrected = invalid or exceeded or verticalReset
 		if corrected then
 			state.buffer = nil
@@ -667,7 +730,7 @@ function Combat.step(dt)
 			end
 		elseif displacement and displacement.pull then
 			updatePull(state, displacement, now, dt, excluded)
-		elseif displacement then
+		elseif displacement and not displacement.slam then
 			local elapsed = now - displacement.started
 			local supported = ground(state, excluded)
 			displacement.leftGround = displacement.leftGround or not supported
@@ -688,14 +751,65 @@ function Combat.step(dt)
 		state.residualSpeed = math.max(
 			0,
 			math.min(
-				state.residualSpeed + Physics.SteeringAcceleration * dt,
+				state.residualSpeed
+					+ (
+							if state.action and state.action.config == Slam
+								then Slam.SteeringAcceleration
+								else Physics.SteeringAcceleration
+						)
+						* dt,
 				Physics.horizontal(root.AssemblyLinearVelocity).Magnitude
 			)
 		)
 		local action = state.action
 		if action then
 			local first, last = Fist.segment(action.started, state.previousTime, now, action.config)
-			if action.config == Magnet then
+			if action.config == Slam then
+				first, last = nil, nil
+				if not action.landed and now >= action.started + Slam.Startup then
+					local hit = Contact.slamLanding(state, state.previousPosition, excluded)
+					if hit and root.AssemblyLinearVelocity.Y <= 0 then
+						action.landed, action.endsAt = now, now + Slam.Recovery
+						local feet = state.humanoid.HipHeight + root.Size.Y / 2
+						root.CFrame += Vector3.yAxis * (hit.Position.Y + feet - root.Position.Y)
+						root.AssemblyLinearVelocity = Physics.horizontal(root.AssemblyLinearVelocity)
+						release(state, "slam-landed")
+						emit("slam-impact", state, { id = action.id, origin = hit.Position, endsAt = action.endsAt })
+						for _, other in states do
+							if
+								other ~= state
+								and valid(other)
+								and (player.Neutral or other.player.Neutral or player.Team ~= other.player.Team)
+							then
+								local point = Contact.slamTarget(hit.Position, other, excluded, hit.Instance)
+								if point then
+									local delta = other.root.Position - hit.Position
+									local x, z = Slam.direction(delta.X, delta.Z, action.aim.X, action.aim.Z)
+									table.insert(contacts, {
+										attacker = state,
+										action = action,
+										victim = other,
+										point = point,
+										time = now,
+										aim = Vector3.new(x, 0, z),
+									})
+								end
+							end
+						end
+					elseif now >= state.reactionUntil and not (state.displacement and state.displacement.pull) then
+						if not state.displacement or not state.displacement.slam then
+							slamDrive(state, now)
+						end
+						local steering = if now - state.lastSteer <= Config.InputExpiry
+							then state.steer
+							else Vector3.zero
+						local horizontal = Physics.horizontal(root.AssemblyLinearVelocity)
+							+ steering * Slam.SteeringAcceleration * dt
+						root.AssemblyLinearVelocity = horizontal
+							+ Vector3.yAxis * math.min(root.AssemblyLinearVelocity.Y, -Slam.DownSpeed)
+					end
+				end
+			elseif action.config == Magnet then
 				first, last = nil, nil
 				if not action.applied and now >= action.started + Magnet.Startup then
 					action.applied = true
@@ -823,7 +937,7 @@ function Combat.step(dt)
 			emit("gust-burst", state, { id = action.id, aim = action.aim, origin = action.burstOrigin })
 			action.burstOrigin = nil
 		end
-		if action and now >= action.started + action.config.Duration then
+		if action and now >= (action.endsAt or action.started + action.config.Duration) then
 			state.action = nil
 			local buffered = state.buffer
 			state.buffer = nil

@@ -74,6 +74,7 @@ function Fist.resolve(contacts, config)
 				if
 					not (action.config or config).ControlledPull
 					and outgoing
+					and not ((outgoing.config or config).Armored and not outgoing.landed)
 					and contact.time < outgoing.started + (outgoing.config or config).Startup
 				then
 					canceled[outgoing] = true

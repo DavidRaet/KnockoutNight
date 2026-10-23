@@ -4,6 +4,7 @@ local Fist = require(Storage.F2SpringFist)
 local Hammer = require(Storage.F6Hammer)
 local Paddles = require(Storage.F7Paddles)
 local Gust = require(Storage.F8Gust)
+local Slam = require(Storage.F11Slam)
 local Contact = {}
 
 function Contact.frame(position, aim, reach)
@@ -255,6 +256,57 @@ function Contact.gust(origin, aim, victim, excluded, profile)
 		end
 	end
 	return nil
+end
+
+local function playable(hit)
+	return hit
+		and hit.Instance:IsDescendantOf(workspace)
+		and hit.Instance.CanCollide
+		and hit.Instance:GetAttribute("F11Playable") == true
+		and hit.Normal.Y >= 0.95
+end
+
+function Contact.slamLanding(state, previous, excluded)
+	local root = state.root
+	local feet = state.humanoid.HipHeight + root.Size.Y / 2
+	local origin = Vector3.new(root.Position.X, math.max(previous.Y, root.Position.Y), root.Position.Z)
+	local hit = workspace:Raycast(
+		origin,
+		-Vector3.yAxis * (origin.Y - root.Position.Y + feet + 0.3),
+		params(excluded, false, true)
+	)
+	return if playable(hit) then hit else nil
+end
+
+function Contact.slamTarget(origin, victim, excluded, surface)
+	local delta = victim.root.Position - origin
+	if Vector3.new(delta.X, 0, delta.Z).Magnitude > Slam.Radius then
+		return nil
+	end
+	local ray = params(excluded, false, true)
+	local feet = victim.humanoid.HipHeight + victim.root.Size.Y / 2
+	local target = workspace:Raycast(victim.root.Position, -Vector3.yAxis * (feet + Slam.Elevation), ray)
+	if
+		not playable(target)
+		or target.Instance ~= surface
+		or math.abs(target.Position.Y - origin.Y) > Slam.Elevation
+	then
+		return nil
+	end
+	local path = target.Position - origin
+	if workspace:Raycast(origin + Vector3.yAxis * 0.5, path, ray) then
+		return nil
+	end
+	-- Sample continuous support so a clear air ray cannot bridge separate islands.
+	local steps = math.max(1, math.ceil(path.Magnitude / 0.25))
+	for i = 0, steps do
+		local point = origin:Lerp(target.Position, i / steps)
+		local support = workspace:Raycast(point + Vector3.yAxis * 0.5, -Vector3.yAxis, ray)
+		if not playable(support) or math.abs(support.Position.Y - origin.Y) > 0.5 then
+			return nil
+		end
+	end
+	return target.Position
 end
 
 return Contact

@@ -28,6 +28,7 @@ platform.Size = Vector3.new(Config.PlatformThickness, Config.PlatformDiameter, C
 platform.CFrame = CFrame.new(Config.PlatformCenter) * CFrame.Angles(0, 0, math.pi / 2)
 platform.Anchored = true
 platform.CanCollide = true
+platform:SetAttribute("F11Playable", true)
 platform.Material = Enum.Material.Concrete
 platform.Color = Color3.fromRGB(155, 160, 168)
 platform.TopSurface = Enum.SurfaceType.Smooth

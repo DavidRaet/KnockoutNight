@@ -8,6 +8,7 @@ local Gust = require(Storage:WaitForChild("F8Gust", 10))
 local Magnet = require(Storage:WaitForChild("F9Magnet", 10))
 local Debris = game:GetService("Debris")
 local Hammer = Weapons.WreckingHammer
+local Slam = require(Storage.F11Slam)
 local Paddles = Weapons.PaddlePops
 local remote = Storage:WaitForChild("F2Combat", 10)
 assert(remote and remote:IsA("RemoteEvent"), "F2 client requires the combat remote")
@@ -204,6 +205,7 @@ function Client.press(character, aim)
 		record.action = { sequence = sequence, started = now, aim = aim, predicted = true, hand = record.nextHand }
 	elseif
 		record.action.config ~= Gust
+		and record.action.config ~= Slam
 		and record.action.config ~= Magnet
 		and Fist.canBuffer(now - record.action.started, record.buffer ~= nil, false, config)
 	then
@@ -215,7 +217,7 @@ function Client.permissions(character)
 	local record = records[character]
 	local action = record and record.action
 	local now = workspace:GetServerTimeNow()
-	if action and now < action.started + (action.config or record.config).Duration then
+	if action and now < (action.endsAt or action.started + (action.config or record.config).Duration) then
 		return (action.config or record.config).MoveScale, (action.config or record.config).CanJump == true, action.aim
 	end
 	return 1, true, nil
@@ -297,8 +299,9 @@ table.insert(
 				started = data.started,
 				aim = data.aim,
 				hand = data.hand,
-				config = if data.ability == "Magnet"
-					then Magnet
+				config = if data.ability == "GroundSlam"
+					then Slam
+					elseif data.ability == "Magnet" then Magnet
 					elseif data.ability == "Gust" then Gust
 					else record.config,
 			}
@@ -313,6 +316,16 @@ table.insert(
 			if record.buffer and record.buffer.sequence == data.sequence then
 				record.buffer = nil
 			end
+		elseif kind == "slam-impact" then
+			if record.action and record.action.id == data.id then
+				record.action.landed, record.action.endsAt = workspace:GetServerTimeNow(), data.endsAt
+			end
+			local wave = part("SlamShockwave", Vector3.new(0.15, Slam.Radius * 2, Slam.Radius * 2))
+			wave.Shape = Enum.PartType.Cylinder
+			wave.CFrame = CFrame.new(data.origin + Vector3.yAxis * 0.1) * CFrame.Angles(0, 0, math.pi / 2)
+			wave.Color, wave.Transparency = Color3.fromRGB(255, 190, 40), 0.65
+			record.parts.slamWave = wave
+			Debris:AddItem(wave, 0.2)
 		elseif kind == "buffered" then
 			record.buffer = { sequence = data.sequence, startsAt = data.startsAt }
 		elseif kind == "bounce" then
@@ -423,7 +436,7 @@ table.insert(
 			end
 			local config = record.config
 			local action = record.action
-			if action and now >= action.started + (action.config or config).Duration then
+			if action and now >= (action.endsAt or action.started + (action.config or config).Duration) then
 				record.action = nil
 				action = nil
 			end
@@ -449,10 +462,9 @@ table.insert(
 				end
 			end
 			local age = if action then now - action.started else 0
-			local phase = if action
-					and action.config ~= Gust
-					and action.config ~= Magnet
-				then Fist.phase(age, config)
+			local phase = if action and action.config == Slam
+				then (if action.landed then "recovery" elseif age < Slam.Startup then "startup" else "active")
+				elseif action and action.config ~= Gust and action.config ~= Magnet then Fist.phase(age, config)
 				else nil
 			local reach = 0.6
 			if phase == "active" then
@@ -495,7 +507,19 @@ table.insert(
 			record.parts.extension.Size = Vector3.new(0.35, 0.35, math.max(0.05, reach))
 			record.parts.extension.CFrame = CFrame.lookAt(origin + aim * reach / 2, center + aim)
 			record.parts.box.CFrame = frame
-			if config == Hammer then
+			if action and action.config == Slam then
+				local lift = if action.landed
+					then -1
+					elseif age < Slam.Startup then 1 + 3 * math.clamp(age / Slam.Startup, 0, 1)
+					else 4
+				local grip = root.Position + aim * 1.5
+				local head = grip + Vector3.yAxis * lift
+				record.parts.glove.Size = Vector3.new(2.4, 1.8, 2)
+				record.parts.glove.CFrame = CFrame.lookAt(head, head + aim)
+				record.parts.extension.Size = Vector3.new(0.35, math.abs(lift), 0.35)
+				record.parts.extension.CFrame = CFrame.new((grip + head) / 2)
+				record.parts.box.Transparency = 1
+			elseif config == Hammer then
 				-- A raised windup, 100-degree active swing, then a low follow-through returning to guard.
 				local poseAge = Hammer.Startup
 				local lift, radius = 0, 6
@@ -554,6 +578,7 @@ table.insert(
 			end
 			record.parts.box.Transparency = if workspace:GetAttribute("F2DebugVolumes") == true
 					and phase == "active"
+					and not (action and action.config == Slam)
 				then 0.75
 				else 1
 		end

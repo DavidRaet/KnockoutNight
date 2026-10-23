@@ -1,0 +1,6621 @@
+{
+  "date": "2026-10-23",
+  "scope": "F11 only; local 1v1 The Platform",
+  "offline": {
+    "checks": 590,
+    "formatter": "StyLua PASS",
+    "linter": "Selene 0 errors, 0 warnings",
+    "compiler": "luau-compile PASS",
+    "build": "build_f9_harness.ps1 PASS"
+  },
+  "engine": {
+    "observations": [
+      "WreckingHammer",
+      "WreckingHammer",
+      "WreckingHammer",
+      "WreckingHammer",
+      "Gust",
+      "Magnet",
+      "PaddlePops"
+    ],
+    "passed": true,
+    "checks": [
+      "ordinary falling primary accepted",
+      "jump/ledge without Bounce does not unlock slam",
+      "ground-level replication setup launches Bounce",
+      "ascending Bounce primary accepted before replicated height arrives",
+      "ascending supported sample is not mistaken for landing",
+      "early-click launch",
+      "primary delay rejects early click",
+      "early click does not buffer",
+      "fresh click after delay starts slam",
+      "consumed slam cannot repeat",
+      "slam does not refresh/spend Bounce",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "no accelerated descent before 0.25",
+      "descent begins after telegraph",
+      "descent retains horizontal momentum",
+      "descent accepts steering",
+      "steering limited to eight studs/s squared",
+      "descent remains server owned with motor disabled",
+      "valid landing produces one shockwave",
+      "enemy affected once",
+      "shockwave applies 50/12 replacement launch",
+      "landing restores motor/displacement",
+      "landing settles feet and clears downward velocity before handoff",
+      "landing recovery is 0.65 seconds",
+      "recovery rejects attacks",
+      "no repeated impact or direct Hammer stacking",
+      "attack restored after recovery",
+      "opportunity consumed after landing",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "bounded Bounce replication burst survives slam ownership handoff",
+      "handoff allowance still rejects excessive vertical teleport",
+      "Q Bounce starts opportunity",
+      "incoming Hammer begins",
+      "incoming weapon redirects attacker",
+      "incoming Hammer replacement trajectory",
+      "post-hit primary restored",
+      "incoming weapon expires unused opportunity",
+      "Q Bounce starts opportunity",
+      "armored setup",
+      "incoming Hammer begins",
+      "incoming weapon redirects attacker",
+      "incoming Hammer replacement trajectory",
+      "armor prevents startup cancellation",
+      "brief reaction precedes resumed descent",
+      "descent resumes redirected trajectory without windup",
+      "redirect does not restart slam",
+      "Q Bounce starts opportunity",
+      "landed primary restored",
+      "landing expires unused opportunity",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "untagged surface cannot impact",
+      "disappearing surface continues falling",
+      "playable top is valid",
+      "same-surface enemy in radius",
+      "range/elevation/void rejects target",
+      "range/elevation/void rejects target",
+      "range/elevation/void rejects target",
+      "wall occludes target",
+      "upper playable floor cannot be hit through floor",
+      "character top cannot create impact",
+      "underside cannot land",
+      "side/void cannot land",
+      "separate island gap blocks shockwave",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "friendly fire exclusion / exact center contact",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "friendly fire exclusion / exact center contact",
+      "exact center launches along committed facing",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "Gust targets slam",
+      "Gust cannot cancel armor",
+      "Gust displaces armored slam",
+      "Gust releases into resumed descent",
+      "Gust does not replay telegraph",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "Magnet targets slam",
+      "Magnet cannot cancel armor",
+      "Magnet redirects slam toward source",
+      "Magnet releases into resumed descent",
+      "Magnet does not replay telegraph",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "shockwave respects spawn protection",
+      "protected target receives no launch",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "Paddle attacks slam telegraph",
+      "armor resists actual hit during 0.25 telegraph",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "fresh-match clears slam and drive",
+      "fresh-match prevents stale impact",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "sudden-death-round clears slam and drive",
+      "sudden-death-round prevents stale impact",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "departure clears slam and drive",
+      "departure prevents stale impact",
+      "Q Bounce starts opportunity",
+      "first eligible primary accepted",
+      "Hammer primary selects slam",
+      "elimination cleans armored descent",
+      "elimination cannot impact",
+      "eliminated primary rejected"
+    ]
+  },
+  "bounceRegression": {
+    "observations": [
+      "SpringFist",
+      "Gust",
+      "Magnet"
+    ],
+    "passed": true,
+    "checks": [
+      "staging rejects Bounce",
+      "staging spends nothing",
+      "invalid movement vector rejected",
+      "invalid movement vector rejected",
+      "invalid movement vector rejected",
+      "invalid movement vector rejected",
+      "stale generation rejected",
+      "unequipped Magnet rejected",
+      "unequipped rejection spends nothing",
+      "grounded straight-up Bounce accepted",
+      "launch replaces falling and horizontal velocity",
+      "ten-second cooldown starts at acceptance",
+      "Bounce ends spawn protection",
+      "Bounce grants no protection",
+      "self launch creates no knockout attribution",
+      "launch is initially server-owned",
+      "launch restores ordinary airborne motor",
+      "attack during primary delay rejected",
+      "rejected early primary never buffers",
+      "ordinary airborne attack after primary delay accepted",
+      "repeat during cooldown rejected",
+      "rejection preserves deadline",
+      "cooldown expiry permits another activation",
+      "death and replacement preserve cooldown",
+      "respawn cannot bypass cooldown",
+      "fresh match and sudden death reset cooldown",
+      "diagonal Bounce accepted",
+      "diagonal horizontal speed is exactly 48",
+      "diagonal retains upward speed",
+      "SpringFist starts",
+      "SpringFist cannot self-cancel startup",
+      "busy rejection spends nothing",
+      "SpringFist accepts Bounce",
+      "SpringFist aerial primary accepted (Hammer becomes F11 slam)",
+      "WreckingHammer starts",
+      "WreckingHammer cannot self-cancel startup",
+      "busy rejection spends nothing",
+      "WreckingHammer accepts Bounce",
+      "WreckingHammer aerial primary accepted (Hammer becomes F11 slam)",
+      "PaddlePops starts",
+      "PaddlePops cannot self-cancel startup",
+      "busy rejection spends nothing",
+      "PaddlePops accepts Bounce",
+      "PaddlePops aerial primary accepted (Hammer becomes F11 slam)",
+      "victim begins interruptible attack",
+      "opponent weapon begins",
+      "victim starts later attack",
+      "weapon hit reaction active",
+      "Bounce escapes ordinary hit reaction after interruption",
+      "Bounce reverses knockback",
+      "existing hit protection retained",
+      "Bounce preserves enemy attribution without adding credit",
+      "Gust stun fixture begins",
+      "Gust stun active",
+      "Gust stun blocks Bounce",
+      "stun rejection spends nothing",
+      "Bounce allowed after Gust stun",
+      "Magnet pull begins",
+      "victim is being pulled",
+      "Bounce escapes Magnet",
+      "pull ends and full launch replaces it",
+      "old Magnet cannot resume pull",
+      "elimination cutoff rejects Bounce",
+      "eliminated rejection spends nothing",
+      "airborne falling activation accepted",
+      "falling velocity fully replaced",
+      "gravity continues without hover",
+      "Bounce under ceiling accepted",
+      "platform underside blocks launch",
+      "Bounce toward wall accepted",
+      "wall blocks physical launch",
+      "cleanup launch accepted",
+      "death clears launch state",
+      "death keeps cooldown ledger"
+    ]
+  },
+  "magnetRegression": {
+    "observations": [
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792761073.849647,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761073.866671,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761073.882508,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761073.89953,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761073.916588,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761073.9326,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761073.95009,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761073.967719,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761073.983802,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761073.999946,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.016435,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.032663,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.049729,
+        "owned": true
+      },
+      {
+        "speed": 2.857517719268799,
+        "at": 1792761074.066705,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792761074.549948,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761074.566393,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.582857,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.599507,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.616264,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.633563,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.6509,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.666015,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.683643,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.699733,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761074.716088,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.73332,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761074.749864,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.765888,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.784194,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.800104,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.818115,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.833076,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761074.850041,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.866082,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.882776,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.899852,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.915902,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761074.9331,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.94989,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.967014,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761074.98259,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.000664,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.01612,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761075.032623,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.04981,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.066308,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.082915,
+        "owned": true
+      },
+      "PaddlePops",
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792761075.667198,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.682541,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.70012,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761075.716066,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.732727,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.749885,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761075.765883,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761075.783072,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761075.799723,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.817274,
+        "owned": true
+      },
+      "SpringFist",
+      {
+        "speed": 25.107149124145508,
+        "at": 1792761075.833529,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.850501,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.867094,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.883256,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.899863,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.917786,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.934478,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761075.950097,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.967078,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.983302,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761075.999765,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.01623,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.032933,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.049938,
+        "owned": true
+      },
+      {
+        "speed": 27.782663345336914,
+        "at": 1792761076.066843,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792761076.618355,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.633504,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.650127,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.666653,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.683217,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.700208,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.718053,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.73308,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.750649,
+        "owned": true
+      },
+      "Gust",
+      {
+        "speed": 28,
+        "at": 1792761076.767347,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.783966,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.800409,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.818295,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761076.833682,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.850189,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.866693,
+        "owned": true
+      },
+      {
+        "speed": 22.19488525390625,
+        "at": 1792761076.883262,
+        "owned": true
+      },
+      {
+        "speed": 16.81167984008789,
+        "at": 1792761076.900247,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761076.916726,
+        "owned": true
+      },
+      {
+        "speed": 16.8233642578125,
+        "at": 1792761076.934533,
+        "owned": true
+      },
+      {
+        "speed": 27.887434005737305,
+        "at": 1792761076.950518,
+        "owned": true
+      },
+      {
+        "speed": 9.395064353942871,
+        "at": 1792761076.966962,
+        "owned": true
+      },
+      {
+        "speed": 5.631156921386719,
+        "at": 1792761076.983285,
+        "owned": true
+      },
+      {
+        "speed": 7.038959980010986,
+        "at": 1792761077.00062,
+        "owned": true
+      },
+      {
+        "speed": 7.9279656410217285,
+        "at": 1792761077.01614,
+        "owned": true
+      },
+      {
+        "speed": 7.3896403312683105,
+        "at": 1792761077.033133,
+        "owned": true
+      },
+      {
+        "speed": 2.074390411376953,
+        "at": 1792761077.050149,
+        "owned": true
+      },
+      "SpringFist",
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792761089.883029,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761089.900563,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761089.91604,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761089.933766,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761089.950014,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761089.966069,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761089.982958,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761089.999441,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761090.016287,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761090.034049,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761090.05001,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761090.068133,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761090.08372,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761090.100948,
+        "owned": true
+      },
+      {
+        "speed": 13.683426856994629,
+        "at": 1792761090.117354,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792761090.983724,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761091.000128,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792761091.016533,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792761091.467205,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761091.484619,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792761091.968382,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792761091.983172,
+        "owned": true
+      }
+    ],
+    "passed": true,
+    "checks": [
+      "staging rejected",
+      "staging spends nothing",
+      "bad aim rejected",
+      "stale generation rejected",
+      "miss accepted",
+      "twelve-second cooldown",
+      "user keeps movement and jump",
+      "weapon overlap rejected",
+      "miss cleans action without pull",
+      "cooldown rejection cannot extend deadline",
+      "miss still emits burst",
+      "target starts Hammer",
+      "pull accepted",
+      "pull is server owned",
+      "pull adds no stun and preserves target startup",
+      "target movement and jumping locked",
+      "protection begins at pull start",
+      "pull motor and attributes restore",
+      "pull stops near three studs: 2.9999818801879883",
+      "early completion retains minimum protection without full-duration extension",
+      "exact 28 studs per second observed",
+      "near-maximum-range Magnet accepted",
+      "distant target finishes inside Paddle reach: 4.667008876833904",
+      "long-pull protection expires at completion",
+      "Paddle follow-up accepted after pull",
+      "six-stud Paddle follow-up hits distant pulled target",
+      "response fixture accepted",
+      "target can start weapon during pull",
+      "responding weapon can hit unprotected user",
+      "ability response fixture accepted",
+      "target can use valid ability during pull",
+      "interrupting weapon begins",
+      "interruptible startup accepted",
+      "weapon cancels startup without pull",
+      "interruption spends cooldown",
+      "hit reaction rejects activation",
+      "ordinary knockback after reaction permits Magnet",
+      "protected target activation accepted",
+      "spawn-protected target excluded",
+      "cleanup fixture starts",
+      "source removal releases target immediately",
+      "death retains deadline",
+      "respawn retains deadline",
+      "fresh match and sudden-death shared reset clears deadline",
+      "obstacle fixture starts",
+      "new obstacle stops pull early",
+      "target does not cross solid wall",
+      "airborne activation accepted",
+      "airborne pull preserves gravity rather than hovering",
+      "target death cleans pull"
+    ]
+  },
+  "liveServer": {
+    "samples": [
+      {
+        "at": 1792760949.284967,
+        "serverOwned": true,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760949.957351,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760949.957997,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.009251,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.031021,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.056822,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.070975,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.087251,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.092997,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.108705,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.12505,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.141794,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.158531,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.174973,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.191953,
+        "serverOwned": false,
+        "y": 46,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.208959,
+        "serverOwned": false,
+        "y": 45.21878433227539,
+        "vy": -17.039165496826172
+      },
+      {
+        "at": 1792760950.22646,
+        "serverOwned": false,
+        "y": 45.162879943847656,
+        "vy": -12.879210472106934
+      },
+      {
+        "at": 1792760950.241439,
+        "serverOwned": false,
+        "y": 45.094852447509766,
+        "vy": -7.816673278808594
+      },
+      {
+        "at": 1792760950.258988,
+        "serverOwned": false,
+        "y": 45.01858139038086,
+        "vy": -2.140671491622925
+      },
+      {
+        "at": 1792760950.276956,
+        "serverOwned": false,
+        "y": 44.97642517089844,
+        "vy": 0.9964065551757812
+      },
+      {
+        "at": 1792760950.293384,
+        "serverOwned": false,
+        "y": 44.977783203125,
+        "vy": 0.9604070782661438
+      },
+      {
+        "at": 1792760950.308424,
+        "serverOwned": false,
+        "y": 44.98390579223633,
+        "vy": 0.6965675354003906
+      },
+      {
+        "at": 1792760950.325872,
+        "serverOwned": false,
+        "y": 44.99183654785156,
+        "vy": 0.3548389971256256
+      },
+      {
+        "at": 1792760950.342062,
+        "serverOwned": false,
+        "y": 44.99772262573242,
+        "vy": 0.10119937360286713
+      },
+      {
+        "at": 1792760950.358946,
+        "serverOwned": false,
+        "y": 44.9992790222168,
+        "vy": 0.03407328575849533
+      },
+      {
+        "at": 1792760950.376025,
+        "serverOwned": false,
+        "y": 44.99945831298828,
+        "vy": 0.0260739978402853
+      },
+      {
+        "at": 1792760950.391765,
+        "serverOwned": false,
+        "y": 44.999717712402344,
+        "vy": 0.01416890136897564
+      },
+      {
+        "at": 1792760950.408658,
+        "serverOwned": false,
+        "y": 44.99994659423828,
+        "vy": 0.0038079009391367435
+      },
+      {
+        "at": 1792760950.425729,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0.0014378915075212717
+      },
+      {
+        "at": 1792760950.442395,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0.0011564437299966812
+      },
+      {
+        "at": 1792760950.459208,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0.000706715858541429
+      },
+      {
+        "at": 1792760950.476233,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0.00026807605172507465
+      },
+      {
+        "at": 1792760950.492806,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0.00002107839100062847
+      },
+      {
+        "at": 1792760950.508898,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.524996,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.542959,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.558793,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.575399,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.592143,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.608053,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.62505,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.641463,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.659055,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.675015,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.692174,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.708705,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.724797,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.741979,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.759231,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.774967,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.792025,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.808057,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.825834,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.841452,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.858761,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.87588,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.892035,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.90851,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.924653,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.941676,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.958727,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.974753,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760950.992001,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.009025,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.025779,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.04173,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.058831,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.075928,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.091947,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.108408,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.125066,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.142615,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.158623,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.175645,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.19186,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.208848,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.224644,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.241907,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.258864,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.27507,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.292235,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.309339,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.325823,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.341748,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.358942,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.37494,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.393076,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.408599,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.426202,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.441726,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.458784,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.475322,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.492335,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.50885,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.525147,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.542243,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.559352,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.57478,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.593093,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.609335,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.625818,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.6421,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.658189,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.674725,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.691726,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.709316,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.726031,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.741805,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.757953,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.775645,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.792632,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.808098,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.826167,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.841901,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.859097,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.875405,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.891841,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.908817,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.92501,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.943151,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.958586,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.975169,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760951.992791,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.008735,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.026176,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.042434,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.059052,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.074767,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.091754,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.109327,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.126591,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.142096,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.158092,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.175297,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.192409,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.208907,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.225777,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.241687,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.258836,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.276118,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.292193,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.308729,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.325291,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.343324,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.359007,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.374959,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.392146,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.408267,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.426175,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.441845,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.458912,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.475877,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.492127,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.508871,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.526061,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.542154,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.558964,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.575005,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 0
+      },
+      {
+        "at": 1792760952.592345,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.609108,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.625207,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.641814,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.659221,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.674952,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.692077,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.709124,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.725214,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.742437,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.758242,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.775014,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.793141,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.808849,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.825022,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.843302,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.85939,
+        "serverOwned": false,
+        "y": 45,
+        "vy": 90
+      },
+      {
+        "at": 1792760952.874834,
+        "serverOwned": false,
+        "y": 49.31563949584961,
+        "vy": 79.95260620117188
+      },
+      {
+        "at": 1792760952.891807,
+        "serverOwned": false,
+        "y": 50.5890007019043,
+        "vy": 76.5223388671875
+      },
+      {
+        "at": 1792760952.909017,
+        "serverOwned": false,
+        "y": 52.56758117675781,
+        "vy": 71.19232177734375
+      },
+      {
+        "at": 1792760952.924982,
+        "serverOwned": false,
+        "y": 54.05790328979492,
+        "vy": 67.17759704589844
+      },
+      {
+        "at": 1792760952.941968,
+        "serverOwned": false,
+        "y": 54.509010314941406,
+        "vy": 65.87881469726562
+      },
+      {
+        "at": 1792760952.958092,
+        "serverOwned": false,
+        "y": 55.38488006591797,
+        "vy": 62.921932220458984
+      },
+      {
+        "at": 1792760952.975224,
+        "serverOwned": false,
+        "y": 56.93810272216797,
+        "vy": 57.67836380004883
+      },
+      {
+        "at": 1792760952.993062,
+        "serverOwned": false,
+        "y": 58.30968475341797,
+        "vy": 53.04801559448242
+      },
+      {
+        "at": 1792760953.00806,
+        "serverOwned": false,
+        "y": 58.958396911621094,
+        "vy": 50.8580207824707
+      },
+      {
+        "at": 1792760953.02526,
+        "serverOwned": false,
+        "y": 59.28925323486328,
+        "vy": 49.355979919433594
+      },
+      {
+        "at": 1792760953.042268,
+        "serverOwned": false,
+        "y": 60.16533660888672,
+        "vy": 45.280616760253906
+      },
+      {
+        "at": 1792760953.059325,
+        "serverOwned": false,
+        "y": 61.286720275878906,
+        "vy": 40.064170837402344
+      },
+      {
+        "at": 1792760953.074982,
+        "serverOwned": false,
+        "y": 62.118934631347656,
+        "vy": 36.19288635253906
+      },
+      {
+        "at": 1792760953.091923,
+        "serverOwned": false,
+        "y": 62.50271224975586,
+        "vy": 34.40635681152344
+      },
+      {
+        "at": 1792760953.108985,
+        "serverOwned": false,
+        "y": 62.83867263793945,
+        "vy": 32.006103515625
+      },
+      {
+        "at": 1792760953.125084,
+        "serverOwned": false,
+        "y": 63.484352111816406,
+        "vy": 27.393144607543945
+      },
+      {
+        "at": 1792760953.142157,
+        "serverOwned": false,
+        "y": 64.11707305908203,
+        "vy": 22.872737884521484
+      },
+      {
+        "at": 1792760953.158898,
+        "serverOwned": false,
+        "y": 64.33934020996094,
+        "vy": 21.24105453491211
+      },
+      {
+        "at": 1792760953.175454,
+        "serverOwned": false,
+        "y": 64.54911804199219,
+        "vy": 18.295726776123047
+      },
+      {
+        "at": 1792760953.192005,
+        "serverOwned": false,
+        "y": 64.88898468017578,
+        "vy": 13.523908615112305
+      },
+      {
+        "at": 1792760953.209283,
+        "serverOwned": false,
+        "y": 65.21635437011719,
+        "vy": 8.927481651306152
+      },
+      {
+        "at": 1792760953.226198,
+        "serverOwned": false,
+        "y": 65.32244873046875,
+        "vy": 7.3530049324035645
+      },
+      {
+        "at": 1792760953.242916,
+        "serverOwned": false,
+        "y": 65.31303405761719,
+        "vy": 4.8676676750183105
+      },
+      {
+        "at": 1792760953.259003,
+        "serverOwned": false,
+        "y": 65.29710388183594,
+        "vy": 0.6602685451507568
+      },
+      {
+        "at": 1792760953.27645,
+        "serverOwned": false,
+        "y": 65.27762603759766,
+        "vy": -4.482630729675293
+      },
+      {
+        "at": 1792760953.29195,
+        "serverOwned": false,
+        "y": 65.26631927490234,
+        "vy": -7.467437744140625
+      },
+      {
+        "at": 1792760953.308155,
+        "serverOwned": true,
+        "y": 60.5698356628418,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -43.252410888671875
+      },
+      {
+        "at": 1792760953.325742,
+        "serverOwned": true,
+        "y": 59.79446029663086,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -46.52241134643555
+      },
+      {
+        "at": 1792760953.343104,
+        "serverOwned": true,
+        "y": 58.9645881652832,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -49.79241180419922
+      },
+      {
+        "at": 1792760953.358136,
+        "serverOwned": true,
+        "y": 58.08021545410156,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -53.06241226196289
+      },
+      {
+        "at": 1792760953.375944,
+        "serverOwned": true,
+        "y": 57.14134216308594,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -56.33241271972656
+      },
+      {
+        "at": 1792760953.392995,
+        "serverOwned": true,
+        "y": 56.14796829223633,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -59.602413177490234
+      },
+      {
+        "at": 1792760953.409135,
+        "serverOwned": true,
+        "y": 55.100093841552734,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -62.872413635253906
+      },
+      {
+        "at": 1792760953.425168,
+        "serverOwned": true,
+        "y": 53.997718811035156,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -66.14241027832031
+      },
+      {
+        "at": 1792760953.443256,
+        "serverOwned": true,
+        "y": 52.84084701538086,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -69.41240692138672
+      },
+      {
+        "at": 1792760953.459295,
+        "serverOwned": true,
+        "y": 51.62947463989258,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -72.68240356445312
+      },
+      {
+        "at": 1792760953.475844,
+        "serverOwned": true,
+        "y": 50.36360168457031,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -75.95240020751953
+      },
+      {
+        "at": 1792760953.492806,
+        "serverOwned": true,
+        "y": 49.04322814941406,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -79.22239685058594
+      },
+      {
+        "at": 1792760953.509101,
+        "serverOwned": true,
+        "y": 47.66835403442383,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -82.49239349365234
+      },
+      {
+        "at": 1792760953.525163,
+        "serverOwned": true,
+        "y": 47.66835403442383,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -82.49239349365234
+      },
+      {
+        "at": 1792760953.542367,
+        "serverOwned": true,
+        "y": 44.75510787963867,
+        "actionUntil": {
+          "m": null,
+          "t": "numeric",
+          "v": "inf"
+        },
+        "displaced": 2,
+        "vy": -89.03238677978516
+      },
+      {
+        "at": 1792760953.559036,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.575457,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.593037,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.608581,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.626234,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.642481,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.658944,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.674856,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.692028,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.708923,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.72577,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.742038,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.758912,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.774983,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.793084,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.808034,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.82624,
+        "serverOwned": false,
+        "y": 44.96593475341797,
+        "actionUntil": 1792760954.2088141,
+        "vy": -3.2700002193450928
+      },
+      {
+        "at": 1792760953.841959,
+        "serverOwned": false,
+        "y": 44.94983673095703,
+        "actionUntil": 1792760954.2088141,
+        "vy": 1.2111356258392334
+      },
+      {
+        "at": 1792760953.858937,
+        "serverOwned": false,
+        "y": 44.95808792114258,
+        "actionUntil": 1792760954.2088141,
+        "vy": 1.0230982303619385
+      },
+      {
+        "at": 1792760953.876603,
+        "serverOwned": false,
+        "y": 44.973655700683594,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.6683105230331421
+      },
+      {
+        "at": 1792760953.891986,
+        "serverOwned": false,
+        "y": 44.986785888671875,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.3689669370651245
+      },
+      {
+        "at": 1792760953.908004,
+        "serverOwned": false,
+        "y": 44.995758056640625,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.16445237398147583
+      },
+      {
+        "at": 1792760953.926481,
+        "serverOwned": false,
+        "y": 44.99708557128906,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.12890039384365082
+      },
+      {
+        "at": 1792760953.942949,
+        "serverOwned": false,
+        "y": 44.99806213378906,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.08586937189102173
+      },
+      {
+        "at": 1792760953.95905,
+        "serverOwned": false,
+        "y": 44.999122619628906,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.03942713513970375
+      },
+      {
+        "at": 1792760953.974995,
+        "serverOwned": false,
+        "y": 44.99973678588867,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.012638048268854618
+      },
+      {
+        "at": 1792760953.992123,
+        "serverOwned": false,
+        "y": 44.99977493286133,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.010820587165653706
+      },
+      {
+        "at": 1792760954.008969,
+        "serverOwned": false,
+        "y": 44.99983596801758,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.007982783019542694
+      },
+      {
+        "at": 1792760954.026117,
+        "serverOwned": false,
+        "y": 44.99991226196289,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.0044317832216620445
+      },
+      {
+        "at": 1792760954.042193,
+        "serverOwned": false,
+        "y": 44.99997329711914,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.0016615204513072968
+      },
+      {
+        "at": 1792760954.058275,
+        "serverOwned": false,
+        "y": 45,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.0004883093643002212
+      },
+      {
+        "at": 1792760954.07623,
+        "serverOwned": false,
+        "y": 45,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.00039916287641972303
+      },
+      {
+        "at": 1792760954.09228,
+        "serverOwned": false,
+        "y": 45,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.0002324871311429888
+      },
+      {
+        "at": 1792760954.108487,
+        "serverOwned": false,
+        "y": 45,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0.00006397836841642857
+      },
+      {
+        "at": 1792760954.126572,
+        "serverOwned": false,
+        "y": 45,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0
+      },
+      {
+        "at": 1792760954.142012,
+        "serverOwned": false,
+        "y": 45,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0
+      },
+      {
+        "at": 1792760954.158095,
+        "serverOwned": false,
+        "y": 45,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0
+      },
+      {
+        "at": 1792760954.175398,
+        "serverOwned": false,
+        "y": 45,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0
+      },
+      {
+        "at": 1792760954.192399,
+        "serverOwned": false,
+        "y": 45,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0
+      },
+      {
+        "at": 1792760954.208806,
+        "serverOwned": false,
+        "y": 45,
+        "actionUntil": 1792760954.2088141,
+        "vy": 0
+      }
+    ],
+    "passed": true,
+    "checks": [
+      "Hammer selected",
+      "Bounce selected",
+      "actual Q accepted through production remote",
+      "Bounce leaves Platform",
+      "slam takes server ownership",
+      "slam disables motor",
+      "actual landing starts 0.65 recovery",
+      "impact follows telegraph",
+      "actual physics reaches at least 90 downward",
+      "landing returns ownership and motor",
+      "slam preserves Bounce cooldown",
+      "live drive cleared"
+    ]
+  },
+  "liveClient": {
+    "samples": [
+      {
+        "at": 1792760953.34474,
+        "headHeight": 0.3535270690917969
+      },
+      {
+        "at": 1792760953.359532,
+        "headHeight": 1.4431114196777344
+      },
+      {
+        "at": 1792760953.377171,
+        "headHeight": 1.62060546875
+      },
+      {
+        "at": 1792760953.394519,
+        "headHeight": 1.8322715759277344
+      },
+      {
+        "at": 1792760953.410402,
+        "headHeight": 2.040435791015625
+      },
+      {
+        "at": 1792760953.426419,
+        "headHeight": 2.2310447692871094
+      },
+      {
+        "at": 1792760953.44462,
+        "headHeight": 2.423248291015625
+      },
+      {
+        "at": 1792760953.460671,
+        "headHeight": 2.641651153564453
+      },
+      {
+        "at": 1792760953.477285,
+        "headHeight": 2.834259033203125
+      },
+      {
+        "at": 1792760953.494149,
+        "headHeight": 3.033641815185547
+      },
+      {
+        "at": 1792760953.510563,
+        "headHeight": 3.236011505126953
+      },
+      {
+        "at": 1792760953.52645,
+        "headHeight": 3.4329757690429688
+      },
+      {
+        "at": 1792760953.543663,
+        "headHeight": 2.70379638671875
+      },
+      {
+        "at": 1792760953.560215,
+        "headHeight": 4.722282409667969
+      },
+      {
+        "at": 1792760953.576775,
+        "headHeight": 5.506412506103516
+      }
+    ],
+    "events": [
+      {
+        "at": 1792760953.343708,
+        "kind": "accepted",
+        "started": 1792760953.307817
+      },
+      {
+        "at": 1792760953.593926,
+        "kind": "slam-impact",
+        "origin": "1.4210854715202004e-14, 42, 0"
+      }
+    ],
+    "impacts": 1
+  },
+  "earlierLive": {
+    "server": {
+      "samples": [
+        {
+          "at": 1792760782.730679,
+          "serverOwned": true,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.265679,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.295585,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.349038,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.395881,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.418866,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.440077,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.454875,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.464812,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.48164,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.498385,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.514968,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.53141,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.548746,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.56464,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.581537,
+          "serverOwned": false,
+          "y": 46,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.599132,
+          "serverOwned": false,
+          "y": 44.93585968017578,
+          "vy": -0.2333904504776001
+        },
+        {
+          "at": 1792760783.614541,
+          "serverOwned": false,
+          "y": 44.953041076660156,
+          "vy": -0.05852362513542175
+        },
+        {
+          "at": 1792760783.631826,
+          "serverOwned": false,
+          "y": 44.97572708129883,
+          "vy": 0.1723324954509735
+        },
+        {
+          "at": 1792760783.647663,
+          "serverOwned": false,
+          "y": 44.99033737182617,
+          "vy": 0.32100775837898254
+        },
+        {
+          "at": 1792760783.664424,
+          "serverOwned": false,
+          "y": 44.99245834350586,
+          "vy": 0.32787519693374634
+        },
+        {
+          "at": 1792760783.681234,
+          "serverOwned": false,
+          "y": 44.99424362182617,
+          "vy": 0.24971617758274078
+        },
+        {
+          "at": 1792760783.697458,
+          "serverOwned": false,
+          "y": 44.99641799926758,
+          "vy": 0.15449756383895874
+        },
+        {
+          "at": 1792760783.714552,
+          "serverOwned": false,
+          "y": 44.99875259399414,
+          "vy": 0.052308835089206696
+        },
+        {
+          "at": 1792760783.730734,
+          "serverOwned": false,
+          "y": 44.9997444152832,
+          "vy": 0.008785055950284004
+        },
+        {
+          "at": 1792760783.748717,
+          "serverOwned": false,
+          "y": 44.999778747558594,
+          "vy": 0.007499940227717161
+        },
+        {
+          "at": 1792760783.764641,
+          "serverOwned": false,
+          "y": 44.99984359741211,
+          "vy": 0.005543429870158434
+        },
+        {
+          "at": 1792760783.781705,
+          "serverOwned": false,
+          "y": 44.999916076660156,
+          "vy": 0.0030942969024181366
+        },
+        {
+          "at": 1792760783.797986,
+          "serverOwned": false,
+          "y": 44.999977111816406,
+          "vy": 0.001132223755121231
+        },
+        {
+          "at": 1792760783.814815,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0.0004875941085629165
+        },
+        {
+          "at": 1792760783.832651,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0.00040941801853477955
+        },
+        {
+          "at": 1792760783.848643,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0.00027515387046150863
+        },
+        {
+          "at": 1792760783.865848,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0.00012327285367064178
+        },
+        {
+          "at": 1792760783.881622,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0.000021634274162352085
+        },
+        {
+          "at": 1792760783.898473,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.914757,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.931617,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.948676,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.964936,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.981717,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760783.998601,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.015023,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.031472,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.048241,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.065786,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.08226,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.097288,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.115249,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.131294,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.148231,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.16475,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.181343,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.198525,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.215588,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.232375,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.248629,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.264666,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.282336,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.297313,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.315398,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.33072,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.348793,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.365334,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.381987,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.397476,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.414636,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.43165,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.448741,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.46437,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.481804,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.497322,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.514933,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.53191,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.547783,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.564541,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.581609,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.598713,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.615311,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.630761,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.64746,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.664639,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.682487,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.697523,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.714741,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.730886,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.747895,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.764152,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.780708,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.79912,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.815416,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.831531,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.848808,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.864855,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.882063,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.897972,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.914958,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.931224,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.947775,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.964679,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.981076,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760784.998899,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.014803,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.031242,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.047724,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.065195,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.082723,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.097683,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.115786,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.131865,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.147799,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.165458,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.181533,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.198595,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.214546,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.231832,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.247944,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.264293,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.280887,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.298399,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.3155,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.330913,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.34893,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.364502,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.382067,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.397855,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.415021,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.432008,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.44794,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.46506,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.48174,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.497776,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.514137,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.530735,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.547942,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.564093,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.581398,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.597734,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.61485,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.631772,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.647685,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.665832,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.680806,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.697906,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.715049,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.732552,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.748279,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.764775,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.782041,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.797509,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.814806,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.831719,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.847917,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.864938,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.882395,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.897733,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.916076,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.932619,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.948593,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.964749,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.981925,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760785.998934,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.014875,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.031172,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.048709,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.064749,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.080759,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.097785,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.114839,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.131973,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.148011,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.164979,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.181278,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.197619,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.214972,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.231579,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.247636,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.264806,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.280878,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.298455,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.313973,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.331593,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.348652,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.364623,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.380706,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.397986,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.414998,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.431067,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.448175,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.464862,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.48173,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.497858,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.515012,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.531038,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.548588,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.565031,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.582764,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.598749,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.61474,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.630742,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.647834,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.66406,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.680805,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.697844,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.714892,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.731077,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.748681,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.764708,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.782385,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.798356,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.815176,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.831779,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.848578,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.866254,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.881934,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.897971,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.915199,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.932253,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.947701,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.965069,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.98212,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760786.997825,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.015793,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.031987,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.048041,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.066282,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.082222,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.098711,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.11598,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.13112,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.148149,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.164733,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.182212,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.197735,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.215002,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.23117,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.249061,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.265487,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.281411,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.298512,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.316083,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.331729,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.349345,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.364842,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.381078,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.399253,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.415499,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.431048,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.448517,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.465123,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.482538,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.498082,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.515129,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.531255,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.548262,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.565029,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.581157,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.598297,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.614284,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.631798,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.648932,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.66506,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.682034,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.698234,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.716007,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.731157,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.747885,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.765044,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.78106,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.798168,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.816012,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.831441,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.848981,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.86518,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.881129,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.898786,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.914861,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.93194,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.948279,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.964577,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.981128,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760787.999185,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.015251,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.032743,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.048284,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.065975,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.081878,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.098356,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.115153,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.132244,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.148247,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.165247,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.181026,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.198162,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.214319,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.230895,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.248922,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.26504,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.281169,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.298744,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.314763,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.33145,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.347837,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.365042,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.381878,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.398055,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.415458,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.43213,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.448604,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.466145,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.481202,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.499174,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.515139,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.531976,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.548884,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.56556,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.581422,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.599108,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.616081,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.631741,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.649541,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.665095,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.681103,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.698127,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.715108,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.731284,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.748824,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.765869,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.780866,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.797927,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.81493,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.831041,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.848366,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.865442,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.881961,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.898084,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.915409,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.93149,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.948,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.964687,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.982646,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760788.998069,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.01516,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.03154,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.049338,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.064367,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.082037,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.09809,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.115756,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.13137,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.148972,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.166069,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.182889,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.19933,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.21438,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.231941,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.24848,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.265022,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.2811,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.298316,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.31499,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.331073,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.34813,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.364764,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.381289,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.398416,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.41522,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.431238,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.448353,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.464688,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.482184,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.497903,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.514335,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.53147,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.549803,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.565313,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.582339,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.598397,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.614427,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.632419,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.649031,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.665859,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.682282,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.699633,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.71458,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.731755,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.748468,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.764922,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.783021,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.799546,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.814368,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.831031,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.848124,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.865211,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.88099,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.898031,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.914239,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.931466,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.948032,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.96438,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.981236,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760789.998298,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.015449,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.030999,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.047997,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.065141,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.08106,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.099332,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.114572,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.131506,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.148137,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.164525,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.181468,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.199319,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.214288,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.231275,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.248338,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.265418,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.281399,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.2985,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.314614,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.331311,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.348274,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.365511,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.381562,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.398463,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.414432,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.431402,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.44772,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.464748,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.482685,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.499201,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.51508,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.532082,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.548515,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.565036,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.582272,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.598113,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.615035,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.632084,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.648193,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.665249,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.68139,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.699366,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.715515,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.732874,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.748311,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.76468,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.78175,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.798814,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.816279,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.832395,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.848339,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.865157,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.881587,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.898442,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.914466,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.931917,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.948529,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.965231,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.982456,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760790.99835,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.01547,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.032364,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.048415,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.064812,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.081231,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.098317,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.115417,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.131367,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.148428,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.164389,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.181397,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.198959,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.215473,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.232229,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.248239,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.264531,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.281248,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.298465,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.314536,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.331584,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.348305,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.364811,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.381592,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.398642,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.414647,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.431114,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.448715,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.465642,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.481217,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.498263,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.515896,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.532064,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.548534,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.565611,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.581699,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.598428,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.615411,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.632549,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 0
+        },
+        {
+          "at": 1792760791.650147,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.664633,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.681641,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.699414,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.715088,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.731721,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.749664,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.764915,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.78253,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.799708,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.815975,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.831384,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.848943,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.864448,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.882499,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.897962,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.915236,
+          "serverOwned": false,
+          "y": 45,
+          "vy": 90
+        },
+        {
+          "at": 1792760791.931581,
+          "serverOwned": false,
+          "y": 49.24042510986328,
+          "vy": 80.17326354980469
+        },
+        {
+          "at": 1792760791.948523,
+          "serverOwned": false,
+          "y": 50.026817321777344,
+          "vy": 78.00619506835938
+        },
+        {
+          "at": 1792760791.965797,
+          "serverOwned": false,
+          "y": 51.78558349609375,
+          "vy": 73.15955352783203
+        },
+        {
+          "at": 1792760791.98277,
+          "serverOwned": false,
+          "y": 53.68575668334961,
+          "vy": 67.92322540283203
+        },
+        {
+          "at": 1792760791.998584,
+          "serverOwned": false,
+          "y": 54.988525390625,
+          "vy": 64.33316040039062
+        },
+        {
+          "at": 1792760792.014742,
+          "serverOwned": false,
+          "y": 55.48234939575195,
+          "vy": 62.957340240478516
+        },
+        {
+          "at": 1792760792.031958,
+          "serverOwned": false,
+          "y": 56.209312438964844,
+          "vy": 60.3568229675293
+        },
+        {
+          "at": 1792760792.049407,
+          "serverOwned": false,
+          "y": 57.54487991333008,
+          "vy": 55.579200744628906
+        },
+        {
+          "at": 1792760792.064486,
+          "serverOwned": false,
+          "y": 58.77085876464844,
+          "vy": 51.193599700927734
+        },
+        {
+          "at": 1792760792.081451,
+          "serverOwned": false,
+          "y": 59.68888854980469,
+          "vy": 47.909584045410156
+        },
+        {
+          "at": 1792760792.099631,
+          "serverOwned": false,
+          "y": 59.98256301879883,
+          "vy": 46.600494384765625
+        },
+        {
+          "at": 1792760792.114713,
+          "serverOwned": false,
+          "y": 60.6654052734375,
+          "vy": 43.15697479248047
+        },
+        {
+          "at": 1792760792.131876,
+          "serverOwned": false,
+          "y": 61.64655303955078,
+          "vy": 38.20915603637695
+        },
+        {
+          "at": 1792760792.148344,
+          "serverOwned": false,
+          "y": 62.53486633300781,
+          "vy": 33.729469299316406
+        },
+        {
+          "at": 1792760792.165799,
+          "serverOwned": false,
+          "y": 63.04157257080078,
+          "vy": 31.17418670654297
+        },
+        {
+          "at": 1792760792.181524,
+          "serverOwned": false,
+          "y": 63.218910217285156,
+          "vy": 29.756750106811523
+        },
+        {
+          "at": 1792760792.199494,
+          "serverOwned": false,
+          "y": 63.815757751464844,
+          "vy": 24.916196823120117
+        },
+        {
+          "at": 1792760792.214825,
+          "serverOwned": false,
+          "y": 64.38015747070312,
+          "vy": 20.338842391967773
+        },
+        {
+          "at": 1792760792.231387,
+          "serverOwned": false,
+          "y": 64.66107940673828,
+          "vy": 18.060516357421875
+        },
+        {
+          "at": 1792760792.248575,
+          "serverOwned": false,
+          "y": 64.79700469970703,
+          "vy": 15.56944751739502
+        },
+        {
+          "at": 1792760792.266413,
+          "serverOwned": false,
+          "y": 65.07990264892578,
+          "vy": 10.383610725402832
+        },
+        {
+          "at": 1792760792.28139,
+          "serverOwned": false,
+          "y": 65.31629943847656,
+          "vy": 6.050111770629883
+        },
+        {
+          "at": 1792760792.298518,
+          "serverOwned": false,
+          "y": 65.41857147216797,
+          "vy": 4.133788585662842
+        },
+        {
+          "at": 1792760792.31473,
+          "serverOwned": false,
+          "y": 65.3704833984375,
+          "vy": 1.7826383113861084
+        },
+        {
+          "at": 1792760792.331854,
+          "serverOwned": false,
+          "y": 65.27984619140625,
+          "vy": -2.6493682861328125
+        },
+        {
+          "at": 1792760792.348295,
+          "serverOwned": false,
+          "y": 65.18402099609375,
+          "vy": -7.335121154785156
+        },
+        {
+          "at": 1792760792.366314,
+          "serverOwned": false,
+          "y": 65.1108627319336,
+          "vy": -10.912508964538574
+        },
+        {
+          "at": 1792760792.38127,
+          "serverOwned": false,
+          "y": 65.06364440917969,
+          "vy": -11.773385047912598
+        },
+        {
+          "at": 1792760792.398692,
+          "serverOwned": true,
+          "y": 65.0768051147461,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -3.2700002193450928
+        },
+        {
+          "at": 1792760792.415158,
+          "serverOwned": true,
+          "y": 64.96780395507812,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -6.5400004386901855
+        },
+        {
+          "at": 1792760792.431591,
+          "serverOwned": true,
+          "y": 64.80430603027344,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -9.8100004196167
+        },
+        {
+          "at": 1792760792.448594,
+          "serverOwned": true,
+          "y": 64.5863037109375,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -13.080000877380371
+        },
+        {
+          "at": 1792760792.465192,
+          "serverOwned": true,
+          "y": 64.31380462646484,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -16.350000381469727
+        },
+        {
+          "at": 1792760792.482062,
+          "serverOwned": true,
+          "y": 63.9868049621582,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -19.6200008392334
+        },
+        {
+          "at": 1792760792.499969,
+          "serverOwned": true,
+          "y": 63.60530471801758,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -22.89000129699707
+        },
+        {
+          "at": 1792760792.515409,
+          "serverOwned": true,
+          "y": 63.16930389404297,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -26.160001754760742
+        },
+        {
+          "at": 1792760792.532088,
+          "serverOwned": true,
+          "y": 62.678802490234375,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -29.430002212524414
+        },
+        {
+          "at": 1792760792.54866,
+          "serverOwned": true,
+          "y": 62.13380432128906,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -32.70000076293945
+        },
+        {
+          "at": 1792760792.565668,
+          "serverOwned": true,
+          "y": 61.534305572509766,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -35.970001220703125
+        },
+        {
+          "at": 1792760792.582659,
+          "serverOwned": true,
+          "y": 60.880306243896484,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -39.2400016784668
+        },
+        {
+          "at": 1792760792.600567,
+          "serverOwned": true,
+          "y": 60.17180633544922,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -42.51000213623047
+        },
+        {
+          "at": 1792760792.614701,
+          "serverOwned": true,
+          "y": 59.40880584716797,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -45.78000259399414
+        },
+        {
+          "at": 1792760792.632205,
+          "serverOwned": true,
+          "y": 58.591304779052734,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -49.05000305175781
+        },
+        {
+          "at": 1792760792.649715,
+          "serverOwned": true,
+          "y": 57.03680419921875,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -93.2699966430664
+        },
+        {
+          "at": 1792760792.664709,
+          "serverOwned": true,
+          "y": 55.42780303955078,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -96.53999328613281
+        },
+        {
+          "at": 1792760792.68172,
+          "serverOwned": true,
+          "y": 53.76430130004883,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -99.80998992919922
+        },
+        {
+          "at": 1792760792.698773,
+          "serverOwned": true,
+          "y": 52.046302795410156,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -103.07998657226562
+        },
+        {
+          "at": 1792760792.715645,
+          "serverOwned": true,
+          "y": 50.2738037109375,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -106.34998321533203
+        },
+        {
+          "at": 1792760792.732792,
+          "serverOwned": true,
+          "y": 48.44680404663086,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -109.61997985839844
+        },
+        {
+          "at": 1792760792.74847,
+          "serverOwned": true,
+          "y": 46.565303802490234,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -112.88997650146484
+        },
+        {
+          "at": 1792760792.765372,
+          "serverOwned": true,
+          "y": 44.629302978515625,
+          "actionUntil": {
+            "m": null,
+            "t": "numeric",
+            "v": "inf"
+          },
+          "displaced": 2,
+          "vy": -116.15997314453125
+        },
+        {
+          "at": 1792760792.781599,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.798812,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.814819,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.832304,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.848724,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.865384,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.8825,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.900332,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.915404,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.931594,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.94891,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.96569,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.981816,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760792.999073,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760793.014859,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760793.032248,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760793.049,
+          "serverOwned": false,
+          "y": 42.63880157470703,
+          "actionUntil": 1792760793.4313672,
+          "vy": -119.42996978759766
+        },
+        {
+          "at": 1792760793.065543,
+          "serverOwned": false,
+          "y": 46.61690902709961,
+          "actionUntil": 1792760793.4313672,
+          "vy": -112.23986053466797
+        },
+        {
+          "at": 1792760793.08156,
+          "serverOwned": false,
+          "y": 46.356773376464844,
+          "actionUntil": 1792760793.4313672,
+          "vy": -94.7609634399414
+        },
+        {
+          "at": 1792760793.098887,
+          "serverOwned": false,
+          "y": 45.82139587402344,
+          "actionUntil": 1792760793.4313672,
+          "vy": -58.78765106201172
+        },
+        {
+          "at": 1792760793.11497,
+          "serverOwned": false,
+          "y": 45.26059341430664,
+          "actionUntil": 1792760793.4313672,
+          "vy": -21.106159210205078
+        },
+        {
+          "at": 1792760793.131937,
+          "serverOwned": false,
+          "y": 44.934722900390625,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.7898507118225098
+        },
+        {
+          "at": 1792760793.149225,
+          "serverOwned": false,
+          "y": 44.87636947631836,
+          "actionUntil": 1792760793.4313672,
+          "vy": 4.834988594055176
+        },
+        {
+          "at": 1792760793.166172,
+          "serverOwned": false,
+          "y": 44.90204620361328,
+          "actionUntil": 1792760793.4313672,
+          "vy": 3.8316848278045654
+        },
+        {
+          "at": 1792760793.18234,
+          "serverOwned": false,
+          "y": 44.940853118896484,
+          "actionUntil": 1792760793.4313672,
+          "vy": 2.3151159286499023
+        },
+        {
+          "at": 1792760793.19885,
+          "serverOwned": false,
+          "y": 44.9747200012207,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.9916529655456543
+        },
+        {
+          "at": 1792760793.215757,
+          "serverOwned": false,
+          "y": 44.993465423583984,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.25903698801994324
+        },
+        {
+          "at": 1792760793.232404,
+          "serverOwned": false,
+          "y": 44.99468231201172,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.21136800944805145
+        },
+        {
+          "at": 1792760793.249314,
+          "serverOwned": false,
+          "y": 44.99665832519531,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.1336517632007599
+        },
+        {
+          "at": 1792760793.265269,
+          "serverOwned": false,
+          "y": 44.998558044433594,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.059001728892326355
+        },
+        {
+          "at": 1792760793.282531,
+          "serverOwned": false,
+          "y": 44.99951171875,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.02150331810116768
+        },
+        {
+          "at": 1792760793.299048,
+          "serverOwned": false,
+          "y": 44.99959182739258,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.018232880160212517
+        },
+        {
+          "at": 1792760793.315862,
+          "serverOwned": false,
+          "y": 44.99977111816406,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.011239423416554928
+        },
+        {
+          "at": 1792760793.333387,
+          "serverOwned": false,
+          "y": 44.99993896484375,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.004414370749145746
+        },
+        {
+          "at": 1792760793.349137,
+          "serverOwned": false,
+          "y": 45.000003814697266,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.0019502476789057255
+        },
+        {
+          "at": 1792760793.366635,
+          "serverOwned": false,
+          "y": 45,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.0016868977108970284
+        },
+        {
+          "at": 1792760793.382903,
+          "serverOwned": false,
+          "y": 45,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.0011849094880744815
+        },
+        {
+          "at": 1792760793.398933,
+          "serverOwned": false,
+          "y": 45,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.0006206969264894724
+        },
+        {
+          "at": 1792760793.415761,
+          "serverOwned": false,
+          "y": 45,
+          "actionUntil": 1792760793.4313672,
+          "vy": 0.00014911312609910965
+        }
+      ],
+      "passed": true,
+      "checks": [
+        "Hammer selected",
+        "Bounce selected",
+        "actual Q accepted through production remote",
+        "Bounce leaves Platform",
+        "slam takes server ownership",
+        "slam disables motor",
+        "actual landing starts 0.65 recovery",
+        "impact follows telegraph",
+        "actual physics reaches at least 90 downward",
+        "landing returns ownership and motor",
+        "slam preserves Bounce cooldown",
+        "live drive cleared"
+      ]
+    },
+    "client": {
+      "samples": [
+        {
+          "at": 1792760792.43216,
+          "headHeight": 1.407012939453125
+        },
+        {
+          "at": 1792760792.448569,
+          "headHeight": 1.6041641235351562
+        },
+        {
+          "at": 1792760792.465423,
+          "headHeight": 1.8060379028320312
+        },
+        {
+          "at": 1792760792.482874,
+          "headHeight": 2.0155105590820312
+        },
+        {
+          "at": 1792760792.500295,
+          "headHeight": 2.2229232788085938
+        },
+        {
+          "at": 1792760792.515854,
+          "headHeight": 2.4111480712890625
+        },
+        {
+          "at": 1792760792.53224,
+          "headHeight": 2.6076736450195312
+        },
+        {
+          "at": 1792760792.548843,
+          "headHeight": 2.80712890625
+        },
+        {
+          "at": 1792760792.565931,
+          "headHeight": 3.0122299194335938
+        },
+        {
+          "at": 1792760792.582995,
+          "headHeight": 3.2170639038085938
+        },
+        {
+          "at": 1792760792.600752,
+          "headHeight": 3.428558349609375
+        },
+        {
+          "at": 1792760792.614728,
+          "headHeight": 3.5979766845703125
+        },
+        {
+          "at": 1792760792.63225,
+          "headHeight": 3.8082275390625
+        },
+        {
+          "at": 1792760792.650785,
+          "headHeight": 4
+        },
+        {
+          "at": 1792760792.665564,
+          "headHeight": 4
+        },
+        {
+          "at": 1792760792.682685,
+          "headHeight": 4
+        },
+        {
+          "at": 1792760792.699776,
+          "headHeight": 4
+        },
+        {
+          "at": 1792760792.716864,
+          "headHeight": 4.000003814697266
+        },
+        {
+          "at": 1792760792.73385,
+          "headHeight": 4
+        },
+        {
+          "at": 1792760792.749398,
+          "headHeight": 4
+        },
+        {
+          "at": 1792760792.766271,
+          "headHeight": 4
+        },
+        {
+          "at": 1792760792.782416,
+          "headHeight": 4
+        },
+        {
+          "at": 1792760792.800203,
+          "headHeight": 4
+        }
+      ],
+      "events": [
+        {
+          "at": 1792760792.431147,
+          "kind": "accepted",
+          "started": 1792760792.398175
+        },
+        {
+          "at": 1792760792.815305,
+          "kind": "slam-impact",
+          "origin": "0, 42, 0"
+        }
+      ],
+      "impacts": 1
+    },
+    "issue": "First successful client probe logged a vertical-reset movement correction at Bounce-to-slam ownership transfer; fixed with expiring consumable vertical burst credit and retested clean. Landing now settles feet and clears downward velocity before ownership return."
+  },
+  "limitations": [
+    "Two live clients and target latency not run",
+    "No full Roblox type analysis executable installed",
+    "Owner gameplay acceptance pending",
+    "Known unrelated rbxassetid://203785492 asset-type mismatch"
+  ],
+  "cleanup": "All 27 local runtime sources match Studio; all six distinct temporary test scripts removed and absence checked; Studio returned to Edit."
+}
