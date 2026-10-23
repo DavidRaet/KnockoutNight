@@ -1,0 +1,695 @@
+{
+  "runtime": {
+    "observations": [
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792723512.142658,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.159226,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.176291,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.192657,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792723512.209529,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792723512.225614,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.242519,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.259596,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.276641,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.293663,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.309574,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.325283,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.342474,
+        "owned": true
+      },
+      {
+        "speed": 18.226818084716797,
+        "at": 1792723512.359561,
+        "owned": true
+      },
+      "WreckingHammer",
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792723512.892364,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.909343,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.926055,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.943528,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.958523,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.975649,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723512.992444,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.010671,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.027035,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792723513.042939,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.059449,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.076462,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.092673,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.10974,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.126462,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.143435,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.159446,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792723513.175412,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.192273,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.209594,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.225769,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.242676,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.259289,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.275245,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.293566,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.309711,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.326067,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.342716,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.359691,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.376161,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.392375,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723513.41049,
+        "owned": true
+      },
+      {
+        "speed": 26.68827247619629,
+        "at": 1792723513.426403,
+        "owned": true
+      },
+      "PaddlePops",
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792723514.009642,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.026644,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.042782,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.059219,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.075283,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.092097,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.109823,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.126422,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.142468,
+        "owned": true
+      },
+      "SpringFist",
+      {
+        "speed": 27.999998092651367,
+        "at": 1792723514.160674,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.176632,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.193747,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.209771,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.225404,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.242445,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.260493,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.275514,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.292622,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.309681,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.325843,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.342475,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.3597,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.37559,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.393853,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.409471,
+        "owned": true
+      },
+      {
+        "speed": 9.663833618164062,
+        "at": 1792723514.425924,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792723514.909626,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.926568,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.943285,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.958796,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.976237,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723514.992292,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723515.009358,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723515.026531,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723515.042394,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792723515.060439,
+        "owned": true
+      },
+      "Gust",
+      {
+        "speed": 25.10770606994629,
+        "at": 1792723515.075794,
+        "owned": true
+      },
+      {
+        "speed": 26.2586669921875,
+        "at": 1792723515.092747,
+        "owned": true
+      },
+      {
+        "speed": 21.014583587646484,
+        "at": 1792723515.109442,
+        "owned": true
+      },
+      {
+        "speed": 21.014612197875977,
+        "at": 1792723515.126072,
+        "owned": true
+      },
+      {
+        "speed": 21.014612197875977,
+        "at": 1792723515.142556,
+        "owned": true
+      },
+      {
+        "speed": 21.014583587646484,
+        "at": 1792723515.158589,
+        "owned": true
+      },
+      {
+        "speed": 21.014583587646484,
+        "at": 1792723515.175254,
+        "owned": true
+      },
+      {
+        "speed": 21.014570236206055,
+        "at": 1792723515.192213,
+        "owned": true
+      },
+      {
+        "speed": 21.014583587646484,
+        "at": 1792723515.209821,
+        "owned": true
+      },
+      {
+        "speed": 15.76063060760498,
+        "at": 1792723515.226869,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723515.243128,
+        "owned": true
+      },
+      {
+        "speed": 21.274965286254883,
+        "at": 1792723515.258608,
+        "owned": true
+      },
+      {
+        "speed": 7.288311958312988,
+        "at": 1792723515.275702,
+        "owned": true
+      },
+      {
+        "speed": 7.284278392791748,
+        "at": 1792723515.292794,
+        "owned": true
+      },
+      {
+        "speed": 8.127264976501465,
+        "at": 1792723515.309505,
+        "owned": true
+      },
+      {
+        "speed": 7.283935070037842,
+        "at": 1792723515.325515,
+        "owned": true
+      },
+      {
+        "speed": 5.788936138153076,
+        "at": 1792723515.343483,
+        "owned": true
+      },
+      "SpringFist",
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792723528.176676,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.193261,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.209773,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.226347,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.24236,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792723528.259385,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792723528.275938,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.293902,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.310288,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.325368,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.34239,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.359656,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.376702,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.392709,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723528.408865,
+        "owned": true
+      },
+      {
+        "speed": 11.803621292114258,
+        "at": 1792723528.425367,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792723529.292878,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723529.309256,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792723529.325365,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792723529.758832,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723529.775283,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723529.79187,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792723530.292836,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792723530.309646,
+        "owned": true
+      }
+    ],
+    "passed": true,
+    "checks": [
+      "staging rejected",
+      "staging spends nothing",
+      "bad aim rejected",
+      "stale generation rejected",
+      "miss accepted",
+      "twelve-second cooldown",
+      "user keeps movement and jump",
+      "weapon overlap rejected",
+      "miss cleans action without pull",
+      "cooldown rejection cannot extend deadline",
+      "miss still emits burst",
+      "target starts Hammer",
+      "pull accepted",
+      "pull is server owned",
+      "pull adds no stun and preserves target startup",
+      "target movement and jumping locked",
+      "protection begins at pull start",
+      "pull motor and attributes restore",
+      "pull stops near three studs: 2.999981641769409",
+      "early completion retains minimum protection without full-duration extension",
+      "exact 28 studs per second observed",
+      "near-maximum-range Magnet accepted",
+      "distant target finishes inside Paddle reach: 4.770021909019022",
+      "long-pull protection expires at completion",
+      "Paddle follow-up accepted after pull",
+      "six-stud Paddle follow-up hits distant pulled target",
+      "response fixture accepted",
+      "target can start weapon during pull",
+      "responding weapon can hit unprotected user",
+      "ability response fixture accepted",
+      "target can use valid ability during pull",
+      "interrupting weapon begins",
+      "interruptible startup accepted",
+      "weapon cancels startup without pull",
+      "interruption spends cooldown",
+      "hit reaction rejects activation",
+      "ordinary knockback after reaction permits Magnet",
+      "protected target activation accepted",
+      "spawn-protected target excluded",
+      "cleanup fixture starts",
+      "source removal releases target immediately",
+      "death retains deadline",
+      "respawn retains deadline",
+      "fresh match and sudden-death shared reset clears deadline",
+      "obstacle fixture starts",
+      "new obstacle stops pull early",
+      "target does not cross solid wall",
+      "airborne activation accepted",
+      "airborne pull preserves gravity rather than hovering",
+      "target death cleans pull"
+    ]
+  },
+  "paddleGeometryChecks": 32,
+  "offlineChecks": 555,
+  "limits": "Synthetic roster/remote/clock with real R15 physics; live multiplayer networking and owner gameplay acceptance remain pending."
+}

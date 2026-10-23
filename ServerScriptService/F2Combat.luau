@@ -2,7 +2,8 @@ local Players = game:GetService("Players")
 local Storage = game:GetService("ReplicatedStorage")
 local Config = require(Storage.F2Config)
 local Gust = require(Storage.F8Gust)
-local cooldowns = {}
+local Magnet = require(Storage.F9Magnet)
+local cooldowns, magnetCooldowns = {}, {}
 local Weapons = require(Storage.F2Weapons)
 local F1 = require(Storage.F1Config)
 local Fist = require(Storage.F2SpringFist)
@@ -48,6 +49,12 @@ local function release(state, reason)
 		return
 	end
 	state.displacement = nil
+	if displacement.pull then
+		state.protectionUntil = math.max(displacement.started + Magnet.Protection, workspace:GetServerTimeNow())
+		local velocity = state.root.AssemblyLinearVelocity
+		state.root.AssemblyLinearVelocity = Vector3.new(0, velocity.Y, 0)
+		state.root:SetAttribute("F9Pulling", nil)
+	end
 	state.humanoid.EvaluateStateMachine = displacement.motor
 	if displacement.motor and state.humanoid.Health > 0 then
 		state.humanoid:ChangeState(Enum.HumanoidStateType.Freefall)
@@ -73,12 +80,13 @@ local function permissions(state, now)
 	local restricted = state.displacement ~= nil or now < state.reactionUntil
 	local action = state.action
 	state.humanoid.WalkSpeed = if restricted then 0 else F1.WalkSpeed * (if action then action.config.MoveScale else 1)
-	state.humanoid.JumpHeight = if restricted or action then 0 else F1.JumpHeight
+	state.humanoid.JumpHeight = if restricted or (action and not action.config.CanJump) then 0 else F1.JumpHeight
 	state.root:SetAttribute("F2ReactionUntil", state.reactionUntil)
 	state.root:SetAttribute("F2ProtectionUntil", state.protectionUntil)
 	state.root:SetAttribute("F2ActionUntil", if action then action.started + action.config.Duration else nil)
 	state.root:SetAttribute("F2ActionAim", if action then action.aim else nil)
-	if restricted or action then
+	state.root:SetAttribute("F2ActionCanJump", if action then action.config.CanJump == true else nil)
+	if restricted or (action and not action.config.CanJump) then
 		state.humanoid.Jump = false
 	end
 end
@@ -95,6 +103,11 @@ local function remove(player, reason)
 	if not state then
 		return
 	end
+	for _, other in states do
+		if other.displacement and other.displacement.source == state then
+			release(other, "magnet-source-removed")
+		end
+	end
 	clearAction(state, reason)
 	release(state, reason)
 	emit("clear", state, { reason = reason })
@@ -104,7 +117,16 @@ local function remove(player, reason)
 	end
 	state.humanoid.WalkSpeed, state.humanoid.JumpHeight = state.walkSpeed, state.jumpHeight
 	for _, name in
-		{ "F2Generation", "F2ActionUntil", "F2ActionAim", "F2ReactionUntil", "F2ProtectionUntil", "F2Restart" }
+		{
+			"F2ActionCanJump",
+			"F9Pulling",
+			"F2Generation",
+			"F2ActionUntil",
+			"F2ActionAim",
+			"F2ReactionUntil",
+			"F2ProtectionUntil",
+			"F2Restart",
+		}
 	do
 		state.root:SetAttribute(name, nil)
 	end
@@ -116,8 +138,9 @@ end
 
 function Combat.retire(player, reason)
 	if reason == "fresh-match" then
-		cooldowns[player] = nil
+		cooldowns[player], magnetCooldowns[player] = nil, nil
 		player:SetAttribute("F8ReadyAt", nil)
+		player:SetAttribute("F9ReadyAt", nil)
 	end
 	remove(player, reason)
 end
@@ -128,10 +151,11 @@ local function startAction(state, sequence, now, ability)
 		state.spawnProtectionUntil = 0
 	end
 	actionId += 1
-	local config = if ability then Gust else Weapons[state.weapon]
+	local config = if ability == "Magnet" then Magnet elseif ability then Gust else Weapons[state.weapon]
 	if ability then
-		cooldowns[state.player] = now + Gust.Cooldown
-		state.player:SetAttribute("F8ReadyAt", cooldowns[state.player])
+		local ledger = if config == Magnet then magnetCooldowns else cooldowns
+		ledger[state.player] = now + config.Cooldown
+		state.player:SetAttribute(if config == Magnet then "F9ReadyAt" else "F8ReadyAt", ledger[state.player])
 	end
 	state.action =
 		{ id = actionId, sequence = sequence, started = now, aim = state.aim, encountered = {}, config = config }
@@ -147,7 +171,7 @@ local function startAction(state, sequence, now, ability)
 		started = now,
 		aim = state.aim,
 		weapon = state.weapon,
-		ability = if ability then "Gust" else nil,
+		ability = ability,
 		hand = state.action.hand,
 		activeAt = now + config.Startup,
 		recoveryAt = now + config.Startup + config.Active,
@@ -196,7 +220,7 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 		return true
 	end
 	if
-		(kind ~= "press" and kind ~= "gust")
+		(kind ~= "press" and kind ~= "gust" and kind ~= "magnet")
 		or type(sequence) ~= "number"
 		or not Physics.finite(sequence)
 		or sequence % 1 ~= 0
@@ -212,7 +236,7 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 			generation = gen,
 			sequence = sequence,
 			reason = reason,
-			ability = if kind == "gust" then "Gust" else nil,
+			ability = if kind == "magnet" then "Magnet" elseif kind == "gust" then "Gust" else nil,
 		})
 		return false
 	end
@@ -221,23 +245,26 @@ function Combat.request(player, kind, gen, sequence, intendedAim)
 	end
 	state.lastPress = now
 	state.aim = aim
-	local restricted = now < state.reactionUntil or (state.displacement ~= nil and kind ~= "gust")
+	local pulling = state.displacement and state.displacement.pull
+	local restricted = now < state.reactionUntil or (state.displacement ~= nil and not pulling and kind == "press")
 	if restricted then
 		return reject("hit-recovery")
 	end
-	if kind == "gust" then
+	if kind == "gust" or kind == "magnet" then
 		if state.action then
 			return reject("busy")
 		end
-		if now < (cooldowns[player] or 0) then
+		local ledger = if kind == "magnet" then magnetCooldowns else cooldowns
+		if now < (ledger[player] or 0) then
 			return reject("cooldown")
 		end
-		startAction(state, sequence, now, true)
+		startAction(state, sequence, now, if kind == "magnet" then "Magnet" else "Gust")
 		return true
 	end
 	if state.action then
 		if
 			state.action.config ~= Gust
+			and state.action.config ~= Magnet
 			and Fist.canBuffer(now - state.action.started, state.buffer ~= nil, restricted, state.action.config)
 		then
 			state.buffer = sequence
@@ -265,6 +292,69 @@ local function ground(state, excluded)
 		ray
 	)
 	return hit ~= nil and hit.Normal.Y >= math.cos(math.rad(state.humanoid.MaxSlopeAngle))
+end
+
+local function beginPull(contact, now)
+	local state, source = contact.victim, contact.attacker
+	if not valid(state) or not valid(source) or not own(state, nil) then
+		return
+	end
+	local previous = state.displacement
+	state.displacementId += 1
+	state.displacement = {
+		id = state.displacementId,
+		motor = if previous then previous.motor else state.humanoid.EvaluateStateMachine,
+		started = now,
+		pull = true,
+		source = source,
+		sourceGeneration = source.generation,
+		position = state.root.Position,
+	}
+	state.humanoid.EvaluateStateMachine = false
+	state.root:SetAttribute("F2MotorEnabled", state.displacement.motor)
+	state.root:SetAttribute("F2Displaced", state.displacementId)
+	state.root:SetAttribute("F9Pulling", true)
+	state.protectionUntil = math.max(now + Magnet.Protection, now + Magnet.PullDuration)
+	state.residualSpeed = Magnet.PullSpeed
+	state.credit = Magnet.PullSpeed * Physics.BurstSeconds + Physics.PositionSlack
+	if lifeOwner then
+		lifeOwner.hit(state.player, source.player, now, "Magnet")
+	end
+	emit("pull", state, { displacement = state.displacementId })
+	emit("magnet-pull", source, { target = state.character, id = contact.action.id })
+end
+
+local function updatePull(state, displacement, now, dt, excluded)
+	local root, source = state.root, displacement.source
+	local remaining = Magnet.PullDuration - (now - displacement.started)
+	if not equipped(source) or source.generation ~= displacement.sourceGeneration or remaining <= 0 then
+		release(state, "magnet-complete")
+		return
+	end
+	local delta = Physics.horizontal(source.root.Position - root.Position)
+	local speed = Magnet.speed(delta.Magnitude, dt, remaining)
+	if
+		speed <= 0
+		or (displacement.moving and Physics.horizontal(root.Position - displacement.position).Magnitude < 0.01)
+	then
+		release(state, "magnet-stopped")
+		return
+	end
+	local direction = delta.Unit * speed * dt
+	local ray = RaycastParams.new()
+	ray.FilterDescendantsInstances, ray.RespectCanCollide = excluded, true
+	-- Sweep the root and physical body parts; velocity-driven motion also retains solver collisions.
+	local bodies = Contact.body(state.character)
+	table.insert(bodies, root)
+	for _, body in bodies do
+		if body.CanCollide and workspace:Blockcast(body.CFrame, body.Size, direction, ray) then
+			release(state, "magnet-obstacle")
+			return
+		end
+	end
+	displacement.position, displacement.moving = root.Position, true
+	state.humanoid.EvaluateStateMachine = false
+	root.AssemblyLinearVelocity = delta.Unit * speed + Vector3.yAxis * root.AssemblyLinearVelocity.Y
 end
 
 local function launch(contact, now, excluded)
@@ -492,7 +582,9 @@ function Combat.step(dt)
 				own(state, player)
 			end
 		end
-		if displacement then
+		if displacement and displacement.pull then
+			updatePull(state, displacement, now, dt, excluded)
+		elseif displacement then
 			local elapsed = now - displacement.started
 			local supported = ground(state, excluded)
 			displacement.leftGround = displacement.leftGround or not supported
@@ -520,7 +612,45 @@ function Combat.step(dt)
 		local action = state.action
 		if action then
 			local first, last = Fist.segment(action.started, state.previousTime, now, action.config)
-			if action.config == Gust then
+			if action.config == Magnet then
+				first, last = nil, nil
+				if not action.applied and now >= action.started + Magnet.Startup then
+					action.applied = true
+					action.magnetBurst = true
+					local candidates = {}
+					local at = action.started + Magnet.Startup
+					for _, other in states do
+						if
+							other ~= state
+							and valid(other)
+							and (player.Neutral or other.player.Neutral or player.Team ~= other.player.Team)
+							and at >= other.protectionUntil
+							and at >= (if lifeOwner then lifeOwner.protectionUntil(other.player) else 0)
+						then
+							local point = Contact.gust(root.Position, action.aim, other, excluded, Magnet)
+							local delta = Physics.horizontal(other.root.Position - root.Position)
+							table.insert(candidates, {
+								eligible = point ~= nil,
+								point = point,
+								state = other,
+								id = other.player.UserId,
+								distance = delta.Magnitude,
+								alignment = if delta.Magnitude < 0.00001 then 1 else action.aim:Dot(delta.Unit),
+							})
+						end
+					end
+					local target = Magnet.select(candidates)
+					if target then
+						table.insert(contacts, {
+							attacker = state,
+							action = action,
+							victim = target.state,
+							point = target.point,
+							time = at,
+						})
+					end
+				end
+			elseif action.config == Gust then
 				first, last = nil, nil
 				if not action.applied and now >= action.started + Gust.Startup then
 					action.applied = true
@@ -591,10 +721,21 @@ function Combat.step(dt)
 		if victim.action and canceled[victim.action] then
 			clearAction(victim, "startup-interrupted")
 		end
-		launch(contact, now, excluded)
+		if contact.action.config == Magnet then
+			beginPull(contact, now)
+			if victim.displacement and victim.displacement.pull then
+				updatePull(victim, victim.displacement, now, dt, excluded)
+			end
+		else
+			launch(contact, now, excluded)
+		end
 	end
 	for _, state in states do
 		local action = state.action
+		if action and action.magnetBurst then
+			emit("magnet-burst", state, { id = action.id, aim = action.aim, origin = state.root.Position })
+			action.magnetBurst = nil
+		end
 		if action and action.burstOrigin then
 			emit("gust-burst", state, { id = action.id, aim = action.aim, origin = action.burstOrigin })
 			action.burstOrigin = nil
@@ -603,7 +744,12 @@ function Combat.step(dt)
 			state.action = nil
 			local buffered = state.buffer
 			state.buffer = nil
-			if buffered and equipped(state) and not state.displacement and now >= state.reactionUntil then
+			if
+				buffered
+				and equipped(state)
+				and (not state.displacement or state.displacement.pull)
+				and now >= state.reactionUntil
+			then
 				startAction(state, buffered, now)
 			elseif buffered then
 				emit("rejected", state, { sequence = buffered, reason = "buffer-invalidated" })
@@ -637,8 +783,9 @@ function Combat.start(lives)
 		connections,
 		Players.PlayerRemoving:Connect(function(player)
 			remove(player, "departure")
-			cooldowns[player] = nil
+			cooldowns[player], magnetCooldowns[player] = nil, nil
 			player:SetAttribute("F8ReadyAt", nil)
+			player:SetAttribute("F9ReadyAt", nil)
 			for _, connection in playerConnections[player] or {} do
 				connection:Disconnect()
 			end
@@ -655,6 +802,10 @@ function Combat.stop()
 		player:SetAttribute("F8ReadyAt", nil)
 	end
 	table.clear(cooldowns)
+	for player in magnetCooldowns do
+		player:SetAttribute("F9ReadyAt", nil)
+	end
+	table.clear(magnetCooldowns)
 	for player in states do
 		remove(player, "shutdown")
 	end

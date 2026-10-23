@@ -63,3 +63,7 @@ Both F7 clients and the Hammer/sudden-death regressions reported the previously 
 4. Check airborne slaps, walls, respawn hand reset, and a tied sudden-death reset. Recheck feel, readability, and pressure balance after future combat changes.
 
 F7 is accepted for the current prototype. F8 design/implementation, polishing, asset export, publishing, and beta release remain separate work requiring their own authorization. Target-latency verification and the other limits above remain outstanding.
+
+## F9 follow-up: six-stud reach
+
+David requested increasing Paddle Pops forward reach from 4.5 to **6 studs** (+33%) to pair with the revised Magnet pull. The hitbox keeps its 0.5-stud near edge and grows to 5.5 studs deep, centered 3.25 studs forward. Width, height, timing, and 30/8 launch remain unchanged; the temporary paddle proxy extends with the new reach. All 555 deterministic checks and 32 Paddle geometry checks pass. [Magnet follow-up verification](../F9/F9_Implementation_and_Verification.md) also demonstrates a distant pull followed by a successful Paddle hit. The previous F7 sign-off covers the prior 4.5-stud tuning; this revision awaits owner gameplay review.

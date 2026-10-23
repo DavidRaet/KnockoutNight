@@ -68,10 +68,14 @@ function Fist.resolve(contacts, config)
 				contact.time >= (protected[victim] or victim.protectionUntil)
 				and contact.time >= (victim.spawnProtectionUntil or 0)
 			then
-				protected[victim] = contact.time + config.Protection
+				protected[victim] = contact.time + ((action.config or config).Protection or config.Protection)
 				table.insert(winners, contact)
 				local outgoing = victim.action
-				if outgoing and contact.time < outgoing.started + (outgoing.config or config).Startup then
+				if
+					not (action.config or config).ControlledPull
+					and outgoing
+					and contact.time < outgoing.started + (outgoing.config or config).Startup
+				then
 					canceled[outgoing] = true
 				end
 			else

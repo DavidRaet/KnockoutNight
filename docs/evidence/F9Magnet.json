@@ -1,0 +1,451 @@
+{
+  "runtime": {
+    "observations": [
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792721227.833871,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721227.850408,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721227.866898,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721227.884153,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792721227.90078,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721227.918873,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721227.934434,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721227.949748,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721227.967727,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721227.984714,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.000745,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792721228.017164,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.033251,
+        "owned": true
+      },
+      {
+        "speed": 2.2811505794525146,
+        "at": 1792721228.051237,
+        "owned": true
+      },
+      "WreckingHammer",
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792721228.50063,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.518205,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.534483,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.551356,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.567199,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.583199,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.600088,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.617179,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.633211,
+        "owned": true
+      },
+      "SpringFist",
+      {
+        "speed": 28,
+        "at": 1792721228.651355,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792721228.666902,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.684095,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.701017,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721228.717771,
+        "owned": true
+      },
+      {
+        "speed": 26.948945999145508,
+        "at": 1792721228.734441,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792721229.417093,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721229.43301,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792721229.451391,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721229.466725,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721229.483754,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721229.5004,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721229.516898,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721229.53326,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721229.551116,
+        "owned": true
+      },
+      {
+        "speed": 27.999998092651367,
+        "at": 1792721229.567297,
+        "owned": true
+      },
+      "Gust",
+      {
+        "speed": 26.855432510375977,
+        "at": 1792721229.58392,
+        "owned": true
+      },
+      {
+        "speed": 24.510639190673828,
+        "at": 1792721229.600616,
+        "owned": true
+      },
+      {
+        "speed": 21.014612197875977,
+        "at": 1792721229.617987,
+        "owned": true
+      },
+      {
+        "speed": 21.014598846435547,
+        "at": 1792721229.634118,
+        "owned": true
+      },
+      {
+        "speed": 21.014583587646484,
+        "at": 1792721229.650138,
+        "owned": true
+      },
+      "SpringFist",
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792721242.71705,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.733301,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.750766,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.766795,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.782925,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.799792,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.817002,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.833009,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.850391,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.867828,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.883868,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.900417,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.917067,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721242.934162,
+        "owned": true
+      },
+      {
+        "speed": 17.185577392578125,
+        "at": 1792721242.95021,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792721243.818198,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721243.83426,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792721244.299932,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721244.316244,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721244.333322,
+        "owned": true
+      },
+      "Magnet",
+      {
+        "speed": 28,
+        "at": 1792721244.801108,
+        "owned": true
+      },
+      {
+        "speed": 28,
+        "at": 1792721244.817528,
+        "owned": true
+      }
+    ],
+    "passed": true,
+    "checks": [
+      "staging rejected",
+      "staging spends nothing",
+      "bad aim rejected",
+      "stale generation rejected",
+      "miss accepted",
+      "twelve-second cooldown",
+      "user keeps movement and jump",
+      "weapon overlap rejected",
+      "miss cleans action without pull",
+      "cooldown rejection cannot extend deadline",
+      "miss still emits burst",
+      "target starts Hammer",
+      "pull accepted",
+      "pull is server owned",
+      "pull adds no stun and preserves target startup",
+      "target movement and jumping locked",
+      "protection begins at pull start",
+      "pull motor and attributes restore",
+      "pull stops near three studs: 2.9999754428863525",
+      "completion preserves original protection deadline",
+      "exact 28 studs per second observed",
+      "response fixture accepted",
+      "target can start weapon during pull",
+      "responding weapon can hit unprotected user",
+      "ability response fixture accepted",
+      "target can use valid ability during pull",
+      "interrupting weapon begins",
+      "interruptible startup accepted",
+      "weapon cancels startup without pull",
+      "interruption spends cooldown",
+      "hit reaction rejects activation",
+      "ordinary knockback after reaction permits Magnet",
+      "protected target activation accepted",
+      "spawn-protected target excluded",
+      "cleanup fixture starts",
+      "source removal releases target immediately",
+      "death retains deadline",
+      "respawn retains deadline",
+      "fresh match and sudden-death shared reset clears deadline",
+      "obstacle fixture starts",
+      "new obstacle stops pull early",
+      "target does not cross solid wall",
+      "airborne activation accepted",
+      "airborne pull preserves gravity rather than hovering",
+      "target death cleans pull"
+    ]
+  },
+  "geometry": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"passed\":true,\"checks\":{\"1\":\"inclusive ten-stud range\",\"3\":\"behind excluded\",\"2\":\"outside range excluded\",\"5\":\"cone boundary 30\",\"4\":\"cone boundary -30\",\"7\":\"cone boundary 30.01\",\"6\":\"cone boundary -30.01\",\"9\":\"inclusive lower vertical band\",\"8\":\"inclusive upper vertical band\",\"15\":\"non-body parts do not satisfy band\",\"14\":\"nonsolid scenery ignored\",\"13\":\"unobstructed second candidate remains eligible\",\"12\":\"solid obstruction excludes target\",\"11\":\"below vertical band\",\"10\":\"above vertical band\"}}"
+      }
+    ],
+    "isError": false
+  },
+  "weaponGeometry": {
+    "F7Contact.spec": {
+      "ok": true,
+      "result": {
+        "passed": true,
+        "checks": 32
+      }
+    },
+    "F2Contact.spec": {
+      "ok": true,
+      "result": {
+        "passed": true,
+        "checks": 20
+      }
+    },
+    "F6Contact.spec": {
+      "ok": true,
+      "result": {
+        "passed": true,
+        "checks": 27
+      }
+    }
+  },
+  "presentation": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"sounds\":[],\"text\":\"Q Magnet: 8.4s\",\"sound\":\"rbxasset://sounds/electronicpingshort.wav\",\"checks\":{\"soundLoaded\":true,\"hud\":true,\"soundInstance\":true,\"cue\":true}}"
+      }
+    ],
+    "isError": false
+  },
+  "presentationCleanup": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"rejection\":\"Magnet: cooldown\",\"remainingCues\":0}"
+      }
+    ],
+    "isError": false
+  },
+  "limitations": [
+    "Synthetic players and real R15 physics; roster, remote, clock stubbed; server ownership retained in harness.",
+    "Single-client renderer exercised with injected events.",
+    "No two-live-client or target-latency run.",
+    "Unrelated Studio asset type warnings: rbxassetid://203785492."
+  ]
+}

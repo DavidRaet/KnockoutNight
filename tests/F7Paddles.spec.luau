@@ -16,7 +16,10 @@ return function(Fist, Paddles, Config)
 	check(Fist.segment(0, 0.18, 1, Paddles) == nil, "recovery cannot hit")
 	check(Paddles.LaunchSpeed == 30 and Paddles.LaunchUp == 8, "low launch is 30/8")
 	check(Paddles.MoveScale == 0.85, "attack movement is 85 percent")
-	check(Paddles.Size.X == 3 and Paddles.Size.Y == 4 and Paddles.Size.Z == 4, "compact 3 by 4 by 4 volume")
+	check(
+		Paddles.Size.X == 3 and Paddles.Size.Y == 4 and Paddles.Size.Z == 5.5,
+		"3 by 4 by 5.5 volume with six-stud forward reach"
+	)
 	check(Paddles.other("Right") == "Left" and Paddles.other("Left") == "Right", "hands alternate symmetrically")
 	check(not Fist.canBuffer(0.21999, false, false, Paddles), "early buffering rejected")
 	check(Fist.canBuffer(0.22, false, false, Paddles), "buffer opens in final 0.12 seconds")

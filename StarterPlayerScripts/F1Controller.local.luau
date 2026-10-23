@@ -133,16 +133,19 @@ connect(player:GetAttributeChangedSignal("F1ControlsEnabled"), clearInput)
 Actions:BindActionAtPriority("F2Attack", function(_, state)
 	if state == Enum.UserInputState.Begin and controlsEnabled() and character and root then
 		local now = workspace:GetServerTimeNow()
-		if not root:GetAttribute("F2Displaced") and now >= (root:GetAttribute("F2ReactionUntil") or 0) then
+		if
+			(not root:GetAttribute("F2Displaced") or root:GetAttribute("F9Pulling"))
+			and now >= (root:GetAttribute("F2ReactionUntil") or 0)
+		then
 			Combat.press(character, CFrame.Angles(0, yaw, 0).LookVector)
 		end
 	end
 	return if controlsEnabled() then Enum.ContextActionResult.Sink else Enum.ContextActionResult.Pass
 end, false, Enum.ContextActionPriority.High.Value, Enum.UserInputType.MouseButton1)
 
-Actions:BindActionAtPriority("F8Gust", function(_, state)
+Actions:BindActionAtPriority("F9Magnet", function(_, state)
 	if state == Enum.UserInputState.Begin and controlsEnabled() and character then
-		Combat.gust(character, CFrame.Angles(0, yaw, 0).LookVector)
+		Combat.magnet(character, CFrame.Angles(0, yaw, 0).LookVector)
 	end
 	return if controlsEnabled() then Enum.ContextActionResult.Sink else Enum.ContextActionResult.Pass
 end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.Q)
@@ -242,7 +245,7 @@ connect(RunService.PreSimulation, function(dt)
 	local serverAim = currentRoot:GetAttribute("F2ActionAim")
 	if now < (currentRoot:GetAttribute("F2ActionUntil") or 0) and typeof(serverAim) == "Vector3" then
 		moveScale, canJump = Combat.permissions(character)
-		canJump = false
+		canJump = currentRoot:GetAttribute("F2ActionCanJump") == true
 		committedAim = serverAim
 	end
 	currentHumanoid.WalkSpeed = Config.WalkSpeed * moveScale
@@ -307,7 +310,7 @@ script.Destroying:Connect(function()
 	Actions:UnbindAction("F1Movement")
 	Actions:UnbindAction("F1Jump")
 	Actions:UnbindAction("F2Attack")
-	Actions:UnbindAction("F8Gust")
+	Actions:UnbindAction("F9Magnet")
 	RunService:UnbindFromRenderStep("F1Camera")
 	defaultControls:Enable()
 	Input.MouseBehavior = Enum.MouseBehavior.Default

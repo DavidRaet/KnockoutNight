@@ -226,9 +226,10 @@ function Contact.sweep(probe, action, fromPosition, toPosition, first, last, exc
 end
 
 -- Horizontal root cone with actual R15 body overlap in the five-stud-high burst.
-function Contact.gust(origin, aim, victim, excluded)
+function Contact.gust(origin, aim, victim, excluded, profile)
+	profile = profile or Gust
 	local delta = victim.root.Position - origin
-	if not Gust.contains(delta.X, delta.Z, aim.X, aim.Z) then
+	if not profile.contains(delta.X, delta.Z, aim.X, aim.Z) then
 		return nil
 	end
 	local walls = params(excluded, false, true)
@@ -238,13 +239,13 @@ function Contact.gust(origin, aim, victim, excluded)
 			+ math.abs(cf.UpVector.Y) * half.Y
 			+ math.abs(cf.LookVector.Y) * half.Z
 		if
-			body.Position.Y + extent >= origin.Y - Gust.Height / 2
-			and body.Position.Y - extent <= origin.Y + Gust.Height / 2
+			body.Position.Y + extent >= origin.Y - profile.Height / 2
+			and body.Position.Y - extent <= origin.Y + profile.Height / 2
 		then
 			local point = body:GetClosestPointOnSurface(
 				Vector3.new(
 					origin.X,
-					math.clamp(body.Position.Y, origin.Y - Gust.Height / 2, origin.Y + Gust.Height / 2),
+					math.clamp(body.Position.Y, origin.Y - profile.Height / 2, origin.Y + profile.Height / 2),
 					origin.Z
 				)
 			)

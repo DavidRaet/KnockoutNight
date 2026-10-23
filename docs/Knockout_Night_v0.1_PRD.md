@@ -128,7 +128,7 @@ All three maps and both modes belong to the complete beta scope. The Platform an
 - Gust/Magnet work grounded or airborne without lift/hover, have startup and recovery, cannot overlap weapon attacks, and initially have no input buffer. Bounce launches immediately when valid, with a short primary-attack delay.
 - Start cooldown on accepted activation, even on a miss. Rejected requests spend nothing. Weapon hits interrupt Gust/Magnet startup: spent cooldown remains spent, and an interrupted startup produces no effect. Already applied effects are not undone.
 - Gust pushes multiple eligible enemies in a frontal cone and applies a 0.25-second stun that blocks new actions and interrupts startup. Attacks already active retain the shared trade rules. Respect solid geometry and displacement protection. Owner tuning revision, October 22, 2026; replaces the initial no-attack-cancellation rule.
-- Magnet selects one eligible enemy in a frontal cone, prioritizing aim alignment, then distance. Require a clear path; exclude protected targets. No eligible target means a miss that spends cooldown. Pull briefly, stopping short of the user; the target can attack.
+- Magnet selects one eligible enemy in a frontal cone, prioritizing aim alignment, then distance, with ascending Player UserId for exact ties. Require a clear path; exclude protected targets. No eligible target means a miss that spends cooldown. Pull toward the user's current position at 28 horizontal studs/s for up to 0.55 seconds, stopping three horizontal studs short and preserving vertical velocity. The target cannot steer/jump during the pull but can attack or use an otherwise-valid ability; no stun or cancellation of existing attacks.
 - Magnet grants displacement protection at pull start until the later of pull completion or the ordinary protection deadline. Weapon follow-ups must wait for protection to expire; no guaranteed immediate launch combo.
 - Bounce alone provides upward recovery. Keep Gust/Magnet viable through offensive positioning value; frequent compulsory Bounce selection is a balance failure to investigate.
 
@@ -415,7 +415,9 @@ Use it to disrupt approaches, create distance, or move opponents toward an edge.
 
 Use it to punish misses, close distance, or set up a weapon attack.
 
-**Resolved:** DD03 defines aim-first single targeting, obstruction, stop distance, response permissions, and pull protection. Section 17 supplies starting values.
+**Resolved:** DD03 defines aim-first single targeting, obstruction, stop distance, response permissions, and pull protection. Approved F9 settings: 12-second cooldown; 20-stud horizontal root range; 60-degree full cone; actual body overlap with a five-stud-high band centered on the user root; 0.12-second startup and 0.20-second recovery with normal user movement/jumping. Weapon hits interrupt startup without refund; already-started pulls continue after the user is hit. Targets receive displacement protection from pull start until the later of completion or 0.35 seconds. Section 17 supplies values.
+
+**Prototype status, October 22, 2026:** F9 is implemented on The Platform in local 1v1. Q now defaults to Magnet, superseding the F8 temporary Gust binding; ability selection remains deferred. [Implementation and technical verification](F9/F9_Implementation_and_Verification.md). David signed off the current F9 prototype on October 22, 2026. Live multiplayer/target-latency verification and later milestone/release gates remain open; F10 requires separate authorization.
 
 **Acceptance:** The pull moves an eligible enemy toward the user without inherently disabling all responses. DD03 target selection must be reproducible in 2v2; the server cannot accept an arbitrary client-nominated victim.
 
@@ -830,9 +832,9 @@ Approved configurable prototype starting settings, not final balance or claims o
 | Respawn protection | 3 seconds | Ends before any attack/ability resolves; falls still eliminate; no stacking extension |
 | Spring Fist | Startup/active/recovery 0.08/0.10/0.32 s; reach 11 studs; launch 50 horizontal / 12 upward studs/s | Narrow balanced strike |
 | Wrecking Hammer | Startup/active/recovery 0.48/0.18/0.65 s; reach 7 studs; about 100-degree sweep; launch 118/16 studs/s, targeting approximately 20 studs horizontal travel for a grounded idle opponent | Readable windup and broad coverage; owner tuning October 22, 2026; actual travel remains physics-dependent |
-| Paddle Pops | Startup/active/recovery 0.10/0.08/0.16 s; reach 4.5 studs; launch 30/8 studs/s | Protection exceeds one attack cycle; close pressure without stun-lock |
+| Paddle Pops | Startup/active/recovery 0.10/0.08/0.16 s; reach 6 studs; launch 30/8 studs/s | Protection exceeds one attack cycle; close pressure without stun-lock |
 | Gust | Cooldown 15 s; range 12 studs; 60-degree cone; launch 35/6 studs/s; stun 0.25 s | Multiple targets; stun blocks new actions and interrupts startup, active attacks retain trade rules; owner tuning October 22, 2026 |
-| Magnet | Cooldown 12 s; range 10 studs; 60-degree cone; pull at most 0.25 s, stop 3 studs from user | Aim-first targeting; exact pull speed tuned within limits |
+| Magnet | Cooldown 12 s; range 20 studs; 60-degree cone; pull 28 horizontal studs/s for at most 0.55 s, stop 3 horizontal studs from user | Five-stud-high body band; aim, distance, stable Player ID ordering; target can attack/use valid abilities but cannot steer/jump during pull; user keeps movement/jump |
 | Gust / Magnet action | Startup 0.12 s, then effect, recovery 0.20 s | Interruptible startup; no weapon overlap |
 | Bounce | Cooldown 10 s; replacement launch 32 horizontal / 60 upward studs/s; no horizontal input means no horizontal launch | Predictable but fallible recovery; input magnitude response tuned in prototype |
 | Bounce primary-attack delay | 0.15 s | Immediate launch, then attack; slam has its own telegraph |
@@ -859,7 +861,7 @@ Q1-Q76 are resolved in section 2.2. Earlier O01-O21 groups are resolved as behav
 
 | Item | Remaining work | Needed for |
 |---|---|---|
-| V01 | Tune exact air-control coefficients, hit-volume widths/heights, Magnet pull speed, Bounce input response, and physics application within approved behavior | Milestone 1 |
+| V01 | Tune exact air-control coefficients, hit-volume widths/heights, Magnet pull-speed balance (F9 starts at 28 studs/s), Bounce input response, and physics application within approved behavior | Milestone 1 |
 | V02 | Validate animation alignment, active trades, repeated-pressure protection, armored slam redirection, valid surfaces, and ability startup interruption | Milestones 1-2 |
 | V03 | F3 spawn/failure policy is approved in section 2.3 and technically exercised on The Platform. Owner gameplay review and safe-spawn/hazard integration for later maps remain | Milestones 1-2 |
 | V04 | Playtest timing, launch, arena dimensions, warnings, all nine loadouts, and both modes; assess compulsory Bounce selection | Milestones 1-4 |

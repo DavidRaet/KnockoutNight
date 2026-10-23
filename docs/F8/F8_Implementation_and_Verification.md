@@ -2,6 +2,8 @@
 
 **Implemented and technically verified: October 22, 2026. Owner gameplay acceptance: signed off by David on October 22, 2026.** Local 1v1 on The Platform only. Nothing was published.
 
+**F9 follow-up:** Q now defaults to Magnet for the F9 prototype; no ability selection was added. Gust remains implemented and covered by regression checks. See [F9](../F9/F9_Implementation_and_Verification.md).
+
 ## Implementation
 
 Q activates the default Gust ability for both players, independently of the existing weapon picker. There is no ability selection. `ReplicatedStorage/F8Gust.luau` follows the existing shared profile pattern and holds the provisional settings:

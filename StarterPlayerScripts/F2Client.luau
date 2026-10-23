@@ -5,6 +5,7 @@ local Config = require(Storage:WaitForChild("F2Config", 10))
 local Fist = require(Storage:WaitForChild("F2SpringFist", 10))
 local Weapons = require(Storage:WaitForChild("F2Weapons", 10))
 local Gust = require(Storage:WaitForChild("F8Gust", 10))
+local Magnet = require(Storage:WaitForChild("F9Magnet", 10))
 local Debris = game:GetService("Debris")
 local Hammer = Weapons.WreckingHammer
 local Paddles = Weapons.PaddlePops
@@ -88,7 +89,11 @@ local status = Instance.new("TextLabel")
 status.Name, status.Size, status.Position = "GustStatus", UDim2.fromOffset(260, 32), UDim2.new(0.5, -130, 1, -60)
 status.BackgroundTransparency, status.TextSize, status.TextColor3 = 0.35, 18, Color3.new(1, 1, 1)
 status.Parent = hud
+local magnetStatus = status:Clone()
+magnetStatus.Name, magnetStatus.Position, magnetStatus.Parent = "MagnetStatus", status.Position, hud
+status.Position = UDim2.new(0.5, -130, 1, -96)
 local rejectionUntil, rejection = 0, ""
+local magnetRejectionUntil, magnetRejection = 0, ""
 
 local function gustCue(record, origin, aim, burst)
 	local base = CFrame.lookAt(origin, origin + aim)
@@ -115,6 +120,35 @@ local function gustCue(record, origin, aim, burst)
 	end
 end
 
+local function magnetCue(record, origin, aim, burst)
+	for i = -1, 1, 2 do
+		local p = part("MagnetCue", Vector3.new(0.35, 0.35, 1.2))
+		p.Color = if i < 0 then Color3.fromRGB(255, 90, 110) else Color3.fromRGB(90, 140, 255)
+		local side = Vector3.new(-aim.Z, 0, aim.X) * i * 0.8
+		p.CFrame = CFrame.lookAt(origin + side + aim * (if burst then Magnet.Range else 1), origin + side)
+		record.parts["magnet" .. i] = p
+		game:GetService("TweenService")
+			:Create(p, TweenInfo.new(0.25), {
+				CFrame = CFrame.lookAt(origin + side + aim, origin + side),
+				Transparency = 1,
+			})
+			:Play()
+		Debris:AddItem(p, 0.3)
+	end
+	local sound = Instance.new("Sound")
+	sound.SoundId, sound.Volume, sound.PlaybackSpeed = "rbxasset://sounds/electronicpingshort.wav", 0.25, 0.8
+	sound.Parent = record.parts["magnet1"]
+	sound:Play()
+end
+
+function Client.magnet(character, aim)
+	local record = recordFor(character)
+	if record then
+		sequence += 1
+		remote:FireServer("magnet", record.generation, sequence, aim)
+	end
+end
+
 function Client.gust(character, aim)
 	local record = recordFor(character)
 	if record then
@@ -136,6 +170,7 @@ function Client.press(character, aim)
 		record.action = { sequence = sequence, started = now, aim = aim, predicted = true, hand = record.nextHand }
 	elseif
 		record.action.config ~= Gust
+		and record.action.config ~= Magnet
 		and Fist.canBuffer(now - record.action.started, record.buffer ~= nil, false, config)
 	then
 		record.buffer = { sequence = sequence, startsAt = record.action.started + config.Duration }
@@ -147,7 +182,7 @@ function Client.permissions(character)
 	local action = record and record.action
 	local now = workspace:GetServerTimeNow()
 	if action and now < action.started + (action.config or record.config).Duration then
-		return (action.config or record.config).MoveScale, false, action.aim
+		return (action.config or record.config).MoveScale, (action.config or record.config).CanJump == true, action.aim
 	end
 	return 1, true, nil
 end
@@ -228,9 +263,14 @@ table.insert(
 				started = data.started,
 				aim = data.aim,
 				hand = data.hand,
-				config = if data.ability == "Gust" then Gust else record.config,
+				config = if data.ability == "Magnet"
+					then Magnet
+					elseif data.ability == "Gust" then Gust
+					else record.config,
 			}
-			if data.ability == "Gust" then
+			if data.ability == "Magnet" then
+				magnetCue(record, character.HumanoidRootPart.Position, data.aim, false)
+			elseif data.ability == "Gust" then
 				gustCue(record, character.HumanoidRootPart.Position, data.aim, false)
 			end
 			if data.hand then
@@ -241,10 +281,28 @@ table.insert(
 			end
 		elseif kind == "buffered" then
 			record.buffer = { sequence = data.sequence, startsAt = data.startsAt }
+		elseif kind == "pull" then
+			record.displacement = data.displacement
+		elseif kind == "magnet-pull" then
+			if data.target and data.target.Parent then
+				local sourceRoot, targetRoot =
+					character:FindFirstChild("HumanoidRootPart"), data.target:FindFirstChild("HumanoidRootPart")
+				if sourceRoot and targetRoot then
+					local length = (targetRoot.Position - sourceRoot.Position).Magnitude
+					local p = part("MagnetLink", Vector3.new(0.12, 0.12, math.max(0.01, length)))
+					p.CFrame = CFrame.lookAt((sourceRoot.Position + targetRoot.Position) / 2, targetRoot.Position)
+					record.parts.magnetLink = p
+					Debris:AddItem(p, Magnet.PullDuration)
+				end
+			end
+		elseif kind == "magnet-burst" then
+			magnetCue(record, data.origin, data.aim, true)
 		elseif kind == "gust-burst" then
 			gustCue(record, data.origin, data.aim, true)
 		elseif kind == "rejected" then
-			if data.ability == "Gust" then
+			if data.ability == "Magnet" then
+				magnetRejection, magnetRejectionUntil = "Magnet: " .. data.reason, workspace:GetServerTimeNow() + 0.8
+			elseif data.ability == "Gust" then
 				rejection, rejectionUntil = "Gust: " .. data.reason, workspace:GetServerTimeNow() + 0.8
 			end
 			if record.action and record.action.sequence == data.sequence then
@@ -300,8 +358,14 @@ table.insert(
 		local remaining = math.max(0, (player:GetAttribute("F8ReadyAt") or 0) - now)
 		status.Text = if now < rejectionUntil
 			then rejection
-			elseif remaining > 0 then string.format("Q Gust: %.1fs", remaining)
-			else "Q Gust: Ready"
+			elseif remaining > 0 then string.format("Gust (regression): %.1fs", remaining)
+			else "Gust (regression): Ready"
+		local magnetRemaining = math.max(0, (player:GetAttribute("F9ReadyAt") or 0) - now)
+		magnetStatus.Text = if now < magnetRejectionUntil
+			then magnetRejection
+			elseif magnetRemaining > 0 then string.format("Q Magnet: %.1fs", magnetRemaining)
+			else "Q Magnet: Ready"
+		status.Visible = remaining > 0 or now < rejectionUntil
 		hud.Enabled = player:GetAttribute("F3Status") == "alive"
 		for _, other in Players:GetPlayers() do
 			if other.Character then
@@ -333,7 +397,7 @@ table.insert(
 				record.buffer = nil
 				if
 					character == player.Character
-					and not root:GetAttribute("F2Displaced")
+					and (not root:GetAttribute("F2Displaced") or root:GetAttribute("F9Pulling"))
 					and now >= (root:GetAttribute("F2ReactionUntil") or 0)
 				then
 					local aim = player:GetAttribute("F2IntendedAim")
@@ -350,7 +414,11 @@ table.insert(
 				end
 			end
 			local age = if action then now - action.started else 0
-			local phase = if action and action.config ~= Gust then Fist.phase(age, config) else nil
+			local phase = if action
+					and action.config ~= Gust
+					and action.config ~= Magnet
+				then Fist.phase(age, config)
+				else nil
 			local reach = 0.6
 			if phase == "active" then
 				reach = Fist.reach(age, Config)
@@ -379,7 +447,9 @@ table.insert(
 					record.parts[key] = nil
 					continue
 				end
-				p.Color = color
+				if string.sub(key, 1, 6) ~= "magnet" then
+					p.Color = color
+				end
 			end
 			if record.parts.shield then
 				record.parts.shield.Color = Color3.fromRGB(80, 230, 255)
@@ -429,12 +499,12 @@ table.insert(
 						if phase == "startup" then
 							distance = 0.6 - 0.5 * math.clamp(age / Paddles.Startup, 0, 1)
 						elseif phase == "active" then
-							distance = 3 + 0.7 * math.clamp((age - Paddles.Startup) / Paddles.Active, 0, 1)
+							distance = 4.5 + 0.7 * math.clamp((age - Paddles.Startup) / Paddles.Active, 0, 1)
 							offset = side * 0.5
 						elseif phase == "recovery" then
 							local progress =
 								math.clamp((age - Paddles.Startup - Paddles.Active) / Paddles.Recovery, 0, 1)
-							distance, offset = 3.7 - 3.1 * progress, side * (0.5 + 0.7 * progress)
+							distance, offset = 5.2 - 4.6 * progress, side * (0.5 + 0.7 * progress)
 						end
 					else
 						record.parts[hand].Color = Color3.fromRGB(70, 185, 160)

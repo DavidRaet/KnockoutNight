@@ -43,15 +43,15 @@ return function()
 			local side = if hand == "Left" then -1 else 1
 			local frame = Paddles.frame(origin, -Vector3.zAxis, hand)
 			check(
-				(frame.Position - origin - Vector3.new(side * 0.5, 0, -2.5)).Magnitude < 1e-6,
+				(frame.Position - origin - Vector3.new(side * 0.5, 0, -3.25)).Magnitude < 1e-6,
 				hand .. " exact mirrored center"
 			)
 			check(#sweep(hand, Vector3.new(0, 0, -2)) == 1, hand .. " reaches centered opponent")
 			check(#sweep(hand, Vector3.new(side * 2.49, 0, -2)) == 1, hand .. " partial outside-body overlap counts")
 			check(#sweep(hand, Vector3.new(side * 2.51, 0, -2)) == 0, hand .. " outside lateral edge misses")
 			check(#sweep(hand, Vector3.new(-side * 1.51, 0, -2)) == 0, hand .. " opposite-side edge is shorter")
-			check(#sweep(hand, Vector3.new(0, 0, -4.99)) == 1, hand .. " limb overlapping front edge hits")
-			check(#sweep(hand, Vector3.new(0, 0, -5.01)) == 0, hand .. " limb beyond front edge misses")
+			check(#sweep(hand, Vector3.new(0, 0, -6.49)) == 1, hand .. " limb overlapping front edge hits")
+			check(#sweep(hand, Vector3.new(0, 0, -6.51)) == 0, hand .. " limb beyond front edge misses")
 			check(#sweep(hand, Vector3.new(0, 2.49, -2)) == 1, hand .. " vertical partial overlap hits")
 			check(#sweep(hand, Vector3.new(0, 2.51, -2)) == 0, hand .. " above volume misses")
 			check(#sweep(hand, Vector3.new(0, -2.51, -2)) == 0, hand .. " below volume misses")
