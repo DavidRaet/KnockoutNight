@@ -2,7 +2,7 @@ local Test = game:GetService("StudioTestService")
 local ok, args = pcall(function()
 	return Test:GetTestArgs()
 end)
-if not ok or type(args) ~= "table" or args.test ~= "L1Match" then
+if not ok or type(args) ~= "table" or (args.test ~= "L1Match" and args.test ~= "L2Match") then
 	return
 end
 local Storage = game:GetService("ReplicatedStorage")
@@ -46,17 +46,17 @@ local passed, failure = pcall(function()
 			and roster[2]:GetAttribute("F3Status") == "waiting"
 	end, 30, "two staged clients")
 	local roster = Lives.roster()
-	local arena = workspace.SkyBridges
+	local arena = workspace[require(Storage.F1Config).Arena]
 	local homes = {}
 	for _, player in roster do
 		local position = player.Character.HumanoidRootPart.Position
 		homes[player] = if position.X < 0 then 1 else 2
 		check(
 			(position - arena["Spawn" .. homes[player]].Position).Magnitude < 1,
-			player.Name .. " starts at a side-island center"
+			player.Name .. " starts at its opening spawn"
 		)
 	end
-	check(homes[roster[1]] ~= homes[roster[2]], "players occupy opposing home islands")
+	check(homes[roster[1]] ~= homes[roster[2]], "players occupy opposing homes")
 	check(
 		Match.chooseWeapon(roster[1], "WreckingHammer") and Match.chooseAbility(roster[1], "Bounce"),
 		"first loadout selected"
@@ -78,9 +78,7 @@ local passed, failure = pcall(function()
 	for index, player in roster do
 		local opponent = roster[3 - index]
 		local life, score = player:GetAttribute("F3Life"), opponent:GetAttribute("F3Score")
-		local position = if index == 1
-			then Vector3.new(0, 16, 40)
-			else Vector3.new(arena.Bridge3.Position.X, 16, arena.Bridge3.Position.Z)
+		local position = arena:GetAttribute("F3BoundsCenter") + Vector3.new(if index == 1 then -41 else 41, -25, 0)
 		player.Character.HumanoidRootPart.CFrame = CFrame.new(position)
 		Combat.resetMovement(player)
 		Lives.step()
@@ -94,7 +92,7 @@ local passed, failure = pcall(function()
 			return player:GetAttribute("F3Status") == "alive" and player:GetAttribute("F3Life") == life + 1
 		end, 5, "home respawn")
 		local delta = player.Character.HumanoidRootPart.Position - arena["Spawn" .. homes[player]].Position
-		check(Vector3.new(delta.X, 0, delta.Z).Magnitude < 6.2, "player " .. index .. " returns to its own home island")
+		check(Vector3.new(delta.X, 0, delta.Z).Magnitude < 6.2, "player " .. index .. " returns to its own home")
 		check(
 			player.Character:FindFirstChild("F3SpawnShield") ~= nil,
 			"player " .. index .. " receives respawn protection"

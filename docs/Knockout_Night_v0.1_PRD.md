@@ -74,7 +74,7 @@ Functional requirements below are confirmed unless explicitly labeled otherwise.
 | D05 | Equip one weapon and one active ability: Gust, Magnet, or Bounce. |
 | D06 | Left click attacks; Q activates the ability on keyboard. |
 | D07 | Bounce plus Wrecking Hammer enables Aerial Ground Slam. Other combinations use natural synergy. |
-| D08 | The Platform, Sky Bridges, and The Ring support both match modes. |
+| D08 | The Platform, Sky Bridges, and Dungeon support both match modes. |
 | D09 | Every regulation ring-out awards one point to the opposing side, regardless of cause. Sudden death awards no points. |
 | D10 | A regulation tie enters untimed sudden death without respawns; the first team to lose a player loses. |
 | D11 | Local physical lobby queues dispatch groups; queues are not permanently linked to arenas. |
@@ -91,7 +91,7 @@ Functional requirements below are confirmed unless explicitly labeled otherwise.
 | Weapons | Spring Fist, Wrecking Hammer, Paddle Pops | Confirmed |
 | Abilities | Gust, Magnet, Bounce | Confirmed |
 | Special interaction | Aerial Ground Slam for Hammer plus Bounce | Confirmed |
-| Maps | The Platform, Sky Bridges, The Ring | Confirmed |
+| Maps | The Platform, Sky Bridges, Dungeon | Confirmed |
 | Match length | 3 minutes | Provisional |
 | Regulation respawn delay | 3 seconds | Provisional |
 | Sudden death | Untimed; no respawns | Confirmed |
@@ -162,9 +162,9 @@ All three maps are built for the P1 1v1 flow. 2v2 remains in the broader game de
 #### DD07 Arenas and hazards (Q40-Q44)
 
 - The Platform is circular. All essential Sky Bridges routes are walkable or use ordinary jumping; none requires Bounce. Bounce may offer shortcuts. Bridges permit approach, dodging, and fighting rather than single-file precision.
-- The Ring has a permanent center and segmented outer ring. Server selects two nonadjacent sections per cycle, excluding sections selected in the previous cycle. Repeat safe, warning, collapse, and restoration phases.
-- Warnings combine visible patterns, flashing boundaries, and sound, never color alone. Restoration must not trap or launch characters.
-- Continue ordinary hazard cycles during sudden death, restarting at the safe phase each round. No accelerated collapse or shrinking arena.
+- Dungeon replaces the former Ring: flat 80 × 80 stud square, open edges, stationary centered 10-stud mock wrecking ball whose bottom is 8 studs above floor, and simple chain. Ball and chain have no collision, touch, query, or hazard behavior.
+- Opposing spawns are 20 studs from center, facing inward, with mirrored safe home respawns and a central emergency fallback. Ordinary round resets restore starting positions; there is no hazard cycle.
+- L2 selects Dungeon through the existing local 1v1 configuration. Map voting remains L5; art and active dungeon hazards require a later milestone. Owner gameplay acceptance follows technical verification.
 
 #### DD08 Map voting, loadouts, and queues (Q45-Q48)
 
@@ -264,7 +264,7 @@ The [F3 implementation and verification](F3/F3_Implementation_and_Verification.m
 **Purpose:** Let matched players vote for an arena in intermission, then choose a simple loadout in that arena without inventory management.
 
 - IN01: Intermission occurs after matchmaking. In M2 it runs in the same server as the lobby; in M3 it runs in the reserved match server.
-- IN02: Offer a vote among The Platform, Sky Bridges, and The Ring.
+- IN02: Offer a vote among The Platform, Sky Bridges, and Dungeon.
 - IN03: After the voted map loads, let each player privately select exactly one of the three starter weapons and one of the three starter abilities in the arena.
 - IN04: Allow loadout confirmation. Start a 15-second selection timer; when all players confirm or time expires, lock valid choices, default missing weapon/ability choices independently, explain assigned defaults, and begin a 3-second opening countdown.
 - IN05: Do not reveal opponents' loadouts before the opening countdown begins.
@@ -495,30 +495,27 @@ DD05 defines safe spawns, protection, and elimination commitment; DD07 defines t
 
 **Balance hypotheses:** Hammer may benefit from bridge knockback; Spring Fist may remain versatile; Paddle Pops may face approach risk while punishing slower attacks. These are hypotheses to test, not requirements to preserve an advantage. Watch for excessively frequent 2v2 ring-outs.
 
-### 9.3 The Ring
+### 9.3 Dungeon
 
-| Attribute | Confirmed specification |
+**Design approved October 23, 2026:** Dungeon replaces The Ring; the segmented floor and collapse cycles are retired. The reference establishes an RPG dungeon theme; its pictured traps are deferred.
+
+| Attribute | Confirmed specification for L2 |
 |---|---|
-| Theme | Visually striking circular fighting arena |
-| Layout | Medium circular platform, mostly flat, fully exposed outer edge |
-| Active hazard | Outer ring sections periodically disappear or lose collision |
-| Normal safe area | Center remains a reliable safe area during normal hazard cycles |
-| Excluded motion | Continuous whole-arena rotation |
+| Layout | Flat 80 × 80 stud square; four open edges for ring-outs; no holes or raised sections |
+| Mock wrecking ball | Stationary, diameter 10 studs, centered, bottom 8 studs above floor; simple vertical chain attached to an overhead beam supported by two edge posts |
+| Mock interaction | Ball, chain, and support frame anchored; collision, touch, queries disabled; no movement, damage, or knockback |
+| Spawns | Opposite sides, 20 studs from center, facing inward; mirrored safe home respawn candidates and central emergency fallback |
+| Integration | Existing local 1v1 launch configuration; ordinary elimination, scoring, protection, and round resets |
+| Deferred | Detailed stonework, enclosing walls, props, lighting polish, swinging ball behavior, spikes, arrows, pressure plates, trapdoors, other hazards |
 
-**Confirmed hazard cycle:** Safe period → selected outer sections warn players → marked sections collapse or lose collision → sections restore → repeat.
-
-Warnings must be clear and allow adequate reaction time. Normal cycles must not create unavoidable eliminations. All loadouts should remain competitively viable.
-
-**Resolved:** DD07 defines nonadjacent section selection without consecutive repeats, multimodal warning, safe restoration, and ordinary cycles in sudden death. Section 17 supplies cycle settings. No shrinking arena.
-
-**Technical constraints:** The server controls hazard state and collision changes. Clients render matching warnings. Safe spawns must account for current hazard state; a visual-only warning cannot be the sole authority for whether a surface exists.
+Map voting remains L5. David signed off the current L2 blockout, including the decorative support frame, on October 23, 2026. Gameplay acceptance is complete for this slice; outstanding technical checks and milestone/release gates remain separate. See [L2 implementation and verification](P1/L2/L2_Implementation_and_Verification.md). Later art and active dungeon content require a separately approved milestone and are not required for blockout acceptance. 2v2 remains deferred.
 
 **Acceptance criteria for arenas**
 
 - Each map runs in both modes with the correct roster and safe spawns.
-- On The Ring, only warned sections collapse according to the approved pattern, the center remains reliable during normal cycles, and restored sections regain their intended collision.
-- Players can recognize the hazard warning and escape under normal conditions using the approved movement configuration.
-- Ring-out scoring behaves consistently whether a fall comes from combat, a bridge, or a collapsing section.
+- Dungeon provides the approved square floor and centered noninteractive mock ball, supported spawns, and unobstructed ring-out edges.
+- Dungeon mock geometry cannot block movement, attacks, slam targeting, or camera queries.
+- Ring-out scoring behaves consistently whether a fall comes from combat, a bridge, or an open Dungeon edge.
 - Map cleanup resets surfaces, collision, hazards, and temporary effects before reuse in a local session.
 
 ## 10. Match rules, elimination, and scoring
@@ -538,7 +535,7 @@ Warnings must be clear and allow adequate reaction time. Normal cycles must not 
 | Player walks off accidentally | Opposing side receives +1 |
 | Player intentionally jumps off | Opposing side receives +1 |
 | A teammate falls during 2v2 | Opposing team receives +1 |
-| Player falls because of The Ring hazard | Opposing side receives +1 |
+| Player falls from a Dungeon edge | Opposing side receives +1 |
 | The same elimination triggers multiple callbacks | Still only +1 total |
 
 ### 10.2 Elimination lifecycle
@@ -576,7 +573,7 @@ If both sides are eliminated effectively simultaneously, restart sudden death in
 - Only eliminations committed before the regulation deadline count; freeze combat at expiry.
 - Reset every remaining connected participant, including pending respawns, to fair spawns; clear motion, actions, temporary protection, and effects; restore abilities/hazards and repeat the countdown. Departed players remain absent.
 - Keep tied regulation scores; sudden death awards no overtime points. The approved F5 window is exactly 0.2 seconds from the first server elimination commitment. An opposing commitment at or before that deadline resets the round, including equality. Later commitments cannot extend the window through delayed scheduling; otherwise the first eliminated player's opponent wins when the window closes.
-- Restarts use the same reset; The Ring restarts ordinary cycles from the safe phase.
+- Restarts use the same reset; Dungeon retains its static floor and mock ball.
 
 **Approved F5 local 1v1 detail (October 22, 2026):** Reset both connected players, including pending regulation respawns, to their regulation mirrored starts with fresh life identities. Clear old motion, actions, buffers, protection, effects, and respawn timers; preserve chosen equipment and make abilities ready. Repeat the three-second opening countdown with both players locked until GO. No sudden-death respawn protection or ordinary respawns. Repeated mutual eliminations have no round cap or overtime timer. Committed eliminated attackers cannot register further hits, including already active attacks; a hit must resolve before its attacker's elimination commitment. Duplicate and stale life/session callbacks must be harmless.
 
@@ -688,7 +685,7 @@ Phase ownership must be explicit. An old timer, delayed callback, or repeated re
 
 ### 13.3 Single-server phases
 
-Start with one local 1v1 session on The Platform. Build Sky Bridges and The Ring before completing the local player journey. In M2, lobby, intermission, selected arena, results, and return all remain in the same server. Add reserved-server teleports in M3. Independent sessions must isolate participant lists, teams, map state, score, timers, ability state, elimination events, and cleanup.
+Start with one local 1v1 session on The Platform. Build Sky Bridges and Dungeon before completing the local player journey. In M2, lobby, intermission, selected arena, results, and return all remain in the same server. Add reserved-server teleports in M3. Independent sessions must isolate participant lists, teams, map state, score, timers, ability state, elimination events, and cleanup.
 
 If multiple local matches are hosted simultaneously, their arenas, collisions, effects, and player interaction must be isolated. The number of concurrent local matches, arena allocation behavior, and what happens when capacity is full are open. Queue zones must remain independent of arena identity.
 
@@ -763,7 +760,7 @@ These scenarios describe implementation acceptance work to perform during develo
 | AC13 | Sudden-death transition, deadline, and mutual elimination | Pre-deadline commitments alone score; all connected players reset with abilities ready; 0.2-second opposing loss window restarts; otherwise first lost player determines losing side |
 | AC14 | 1v1 departures in every phase | Queue removal, intermission/arena-selection cancellation, or active 1v1 forfeit follows the specified policy. 1v2 continuation and team forfeits apply to P3 2v2 |
 | AC15 | Every map runs in 1v1 | Topology, safe spawns, fall bounds, and hazard behavior meet map requirements. 2v2 map coverage is deferred to P3 |
-| AC16 | The Ring hazard cycles | Clear warning; only selected sections collapse; reliable center; collision restores |
+| AC16 | Dungeon blockout | 80 × 80 open-edge square; centered stationary noninteractive mock ball; safe mirrored spawns; normal ring-outs and resets |
 | AC17 | HUD across combat phases | Correct mode-specific score, urgency, overtime label, feed, and authoritative cooldown |
 | AC18 | Parallel or successive sessions | No leaked roster, score, cooldown, hazard, timer, or presentation state |
 | AC19 | Dispatch, incomplete arrival, and lobby-return failure | Pre-teleport departure preserves queue order; 20-second full-roster timeout and at most two outbound retries; cancelled group recovers; failed return gets two retries and persistent manual button; no duplicate starts |
@@ -784,7 +781,7 @@ Apply section 2.2 rules and section 17 settings. M2 exercises the applicable 1v1
 - Do players use Gust and Magnet for positioning rather than guaranteed disabling sequences?
 - Is Bounce useful for both offense and recovery, with a meaningful cost for spending it?
 - Can opponents recognize and avoid Ground Slam?
-- Are all maps fair across loadouts and modes? Does The Ring provide enough warning?
+- Are all maps fair across loadouts and modes? Are Dungeon spacing and the suspended mock readable?
 - Do the controls, camera, cooldown display, and feed remain legible during busy 2v2 fights?
 - Do players voluntarily queue again, and what causes them to stop?
 
@@ -804,7 +801,7 @@ Apply section 2.2 rules and section 17 settings. M2 exercises the applicable 1v1
 
 ### Milestone 2 Complete local 1v1 player flow
 
-**Scope and order:** First build Sky Bridges and The Ring and integrate all three maps for 1v1. Then complete the local journey: main menu; shared lobby; physical 1v1 queue; intermission/map vote; movement to the selected arena in the same server; 15-second private selection of one weapon and one ability; a 3-second opening countdown after all players confirm or time expires; full 1v1 match; results; return to lobby. Include the 1v1 HUD, combat feedback, sudden death, departure rules, and clean arena/session reuse. Do not add reserved-server teleportation in M2.
+**Scope and order:** First build Sky Bridges and Dungeon and integrate all three maps for 1v1. Then complete the local journey: main menu; shared lobby; physical 1v1 queue; intermission/map vote; movement to the selected arena in the same server; 15-second private selection of one weapon and one ability; a 3-second opening countdown after all players confirm or time expires; full 1v1 match; results; return to lobby. Include the 1v1 HUD, combat feedback, sudden death, departure rules, and clean arena/session reuse. Do not add reserved-server teleportation in M2.
 
 **Exit criteria:** AC01–AC08 and AC10–AC18 pass for their applicable local 1v1 portions under approved section 2.2 policies; AC09 and the multi-attacker part of AC08 are deferred with 2v2. Each map works in 1v1. A departure or cancellation does not strand the remaining player. Local session reuse is clean. The map-vote duration must be decided before implementing that phase.
 
@@ -855,8 +852,8 @@ Approved configurable prototype starting settings, not final balance or claims o
 | Ground Slam | Windup 0.25 s; downward speed at least 90 studs/s afterward; radius 9 studs; launch 55/13 studs/s; landing recovery 0.65 s | No hover; weaker than direct Hammer; displacement counterplay |
 | The Platform | Circular, diameter 70 studs | Neutral two-player testing, then 2v2 |
 | Sky Bridges | Center diameter 50 studs; side islands diameter 30 studs each; bridges width 12 studs, approximately 25 studs between island edges | Three connections, no required Bounce; room for fighting |
-| The Ring geometry | Diameter 80 studs; permanent center diameter 48 studs; eight outer sections | Reliable center and exposed edges |
-| Ring selection / cycle | Two nonadjacent sections, none repeated from prior cycle; safe 10 s, warning 3 s, collapsed 4 s, then restore | Readable escape opportunity; same cycles in sudden death |
+| Dungeon geometry | 80 × 80 studs; flat square; open edges; spawns ±20 studs from center | Provisional spacing for owner playtesting |
+| Dungeon mock ball | Diameter 10 studs; bottom 8 studs above floor; centered with simple chain; anchored and noninteractive | Visual placeholder; active hazards deferred |
 | Lower elimination plane | 25 studs below lowest playable surface | Recover until crossing, then reject abilities |
 | Outer fallback bounds | At least 60 studs beyond outermost playable geometry | Catch extreme launches |
 | Sudden-death simultaneity | 0.2 seconds after first elimination | Continue play; opposing loss resets round |
@@ -903,7 +900,7 @@ Acceptance requires exercising approved rules, not merely recording agreement. N
 - Ranked and cross-server matchmaking.
 - Complex combo systems, universal blocking or parrying, and universal air recovery.
 - Additional weapons and abilities or a large roster of special weapon–ability interactions.
-- Continuous whole-arena rotation on The Ring.
+- Continuous whole-arena rotation and the retired segmented Ring collapse design.
 - Mobile/controller support for the first desktop beta; reconnect/backfill, direct rematches, and individual performance statistics.
 - Double jumps, sprinting, dodge rolls, ledge grabs, and accumulating damage/launch meters.
 
@@ -925,7 +922,7 @@ Detailed assist tracking is not required for initial scoring. A sudden-death ant
 | Bounce becomes mandatory or ineffective | Recovery can dominate loadout choice | Evaluate cooldown and launch against offensive opportunity cost |
 | Hammer or Ground Slam is unreadable | Heavy attacks feel unavoidable | Evaluate windup, impact readability, radius, and recovery |
 | Map geometry creates loadout bias | One weapon could dominate bridges or edges | Test every map in both modes with varied loadouts |
-| Collapse warnings are unclear | Hazard eliminations feel arbitrary | Validate warning visibility and escape opportunity before final art |
+| Dungeon mock obscures combat | Players lose sight of opponents | Evaluate ball scale, clearance, and camera readability during blockout playtesting |
 | Sudden-death races produce arbitrary winners | Fairness depends on event timing | Exercise approved simultaneity and transition rules at boundary cases |
 | Teleports split or strand groups | Players cannot finish the intended journey | Complete local flow first, then exercise partial-arrival and return recovery |
 | Presentation hides combat | Players lose information during busy fights | Keep effects brief and camera response subtle; review 2v2 visibility |

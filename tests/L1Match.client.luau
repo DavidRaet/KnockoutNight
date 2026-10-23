@@ -14,7 +14,7 @@ remote.OnClientEvent:Connect(function(kind)
 		remote:FireServer("snapshot", {
 			state = Storage.F4State.Value,
 			errors = errors,
-			arena = workspace:FindFirstChild("SkyBridges") ~= nil,
+			arena = workspace:FindFirstChild(require(Storage.F1Config).Arena) ~= nil,
 			cameraDistance = (camera.CFrame.Position - camera.Focus.Position).Magnitude,
 			viewport = tostring(camera.ViewportSize),
 			position = tostring(Players.LocalPlayer.Character.HumanoidRootPart.Position),

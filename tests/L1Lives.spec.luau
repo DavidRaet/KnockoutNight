@@ -1,4 +1,4 @@
-return function(makeLives)
+return function(makeLives, buildArena)
 	local checks, roster, retired = {}, {}, {}
 	local removing = Instance.new("BindableEvent")
 	local players = {
@@ -13,7 +13,7 @@ return function(makeLives)
 		end,
 	}
 	local Lives = makeLives(players, combat)
-	local arena, frames, points, fallback = require(game.ServerScriptService.L1SkyBridges).build()
+	local arena, frames, points, fallback = (buildArena or require(game.ServerScriptService.L1SkyBridges).build)()
 	arena.Parent = workspace
 	local events = {}
 	local function check(value, message)
@@ -72,7 +72,7 @@ return function(makeLives)
 			Lives.add(player, frames[home], home)
 			Lives.reset(player)
 			Lives.freeze(player, false, false)
-			check(Lives.alive(player), "home " .. home .. " starts alive beyond old Platform bounds")
+			check(Lives.alive(player), "home " .. home .. " starts alive within arena bounds")
 		end
 		local function respawn(player)
 			local before = player:GetAttribute("F3Life")
@@ -100,7 +100,7 @@ return function(makeLives)
 		)
 		roster[1].Character.HumanoidRootPart.Position = Vector3.new(0, arena:GetAttribute("F3LowerY"), 40)
 		Lives.step()
-		check(roster[1]:GetAttribute("F3Status") == "eliminated", "interior void eliminates through arena lower plane")
+		check(roster[1]:GetAttribute("F3Status") == "eliminated", "fall eliminates through arena lower plane")
 		Lives.resetRound(roster)
 		for home, player in roster do
 			check(

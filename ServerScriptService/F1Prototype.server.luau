@@ -22,8 +22,10 @@ PhysicsService:CollisionGroupSetCollidable("F1Characters", "F1Characters", false
 local arena, spawnFrames, spawnPoints, fallback
 if Config.Arena == "SkyBridges" then
 	arena, spawnFrames, spawnPoints, fallback = require(script.Parent.L1SkyBridges).build()
+elseif Config.Arena == "Dungeon" then
+	arena, spawnFrames, spawnPoints, fallback = require(script.Parent.L2Dungeon).build()
 else
-	assert(Config.Arena == "ThePlatform", "F1 launch requires a supported arena: ThePlatform or SkyBridges")
+	assert(Config.Arena == "ThePlatform", "F1 launch requires a supported arena: ThePlatform, SkyBridges, or Dungeon")
 	arena = Instance.new("Model")
 	arena.Name = "F1Platform"
 	local platform = Instance.new("Part")
@@ -203,7 +205,7 @@ local function addPlayer(player: Player)
 	end
 	local slot = slots[player]
 	if slot and player.Parent == Players then
-		Lives.add(player, spawnFrames[slot], if Config.Arena == "SkyBridges" then slot else nil)
+		Lives.add(player, spawnFrames[slot], if Config.Arena ~= "ThePlatform" then slot else nil)
 	end
 end
 
