@@ -2,8 +2,8 @@
 
 **Platform:** Roblox  
 **Product:** Competitive multiplayer 3D arena fighter  
-**Document version:** 0.4 (v0.1 release scope)
-**Updated:** October 22, 2026
+**Document version:** 0.5 (v0.1 release scope)
+**Updated:** October 23, 2026
 **Product owner:** ShorlingWild
 **Release:** Friends-and-family beta  
 **Design authority:** Section 2.2 records the approved core Grill Me decisions; section 2.3 records the subsequent F3 agreement. These supersede conflicting earlier proposals. Original confirmed decisions, Roblox Game Ideation, and HUD whiteboard remain supporting sources.
@@ -15,7 +15,7 @@
    - [Dedicated design decisions](#22-dedicated-design-decisions-approved-grill-me-agreement)
    - [Approved F3 decisions](#23-approved-f3-decisions)
 3. [Player journey](#3-player-journey)
-4. [Intermission and loadouts](#4-intermission-and-loadouts)
+4. [Map vote and arena loadouts](#4-map-vote-and-arena-loadouts)
 5. [Movement and camera](#5-movement-and-camera)
 6. [Combat foundation](#6-combat-foundation)
 7. [Starter weapons](#7-starter-weapons)
@@ -37,7 +37,7 @@
 
 Knockout Night is a third-person arena fighter in which players knock opponents off elevated arenas to earn points. Players compete in 1v1 or 2v2 matches using one freely selected starter weapon and one active ability. Success depends on spacing, timing, movement, positioning, and loadout synergy.
 
-The v0.1 objective is to build a fun, reliable, skill-based multiplayer knockout game that friends want to play again. The first development priority is a complete, enjoyable two-player combat match. The beta then adds the full local lobby flow, all three maps, 2v2, and reserved match servers.
+The v0.1 objective is to build a fun, reliable, skill-based multiplayer knockout game that friends want to play again. The first development priority is a complete, enjoyable two-player combat match. P1 then adds all three maps and the complete local 1v1 journey, followed by reserved match servers. 2v2 is deferred to a later P3 feature; its milestone placement and release gate remain open.
 
 Gameplay is fully 3D. Players move forward, backward, left, and right across the horizontal plane, with jumping and certain abilities providing vertical movement. The HUD is a minimal 2D overlay. There is no conventional health or damage system, traditional blocking, or parrying in v0.1.
 
@@ -97,7 +97,7 @@ Functional requirements below are confirmed unless explicitly labeled otherwise.
 | Sudden death | Untimed; no respawns | Confirmed |
 | Persistent economy and progression | None | Deferred |
 
-All three maps and both modes belong to the complete beta scope. The Platform and two-player combat are the first milestone, not a reduction of the final scope.
+All three maps are built for the P1 1v1 flow. 2v2 remains in the broader game design but is deferred to P3; whether it enters a later v0.1 release gate remains open.
 
 ### 2.2 Dedicated design decisions: approved Grill Me agreement
 
@@ -166,12 +166,13 @@ All three maps and both modes belong to the complete beta scope. The Platform an
 - Warnings combine visible patterns, flashing boundaries, and sound, never color alone. Restoration must not trap or launch characters.
 - Continue ordinary hazard cycles during sudden death, restarting at the safe phase each round. No accelerated collapse or shrinking arena.
 
-#### DD08 Intermission and queues (Q45-Q48)
+#### DD08 Map voting, loadouts, and queues (Q45-Q48)
 
-- Map voting and private loadout selection share one timed screen. Choices can change until deadline; confirmation means ready, not irreversibly locked. Keep the full window initially.
+- Map voting happens during intermission. After the selected map loads, players privately choose a weapon and ability in the arena. The loadout phase lasts 15 seconds; if all players confirm early or time expires, valid choices lock, missing choices independently default to Spring Fist/Gust, and a 3-second opening countdown starts before combat.
 - Randomly choose among tied vote leaders; no votes means random among all maps. Independently default missing weapon/ability to Spring Fist/Gust, retaining valid choices and briefly explaining assigned defaults.
-- Begin with one separated queue zone per mode. Extra entrants wait in arrival order for the next group; visibly identify the next roster. Leaving removes a waiting player; one membership per player.
+- P1/M2 has one 1v1 queue zone. Extra entrants wait in arrival order for the next group; visibly identify the next roster. Leaving removes a waiting player; one membership per player. Add 2v2 queues in the later P3 feature.
 - Full group starts dispatch countdown. Departure before teleport begins cancels dispatch, preserves remaining queue order, and restarts countdown when full. After teleport begins apply DD09.
+- In M2, players move between lobby, intermission, arena, and results within one server. Reserved-server teleports are M3 work.
 
 #### DD09 Session failures and results (Q49-Q54)
 
@@ -206,7 +207,7 @@ The [F3 implementation and verification](F3/F3_Implementation_and_Verification.m
 
 ## 3. Player journey
 
-**Confirmed flow:** Main Menu → Lobby → Queue → Intermission → Map Vote / Loadout Selection → Arena → Results → Lobby.
+**Confirmed flow:** Main Menu → Lobby → 1v1 Queue → Intermission / Map Vote → Selected Arena / 15-second Loadout Selection → 3-second Start Countdown → Match → Results → Lobby. M2 keeps these areas in one server; M3 adds reserved-server teleports.
 
 ### 3.1 Main menu and lobby
 
@@ -217,7 +218,7 @@ The [F3 implementation and verification](F3/F3_Implementation_and_Verification.m
 - PF01: Show the Knockout Night title or logo over a blurred 3D background.
 - PF02: Provide one prominent **Play** button. Do not add inventory or progression menus in v0.1.
 - PF03: Play enters the shared 3D lobby. Reusing its scene as the menu background is a presentation implementation choice (DD01).
-- PF04: Provide distinct physical matchmaking areas for 1v1 and 2v2. Multiple queue zones may exist.
+- PF04: Provide a physical 1v1 matchmaking area for P1/M2. 2v2 matchmaking is deferred to P3.
 - PF05: After results, return players to a public lobby where they can queue again.
 
 **Technical constraints:** Menu presentation is client-side. Queue membership and match assignment are server-owned. The target architecture places the shared lobby in the public lobby place.
@@ -225,7 +226,7 @@ The [F3 implementation and verification](F3/F3_Implementation_and_Verification.m
 **Acceptance criteria**
 
 - A newly joined player can identify Play and reach the lobby.
-- Both queue modes are distinguishable in the lobby.
+- The 1v1 queue is visible and distinguishable in the lobby. 2v2 queue presentation belongs to P3.
 - Completing a match leads back to a usable lobby flow.
 - No starter item requires an unlock, purchase, or inventory interaction.
 
@@ -258,39 +259,41 @@ The [F3 implementation and verification](F3/F3_Implementation_and_Verification.m
 
 **Resolved:** One separated zone per mode, first-in-first-out extra entrants, one membership per player, and visible next roster. Use DD08 before teleport, DD09 during arrival, and intermission cancellation after assembly.
 
-## 4. Intermission and loadouts
+## 4. Map vote and arena loadouts
 
-**Purpose:** Let matched players choose an arena and a simple loadout without inventory management.
+**Purpose:** Let matched players vote for an arena in intermission, then choose a simple loadout in that arena without inventory management.
 
-- IN01: Intermission occurs after matchmaking. In the target architecture, it runs in the reserved match server.
+- IN01: Intermission occurs after matchmaking. In M2 it runs in the same server as the lobby; in M3 it runs in the reserved match server.
 - IN02: Offer a vote among The Platform, Sky Bridges, and The Ring.
-- IN03: Let each player select exactly one of the three starter weapons and one of the three starter abilities.
-- IN04: Allow loadout confirmation or assign a default when no valid selection is completed.
-- IN05: Do not reveal opponents' loadouts during intermission.
-- IN06: Validate equipment choices on the server; reject invalid or unavailable identifiers.
-- IN07: Lock equipment once combat starts.
-- IN08: If anyone leaves during intermission, cancel the match in both modes, return the remaining players to the lobby, and issue no official match result or rewards.
+- IN03: After the voted map loads, let each player privately select exactly one of the three starter weapons and one of the three starter abilities in the arena.
+- IN04: Allow loadout confirmation. Start a 15-second selection timer; when all players confirm or time expires, lock valid choices, default missing weapon/ability choices independently, explain assigned defaults, and begin a 3-second opening countdown.
+- IN05: Do not reveal opponents' loadouts before the opening countdown begins.
+- IN06: Validate equipment choices on the server; reject invalid or unavailable identifiers and late changes after loadout lock.
+- IN07: Lock equipment before the opening countdown; enable movement, combat, and the match timer together when the countdown ends.
+- IN08: If anyone leaves during intermission or arena selection, cancel the match in 1v1, return the remaining player to the lobby, and issue no official match result or rewards. Apply the approved 2v2 departure policy when that mode is added in P3.
 
 | Item | Starting proposal | Status |
 |---|---|---|
-| Shared map-vote/loadout window | 15 seconds | Provisional duration; shared screen confirmed |
-| Editing / confirmation | Editable until deadline; confirmation means ready | Confirmed |
-| Missing selections | Independently default to Spring Fist / Gust, preserving valid choices and explaining assignments | Confirmed |
+| Map-vote window | To be set before implementation | Open; separate from arena loadout timer |
+| Arena loadout window | 15 seconds | Confirmed |
+| Loadout editing / confirmation | Editable until all players confirm or deadline; confirmation means ready | Confirmed |
+| Opening countdown after loadout | 3 seconds | Confirmed; then movement, combat, and match timer start together |
+| Missing loadout choices | Independently default to Spring Fist / Gust, preserving valid choices and explaining assignments | Confirmed |
 | Vote tie / no votes | Random among tied leaders / all maps | Confirmed |
-| Voting and selection screen | Concurrent on one screen for full window | Confirmed |
+| Voting and loadout selection | Map vote in intermission; loadout selection after arrival in selected arena | Confirmed |
 
 **Technical constraints:** The server determines phase deadlines and accepted selections. Client display state cannot override a locked loadout. Loadout privacy must include replicated data, not just hiding portraits in the interface.
 
 **Acceptance criteria**
 
-- All three maps, weapons, and abilities are available in their respective choices.
+- All three maps, weapons, and abilities are available in their respective choices for 1v1.
 - Every player enters combat with exactly one valid weapon and one valid ability.
-- Missing selections resolve to the approved default rather than blocking the match.
+- When all players confirm early or the 15-second timer expires, choices lock, missing selections resolve to defaults, and the 3-second opening countdown begins.
 - Late selection requests cannot change combat equipment.
-- Opponent selections remain private during intermission.
-- An intermission departure cancels the match and provides a return path for every remaining participant.
+- Opponent selections remain private until the opening countdown begins.
+- An intermission or arena-selection departure cancels the 1v1 match and provides a return path for the remaining player.
 
-**Acceptance:** Exercise tied/empty votes, independent defaults, editable confirmation, and late rejection under DD08.
+**Acceptance:** Exercise tied/empty votes, independent defaults, early confirmation, timer expiry, the 3-second countdown, and late rejection under DD08.
 
 ## 5. Movement and camera
 
@@ -664,8 +667,11 @@ The following state names are an engineering recommendation representing the con
 Lobby queue
   → Locked group and dispatch
   → Intermission
-      → Map voting and loadout selection
-  → Arena preparation
+      → Map voting
+  → Selected arena
+      → 15-second private loadout selection
+      → Lock choices and show assigned defaults
+      → 3-second opening countdown
   → Regulation
       → Sudden death if tied
           → Sudden death restart if mutually eliminated
@@ -680,7 +686,7 @@ Phase ownership must be explicit. An old timer, delayed callback, or repeated re
 
 ### 13.3 Single-server phases
 
-Start with one local session on The Platform. Expand to the complete local flow before introducing teleports. Independent sessions must isolate participant lists, teams, map state, score, timers, ability state, elimination events, and cleanup.
+Start with one local 1v1 session on The Platform. Build Sky Bridges and The Ring before completing the local player journey. In M2, lobby, intermission, selected arena, results, and return all remain in the same server. Add reserved-server teleports in M3. Independent sessions must isolate participant lists, teams, map state, score, timers, ability state, elimination events, and cleanup.
 
 If multiple local matches are hosted simultaneously, their arenas, collisions, effects, and player interaction must be isolated. The number of concurrent local matches, arena allocation behavior, and what happens when capacity is full are open. Queue zones must remain independent of arena identity.
 
@@ -694,14 +700,14 @@ Server-authoritative outcomes do not automatically mean all character physics is
 
 ## 14. Reserved match-server architecture
 
-**Confirmed target:** Public lobby place → reserved instance of a separate reusable match place → return to a public lobby. Each match server runs intermission, voting, arena gameplay, and results for its matched group.
+**Confirmed target:** Public lobby place → reserved instance of a separate reusable match place → return to a public lobby. M3 ports the proven local 1v1 journey to this architecture. Each match server runs intermission/map voting, arena loadout selection, gameplay, and results for its matched group.
 
 ### 14.1 Session handoff
 
 1. The lobby server forms and locks a local group of two or four players.
 2. The server creates or selects the reserved match-server destination and dispatches the group.
 3. The destination initializes the intended match, mode, and roster.
-4. Intermission collects map votes and loadouts in the match server.
+4. Intermission collects map votes. After the selected arena loads, players choose loadouts there and the opening countdown begins.
 5. The server runs regulation, any sudden death, and results.
 6. Remaining players return to a public lobby.
 
@@ -740,21 +746,21 @@ These scenarios describe implementation acceptance work to perform during develo
 
 | Gate | Scenario | Pass condition |
 |---|---|---|
-| AC01 | New player completes the full flow | Menu → lobby → queue → intermission → arena → results → lobby works |
-| AC02 | Both modes fill local queues | 2 players form 1v1; 4 form 2v2; incomplete queues wait |
+| AC01 | New player completes the full local 1v1 flow | Menu → lobby → 1v1 queue → intermission/map vote → selected arena/loadout → countdown → match → results → lobby works in one server for M2 |
+| AC02 | Local 1v1 queue fills | 2 players form 1v1; incomplete queues wait. 2v2 queue acceptance is deferred to P3 |
 | AC03 | Queue entries or requests repeat | No duplicate membership, match assignment, or dispatch |
-| AC04 | Intermission completes without input | Approved map-vote and default-loadout policies resolve; combat has valid equipment |
+| AC04 | Map vote and arena loadout complete without input | Approved vote policy resolves; the 15-second arena selection expires, defaults missing choices, then starts the 3-second countdown with valid equipment |
 | AC05 | Client submits invalid loadout or late change | Server rejects it; locked equipment remains authoritative |
 | AC06 | All weapon and ability choices are exercised | All nine loadouts work; only Hammer plus Bounce has the specified special attack |
 | AC07 | Knockback, Bounce, and miss punishment | Fixed aim-directed replacement launch; committed knockback with limited steering; valid Bounce replaces velocity before elimination cutoff; misses expose recovery |
-| AC08 | Repeated Paddle Pops pressure, including two attackers | Visible team-wide displacement/interruption protection prevents stun-lock; blocked hits do not extend protection or attribution; target can respond after hit reaction |
-| AC09 | Ally is inside an attack, cone, pull, or shockwave | No harmful friendly-fire outcome |
+| AC08 | Repeated Paddle Pops pressure | In 1v1, protection prevents stun-lock, blocked hits do not extend protection or attribution, and targets can respond after hit reaction. Two-attacker pressure is deferred to P3 2v2 |
+| AC09 | Ally is inside an attack, cone, pull, or shockwave | No harmful friendly-fire outcome; applicable to P3 2v2, not the M2 1v1 gate |
 | AC10 | Combat, accidental, intentional, and hazard falls | Opposing side receives +1 per regulation elimination |
 | AC11 | One elimination has duplicate callbacks | One point, one elimination event, at most one regulation respawn |
-| AC12 | Tied regulation and 2v2 sudden death | Untimed; no respawns; first lost player decides the losing team |
+| AC12 | Tied regulation and sudden death | 1v1 sudden death is untimed with no respawns. First-player-loss team outcomes apply to P3 2v2 |
 | AC13 | Sudden-death transition, deadline, and mutual elimination | Pre-deadline commitments alone score; all connected players reset with abilities ready; 0.2-second opposing loss window restarts; otherwise first lost player determines losing side |
-| AC14 | Departures in every phase | Queue removal, intermission cancellation, 1v1 forfeit, 1v2 continuation, or team forfeit as specified |
-| AC15 | Every map runs in both modes | Topology, safe spawns, fall bounds, and hazard behavior meet map requirements |
+| AC14 | 1v1 departures in every phase | Queue removal, intermission/arena-selection cancellation, or active 1v1 forfeit follows the specified policy. 1v2 continuation and team forfeits apply to P3 2v2 |
+| AC15 | Every map runs in 1v1 | Topology, safe spawns, fall bounds, and hazard behavior meet map requirements. 2v2 map coverage is deferred to P3 |
 | AC16 | The Ring hazard cycles | Clear warning; only selected sections collapse; reliable center; collision restores |
 | AC17 | HUD across combat phases | Correct mode-specific score, urgency, overtime label, feed, and authoritative cooldown |
 | AC18 | Parallel or successive sessions | No leaked roster, score, cooldown, hazard, timer, or presentation state |
@@ -767,7 +773,7 @@ These scenarios describe implementation acceptance work to perform during develo
 | AC25 | Controls, accessibility, and desktop targets | Mouse capture/menu release; standardized rigs and no body blocking; sensitivity/shake/audio settings; non-color warnings; evaluate 60 FPS on chosen hardware and 100-150 ms latency |
 | AC26 | Opening, results, and terminal session states | Countdown synchronizes start; eight-second results with immediate return; no reconnect/backfill; both sides empty means no winner; shutdown abandons unfinished result |
 
-Apply section 2.2 rules and section 17 settings. Agreement is not test completion; exercise interruption, active trades, protection, armored slam redirection, safe spawning, deadline ordering, and failure paths.
+Apply section 2.2 rules and section 17 settings. M2 exercises the applicable 1v1 behavior. Defer ally-targeting, multi-attacker, team sudden-death, and 2v2 map scenarios to P3. Agreement is not test completion; exercise interruption, active trades, protection, armored slam redirection, safe spawning, deadline ordering, and failure paths.
 
 ### 15.2 Playtest questions
 
@@ -794,13 +800,13 @@ Apply section 2.2 rules and section 17 settings. Agreement is not test completio
 
 **Dependencies:** Apply approved DD01-DD05 action rules with section 17 settings; validate animation-aligned hit volumes, spawns, launch, and recovery in multiplayer.
 
-### Milestone 2 Complete local player flow
+### Milestone 2 Complete local 1v1 player flow
 
-**Scope:** Main menu; shared lobby; physical 1v1 and 2v2 queues; random teams; intermission; map voting; private loadout selection; all three maps; complete HUD and combat feedback; sudden death; departure rules; results and return flow.
+**Scope and order:** First build Sky Bridges and The Ring and integrate all three maps for 1v1. Then complete the local journey: main menu; shared lobby; physical 1v1 queue; intermission/map vote; movement to the selected arena in the same server; 15-second private selection of one weapon and one ability; a 3-second opening countdown after all players confirm or time expires; full 1v1 match; results; return to lobby. Include the 1v1 HUD, combat feedback, sudden death, departure rules, and clean arena/session reuse. Do not add reserved-server teleportation in M2.
 
-**Exit criteria:** AC01–AC18 pass for the relevant local implementation under approved section 2.2 policies. Each map works in both modes. A departure or cancellation does not strand the remaining players. Local session reuse is clean.
+**Exit criteria:** AC01–AC08 and AC10–AC18 pass for their applicable local 1v1 portions under approved section 2.2 policies; AC09 and the multi-attacker part of AC08 are deferred with 2v2. Each map works in 1v1. A departure or cancellation does not strand the remaining player. Local session reuse is clean. The map-vote duration must be decided before implementing that phase.
 
-**Dependencies:** Apply and exercise DD02-DD10 voting, sudden-death ordering/reset, safe spawning, protection, and 2v2 targeting.
+**Dependencies:** Apply and exercise DD02-DD10 voting, sudden-death ordering/reset, safe spawning, protection, and local 1v1 lifecycle behavior.
 
 ### Milestone 3 Reserved match servers
 
@@ -812,9 +818,9 @@ Apply section 2.2 rules and section 17 settings. Agreement is not test completio
 
 ### Milestone 4 Friends and family beta
 
-**Scope:** Play with friends; evaluate balance, map fairness, knockback, recovery, controls, visibility, and voluntary repeat play. Tune provisional values based on observation.
+**Scope:** Play with friends in 1v1; evaluate balance across maps, knockback, recovery, controls, visibility, and voluntary repeat play. Tune provisional values based on observation. P3 2v2 is not an M4 beta gate unless its scope is separately approved.
 
-**Exit criteria:** The complete acceptance matrix is reviewed, critical gameplay and flow failures are resolved, and the product owner accepts the current tuning for the beta. No numerical retention or win-rate threshold has been fixed.
+**Exit criteria:** The acceptance criteria for the approved 1v1 beta scope are reviewed, critical gameplay and flow failures are resolved, and the product owner accepts the current tuning. Deferred P3 2v2 criteria are reviewed separately. No numerical retention or win-rate threshold has been fixed.
 
 **Planning note:** Dates, staffing, effort estimates, and milestone owners remain open. Preserve this sequence so infrastructure follows evidence that the combat works.
 
@@ -826,7 +832,9 @@ Approved configurable prototype starting settings, not final balance or claims o
 |---|---|---|
 | Regulation / respawn delay | 3 minutes / 3 seconds | Pace and safe re-entry |
 | Opening / dispatch countdowns | 3 seconds each | Fair start / clear queue departure opportunity |
-| Shared intermission | 15 seconds | Concurrent editable map/loadout selection; full window initially |
+| Map-vote window | To be decided | Separate from arena loadout selection; set before implementing map voting |
+| Arena loadout selection | 15 seconds | Private weapon/ability choices; all-player confirmation may end the window early; missing choices default at expiry |
+| Opening countdown | 3 seconds | Starts after all players confirm or the loadout timer expires; movement, combat, and timer begin together afterward |
 | Walk speed / normal jump height | 16 studs/s / approximately 7 studs | Same base movement across weapons |
 | Air steering | Moderate normally; minimal during knockback | Useful jumping without erasing launches; exact coefficients tuned in prototype |
 | Attack movement speed | Fist 70%; Hammer 40%; Paddles 85% of base | Applies throughout action; Hammer commits most strongly |
@@ -854,7 +862,7 @@ Approved configurable prototype starting settings, not final balance or claims o
 | Failed lobby return | Two automatic retries, then manual button remains | Usable recovery state |
 | Results | 8 seconds plus immediate return button | Simple return-to-queue route |
 | Feed attribution / display | Latest successful enemy displacement within 5 s; display 4 s; maximum three entries | Credit separate from score; oldest replaced at capacity |
-| Capacity | 12 players per public lobby; four per match server | Desktop beta starting targets |
+| Capacity | 12 players per public lobby; four-player match server target | Desktop beta starting targets; P1 local 1v1 acceptance uses two players |
 | Performance / network test | 60 FPS desktop target; test at 100-150 ms round-trip latency | Reference hardware to be selected; no verification claimed |
 
 Reach is forward hit-volume extent from the character, not additional distance beyond the model. Launch numbers are intended velocity targets, not force units; physics application requires evaluation. Exact hit-volume widths/heights, air-control coefficients, and animation alignment are prototype tuning details within approved behavior, not permission to add mechanics.
@@ -868,23 +876,28 @@ Q1-Q76 are resolved in section 2.2. Earlier O01-O21 groups are resolved as behav
 | V01 | Tune exact air-control coefficients, hit-volume widths/heights, Magnet pull-speed balance (F9 starts at 28 studs/s), Bounce input response, and physics application within approved behavior | Milestone 1 |
 | V02 | Validate animation alignment, active trades, repeated-pressure protection, armored slam redirection, valid surfaces, and ability startup interruption | Milestones 1-2 |
 | V03 | F3 spawn/failure policy is approved in section 2.3 and technically exercised on The Platform. Owner gameplay review and safe-spawn/hazard integration for later maps remain | Milestones 1-2 |
-| V04 | Playtest timing, launch, arena dimensions, warnings, all nine loadouts, and both modes; assess compulsory Bounce selection | Milestones 1-4 |
+| V04 | Playtest timing, launch, arena dimensions, warnings, and all nine loadouts in 1v1; assess compulsory Bounce selection. Add 2v2 coverage with P3 | Milestones 1-4; P3 |
 | V05 | Choose camera distance/zoom bounds, clipping handling, effects/animations, final assets, menu background scene, lobby decoration, and results layout within DD01/DD10 | Milestones 1-2 |
 | V06 | Choose local test-session allocation/capacity and full-capacity handling; production target remains one reserved server per match | Milestone 2 |
 | V07 | Implement admission, server-owned roster validation, retry scheduling within bounded policy, destination configuration, and physics ownership/security approach | Milestones 1-3 |
 | V08 | Choose reference desktop hardware and verify FPS, low-graphics readability, and latency targets | Before beta technical signoff |
 | V09 | Assign milestone owners, schedule, and beta participants; assess voluntary repeat play and critical failures | Before beta acceptance |
+| V10 | Set the separate map-vote duration; the 15-second arena loadout timer and 3-second opening countdown are confirmed | Before implementing map voting in M2 |
 | Deferred | Controller/mobile mappings, reconnect/backfill, direct rematches, individual statistics, sudden-death anti-stalling, and future rewards | Later review; not current beta gates |
 
 Acceptance requires exercising approved rules, not merely recording agreement. No implementation or completed tests are asserted by this revision.
 
 ## 19. Deferred features and risks
 
-### 19.1 Explicitly outside v0.1
+### 19.1 Deferred from P1
+
+2v2 is deferred to a later P3 feature, after the P1 local 1v1 journey and reserved-server work. Its milestone placement and inclusion in a v0.1 release gate remain open.
+
+### 19.2 Explicitly outside v0.1
 
 - Inventory management and persistent equipment unlocks.
 - Currency, progression, shops, monetization, and purchasable weapons.
-- Party formation and manual 2v2 teammate selection.
+- Party formation and manual teammate selection.
 - Ranked and cross-server matchmaking.
 - Complex combo systems, universal blocking or parrying, and universal air recovery.
 - Additional weapons and abilities or a large roster of special weapon–ability interactions.
@@ -892,16 +905,16 @@ Acceptance requires exercising approved rules, not merely recording agreement. N
 - Mobile/controller support for the first desktop beta; reconnect/backfill, direct rematches, and individual performance statistics.
 - Double jumps, sprinting, dodge rolls, ledge grabs, and accumulating damage/launch meters.
 
-Detailed assist tracking is not required for initial scoring. A sudden-death anti-stalling system is a later exploration, not a current requirement. Do not create a progression system merely to implement future reward policy language. The Dev Special in section 19.2 is the specifically tracked P3 stretch exception; it remains outside v0.1 release scope.
+Detailed assist tracking is not required for initial scoring. A sudden-death anti-stalling system is a later exploration, not a current requirement. Do not create a progression system merely to implement future reward policy language. The Dev Special in section 19.3 remains outside v0.1 release scope.
 
-### 19.2 P3 stretch feature: Dev Special
+### 19.3 P3 stretch feature: Dev Special
 
 - Add a developer-only weapon called **Poop Hammer** and an associated ability called **Eat Poop**. This is a humorous development special, not part of the starter roster or general player loadout.
 - On activation, Eat Poop smears poop on the nearest opponent. The affected opponent becomes slippery and has increased knockback susceptibility, doubling the knockout potential of the user's Poop Hammer.
 - This is an intentionally paired, special weapon-ability interaction. It does not imply a general status-effect or combo system. Detailed values, eligibility, cooldown, and presentation remain to be specified before implementation.
 - Priority: **P3 stretch**; excluded from v0.1 beta requirements and release gates.
 
-### 19.3 Delivery risks
+### 19.4 Delivery risks
 
 | Risk | Why it matters | Response within the approved scope |
 |---|---|---|
@@ -936,3 +949,4 @@ When a provisional value is accepted or an open question is resolved, update its
 | October 20, 2026 | 0.2 | Recorded approved Q1-Q76 in dedicated section 2.2; reconciled requirements, expanded provisional tuning, and replaced resolved open questions with validation/engineering work. Arrival timeout 20 seconds; respawn protection 3 seconds. Documentation only; no implementation or asset changes. |
 | October 22, 2026 | 0.3 | Recorded approved F3 Q1–Q7 and implementation authorization: bounded safe-spawn fallback, distance/tie selection, fresh character lives, visible protection, spectator timing, and F3 HUD scope. Linked technical evidence and preserved owner gameplay acceptance as pending. |
 | October 22, 2026 | 0.4 | Recorded product-owner F3 gameplay sign-off and updated the next-slice status to F4. |
+| October 23, 2026 | 0.5 | Reordered P1/M2 to build all three maps before completing the local 1v1 journey; deferred 2v2 to P3; moved private weapon/ability selection to the arena with a 15-second timer and 3-second opening countdown. Map-vote duration remains open. Documentation only; no implementation or asset changes. |

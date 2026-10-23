@@ -1,9 +1,9 @@
 # Knockout Night v0.1 Engineering Roadmap
 
-**Status:** Approved roadmap; F1 implemented with Studio verification; F2 Spring Fist signed off for its current combat flow on October 22, 2026; F3 implemented, technically verified, synced, and signed off by the product owner on October 22, 2026; [F4 implemented, technically verified, and signed off by the product owner on October 22, 2026](F4/F4_Implementation_and_Verification.md). [F5 implemented, technically verified, and signed off by the product owner on October 22, 2026](F5/F5_Implementation_and_Verification.md). The complete M1 combat roster and match loop remain unfinished.
+**Status:** Approved roadmap; P1 scope revised by the product owner on October 23, 2026 to build all maps before the local 1v1 journey, defer 2v2 to P3, and place loadout selection in the arena; F1 implemented with Studio verification; F2 Spring Fist signed off for its current combat flow on October 22, 2026; F3 implemented, technically verified, synced, and signed off by the product owner on October 22, 2026; [F4 implemented, technically verified, and signed off by the product owner on October 22, 2026](F4/F4_Implementation_and_Verification.md). [F5 implemented, technically verified, and signed off by the product owner on October 22, 2026](F5/F5_Implementation_and_Verification.md). The complete M1 combat roster and match loop remain unfinished.
 
 **Approved:** October 20, 2026.  
-**Source of truth:** [Knockout Night v0.1 PRD](Knockout_Night_v0.1_PRD.md), document version 0.4.
+**Source of truth:** [Knockout Night v0.1 PRD](Knockout_Night_v0.1_PRD.md), document version 0.5.
 **Design authority:** PRD sections 2.2 and 2.3 supersede conflicting earlier proposals. Confirmed behavior stays fixed; section 17 values remain configurable prototype starting settings.
 
 The product owner approved the slice size, dependency order, and breakdown, including moving sudden death into P0 so the first complete combat milestone can finish tied matches. Roadmap approval does not resolve the engineering decisions listed below or authorize implementation, asset generation/export, or publishing.
@@ -21,13 +21,14 @@ Every slice includes its necessary server behavior, client presentation, cleanup
 | Priority | Milestone | Outcome |
 |---|---|---|
 | **P0 — Foundations** | **M1: Complete two-player combat** | Two players finish understandable matches on The Platform using the complete starter roster. |
-| **P1 — MVP completion** | **M2: Complete local flow** | Menu, queues, private selections, both modes, all maps, HUD, departures, and clean session reuse work locally. |
+| **P1 — MVP completion** | **M2: Complete local 1v1 flow** | Finish the three-map set, then complete the menu → lobby → 1v1 queue → map vote → arena loadout → match → results → lobby journey locally. |
 | **P1 — MVP completion** | **M3: Reserved match servers** | Complete lobby → reserved match → lobby journey, including failure recovery. |
 | **P2 — Polish** | **M4: Friends-and-family beta** | Refine presentation and provisional tuning, verify technical targets, and obtain beta acceptance. |
+| **P3 — Later feature** | **Milestone TBD: 2v2** | Add 2v2 after the P1 local-flow and reserved-server milestones; detailed milestone placement remains open. |
 
 Required readability, accessibility, security, and failure handling belong in P0/P1 as their features arrive. P2 refines those features; it does not postpone required functionality.
 
-All three weapons, all three abilities, all three maps, and both modes remain in beta scope. No gameplay mechanics are added by this roadmap.
+All three weapons, all three abilities, and all three maps are in the P1 1v1 flow. 2v2 is deferred to P3. No gameplay mechanics are added by this roadmap.
 
 ## Major systems and technical dependencies
 
@@ -40,7 +41,7 @@ These are proposed ownership seams, not a commitment to separate scripts or a fr
 | Player lives | Elimination commitment, safe spawning, protection, cooldown continuity | Arena bounds/spawn candidates; combat cleanup; match phase |
 | Match lifecycle | Countdown, deadlines, teams, score, sudden death, departures, terminal results | Combat and lives; authoritative session identity |
 | Arenas | Playable surfaces, bounds, safe spawns, Ring hazards, reset | Shared arena contract; lifecycle reset |
-| Lobby and intermission | Physical queues, dispatch roster, votes, private selections | Membership ownership; session lifecycle; available arena/loadout definitions |
+| Lobby and intermission | Physical 1v1 queue, dispatch roster, map votes; arena owns private loadout selection | Membership ownership; session lifecycle; available arena/loadout definitions |
 | Presentation | HUD, feedback, spectating, settings, results/recovery screens | Authoritative state; presentation must not gate gameplay |
 | Reserved sessions | Destination admission, complete-roster assembly, bounded retries and return | Proven local lifecycle and queue handoff |
 
@@ -89,30 +90,30 @@ Required checks cover the applicable portions of PRD AC06–AC08, AC10–AC13, a
 
 **Exit:** The complete starter roster works in two-player combat, authoritative outcomes agree, and the combat is worth expanding. Final art and teleports do not gate this milestone.
 
-## P1 — M2: Complete local flow
+## P1 — M2: Complete local 1v1 flow
+
+Build the two additional arenas before wiring the complete player journey. M2 keeps the menu, lobby, queue, intermission, map vote, arena, match, results, and return flow within one server; players move between areas in that server. M2 covers 1v1 only. Reserved-server teleports remain in M3, and 2v2 is deferred to P3.
 
 | ID / vertical slice | Blocked by | Acceptance check and required playtest | Additional Brain skills |
 |---|---|---|---|
-| **L1 — Play a complete 2v2 match** | F5–F11 | Four players receive random server-owned teams and symmetric team spawns. Verify no harmful allied weapon, Gust, Magnet, or slam effects; multi-enemy contacts; two-attacker protection; and first-player-loss sudden death. | `physics`, `gui` |
-| **L2 — Enter the menu, lobby, and queues** | F1 | Title/blurred 3D background and Play lead to the shared lobby. Separate physical zones show FIFO waiting order and next roster. Repeated contacts/input never create duplicate membership. Incomplete queues wait. | `building`, `camera`, `input`, `gui` |
-| **L3 — Dispatch one full local group** | L2, F4 | Full groups receive a countdown and exactly one local session assignment. Pre-dispatch departures preserve remaining queue order. Extra entrants wait; capacity handling follows the approved local allocation decision. | `gui` |
-| **L4 — Privately select loadouts** | L3, F6–F10 | One timed intermission screen permits edits until deadline; confirmation means ready. Keep opponent selections private in replicated data. Independently default missing choices, explain assignments, reject invalid/late choices, and reveal equipment at arena entry. | `gui`, `input` |
-| **L5 — Fight on Sky Bridges** | F3 | Central and two side islands have all three connections. Essential routes work without Bounce. Test safe spawns, camera legibility, ordinary traversal, ring-outs, and slam rejection across island gaps. | `building`, `physics`, `camera` |
-| **L6 — Survive The Ring hazard cycle** | F5, F11 | Permanent center remains safe. Select two nonadjacent sections excluding previous-cycle selections. Warnings use pattern/animation and sound. Test escape, safe restoration, unavailable spawn surfaces, surface disappearance under slam, and sudden-death reset to safe phase. | `building`, `physics`, `audio`, `animation-vfx` |
-| **L7 — Vote, load, and reset every arena** | L4–L6 | Offer all three maps; resolve ties among leaders and empty votes among all maps. Run both modes on each map. Arena reuse removes old collisions, hazards, actions, effects, and callbacks. | `building`, `gui` |
-| **L8 — Follow the complete match HUD** | L1, L4 | Specified placements show mode-specific scores, authoritative timer/cooldown, clockwise radial cooldown, feed, respawn countdown, and sudden death. Verify final-30/final-10 urgency, attribution expiry, blocked-contact exclusion, feed cap, and missing-asset fallback. | `gui`, `animation-vfx` |
-| **L9 — Leave or finish without stranding others** | L1, L3, L4 | Exercise every phase-specific departure rule, intermission cancellation, 1v2 continuation, batched departures, no winner when both sides empty, immutable results, and shutdown interruption. Results/cancellation return to a usable local lobby without stale membership. | `gui` |
-| **L10 — Read combat and control presentation** | F11, L6, L8 | Required weapon/ability feedback is distinguishable in busy 2v2. Settings provide sensitivity, optional subtle shake, and separate music/effects volume. Essential information remains readable without color alone and at low graphics settings. | `gui`, `camera`, `audio`, `animation-vfx` |
+| **L1 — Build Sky Bridges** | F3 | Center and side islands have all three connections. Essential routes work without Bounce. Verify safe spawns, camera legibility, ordinary traversal, ring-outs, and slam rejection across island gaps in 1v1. | `building`, `physics`, `camera` |
+| **L2 — Build The Ring** | F5, F11 | Permanent center remains safe. Select two nonadjacent sections excluding previous-cycle selections. Warnings use pattern/animation and sound. Verify escape, safe restoration, unavailable spawn surfaces, surface disappearance under slam, and sudden-death reset to safe phase in 1v1. | `building`, `physics`, `audio`, `animation-vfx` |
+| **L3 — Enter the menu, lobby, and 1v1 queue** | F1, L1, L2 | After the three-map set is built, title/blurred 3D background and Play lead to the shared lobby. The physical 1v1 zone shows FIFO waiting order and next roster. Repeated contacts/input never create duplicate membership. Incomplete queues wait. | `building`, `camera`, `input`, `gui` |
+| **L4 — Dispatch a local 1v1 group** | L3, F4 | A full group receives a countdown and one local session assignment to the intermission area in the same server. Pre-dispatch departures preserve queue order; extra entrants wait. | `gui` |
+| **L5 — Vote and enter an arena** | L4 | Offer all three maps in intermission; resolve ties among vote leaders and empty votes among all maps. Move both players to the selected arena within the same server. Reuse clears old collisions, hazards, actions, effects, and callbacks. | `building`, `gui` |
+| **L6 — Select arena loadouts and start** | L5, F6–F10 | In the arena, each player privately selects one weapon and one ability during a 15-second window. If both confirm early or time expires, lock valid choices, independently default missing choices, and show a 3-second countdown before enabling the match. Reject invalid/late changes. | `gui`, `input` |
+| **L7 — Follow the complete 1v1 match HUD** | L6 | Show score, authoritative timer/cooldowns, radial cooldown, feed, respawn countdown, and sudden death. Verify final-30/final-10 urgency, attribution expiry, blocked-contact exclusion, feed cap, and missing-asset fallback. | `gui`, `animation-vfx` |
+| **L8 — Finish, return, and reuse the local session** | L4, L6, L7 | Exercise departures during queue, intermission, arena selection/countdown, and active 1v1; preserve the approved forfeit/cancellation rules. Results and cancellation return players to a usable local lobby without stale membership or callbacks. | `gui` |
+| **L9 — Read combat and control presentation** | L2, L7 | Weapon/ability feedback remains distinguishable in 1v1. Settings provide sensitivity, optional subtle shake, and separate music/effects volume. Essential information remains readable without color alone and at low graphics settings. | `gui`, `camera`, `audio`, `animation-vfx` |
 
 ### M2 acceptance and playtest gate
 
-- Pass **AC01–AC18** locally and exercise the relevant AC21–AC26 scenarios.
-- Complete the **three maps × two modes** matrix with varied loadouts.
-- Run two-attacker pressure, allied-target eligibility, reproducible Magnet targeting, and Ground Slam redirection tests with four clients.
-- Exercise consecutive sessions, stale timers/requests, departures during transitions, and arena cleanup. Test parallel local sessions only if the approved local allocation supports them.
+- Pass the 1v1 local-flow acceptance criteria, including AC01 and the applicable AC04–AC18 and AC21–AC26 scenarios.
+- Complete the **three maps × 1v1** matrix with varied loadouts.
+- Exercise combat and sudden death with two clients; exercise departures, consecutive sessions, stale timers/requests, arena cleanup, and map transitions. Test parallel local sessions only if the approved local allocation supports them.
 - Have an unfamiliar tester complete menu → lobby → queue → selection → match → results → lobby without guidance.
 
-**Exit:** Complete local beta functionality works before transport infrastructure is introduced.
+**Exit:** A new player can complete the full 1v1 journey locally, across all three maps, before transport infrastructure is introduced.
 
 ## P1 — M3: Reserved match servers
 
@@ -126,7 +127,7 @@ Required checks cover the applicable portions of PRD AC06–AC08, AC10–AC13, a
 
 - Pass **AC19** and repeat AC01, AC14, AC18, and AC26 across the actual place transition.
 - Test full and partial arrival, failures before/after dispatch begins, destination departures, arrival timeout, late arrival after cancellation, and failed returns.
-- Run both modes in the published multiplayer test environment and verify independent reserved sessions.
+- Run 1v1 in the published multiplayer test environment and verify independent reserved sessions. 2v2 remains deferred to P3.
 - Publishing/configuring that environment is a later explicit approval gate; this roadmap authorizes no publishing.
 
 **Exit:** The production-shaped journey and its recovery paths work without stranded players or split matches.
@@ -135,13 +136,13 @@ Required checks cover the applicable portions of PRD AC06–AC08, AC10–AC13, a
 
 | ID / vertical slice | Blocked by | Acceptance check and required playtest | Additional Brain skills |
 |---|---|---|---|
-| **B1 — Refine combat and arena presentation** | M2 | Improve approved animation, sound, effects, camera response, and layouts using original/licensed assets. Preserve hit alignment, warning clarity, and 2v2 visibility. Compare before/after on low graphics and representative desktop viewports. | `animation-vfx`, `audio`, `camera`, `gui`, `lighting`, `building` |
-| **B2 — Tune the approved roster and maps** | M3 | Adjust provisional configuration through observed playtests. Recheck all nine loadouts and both modes across maps; investigate compulsory Bounce, unavoidable pressure, unreadable Hammer/slam, and bridge/hazard bias. | `game-design`, `physics` |
-| **B3 — Verify and accept the beta build** | B1, B2 | Review AC01–AC26 with evidence; resolve critical failures. Verify chosen desktop hardware, provisional lobby/match capacity, latency, low-graphics readability, and session cleanup. Obtain owner acceptance of tuning and remaining risks. | `performance`, `security`, `publish-checklist` |
+| **B1 — Refine combat and arena presentation** | M2 | Improve approved animation, sound, effects, camera response, and layouts using original/licensed assets. Preserve hit alignment and warning clarity. Compare before/after on low graphics and representative desktop viewports. | `animation-vfx`, `audio`, `camera`, `gui`, `lighting`, `building` |
+| **B2 — Tune the approved roster and maps** | M3 | Adjust provisional configuration through observed 1v1 playtests. Recheck all nine loadouts across maps; investigate compulsory Bounce, unavoidable pressure, unreadable Hammer/slam, and bridge/hazard bias. | `game-design`, `physics` |
+| **B3 — Verify and accept the beta build** | B1, B2 | Review the acceptance criteria for the approved beta scope with evidence; resolve critical failures. Verify chosen desktop hardware, provisional lobby/match capacity, latency, low-graphics readability, and session cleanup. Obtain owner acceptance of tuning and remaining risks. | `performance`, `security`, `publish-checklist` |
 
 ### M4 acceptance and playtest gate
 
-Friends-and-family sessions must record fairness, clarity, controls, combat enjoyment, completion/failure causes, and voluntary repeat play. Manual notes and targeted logs are sufficient initially; a persistent analytics system is not required.
+Friends-and-family 1v1 sessions must record fairness, clarity, controls, combat enjoyment, completion/failure causes, and voluntary repeat play. Manual notes and targeted logs are sufficient initially; a persistent analytics system is not required. P3 2v2 remains a separate acceptance gate.
 
 **Exit:** Complete acceptance-matrix review, resolved critical gameplay/flow failures, and product owner acceptance of current tuning. No unapproved retention or win-rate threshold is introduced.
 
@@ -155,6 +156,10 @@ The product owner approved these choices after reviewing the F1 implementation o
 - **Slice scope:** F1 verifies traversal and ordinary character placement/replacement. Scored elimination, safe combat respawns, and protection remain in F3.
 
 These approvals resolve the listed F1 planning choices. They do not assert implementation or playtest completion.
+
+## P3 — Deferred feature: 2v2
+
+2v2 is deferred until after the P1 local 1v1 flow and reserved-server work. Its exact milestone placement and release gate remain to be planned; it is not part of M2 or M3 acceptance.
 
 ## P3 - Stretch feature: Dev Special
 
