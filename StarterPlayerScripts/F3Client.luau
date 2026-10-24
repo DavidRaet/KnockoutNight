@@ -95,7 +95,9 @@ for index, ability in { "Gust", "Magnet", "Bounce" } do
 	)
 end
 local function updateWeaponPicker()
-	weaponPicker.Visible = match.phase == "staging" and player:GetAttribute("F3Status") == "waiting"
+	weaponPicker.Visible = World.DeveloperArenaMode
+		and match.phase == "staging"
+		and player:GetAttribute("F3Status") == "waiting"
 	abilityPicker.Visible = weaponPicker.Visible
 	local selectedAbility = player:GetAttribute("F10Ability") or "Bounce"
 	for name, button in abilityButtons do
@@ -296,8 +298,15 @@ table.insert(
 )
 
 function Client.matchActive()
-	return (match.phase == "regulation" and workspace:GetServerTimeNow() < match.deadline)
-		or match.phase == "sudden-death"
+	local participant = false
+	for _, member in match.roster do
+		participant = participant or member.id == player.UserId
+	end
+	return participant
+		and (
+			(match.phase == "regulation" and workspace:GetServerTimeNow() < match.deadline)
+			or match.phase == "sudden-death"
+		)
 end
 
 function Client.adminConsoleOpen()
@@ -396,6 +405,7 @@ end
 table.insert(
 	connections,
 	RunService.RenderStepped:Connect(function()
+		gui.Enabled = World.DeveloperArenaMode or player:GetAttribute("L3State") == "match"
 		local now = workspace:GetServerTimeNow()
 		if console.Visible then
 			updateConsole()
@@ -437,8 +447,9 @@ table.insert(
 			returnButton.Text = "Return to Lobby (" .. math.ceil(math.max(0, result.returnAt - now)) .. ")"
 		end
 		local roster = {}
-		for _, other in Players:GetPlayers() do
-			if other:GetAttribute("F3Score") ~= nil then
+		for _, member in match.roster do
+			local other = Players:GetPlayerByUserId(member.id)
+			if other then
 				table.insert(roster, other)
 			end
 		end
@@ -457,7 +468,7 @@ table.insert(
 			panels[other].Text = other.DisplayName .. "\n" .. tostring(tally)
 		end
 		for other, panel in panels do
-			if other.Parent ~= Players then
+			if not table.find(roster, other) then
 				panel:Destroy()
 				panels[other] = nil
 			end

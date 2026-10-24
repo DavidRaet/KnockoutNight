@@ -14,4 +14,12 @@ function Movement.pressJump(wasHeld: boolean, isHeld: boolean, grounded: boolean
 	return isHeld and not wasHeld and grounded
 end
 
+function Movement.captureMouse(enabled: boolean, shiftLocked: boolean, rightMouse: boolean): boolean
+	return enabled and (shiftLocked or rightMouse)
+end
+
+function Movement.turn(yaw: number, left: boolean, right: boolean, dt: number, speed: number): number
+	return (yaw + ((if left then 1 else 0) - (if right then 1 else 0)) * speed * dt) % (math.pi * 2)
+end
+
 return table.freeze(Movement)

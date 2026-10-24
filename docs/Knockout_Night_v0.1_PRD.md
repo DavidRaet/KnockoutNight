@@ -2,7 +2,7 @@
 
 **Platform:** Roblox  
 **Product:** Competitive multiplayer 3D arena fighter  
-**Document version:** 0.5 (v0.1 release scope)
+**Document version:** 0.6 (v0.1 release scope)
 **Updated:** October 23, 2026
 **Product owner:** ShorlingWild
 **Release:** Friends-and-family beta  
@@ -107,7 +107,7 @@ All three maps are built for the P1 1v1 flow. 2v2 remains in the broader game de
 
 - Accessible, playful presentation supports deliberate spacing, readable attacks, baiting, and punishable misses. Launch strength is fixed per attack; no accumulating damage or knockback meter.
 - Desktop keyboard and mouse first. Mobile is a future design target; mobile/controller support and mappings are deferred for this beta.
-- Combat captures the mouse for consistent shift-lock-style controls. Mouse movement rotates an elevated third-person camera; character facing follows horizontal camera aim. Players can strafe/retreat while aiming. No target lock or snapping; camera pitch does not arbitrarily aim ordinary melee vertically. Menus release the cursor and restore combat controls on close.
+- Custom shift lock defaults on in the lobby, intermission and active combat, including keyboard/touchpad play. Shift or an on-screen button toggles it for the current visit; off releases the cursor with optional right-drag look. Selection, countdown, results and menus release the cursor, and closing menus restores the chosen preference. Owner-requested control revision October 23, 2026. Mouse movement while captured rotates an elevated third-person camera; Left/Right arrows also rotate the camera horizontally with shift lock on or off (owner request October 23, 2026), while WASD retains movement/Bounce direction; character facing follows horizontal camera aim. Players can strafe/retreat while aiming. No target lock or snapping; camera pitch does not arbitrarily aim ordinary melee vertically. Menus release the cursor and restore combat controls on close.
 - Standardize combat rig proportions, collision dimensions, and movement while preserving Roblox avatar appearance where compatible. Disable character-to-character physical collision for allies and enemies.
 - Normal jumps allow useful air steering; knockback allows minimal steering and cannot be immediately reversed through walking input. One ordinary jump, no automatic repeat from holding jump, double jump, sprint, dodge roll, or ledge grab.
 - Camera distance, bounded third-person zoom, clipping avoidance, animation poses, effects, lobby decoration, menu background scene, and results layout are implementation choices reviewed in the prototype within approved readability rules. Do not introduce mechanics through presentation.
@@ -274,9 +274,9 @@ The [F3 implementation and verification](F3/F3_Implementation_and_Verification.m
 
 | Item | Starting proposal | Status |
 |---|---|---|
-| Map-vote window | To be set before implementation | Open; separate from arena loadout timer |
+| Map-vote window | 10 seconds | Confirmed October 23, 2026; full window, editable votes, public counts and own-vote highlight |
 | Arena loadout window | 15 seconds | Confirmed |
-| Loadout editing / confirmation | Editable until all players confirm or deadline; confirmation means ready | Confirmed |
+| Loadout editing / confirmation | Editable until all players confirm or deadline; edits clear Ready; confirming missing fields accepts defaults | Confirmed |
 | Opening countdown after loadout | 3 seconds | Confirmed; then movement, combat, and match timer start together |
 | Missing loadout choices | Independently default to Spring Fist / Gust, preserving valid choices and explaining assignments | Confirmed |
 | Vote tie / no votes | Random among tied leaders / all maps | Confirmed |
@@ -803,7 +803,7 @@ Apply section 2.2 rules and section 17 settings. M2 exercises the applicable 1v1
 
 **Scope and order:** First build Sky Bridges and Dungeon and integrate all three maps for 1v1. Then complete the local journey: main menu; shared lobby; physical 1v1 queue; intermission/map vote; movement to the selected arena in the same server; 15-second private selection of one weapon and one ability; a 3-second opening countdown after all players confirm or time expires; full 1v1 match; results; return to lobby. Include the 1v1 HUD, combat feedback, sudden death, departure rules, and clean arena/session reuse. Do not add reserved-server teleportation in M2.
 
-**Exit criteria:** AC01–AC08 and AC10–AC18 pass for their applicable local 1v1 portions under approved section 2.2 policies; AC09 and the multi-attacker part of AC08 are deferred with 2v2. Each map works in 1v1. A departure or cancellation does not strand the remaining player. Local session reuse is clean. The map-vote duration must be decided before implementing that phase.
+**Exit criteria:** AC01–AC08 and AC10–AC18 pass for their applicable local 1v1 portions under approved section 2.2 policies; AC09 and the multi-attacker part of AC08 are deferred with 2v2. Each map works in 1v1. A departure or cancellation does not strand the remaining player. Local session reuse is clean. The approved map-vote duration is ten seconds, with edits allowed throughout the full window.
 
 **Dependencies:** Apply and exercise DD02-DD10 voting, sudden-death ordering/reset, safe spawning, protection, and local 1v1 lifecycle behavior.
 
@@ -831,7 +831,7 @@ Approved configurable prototype starting settings, not final balance or claims o
 |---|---|---|
 | Regulation / respawn delay | 3 minutes / 3 seconds | Pace and safe re-entry |
 | Opening / dispatch countdowns | 3 seconds each | Fair start / clear queue departure opportunity |
-| Map-vote window | To be decided | Separate from arena loadout selection; set before implementing map voting |
+| Map-vote window | 10 seconds | Full editable window; separate from arena loadout selection |
 | Arena loadout selection | 15 seconds | Private weapon/ability choices; all-player confirmation may end the window early; missing choices default at expiry |
 | Opening countdown | 3 seconds | Starts after all players confirm or the loadout timer expires; movement, combat, and timer begin together afterward |
 | Walk speed / normal jump height | 16 studs/s / approximately 7 studs | Same base movement across weapons |
@@ -881,7 +881,7 @@ Q1-Q76 are resolved in section 2.2. Earlier O01-O21 groups are resolved as behav
 | V07 | Implement admission, server-owned roster validation, retry scheduling within bounded policy, destination configuration, and physics ownership/security approach | Milestones 1-3 |
 | V08 | Choose reference desktop hardware and verify FPS, low-graphics readability, and latency targets | Before beta technical signoff |
 | V09 | Assign milestone owners, schedule, and beta participants; assess voluntary repeat play and critical failures | Before beta acceptance |
-| V10 | Set the separate map-vote duration; the 15-second arena loadout timer and 3-second opening countdown are confirmed | Before implementing map voting in M2 |
+| V10 | Resolved October 23, 2026: full ten-second editable vote; fifteen-second private loadouts and three-second opening countdown remain confirmed | Implemented L5–L6; David signed off gameplay October 23, 2026; technical gates remain open |
 | Deferred | Controller/mobile mappings, reconnect/backfill, direct rematches, individual statistics, sudden-death anti-stalling, and future rewards | Later review; not current beta gates |
 
 Acceptance requires exercising approved rules, not merely recording agreement. No implementation or completed tests are asserted by this revision.
@@ -949,3 +949,5 @@ When a provisional value is accepted or an open question is resolved, update its
 | October 22, 2026 | 0.3 | Recorded approved F3 Q1–Q7 and implementation authorization: bounded safe-spawn fallback, distance/tie selection, fresh character lives, visible protection, spectator timing, and F3 HUD scope. Linked technical evidence and preserved owner gameplay acceptance as pending. |
 | October 22, 2026 | 0.4 | Recorded product-owner F3 gameplay sign-off and updated the next-slice status to F4. |
 | October 23, 2026 | 0.5 | Reordered P1/M2 to build all three maps before completing the local 1v1 journey; deferred 2v2 to P3; moved private weapon/ability selection to the arena with a 15-second timer and 3-second opening countdown. Map-vote duration remains open. Documentation only; no implementation or asset changes. |
+
+| October 23, 2026 | 0.6 | Recorded the approved full ten-second editable vote and Ready/default semantics. [L4–L9 agreement](P1/L4-L9_Implementation_Plan.md) records pre-GO cancellation, local allocation, settings and checkpoint decisions. L5–L6 implemented within their [verification limits](P1/L6/L5-L6_Implementation_and_Verification.md); David signed off completed L4–L6 gameplay October 23, 2026; L7–L9 are deferred to another session, and technical/release gates remain open. |

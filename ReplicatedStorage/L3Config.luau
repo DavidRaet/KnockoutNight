@@ -5,4 +5,6 @@ return table.freeze({
 	QueueSize = Vector3.new(18, 0.3, 16),
 	CameraOffset = Vector3.new(34, 26, 42),
 	CameraFocus = Vector3.new(0, 3, -4),
+	DispatchCountdown = 3,
+	IntermissionOrigin = Vector3.new(100, 40, 220),
 })

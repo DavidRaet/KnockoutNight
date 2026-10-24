@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-23",
+  "scope": "Player avatar appearance and laptop mouse lock",
+  "rootCause": "Appearance retrieval was gated behind developer arena mode",
+  "localChecks": {
+    "selene": "pass",
+    "compilation": "pass",
+    "existing": 886,
+    "total": 902,
+    "formatting": "pass",
+    "mouseLock": 9,
+    "redRegressionObserved": true,
+    "appearance": 7
+  },
+  "studio": {
+    "controlledSnapshots": [
+      "Combat opt-out",
+      "Combat reenable",
+      "Selection/menu stale-combat gate",
+      "Countdown/results release"
+    ],
+    "lobbyLifecycleAssertions": 23,
+    "sourcesMatched": 37,
+    "temporaryFixturesRemoved": true,
+    "liveControllerPhaseChecks": 7,
+    "realAppearanceChecks": 12,
+    "realInput": [
+      "Shift off",
+      "Button on",
+      "Roblox menu release/restore",
+      "Lobby death retains clothing",
+      "Opt-out survives respawn"
+    ],
+    "finalMode": "Edit"
+  },
+  "ownerAcceptance": "pending",
+  "unverified": [
+    "Physical laptop touchpad feel",
+    "Different avatar inventories and unsupported packages",
+    "Actual multiplayer combat and match transitions",
+    "Latency",
+    "Small viewports/low graphics/performance"
+  ],
+  "published": false
+}

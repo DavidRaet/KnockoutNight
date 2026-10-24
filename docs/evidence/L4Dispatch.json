@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-23",
+  "checkpoint": "L4",
+  "localChecks": {
+    "combatAssertions": 590,
+    "compilation": "pass",
+    "dispatchAssertions": 112,
+    "selene": "pass",
+    "queueAssertions": 120,
+    "formatting": "pass"
+  },
+  "studio": {
+    "l3SyntheticLifecycleAssertions": 23,
+    "runtimeSourcesCompared": 34,
+    "temporaryFixturesRemoved": true,
+    "finalMode": "Edit",
+    "placeId": 2336816683,
+    "singleClient": "Real Play click and server positioning onto queue pad: one queued member, no incomplete dispatch",
+    "studioId": "7c3cbf14-2ba5-4a40-8c30-a22f6ff54a4e",
+    "runtimeSourcesMatchedAfterSync": 34,
+    "l4SyntheticLifecycleAssertions": 14
+  },
+  "unverified": [
+    "Actual multi-client dispatch and replication",
+    "Real two-player return/reset/disconnect",
+    "Agent intermission visual review",
+    "Target latency",
+    "Low graphics",
+    "Reference hardware performance"
+  ],
+  "ownerAcceptance": "accepted",
+  "nextCheckpoint": "L5-L6 subsequently completed and accepted; L7-L9 deferred to another session",
+  "ownerAcceptedOn": "2026-10-23"
+}

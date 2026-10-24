@@ -6,6 +6,11 @@ local GuiService = game:GetService("GuiService")
 local Config = require(Storage:WaitForChild("L3Config", 10))
 local remote = Storage:WaitForChild("L3Play", 10)
 local snapshot = Storage:WaitForChild("L3QueueState", 10)
+local dispatchSnapshot = Storage:WaitForChild("L4State", 10)
+local returnRemote = Storage:WaitForChild("L4Return", 10)
+assert(dispatchSnapshot and dispatchSnapshot:IsA("StringValue"), "L4 requires its dispatch snapshot")
+assert(returnRemote and returnRemote:IsA("RemoteEvent"), "L4 requires its return remote")
+local RunService = game:GetService("RunService")
 assert(remote and remote:IsA("RemoteEvent"), "L3 menu requires the Play remote")
 assert(snapshot and snapshot:IsA("StringValue"), "L3 queue requires the server roster snapshot")
 local player = Players.LocalPlayer
@@ -15,6 +20,9 @@ local world = workspace:WaitForChild("L3Lobby", 10)
 local boardPart = world and world:WaitForChild("QueueBoard", 10)
 assert(boardPart and boardPart:IsA("BasePart"), "L3 queue requires its physical board")
 local Client = {}
+local selectionInstance = script.Parent:WaitForChild("L5Client", 10)
+assert(selectionInstance, "Lobby flow requires map voting and private loadout presentation")
+local Selection = require(selectionInstance)
 local connections = {}
 local gui = Instance.new("ScreenGui")
 gui.Name, gui.ResetOnSpawn = "L3HUD", false
@@ -45,6 +53,13 @@ local status = text(gui, "QueuePosition", UDim2.new(0.8, 0, 0, 64), UDim2.new(0.
 status.BackgroundColor3, status.BackgroundTransparency = Color3.fromRGB(11, 16, 26), 0.15
 local blur = Instance.new("BlurEffect")
 blur.Name, blur.Size, blur.Parent = "L3MenuBlur", 18, Lighting
+local intermission = text(gui, "Intermission", UDim2.new(0.8, 0, 0, 90), UDim2.fromScale(0.1, 0.08), "", 24)
+local returnButton = Instance.new("TextButton")
+returnButton.Name, returnButton.Text = "ReturnToLobby", "Return to Lobby"
+returnButton.Size, returnButton.Position = UDim2.fromOffset(220, 48), UDim2.new(0.5, -110, 1, -60)
+returnButton.Font, returnButton.TextSize = Enum.Font.GothamBold, 22
+returnButton.Parent = gui
+local dispatchData = Http:JSONDecode(dispatchSnapshot.Value)
 
 local board = Instance.new("SurfaceGui")
 board.Name, board.Adornee, board.Face = "L3QueueBoard", boardPart, Enum.NormalId.Back
@@ -92,12 +107,27 @@ local function updateQueue()
 		then "Next pair ready\n@" .. roster[1].name .. "  vs  @" .. roster[2].name
 		elseif #roster == 1 then "Waiting for an opponent\nNext: @" .. roster[1].name
 		else "Waiting for players\nNext pair: —"
+	if dispatchData.busy then
+		nextPair.Text = "Match in progress\n" .. nextPair.Text
+	elseif dispatchData.deadline then
+		nextPair.Text = "Dispatch in "
+			.. math.ceil(math.max(0, dispatchData.deadline - workspace:GetServerTimeNow()))
+			.. "\n"
+			.. nextPair.Text
+	end
 	local state = player:GetAttribute("L3State")
 	status.Visible = state == "lobby" or state == "respawning"
 	status.Text = if state == "respawning"
 		then "Returning to lobby…"
 		elseif ownPosition then "1v1 queue · Position " .. ownPosition .. " of " .. #roster .. " · Step off to leave"
-		else "Walk onto the blue pad to queue for 1v1 · Hold right mouse to look"
+		else "Walk onto the blue pad to queue for 1v1 · ← / → turn camera · Shift toggles mouse lock"
+	local message = player:GetAttribute("L4Message")
+	if message and state == "lobby" and not ownPosition then
+		status.Text = message .. "\n" .. status.Text
+	end
+	intermission.Visible = state == "intermission" and not dispatchData.phase
+	intermission.Text = "INTERMISSION\nWaiting for the next stage · Shift toggles mouse lock"
+	returnButton.Visible = state == "intermission" or state == "selection"
 end
 
 local function updateState()
@@ -121,6 +151,31 @@ table.insert(
 	end)
 )
 table.insert(connections, snapshot.Changed:Connect(updateQueue))
+table.insert(
+	connections,
+	dispatchSnapshot.Changed:Connect(function()
+		dispatchData = Http:JSONDecode(dispatchSnapshot.Value)
+		updateQueue()
+	end)
+)
+table.insert(
+	connections,
+	returnButton.Activated:Connect(function()
+		returnRemote:FireServer(dispatchData.session)
+	end)
+)
+local elapsed = 0
+table.insert(
+	connections,
+	RunService.Heartbeat:Connect(function(dt)
+		elapsed += dt
+		if elapsed >= 0.1 and dispatchData.deadline then
+			elapsed = 0
+			updateQueue()
+		end
+	end)
+)
+table.insert(connections, player:GetAttributeChangedSignal("L4Message"):Connect(updateQueue))
 table.insert(connections, player:GetAttributeChangedSignal("L3State"):Connect(updateState))
 updateState()
 
@@ -132,6 +187,7 @@ function Client.menuCamera()
 end
 
 function Client.stop()
+	Selection.stop()
 	for _, connection in connections do
 		connection:Disconnect()
 	end

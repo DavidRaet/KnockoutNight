@@ -13,6 +13,8 @@ local connections, departures, returned, lastAdminRequest = {}, {}, {}, {}
 local serial, revision = 0, 0
 local lastPayload
 local running = false
+local localReturn
+local openingLost
 local nextConfig = { OpeningCountdown = Config.OpeningCountdown, RegulationDuration = Config.RegulationDuration }
 
 local function publish()
@@ -108,11 +110,11 @@ function Match.commit(player, life, session, at, event)
 end
 
 -- Developer-controlled launch only; player-facing queues belong to L2/L3.
-function Match.begin()
+function Match.begin(assignedRoster)
 	if not running or not snapshot or not Match.canJoin() then
 		return false
 	end
-	local roster = Lives.roster()
+	local roster = assignedRoster or Lives.roster()
 	if
 		#roster ~= 2
 		or roster[1]:GetAttribute("F3Status") ~= "waiting"
@@ -124,7 +126,7 @@ function Match.begin()
 	table.clear(departures)
 	table.clear(returned)
 	local matchConfig = {
-		OpeningCountdown = nextConfig.OpeningCountdown,
+		OpeningCountdown = if assignedRoster then Config.OpeningCountdown else nextConfig.OpeningCountdown,
 		RegulationDuration = nextConfig.RegulationDuration,
 		ResultsDuration = Config.ResultsDuration,
 	}
@@ -148,8 +150,45 @@ function Match.returnToStaging(player, session)
 		return false
 	end
 	returned[player] = true
-	Lives.stage(player)
+	if localReturn then
+		localReturn(player)
+	else
+		Lives.stage(player)
+	end
 	return true
+end
+
+function Match.bindLocalReturn(callback)
+	localReturn = callback
+end
+
+function Match.bindOpeningLoss(callback)
+	openingLost = callback
+end
+
+function Match.cancelOpening(player, session)
+	if
+		openingLost
+		and state
+		and state.id == session
+		and state.phase == "countdown"
+		and table.find(state.roster, player)
+	then
+		openingLost()
+		return true
+	end
+	return false
+end
+
+function Match.clearLocal()
+	state = nil
+	table.clear(departures)
+	table.clear(returned)
+	publish()
+end
+
+function Match.phase()
+	return if state then state.phase else "staging"
 end
 
 local function integerInRange(value, minimum, maximum)
@@ -221,6 +260,14 @@ function Match.step()
 		return
 	end
 	local now = workspace:GetServerTimeNow()
+	if openingLost and state.phase == "countdown" then
+		for _, player in state.roster do
+			if player.Parent == Players and not Lives.alive(player) then
+				Match.cancelOpening(player, state.id)
+				return
+			end
+		end
+	end
 	for _, player in state.roster do
 		if player.Parent ~= Players then
 			departures[player] = true

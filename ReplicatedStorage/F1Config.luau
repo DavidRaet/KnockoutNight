@@ -20,6 +20,7 @@ return table.freeze({
 	CameraMinPitch = math.rad(-65),
 	CameraMaxPitch = math.rad(20),
 	CameraSensitivity = math.rad(0.16),
+	CameraKeyboardTurnSpeed = math.rad(120),
 	CameraFocusHeight = 2,
 	CameraRadius = 0.5,
 	CameraWallPadding = 0.25,

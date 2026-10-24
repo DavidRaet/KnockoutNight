@@ -19,69 +19,8 @@ if not PhysicsService:IsCollisionGroupRegistered("F1Characters") then
 end
 PhysicsService:CollisionGroupSetCollidable("F1Characters", "F1Characters", false)
 
-local arena, spawnFrames, spawnPoints, fallback
-if Config.Arena == "SkyBridges" then
-	arena, spawnFrames, spawnPoints, fallback = require(script.Parent.L1SkyBridges).build()
-elseif Config.Arena == "Dungeon" then
-	arena, spawnFrames, spawnPoints, fallback = require(script.Parent.L2Dungeon).build()
-else
-	assert(Config.Arena == "ThePlatform", "F1 launch requires a supported arena: ThePlatform, SkyBridges, or Dungeon")
-	arena = Instance.new("Model")
-	arena.Name = "F1Platform"
-	local platform = Instance.new("Part")
-	platform.Name = "Surface"
-	platform.Shape = Enum.PartType.Cylinder
-	platform.Size = Vector3.new(Config.PlatformThickness, Config.PlatformDiameter, Config.PlatformDiameter)
-	platform.CFrame = CFrame.new(Config.PlatformCenter) * CFrame.Angles(0, 0, math.pi / 2)
-	platform.Anchored = true
-	platform.CanCollide = true
-	platform:SetAttribute("F11Playable", true)
-	platform.Material = Enum.Material.Concrete
-	platform.Color = Color3.fromRGB(155, 160, 168)
-	platform.TopSurface = Enum.SurfaceType.Smooth
-	platform.BottomSurface = Enum.SurfaceType.Smooth
-	platform.Parent = arena
-
-	spawnFrames = {}
-	spawnPoints = {}
-	for index, sign in { -1, 1 } do
-		local position = Config.PlatformCenter
-			+ Vector3.new(sign * Config.SpawnOffset, Config.PlatformThickness / 2 + 4, 0)
-		local facing =
-			CFrame.lookAt(position, Vector3.new(Config.PlatformCenter.X, position.Y, Config.PlatformCenter.Z))
-		spawnFrames[index] = facing
-		local marker = Instance.new("Part")
-		marker.Name = "Spawn" .. index
-		marker.Size = Vector3.one
-		marker.CFrame = facing
-		marker.Anchored = true
-		marker.CanCollide = false
-		marker.CanTouch = false
-		marker.CanQuery = false
-		marker.Transparency = 1
-		marker.Parent = arena
-		table.insert(spawnPoints, marker)
-	end
-	for index = 1, 6 do
-		local angle = math.pi / 4 * (if index <= 3 then index else index + 1)
-		local position = Config.PlatformCenter
-			+ Vector3.new(
-				math.cos(angle) * Config.SpawnOffset,
-				Config.PlatformThickness / 2 + 4,
-				math.sin(angle) * Config.SpawnOffset
-			)
-		local marker = spawnPoints[1]:Clone()
-		marker.Name = "Respawn" .. index
-		marker.CFrame =
-			CFrame.lookAt(position, Vector3.new(Config.PlatformCenter.X, position.Y, Config.PlatformCenter.Z))
-		marker.Parent = arena
-		table.insert(spawnPoints, marker)
-	end
-	fallback = spawnPoints[1]:Clone()
-	fallback.Name = "EmergencySpawn"
-	fallback.CFrame = CFrame.new(Config.PlatformCenter + Vector3.new(0, Config.PlatformThickness / 2 + 4, 0))
-	fallback.Parent = arena
-end
+local Arenas = require(script.Parent.L5Arenas)
+local arena, spawnFrames, spawnPoints, fallback = Arenas.build(Config.Arena)
 arena.Parent = workspace
 
 local baseplate = workspace:FindFirstChild("Baseplate")
@@ -99,11 +38,77 @@ templateDescription:Destroy()
 local slots: { [Player]: number } = {}
 local templates: { [Player]: Model } = {}
 
+local function appearance(player: Player): Model?
+	if player.Parent ~= Players then
+		return nil
+	end
+	if templates[player] then
+		return templates[player]
+	end
+	if player.UserId > 0 then
+		local ok, description = pcall(function()
+			return Players:GetHumanoidDescriptionFromUserIdAsync(player.UserId)
+		end)
+		if player.Parent ~= Players then
+			if ok then
+				description:Destroy()
+			end
+			return
+		end
+		if ok then
+			-- Body packages/scales and custom animations must not change the combat rig.
+			description.Head = 0
+			description.Torso = 0
+			description.LeftArm = 0
+			description.RightArm = 0
+			description.LeftLeg = 0
+			description.RightLeg = 0
+			description.IdleAnimation = 0
+			description.WalkAnimation = 0
+			description.RunAnimation = 0
+			description.JumpAnimation = 0
+			description.FallAnimation = 0
+			description.ClimbAnimation = 0
+			description.SwimAnimation = 0
+			description.HeightScale = 1
+			description.WidthScale = 1
+			description.DepthScale = 1
+			description.HeadScale = 1
+			description.BodyTypeScale = 0
+			description.ProportionScale = 0
+			local created, model = pcall(function()
+				return Players:CreateHumanoidModelFromDescriptionAsync(description, Enum.HumanoidRigType.R15)
+			end)
+			description:Destroy()
+			if created then
+				if player.Parent ~= Players then
+					model:Destroy()
+					return
+				end
+				templates[player] = model
+			else
+				warn("F1 appearance unavailable; using standard R15:", model)
+			end
+		else
+			warn("F1 avatar lookup failed; using standard R15:", description)
+		end
+	end
+	if player.Parent ~= Players then
+		return nil
+	end
+	templates[player] = templates[player] or template:Clone()
+	return templates[player]
+end
+
 local function spawnCharacter(player: Player, frame: CFrame, lobbyCharacter: boolean?)
 	if player.Parent ~= Players then
 		return
 	end
-	local character = (templates[player] or template):Clone()
+	local source = appearance(player)
+	if not source then
+		return nil
+	end
+	local character = source:Clone()
 	character:SetAttribute("L3LobbyCharacter", lobbyCharacter == true)
 	character.Name = player.Name
 	local humanoid = character:FindFirstChildOfClass("Humanoid")
@@ -159,54 +164,7 @@ local function addPlayer(player: Player)
 	end
 	-- Developer arena staging deliberately bypasses the player-facing lobby and queue.
 	slots[player] = if firstOccupied then 2 else 1
-	if player.UserId > 0 then
-		local ok, description = pcall(function()
-			return Players:GetHumanoidDescriptionFromUserIdAsync(player.UserId)
-		end)
-		if player.Parent ~= Players then
-			if ok then
-				description:Destroy()
-			end
-			return
-		end
-		if ok then
-			-- Body packages/scales and custom animations must not change the combat rig.
-			description.Head = 0
-			description.Torso = 0
-			description.LeftArm = 0
-			description.RightArm = 0
-			description.LeftLeg = 0
-			description.RightLeg = 0
-			description.IdleAnimation = 0
-			description.WalkAnimation = 0
-			description.RunAnimation = 0
-			description.JumpAnimation = 0
-			description.FallAnimation = 0
-			description.ClimbAnimation = 0
-			description.SwimAnimation = 0
-			description.HeightScale = 1
-			description.WidthScale = 1
-			description.DepthScale = 1
-			description.HeadScale = 1
-			description.BodyTypeScale = 0
-			description.ProportionScale = 0
-			local created, model = pcall(function()
-				return Players:CreateHumanoidModelFromDescriptionAsync(description, Enum.HumanoidRigType.R15)
-			end)
-			description:Destroy()
-			if created then
-				if player.Parent ~= Players then
-					model:Destroy()
-					return
-				end
-				templates[player] = model
-			else
-				warn("F1 appearance unavailable; using standard R15:", model)
-			end
-		else
-			warn("F1 avatar lookup failed; using standard R15:", description)
-		end
-	end
+	appearance(player)
 	local slot = slots[player]
 	if slot and player.Parent == Players then
 		Lives.add(player, spawnFrames[slot], if Config.Arena ~= "ThePlatform" then slot else nil)
@@ -216,7 +174,14 @@ end
 Lives.start(spawnCharacter, arena, spawnPoints, fallback)
 local lobby = if not Config.DeveloperArenaMode then require(script.Parent.L3Lobby) else nil
 if lobby then
-	lobby.start(spawnCharacter)
+	lobby.start(spawnCharacter, function(name)
+		local nextArena, frames, points, emergency = Arenas.build(name)
+		nextArena.Parent = workspace
+		Lives.setArena(nextArena, points, emergency)
+		arena:Destroy()
+		arena = nextArena
+		return frames
+	end)
 	script.Destroying:Connect(lobby.stop)
 	game:BindToClose(lobby.stop)
 end

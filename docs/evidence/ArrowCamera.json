@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-23",
+  "scope": "Left/Right horizontal camera rotation",
+  "keyboardTurnDegreesPerSecond": 120,
+  "checks": {
+    "formatting": "pass",
+    "total": 907,
+    "mouseLockAndKeyboardCamera": 14,
+    "existing": 886,
+    "compilation": "pass",
+    "appearance": 7,
+    "lint": "pass"
+  },
+  "studio": {
+    "finalMode": "Edit",
+    "diagnosticAttributesRemoved": true,
+    "scenarios": [
+      "Left turns left",
+      "Right turns right",
+      "Arrows do not translate character",
+      "Release stops turn",
+      "Opposing arrows cancel",
+      "Shift lock off permits arrow turning",
+      "Controlled committed facing retained",
+      "Menu stops held turn",
+      "Closing menu does not resume stale held key"
+    ],
+    "sourcesMatched": 37
+  },
+  "ownerAcceptance": "pending",
+  "unverified": [
+    "Physical laptop ergonomics and tuning",
+    "Actual multiplayer committed-attack behavior",
+    "Target latency/performance"
+  ],
+  "published": false
+}

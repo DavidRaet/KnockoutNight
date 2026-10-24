@@ -48,6 +48,17 @@ local yaw = 0
 local pitch = Config.CameraPitch
 local distance = Config.CameraDistance
 local connections: { RBXScriptConnection } = {}
+local shiftLocked = true
+local controlsGui = Instance.new("ScreenGui")
+controlsGui.Name, controlsGui.ResetOnSpawn = "F1Controls", false
+controlsGui.ScreenInsets = Enum.ScreenInsets.CoreUISafeInsets
+controlsGui.Parent = player:WaitForChild("PlayerGui", 10)
+local lockButton = Instance.new("TextButton")
+lockButton.Name, lockButton.Size, lockButton.Position =
+	"ShiftLock", UDim2.fromOffset(240, 42), UDim2.new(0, 16, 1, -130)
+lockButton.BackgroundColor3, lockButton.TextColor3 = Color3.fromRGB(21, 25, 34), Color3.new(1, 1, 1)
+lockButton.Font, lockButton.TextSize = Enum.Font.GothamMedium, 18
+lockButton.Parent = controlsGui
 
 local function connect(signal: RBXScriptSignal, callback)
 	table.insert(connections, signal:Connect(callback))
@@ -79,10 +90,31 @@ local function controlsEnabled(): boolean
 		and GuiService.SelectedObject == nil
 		and not Lives.adminConsoleOpen()
 		and player:GetAttribute("F1ControlsEnabled") ~= false
-		and (player:GetAttribute("L3State") == "lobby" or (player:GetAttribute("F3Status") == "alive" and Lives.matchActive()))
+		and (player:GetAttribute("L3State") == "lobby" or player:GetAttribute("L3State") == "intermission" or ((not Lobby or player:GetAttribute(
+			"L3State"
+		) == "match") and player:GetAttribute("F3Status") == "alive" and Lives.matchActive()))
 		and humanoid ~= nil
 		and humanoid.Health > 0
 end
+
+local function toggleLock()
+	shiftLocked = not shiftLocked
+	clearInput()
+	player:SetAttribute("F1ShiftLock", shiftLocked)
+	lockButton.Text = "Shift lock: " .. (if shiftLocked then "ON" else "OFF") .. " (Shift)"
+end
+lockButton.Text = "Shift lock: ON (Shift)"
+player:SetAttribute("F1ShiftLock", true)
+connect(lockButton.Activated, toggleLock)
+connect(Input.InputBegan, function(input, processed)
+	if
+		not processed
+		and (input.KeyCode == Enum.KeyCode.LeftShift or input.KeyCode == Enum.KeyCode.RightShift)
+		and controlsEnabled()
+	then
+		toggleLock()
+	end
+end)
 
 local function attachCharacter(model: Model)
 	restoreStudyMotor()
@@ -167,16 +199,27 @@ Actions:BindActionAtPriority("F10Ability", function(_, state)
 	return if controlsEnabled() then Enum.ContextActionResult.Sink else Enum.ContextActionResult.Pass
 end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.Q)
 
-Actions:BindActionAtPriority("F1Movement", function(_, state, input)
-	if state == Enum.UserInputState.End then
-		held[input.KeyCode] = nil
-	elseif state == Enum.UserInputState.Cancel then
-		clearInput()
-	elseif state == Enum.UserInputState.Begin and controlsEnabled() then
-		held[input.KeyCode] = true
-	end
-	return if controlsEnabled() then Enum.ContextActionResult.Sink else Enum.ContextActionResult.Pass
-end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.W, Enum.KeyCode.A, Enum.KeyCode.S, Enum.KeyCode.D)
+Actions:BindActionAtPriority(
+	"F1Movement",
+	function(_, state, input)
+		if state == Enum.UserInputState.End then
+			held[input.KeyCode] = nil
+		elseif state == Enum.UserInputState.Cancel then
+			clearInput()
+		elseif state == Enum.UserInputState.Begin and controlsEnabled() then
+			held[input.KeyCode] = true
+		end
+		return if controlsEnabled() then Enum.ContextActionResult.Sink else Enum.ContextActionResult.Pass
+	end,
+	false,
+	Enum.ContextActionPriority.High.Value,
+	Enum.KeyCode.W,
+	Enum.KeyCode.A,
+	Enum.KeyCode.S,
+	Enum.KeyCode.D,
+	Enum.KeyCode.Left,
+	Enum.KeyCode.Right
+)
 
 Actions:BindActionAtPriority("F1Jump", function(_, state)
 	if state == Enum.UserInputState.Cancel or state == Enum.UserInputState.End then
@@ -280,9 +323,11 @@ end)
 local raycastParams = RaycastParams.new()
 raycastParams.IgnoreWater = true
 raycastParams.RespectCanCollide = true
-RunService:BindToRenderStep("F1Camera", Enum.RenderPriority.Camera.Value + 1, function()
+RunService:BindToRenderStep("F1Camera", Enum.RenderPriority.Camera.Value + 1, function(dt)
 	local enabled = controlsEnabled()
-	local looking = enabled and (not Lobby or Input:IsMouseButtonPressed(Enum.UserInputType.MouseButton2))
+	local looking =
+		Movement.captureMouse(enabled, shiftLocked, Input:IsMouseButtonPressed(Enum.UserInputType.MouseButton2))
+	lockButton.Visible = enabled
 	Input.MouseBehavior = if looking then Enum.MouseBehavior.LockCenter else Enum.MouseBehavior.Default
 	Input.MouseIconEnabled = not looking
 	if not enabled or not wasEnabled then
@@ -304,6 +349,15 @@ RunService:BindToRenderStep("F1Camera", Enum.RenderPriority.Camera.Value + 1, fu
 		yaw = (yaw - delta.X * Config.CameraSensitivity) % (math.pi * 2)
 		pitch = math.clamp(pitch - delta.Y * Config.CameraSensitivity, Config.CameraMinPitch, Config.CameraMaxPitch)
 	end
+	if enabled then
+		yaw = Movement.turn(
+			yaw,
+			held[Enum.KeyCode.Left] == true,
+			held[Enum.KeyCode.Right] == true,
+			dt,
+			Config.CameraKeyboardTurnSpeed
+		)
+	end
 	local excluded: { Instance } = {}
 	for _, other in Players:GetPlayers() do
 		if other.Character then
@@ -311,8 +365,13 @@ RunService:BindToRenderStep("F1Camera", Enum.RenderPriority.Camera.Value + 1, fu
 		end
 	end
 	raycastParams.FilterDescendantsInstances = excluded
-	local focus = (if Lobby and currentRoot then currentRoot.Position else Lives.cameraPosition(currentRoot))
-		+ Vector3.new(0, Config.CameraFocusHeight, 0)
+	local focus = (
+		if Lobby
+				and currentRoot
+				and player:GetAttribute("L3State") ~= "match"
+			then currentRoot.Position
+			else Lives.cameraPosition(currentRoot)
+	) + Vector3.new(0, Config.CameraFocusHeight, 0)
 	local rotation = CFrame.fromOrientation(pitch, yaw, 0)
 	local offset = -rotation.LookVector * distance
 	local hit = workspace:Spherecast(focus, Config.CameraRadius, offset, raycastParams)
@@ -338,6 +397,8 @@ script.Destroying:Connect(function()
 	Actions:UnbindAction("F1Jump")
 	Actions:UnbindAction("F2Attack")
 	Actions:UnbindAction("F10Ability")
+	controlsGui:Destroy()
+	player:SetAttribute("F1ShiftLock", nil)
 	RunService:UnbindFromRenderStep("F1Camera")
 	defaultControls:Enable()
 	Input.MouseBehavior = Enum.MouseBehavior.Default

@@ -26,6 +26,10 @@ try {
     $source = $source.Replace('local Config = require(Storage.L3Config)', 'local Config = table.clone(require(Storage.L3Config)); Config.Origin += Vector3.new(200, 0, 0)')
     $source = $source.Replace('"L3Lobby"', '"L3FixtureLobby"').Replace('"L3QueueState"', '"L3FixtureQueueState"').Replace('"L3Play"', '"L3FixturePlay"')
     $source = $source.Replace('require(script.Parent.L3Queue)', 'require(game.ServerScriptService.L3Queue)')
+    $source = $source.Replace('require(script.Parent.L4Dispatch)', 'require(game.ServerScriptService.L4Dispatch)')
+    $source = $source.Replace('require(script.Parent.L5Flow)', 'require(game.ServerScriptService.L5Flow)')
+    $source = $source.Replace('Config.Origin += Vector3.new(200, 0, 0)', 'Config.Origin += Vector3.new(200, 0, 0); Config.DispatchCountdown = math.huge')
+    $source = $source.Replace('"L4State"', '"L3FixtureDispatchState"').Replace('"L4Return"', '"L3FixtureReturn"')
     $harnessPath = Join-Path $rootPath '.tools/L3HarnessLobby.luau'
     [IO.File]::WriteAllText($harnessPath, "return function(testPlayers)`n$source`nend`n")
     & "$Tools/stylua/stylua.exe" $harnessPath

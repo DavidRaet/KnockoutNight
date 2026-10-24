@@ -244,11 +244,17 @@ local function spawn(player, state, frame, protected)
 	local life, session = state.life, state.session
 	state.connections = {
 		character.Humanoid.Died:Connect(function()
+			if matchOwner and matchOwner.cancelOpening and matchOwner.cancelOpening(player, session) then
+				return
+			end
 			-- Defer removal/death callbacks so PlayerRemoving can discard a departure first.
 			task.defer(Lives.eliminate, player, life, "death", session)
 		end),
 		player.CharacterRemoving:Connect(function(removed)
 			if removed == character then
+				if matchOwner and matchOwner.cancelOpening and matchOwner.cancelOpening(player, session) then
+					return
+				end
 				task.defer(Lives.eliminate, player, life, "character-removed", session)
 			end
 		end),
@@ -411,14 +417,22 @@ function Lives.step()
 	end
 end
 
-function Lives.start(createCharacter, world, points, emergency, resetHazards)
-	assert(not remote, "F3 lives must be started only once per local session")
-	spawnCharacter, arena, candidates, fallback = createCharacter, world, points, emergency
+function Lives.setArena(world, points, emergency, resetHazards)
+	assert(next(records) == nil, "Arena replacement requires all previous player life records to be removed")
+	arena, candidates, fallback = world, points, emergency
+	stopped = false
 	resetSafePhase = resetHazards or function() end
 	boundsCenter = world:GetAttribute("F3BoundsCenter") or World.PlatformCenter
 	lowerY = world:GetAttribute("F3LowerY")
 		or (World.PlatformCenter.Y + World.PlatformThickness / 2 - Config.LowerOffset)
 	outerRadius = world:GetAttribute("F3OuterRadius") or (World.PlatformDiameter / 2 + Config.OuterMargin)
+	workspace:SetAttribute("F3SessionError", nil)
+end
+
+function Lives.start(createCharacter, world, points, emergency, resetHazards)
+	assert(not remote, "F3 lives must be started only once per local session")
+	spawnCharacter = createCharacter
+	Lives.setArena(world, points, emergency, resetHazards)
 	remote = Instance.new("RemoteEvent")
 	remote.Name, remote.Parent = "F3Knockouts", Storage
 	workspace:SetAttribute("F3SessionError", nil)

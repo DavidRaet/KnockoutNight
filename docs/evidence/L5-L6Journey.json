@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-23",
+  "scope": "L5-L6 (user F6 reference interpreted as L6)",
+  "localChecks": {
+    "totalDeterministic": 886,
+    "compilation": "pass",
+    "formatting": "pass",
+    "dispatchAssertions": 112,
+    "combatAssertions": 590,
+    "voteLoadoutAssertions": 64,
+    "queueAssertions": 120,
+    "selene": "pass"
+  },
+  "studio": {
+    "dungeonLivesAssertions": 21,
+    "syntheticL3LifecycleAssertions": 23,
+    "temporaryModulesRemoved": true,
+    "syntheticJourneyAssertions": 29,
+    "finalMode": "Edit",
+    "skyBridgesLivesAssertions": 21,
+    "limitations": "Journey uses synthetic players, controlled time and stub combat; presentation fixture does not prove actual multiplayer",
+    "studioId": "7c3cbf14-2ba5-4a40-8c30-a22f6ff54a4e",
+    "placeId": 2336816683,
+    "presentation": "Real single client Play and real Dungeon button click, controlled vote/selection snapshots visually inspected",
+    "runtimeSourcesMatched": 37,
+    "syntheticL4LifecycleAssertions": 14
+  },
+  "unverified": [
+    "Actual multi-client dispatch/replication/privacy",
+    "Complete live combat map/loadout matrix",
+    "Target latency",
+    "Low graphics",
+    "Smaller desktop viewports",
+    "Reference hardware performance"
+  ],
+  "remaining": "L7 full HUD, L8 full lifecycle acceptance, L9 presentation/settings: deferred to another session at David's request",
+  "publishing": false,
+  "ownerAcceptance": "accepted",
+  "ownerAcceptedOn": "2026-10-23"
+}
